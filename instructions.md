@@ -1,5 +1,7 @@
-MASTER build is
-[![Build Status](https://travis-ci.org/sagelga/Project-Computer-Programming.svg?branch=master)](https://travis-ci.org/sagelga/Project-Computer-Programming)
+Master branch is
+[![Build Status](https://travis-ci.org/sagelga/Project-Computer-Programming.svg?branch=master)](https://travis-ci.org/sagelga/Project-Computer-Programming) | 
+Development branch is 
+[![Build Status](https://travis-ci.org/sagelga/Project-Computer-Programming.svg?branch=development)](https://travis-ci.org/sagelga/Project-Computer-Programming)
 
 # Please read! How to do work in GitHub
 
