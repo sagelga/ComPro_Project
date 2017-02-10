@@ -1,10 +1,6 @@
 MASTER build is
 [![Build Status](https://travis-ci.org/sagelga/TravisCLITest.svg?branch=master)](https://travis-ci.org/sagelga/TravisCLITest)
 
-OTHER BRANCH build is
-
-[There is no other branch yet]
-
 # Please read! How to do work in GitHub
 
 Step 1 : Make a branch for yourself (or use other developer's branch) 
@@ -30,7 +26,11 @@ Failed at compiling will denied your pull requests! Check the status here : http
 
 # Lists of developers
 1) @github-username GIVEN-NAME LAST-NAME STUDENNT-ID
+
 2) @github-username GIVEN-NAME LAST-NAME STUDENNT-ID
+
 3) @github-username GIVEN-NAME LAST-NAME STUDENNT-ID
+
 4) @github-username GIVEN-NAME LAST-NAME STUDENNT-ID
+
 5) @github-username GIVEN-NAME LAST-NAME STUDENNT-ID
