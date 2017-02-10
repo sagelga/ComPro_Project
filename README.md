@@ -1,8 +1,12 @@
-This build is
+This MASTER build is
 
 [![Build Status](https://travis-ci.org/sagelga/TravisCLITest.svg?branch=master)](https://travis-ci.org/sagelga/TravisCLITest)
 
-#Please read!bui
+OTHER BRANCH build is
+
+[There is no other branch yet]
+
+#Please read!
 
 Step 1 : Make a branch for yourself (or use other developer's branch) NOT MASTER BRANCH!
 Step 2 : Make a change
