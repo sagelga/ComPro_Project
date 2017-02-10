@@ -9,9 +9,13 @@ OTHER BRANCH build is
 #Please read!
 
 Step 1 : Make a branch for yourself (or use other developer's branch) NOT MASTER BRANCH!
+
 Step 2 : Make a change
+
 Step 3 : Create Pull requests from your branch to master
+
 Step 4 : Merge requests requires file to be compilable! Broken file will not be allowed into master
+
 Step 5 : YAY! Product is now served!
 
 #Master branch push rules
