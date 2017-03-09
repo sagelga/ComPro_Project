@@ -1,7 +1,7 @@
 Master branch is
-[![Build Status](https://travis-ci.org/sagelga/Project-Computer-Programming.svg?branch=master)](https://travis-ci.org/sagelga/Project-Computer-Programming) | 
+[![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=master)](https://travis-ci.org/sagelga/ComPro_Project) | 
 Development branch is 
-[![Build Status](https://travis-ci.org/sagelga/Project-Computer-Programming.svg?branch=development)](https://travis-ci.org/sagelga/Project-Computer-Programming)
+[![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=development)](https://travis-ci.org/sagelga/ComPro_Project)
 
 # Please read! How to do work in GitHub
 
