@@ -24,7 +24,7 @@ void switch_hub() {
     printf("\n\nWhat do you like to do?\t\tSign in as %.6s\n_________________________________________________\n",username);
 
     // Choose the following functions. Can be programmed in 1 character (from 1-9 and a-z and A-Z)
-    printf("1: Login\t\t2: Check Stock\n3: Sales Export\t\t4: Quit\n");
+    printf("1: Login\t\t2: Check Stock\n3: Sales Export\t\t4: Quit\nS: Check Screen Size\n");
 
     printf("\nPlease type in your desire! >>> ");
     char functionscall;
