@@ -13,7 +13,7 @@ void terminal_ruler();
 
 int main(){
 // This function will throw in Interface functions to the users.
-    printf("[-----------------------------------------------]\n|\tHello!\tThis is the POS Systems!\t|\n[-----------------------------------------------]\n");
+    printf("\t\tWelcome to POS Systems!");
     switch_hub();
     return 0;
 }
