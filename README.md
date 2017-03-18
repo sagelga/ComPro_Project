@@ -1,8 +1,9 @@
 Master branch is
-[![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=master)](https://travis-ci.org/sagelga/ComPro_Project) | 
-Development branch is 
-[![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=development)](https://travis-ci.org/sagelga/ComPro_Project)
+[![Build Status](https://travis-ci.com/sagelga/ComPro_Project.svg?token=hxfRmfpCpbnunWcyMpkC&branch=master)](https://travis-ci.com/sagelga/ComPro_Project) | Development branch is 
+[![Build Status](https://travis-ci.com/sagelga/ComPro_Project.svg?token=hxfRmfpCpbnunWcyMpkC&branch=development)](https://travis-ci.com/sagelga/ComPro_Project)
 
+# Welcome to this Project Computer Programming!
+We are currently doing something awesome. So please be patient!
 # Please read! How to do work in GitHub
 
 Step 1 : Make a branch for yourself (or use other developer's branch) by using the latest master branch as your initial branch branching.
@@ -31,12 +32,12 @@ Master branch and developement branch is blocking you from deleting it.
 Please contact me to delete something. This is destructive actions!
 
 # Lists of developers
-1) @github-username GIVEN-NAME LAST-NAME STUDENT-ID
+1) @sagelga		Kunanon 	Srisuntiroj	59070022
 
-2) @github-username GIVEN-NAME LAST-NAME STUDENT-ID
+2) @Skydddoogg	Thanawat 	Laodkaew 	59070071
 
-3) @github-username GIVEN-NAME LAST-NAME STUDENT-ID
+3) @noppanut15	Noppanut 	Ploywong 	59070082
 
-4) @github-username GIVEN-NAME LAST-NAME STUDENT-ID
+4) @username 	GIVEN-NAME 	LAST-NAME 	STUDENT-ID
 
-5) @github-username GIVEN-NAME LAST-NAME STUDENT-ID
+5) @username 	GIVEN-NAME 	LAST-NAME 	STUDENT-ID

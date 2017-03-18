@@ -3,6 +3,9 @@
 
 \.idea/
 
+
+*.out
+
 *.cmake
 
 *.bin
