@@ -20,6 +20,4 @@ CMakeLists\.txt
 
 cmake-build-debug/
 
-makefile
-
 CMakeLists\.txt
