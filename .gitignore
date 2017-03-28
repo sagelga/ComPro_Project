@@ -3,7 +3,20 @@
 
 \.idea/
 
+
 *.out
+
+*.cmake
+
+*.bin
+
+*.out
+
+cmake-build-debug/CMakeFiles/
+
+CMakeLists\.txt
+
+*.cbp
 
 cmake-build-debug/
 
