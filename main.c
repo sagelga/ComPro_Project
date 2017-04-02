@@ -13,9 +13,6 @@
  *
  */
 
-
-
-
 // Declare all the libraries that we are going to use here
 #include <stdio.h>              // Pretty much the basic things
 #include <string.h>             // Compares strings and other kind of stuff
@@ -27,7 +24,7 @@
 // Declare all the gimmicks functions
 void switchHub();               // For moving to the selection of the functions
 void terminate();               // For save and stop the program
-void terminalRuler();           // For calculating the screen size to the optimum size
+void screenAdjust();           // For calculating the screen size to the optimum size
 void screenclear();             // For refreshing the screen to the new one
 void banner();                  // For showing the program banner
 void settings();                // For setting up the screensize, default login scheme
@@ -77,16 +74,26 @@ void customerRemove();
 
 // Declare all the Sales Database can do
 
+// Declare all the Promotion Database can do
+
+// Declasre what the seller can do
+void cashierInterface();
+
+// Declares all the authentication interface
+void authenInternface();
+void authenInterfaceComplete();
+void authenInterfaceFailed();
+void authenInternfaceError();
 
 int main(){
-// This function will throw in Interface functions to the users.
-    printf("\t\tWelcome to POS Systems!");
-    switch_hub();
+    // Starting with is function. POS Interface need to be configurated and ready to work.
+    screenAdjust();
+    //switch_hub();
     return 0;
 }
 
 void switchHub() {
-// This function will be the STARTUP PROGRAM INTERFACES
+    // This function will be the STARTUP PROGRAM INTERFACES
     char username[] = "Kumamon";
     printf("\n\nWhat do you like to do?\t\tSign in as %.6s\n_________________________________________________\n",username);
 
@@ -115,12 +122,12 @@ void switchHub() {
         case('S'):
             // Calling the >>terminal_ruler<< function
             printf("Ok. We will try to configure your screen");
-            terminal_ruler();
+            screenAdjust();
             return;
         default:
             // The input is invalid. Trying to route back to ask for a valid input
             printf("Your input is invalid. Please try again.\n\n\n");
-            switch_hub();
+            switchHub();
             return;
     }
 }
@@ -136,17 +143,58 @@ void terminate(){
             return;
         case ('N'):
             printf("I'm so happy that you're back! Redirecting.......\n\n");
-            switch_hub();
+            switchHub();
             return;
         default:
             printf("Your input is invalid. Please try again.");
             terminate();
             return;
     }
-}
+} 
 
-void terminalRuler(){
 
+void screenAdjust(){
+          //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::70 char
+    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                 The POS system will works perfectly with                                                 :\n");
+    printf(":                                                                                                                                          :\n");
+    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                         140 x 40 pixel terminal                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":             The box is 140 x 40 pixel in size. If any lines has broken, please configure the terminal screen to optimum size.            :\n");
+    printf(":             -----------------------------------------------------------------------------------------------------------------            :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf(":                                                                                                                                          :\n");
+    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
 void screenClear(){
@@ -180,19 +228,27 @@ void promotionDatabase(){
 
 }
 
-/* Void area
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*/
+/*               May the god be with us...
+                           _
+                        _ooOoo_
+                       o8888888o
+                       88" . "88
+                       (| -_- |)
+                       O\  =  /O
+                    ____/`---'\____
+                  .'  \\|     |//  `.
+                 /  \\|||  :  |||//  \
+                /  _||||| -:- |||||_  \
+                |   | \\\  -  /'| |   |
+                | \_|  `\`---'//  |_/ |
+                \  .-\__ `-. -'__/-.  /
+              ___`. .'  /--.--\  `. .'___
+           ."" '<  `.___\_<|>_/___.' _> \"".
+          | | :  `- \`. ;`. _/; .'/ /  .' ; |
+          \  \ `-.   \_\_`. _.'_/_/  -' _.' /
+===========`-.`___`-.__\ \___  /__.-'_.'_.-'================
+                        `=--=-'
+                Programs' bug best enemy
+        Please. No bug. No crash. No interruption.         */
 
 
