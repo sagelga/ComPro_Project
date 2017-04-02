@@ -1,15 +1,82 @@
-// Why do I need to include this so much library? I don't really know why.
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <time.h>
-#include <ctype.h>
+/* Welcome to the POS System program.
+ * Please feel free to look around...
+ * Created by the 1st year student of Information Technology Ladkrabang.
+ * Redistribution or copies are not allowed. No commercial use is allowed.
+ *
+ * Thank you for participating.
+ * The Team
 
-// Declare all the functions that will be used.
-void switch_hub();
-void terminate();
-void terminal_ruler();
+ * ---------------------
+ * Lists of the team members
+ * Kunanon Srisuntiroj @sagelga Lead UI Team
+ * Noppanut Ploywong @noppanut Lead Background Work Team
+ *
+ */
+
+
+
+
+// Declare all the libraries that we are going to use here
+#include <stdio.h>              // Pretty much the basic things
+#include <string.h>             // Compares strings and other kind of stuff
+#include <math.h>               // Calculate difficult 7-years-old Math
+#include <stdlib.h>             // IDK what that will do, but I added it anyways...
+#include <time.h>               // Synchronize and manage the time between program and you
+#include <ctype.h>              // Compares the string to type of string
+
+// Declare all the gimmicks functions
+void switchHub();               // For moving to the selection of the functions
+void terminate();               // For save and stop the program
+void terminalRuler();           // For calculating the screen size to the optimum size
+void screenclear();             // For refreshing the screen to the new one
+void banner();                  // For showing the program banner
+void settings();                // For setting up the screensize, default login scheme
+void authenticate();            // For signing in
+void deauthenticate();          // For signing out
+
+// Declare all the database functions
+void customerDatabase();        // For Customer Database
+void transactionDatabase();     // For Transaction Database
+void inventoryDatabase();       // For Inventory Database
+void salesDatabase();           // For Sales Database
+void promotionDatabase();       // For Promotion Database
+
+// Declare all the database retrieval functions
+void customerFileRead();        // For Customer Database
+void transactionFileRead();     // For Transaction Database
+void inventoryFileRead();       // For Inventory Database
+void salesFileRead();           // For Sales Database
+void promotionFileRead();       // For Promotion Database
+
+// Declare all the database retrieval functions
+void customerFileWrite();       // For Customer Database
+void transactionFileWrite();    // For Transaction Database
+void inventoryFileWrite();      // For Inventory Database
+void salesFileWrite();          // For Sales Database
+void promotionFileWrite();      // For Promotion Database
+
+// Declare all the database storage functions
+
+// Declare all the interface functions
+
+// Declare all the admin tools
+void adminAuthenticate();
+void adminRoleAuthen();
+void adminRoleDeauthen();
+void adminBackgroundMaintain();
+
+// Declare all the Inventory can do
+void inventoryAdd();
+void inventoryModify();
+void inventoryRemove();
+
+// Declare all the Customer Database can do
+void customerAdd();
+void customerModify();
+void customerRemove();
+
+// Declare all the Sales Database can do
+
 
 int main(){
 // This function will throw in Interface functions to the users.
@@ -18,7 +85,7 @@ int main(){
     return 0;
 }
 
-void switch_hub() {
+void switchHub() {
 // This function will be the STARTUP PROGRAM INTERFACES
     char username[] = "Kumamon";
     printf("\n\nWhat do you like to do?\t\tSign in as %.6s\n_________________________________________________\n",username);
@@ -78,6 +145,54 @@ void terminate(){
     }
 }
 
-void terminal_ruler(){
+void terminalRuler(){
 
 }
+
+void screenClear(){
+    // This function will clean the screen, and the other function will reprint the page.
+    system("@cls||clear");
+}
+
+void banner(){
+    // This function will print out the official banner.
+    printf("   ██████╗  ██████╗ ███████╗    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf("   ██╔══██╗██╔═══██╗██╔════╝    ::%-160s::\n", "Test");
+    printf("   ██████╔╝██║   ██║███████╗    ::%-160s::\n", "Test");
+    printf("   ██╔═══╝ ██║   ██║╚════██║    ::%-160s::\n", "Test");
+    printf("   ██║     ╚██████╔╝███████║    ::%-160s::\n", "Test");
+    printf("   ╚═╝      ╚═════╝ ╚══════╝    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+}
+
+void customerDatabase(){
+
+}
+void transactionDatabase(){
+
+}
+void inventoryDatabase(){
+
+}
+void salesDatabase(){
+
+}
+void promotionDatabase(){
+
+}
+
+/* Void area
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*/
+
+
