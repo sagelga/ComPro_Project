@@ -102,6 +102,15 @@ typedef struct
   double price;
   int status; // 1 = active | 0 = used (exprired)
 } PROMOTION;
+// 08. SETTING
+typedef struct
+{
+  char storeName[140];
+  char storeAddress[140];
+  double priceToPoint; // When you pay N Baht, you'll receive `N * priceToPoint` points.
+  double pointToPrice; // `pointToPrice` point is equal to 1 Baht.
+} SETTING;
+
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
