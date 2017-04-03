@@ -42,14 +42,14 @@ char storeName[140] = "Default";
 char storeAddress[140] = "Default";
 
 // Path to Database file
-const char personnelDatabaseFile[] = "Database/personnel.db";
-const char inventoryDatabaseFile[] = "Database/inventory.db";
-const char categoryDatabaseFile[] = "Database/category.db";
-const char transactionDatabaseFile[] = "Database/transaction.db";
-const char purchaseDatabaseFile[] = "Database/purchase.db";
-const char customerDatabaseFile[] = "Database/customer.db";
-const char promotionDatabaseFile[] = "Database/promotion.db";
-const char settingDatabaseFile[] = "Database/setting.db";
+const char *personnelDatabaseFile = "Database/personnel.db";
+const char *inventoryDatabaseFile = "Database/inventory.db";
+const char *categoryDatabaseFile = "Database/category.db";
+const char *transactionDatabaseFile = "Database/transaction.db";
+const char *purchaseDatabaseFile = "Database/purchase.db";
+const char *customerDatabaseFile = "Database/customer.db";
+const char *promotionDatabaseFile = "Database/promotion.db";
+const char *settingDatabaseFile = "Database/setting.db";
 
 // Database structure
 // 01. PERSONNEL
