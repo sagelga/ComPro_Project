@@ -49,6 +49,7 @@ void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *banne
 /*-----------------------------------------------------------------------------
 Declare all the database file !!build!! functions*/
 
+void initDatabase();            // For Database Initialization
 void personnelDatabase();       // For Personnel Database
 void inventoryDatabase();       // For Inventory Database
 void categoryDatabase();        // For Category Database

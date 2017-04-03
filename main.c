@@ -171,6 +171,47 @@ void settings(){
 
     }
 }
+
+
+void initDatabase(){
+
+    personnelDatabase();
+    inventoryDatabase();
+    categoryDatabase();
+    logDatabase();
+    transactionDatabase();
+    customerDatabase();
+    promotionDatabase();
+    settingDatabase();
+
+}
+
+void personnelDatabase(){
+
+}
+
+void inventoryDatabase(){
+
+}
+void categoryDatabase(){
+
+}
+void logDatabase(){
+
+}
+void transactionDatabase(){
+
+}
+void customerDatabase(){
+
+}
+void promotionDatabase(){
+
+}
+void settingDatabase(){
+    
+}
+
 /*
 
                 May the god be with us...
