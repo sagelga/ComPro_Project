@@ -75,7 +75,7 @@ typedef struct
   char name[MAX_LNG_SCREEN];
   double price;
   double profit; // Profit per item
-  char categoryId; // Category ID
+  char categoryId[MAX_LNG_ID]; // Category ID
   unsigned int remain;
 
 } INVENTORY;

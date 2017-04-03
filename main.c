@@ -221,7 +221,7 @@ void personnelDatabase(){
         fopen(personnelDatabaseFile, "w");
     }
 
-    // Fetch records form a Database file to the program
+    // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
     char id[MAX_LNG_ID];
     char firstname[MAX_LNG_TEXT];
@@ -238,7 +238,7 @@ void personnelDatabase(){
         i++;
     }
 
-    RecordCount.personnel = i;
+    RecordCount.personnel = i;          // Save a number of records to the Record Counter
     fclose(fp);
 
 }
@@ -248,6 +248,25 @@ void inventoryDatabase(){
     if(!isFileExist(inventoryDatabaseFile)){
         fopen(inventoryDatabaseFile, "w");
     }
+
+    // Fetch records form a Database file to the program memory
+    FILE *fp;                           // File Pointer
+    char id[MAX_LNG_ID];
+    char name[MAX_LNG_SCREEN];
+    double price;
+    double profit; // Profit per item
+    char categoryId[MAX_LNG_ID]; // Category ID
+    unsigned int remain;
+
+    int i = 0;
+    fp = fopen(inventoryDatabaseFile, "r");
+
+    while(fscanf(fp, "%s\t%s\t%lf\t%lf\t%s\t%u", Inventory[i].id, Inventory[i].name, &Inventory[i].price, &Inventory[i].profit, Inventory[i].categoryId, &Inventory[i].remain) != EOF){
+        i++;
+    }
+
+    RecordCount.inventory = i;          // Save a number of records to the Record Counter
+    fclose(fp);
 
 }
 void categoryDatabase(){
