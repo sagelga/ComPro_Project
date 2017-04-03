@@ -187,7 +187,7 @@ void initDatabase(){
 }
 
 void personnelDatabase(){
-
+    
 }
 
 void inventoryDatabase(){
@@ -209,7 +209,7 @@ void promotionDatabase(){
 
 }
 void settingDatabase(){
-    
+
 }
 
 /*

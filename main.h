@@ -23,7 +23,7 @@ Declare all the libraries that we are going to use here*/
 #include <stdlib.h>             // IDK what that will do, but I added it anyways...
 #include <time.h>               // Synchronize and manage the time between program and you
 #include <ctype.h>              // Compares the string to type of string
-
+#include <unistd.h>             // Use access() to check a file is exist
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
 char username[140] = "Default"; // Username cannot go further than 140, as the maximum border size is 140.
