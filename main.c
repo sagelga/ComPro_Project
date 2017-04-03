@@ -10,9 +10,13 @@ int main(){
     return 0;
 }
 
-void switchHub() {
+void switchHub(char username, int userPermission) {
     // New Switch Hub
-
+    char text1[107] = "";
+    char text2[107] = "Welcome back!";
+    char text3[107] = "You are now connecting to the POS system using : ";
+    char text4[107] = username;
+    bannerInversed(text1, text2, text3, text4);
     /* Original switchHub();
     // This function will be the STARTUP PROGRAM INTERFACES
     printf("\n\nWhat do you like to do?\t\tSign in as %.6s\n_________________________________________________\n",username);

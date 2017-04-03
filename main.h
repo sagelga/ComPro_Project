@@ -24,6 +24,7 @@ Declare all the libraries that we are going to use here*/
 #include <time.h>               // Synchronize and manage the time between program and you
 #include <ctype.h>              // Compares the string to type of string
 #include <unistd.h>             // Use access() to check a file is exist
+
 /*-----------------------------------------------------------------------------
 Define all the constant values here*/
 #define MAX_IDX_PERSONNEL 10        // Maximum amount of Personnels
@@ -52,6 +53,7 @@ const char *promotionDatabaseFile = "Database/promotion.db";
 const char *settingDatabaseFile = "Database/setting.db";
 
 // Database structure
+
 // 01. PERSONNEL
 typedef struct
 {
@@ -63,6 +65,7 @@ typedef struct
   char password[50];
   char barcode_token[255]; // For use a barcode authentication
 } PERSONNEL;
+
 // 02. INVENTORY
 typedef struct
 {
@@ -72,14 +75,15 @@ typedef struct
   double profit; // Profit per item
   char categoryId; // Category ID
   unsigned int remain;
-
 } INVENTORY;
+
 // 03. CATEGORY
 typedef struct
 {
   char id[20];
   char name[50];
 } CATEGORY;
+
 // 04. TRANSACTION
 typedef struct
 {
@@ -87,6 +91,7 @@ typedef struct
   char purchaseId[20];
   char inventoryId[20];
 } TRANSACTION;
+
 // 05. PURCHASE
 typedef struct
 {
@@ -96,6 +101,7 @@ typedef struct
   char personnelId[20]; // Cashier
   time_t datetime; // Epoch timestamp
 } PURCHASE;
+
 // 06. CUSTOMER
 typedef struct
 {
@@ -105,6 +111,7 @@ typedef struct
   char gender; // 'F' = Female | 'M' = Male
   double point;
 } CUSTOMER;
+
 // 07. PROMOTION
 typedef struct
 {
@@ -112,7 +119,8 @@ typedef struct
   double price;
   int status; // 1 = active | 0 = used (exprired)
 } PROMOTION;
-// 08. SETTING
+
+// 08. SETTINGS
 typedef struct
 {
   char storeName[140];
@@ -133,12 +141,12 @@ SETTING Setting;                                  // Declare the Setting schema
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
-void switchHub();               // For moving to the selection of the functions
-void terminate();               // For save and stop the program
-void screenAdjust();            // For calculating the screen size to the optimum size
-void screenClear();             // For refreshing the screen to the new one
-void settings();                // For setting up the screensize, default login scheme
-int isFileExist(const char *filename); // For check a file exist. If the file is exist then return 1 otherwise return 0
+void switchHub(char username, int userPermission);               	// For moving to the selection of the functions
+void terminate();               									// For save and stop the program
+void screenAdjust();            									// For calculating the screen size to the optimum size
+void screenClear();             									// For refreshing the screen to the new one
+void settings();                									// For setting up the screensize, default login scheme
+int isFileExist(const char *filename); 								// For check a file exist. If the file is exist then return 1 otherwise return 0
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions*/
@@ -151,38 +159,38 @@ void bannerInversed(char *bannerLine1, char *bannerLine2, char *bannerLine3, cha
 /*-----------------------------------------------------------------------------
 Declare all the database file !!build!! functions*/
 
-void initDatabase();            // For Database Initialization
-void personnelDatabase();       // For Personnel Database
-void inventoryDatabase();       // For Inventory Database
-void categoryDatabase();        // For Category Database
-void transactionDatabase();     // For Transaction Database
-void purchaseDatabase();        // For Purchase Database
-void customerDatabase();        // For Customer Database
-void promotionDatabase();       // For Promotion Database
-void settingDatabase();         // For Setting Database
+void initDatabase();            									// For Database Initialization
+void personnelDatabase();       									// For Personnel Database
+void inventoryDatabase();       									// For Inventory Database
+void categoryDatabase();        									// For Category Database
+void transactionDatabase();     									// For Transaction Database
+void purchaseDatabase();        									// For Purchase Database
+void customerDatabase();        									// For Customer Database
+void promotionDatabase();       									// For Promotion Database
+void settingDatabase();         									// For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database file >>Read>> functions*/
 
 void personnelFileRead(int keyID, char name, char nameMeta, double value, double accuValue);       // For Personnel Database
-void inventoryFileRead();       // For Inventory Database
-void categoryFileRead();        // For Category Database
-void transactionFileRead();     // For Transaction Database
-void purchaseFileRead();        // For Purchase Database
-void customerFileRead();        // For Customer Database
-void promotionFileRead();       // For Promotion Database
-void settingFileRead();         // For Setting Database
+void inventoryFileRead();       									// For Inventory Database
+void categoryFileRead();        									// For Category Database
+void transactionFileRead();     									// For Transaction Database
+void purchaseFileRead();        									// For Purchase Database
+void customerFileRead();        									// For Customer Database
+void promotionFileRead();       									// For Promotion Database
+void settingFileRead();         									// For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database file <<Write<< functions*/
 void personnelFileWrite(int keyID, char name, char nameMeta, double value, double accuValue);       // For Personnel Database
-void inventoryFileWrite();       // For Inventory Database
-void categoryFileWrite();        // For Category Database
-void transactionFileWrite();     // For Transaction Database
-void purchaseFileWrite();        // For Purchase Database
-void customerFileWrite();        // For Customer Database
-void promotionFileWrite();       // For Promotion Database
-void settingFileWrite();         // For Setting Database
+void inventoryFileWrite();       									// For Inventory Database
+void categoryFileWrite();        									// For Category Database
+void transactionFileWrite();     									// For Transaction Database
+void purchaseFileWrite();        									// For Purchase Database
+void customerFileWrite();        									// For Customer Database
+void promotionFileWrite();       									// For Promotion Database
+void settingFileWrite();         									// For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database call functions*/
