@@ -13,7 +13,8 @@
  *
  */
 
-// Declare all the libraries that we are going to use here
+/*-----------------------------------------------------------------------------
+Declare all the libraries that we are going to use here*/
 #include <stdio.h>              // Pretty much the basic things
 #include <string.h>             // Compares strings and other kind of stuff
 #include <math.h>               // Calculate difficult 7-years-old Math
@@ -21,80 +22,122 @@
 #include <time.h>               // Synchronize and manage the time between program and you
 #include <ctype.h>              // Compares the string to type of string
 
-// Declare all the gimmicks functions
+/*-----------------------------------------------------------------------------
+Declare all the global variables here*/
+char username[140] = "Kumamon";
+int userPermission = 0; // 0 = Not sign in | 1 = Sales | 2 = Manager | 3 = Admin
+
+/*-----------------------------------------------------------------------------
+Declare all the gimmicks functions*/
 void switchHub();               // For moving to the selection of the functions
 void terminate();               // For save and stop the program
-void screenAdjust();           // For calculating the screen size to the optimum size
-void screenclear();             // For refreshing the screen to the new one
-void banner();                  // For showing the program banner
+void screenAdjust();            // For calculating the screen size to the optimum size
+void screenClear();             // For refreshing the screen to the new one
 void settings();                // For setting up the screensize, default login scheme
-void authenticate();            // For signing in
-void deauthenticate();          // For signing out
 
-// Declare all the database functions
+/*-----------------------------------------------------------------------------
+Declare all the gimmicks functions*/
+void bannerFullBorder();
+void bannerBlankBorder(char text);
+void bannerBlankBorderText();
+void banner(char bannerLine1, char bannerLine2, char bannerLine3, char bannerLine4); // For showing the program banner
+
+/*-----------------------------------------------------------------------------
+Declare all the database file !!build!! functions*/
 void customerDatabase();        // For Customer Database
 void transactionDatabase();     // For Transaction Database
 void inventoryDatabase();       // For Inventory Database
 void salesDatabase();           // For Sales Database
 void promotionDatabase();       // For Promotion Database
 
-// Declare all the database retrieval functions
+/*-----------------------------------------------------------------------------
+Declare all the database file >>Read>> functions*/
 void customerFileRead();        // For Customer Database
 void transactionFileRead();     // For Transaction Database
 void inventoryFileRead();       // For Inventory Database
 void salesFileRead();           // For Sales Database
 void promotionFileRead();       // For Promotion Database
 
-// Declare all the database retrieval functions
+/*-----------------------------------------------------------------------------
+Declare all the database file <<Write<< functions*/
 void customerFileWrite();       // For Customer Database
 void transactionFileWrite();    // For Transaction Database
 void inventoryFileWrite();      // For Inventory Database
 void salesFileWrite();          // For Sales Database
 void promotionFileWrite();      // For Promotion Database
 
-// Declare all the database storage functions
+/*-----------------------------------------------------------------------------
+Declare all the database call functions*/
 
-// Declare all the interface functions
+/*-----------------------------------------------------------------------------
+Declare all the interface functions*/
 
-// Declare all the admin tools
+/*-----------------------------------------------------------------------------
+Declare all the admin tools*/
 void adminAuthenticate();
 void adminRoleAuthen();
 void adminRoleDeauthen();
 void adminBackgroundMaintain();
 
-// Declare all the Inventory can do
+/*-----------------------------------------------------------------------------
+Declare all the Inventory can do*/
 void inventoryAdd();
 void inventoryModify();
 void inventoryRemove();
 
-// Declare all the Customer Database can do
+/*-----------------------------------------------------------------------------
+Declare all the Customer Database can do*/
 void customerAdd();
 void customerModify();
 void customerRemove();
 
-// Declare all the Sales Database can do
+/*-----------------------------------------------------------------------------
+Declare all the Sales Database can do*/
+void SaleAdd();
+void SaleModify();
+void SaleRemove();
 
-// Declare all the Promotion Database can do
+/*-----------------------------------------------------------------------------
+Declare all the forecast function can do*/
+void monthlyForecast();
+void quarterForecast();
+void annualForecast();
 
-// Declasre what the seller can do
+void forecastResults();
+void forecastProgram();
+
+void forecastPrint();
+
+/*-----------------------------------------------------------------------------
+Declare all the Promotion Database can do*/
+void promotionAdd();
+void promotionModify();
+void promotionRemove();
+
+/*-----------------------------------------------------------------------------
+Declasre what the seller can do*/
 void cashierInterface();
 
-// Declares all the authentication interface
+/*-----------------------------------------------------------------------------
+Declares all the authentication functions and interface*/
+void authenticate();            // For signing in
+void deauthenticate();          // For signing out
+//
 void authenInternface();
 void authenInterfaceComplete();
 void authenInterfaceFailed();
 void authenInternfaceError();
 
+/*---------------------------------------------------------------------------*/
 int main(){
-    // Starting with is function. POS Interface need to be configurated and ready to work.
+// This program will run first. POS Interface configuration will be called, and ready to work.
     screenAdjust();
-    //switch_hub();
+    switchHub();
     return 0;
 }
 
 void switchHub() {
     // This function will be the STARTUP PROGRAM INTERFACES
-    char username[] = "Kumamon";
     printf("\n\nWhat do you like to do?\t\tSign in as %.6s\n_________________________________________________\n",username);
 
     // Choose the following functions. Can be programmed in 1 character (from 1-9 and a-z and A-Z)
@@ -141,10 +184,12 @@ void terminate(){
         case ('Y'):
             printf("Have a good luck. Bye Bye!");
             return;
+
         case ('N'):
             printf("I'm so happy that you're back! Redirecting.......\n\n");
             switchHub();
             return;
+
         default:
             printf("Your input is invalid. Please try again.");
             terminate();
@@ -154,47 +199,44 @@ void terminate(){
 
 
 void screenAdjust(){
-          //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::70 char
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                 The POS system will works perfectly with                                                 :\n");
-    printf(":                                                                                                                                          :\n");
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                         140 x 40 pixel terminal                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":             The box is 140 x 40 pixel in size. If any lines has broken, please configure the terminal screen to optimum size.            :\n");
-    printf(":             -----------------------------------------------------------------------------------------------------------------            :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf(":                                                                                                                                          :\n");
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+          //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::70 chart 
+    char text1[107] = "";
+    char text2[107] = "                                       This is the initiation of the POS Systems!";
+    char text3[107] = "              The program screen size is optimized for 140 x pixel terminal";
+    char text4[107] = "";
+    //banner(text1, text2, text3, text4);
+    bannerBlankBorderText();
+    printf("::                                                        140 x 40 pixel terminal                                                          :\n");
+    for (int i = 0;i<3;i++){
+        bannerBlankBorderText();
+    }
+    printf("::            The box is 140 x 40 pixel in size. If any lines has broken, please configure the terminal screen to optimum size.            :\n");
+    printf("::            -----------------------------------------------------------------------------------------------------------------            :\n");
+    for (int i = 0;i<27;i++){
+        bannerBlankBorderText();
+    }
+    printf("::                                                         Please type 'Y' to continue...                                                  :\n");
+    bannerFullBorder();
+
+    char flags;
+    scanf("%c",&flags);
+    flags = toupper(flags);
+
+    switch (flags){
+
+        case('Y'):
+            return;
+
+        case('N'):
+            terminate();
+            return;
+
+        default:
+            screenClear();
+            printf("Invalid response. Try again. \n\n");
+            screenAdjust();
+            return;
+    }
 }
 
 void screenClear(){
@@ -202,33 +244,34 @@ void screenClear(){
     system("@cls||clear");
 }
 
-void banner(){
+void banner(char bannerLine1, char bannerLine2, char bannerLine3, char bannerLine4){
     // This function will print out the official banner.
-    printf("   ██████╗  ██████╗ ███████╗    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf("   ██╔══██╗██╔═══██╗██╔════╝    ::%-160s::\n", "Test");
-    printf("   ██████╔╝██║   ██║███████╗    ::%-160s::\n", "Test");
-    printf("   ██╔═══╝ ██║   ██║╚════██║    ::%-160s::\n", "Test");
-    printf("   ██║     ╚██████╔╝███████║    ::%-160s::\n", "Test");
-    printf("   ╚═╝      ╚═════╝ ╚══════╝    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    char bannerLine1 = *bannerLine1;
+    char bannerLine2 = *bannerLine2;
+    char bannerLine3 = *bannerLine3;
+    char bannerLine4 = *bannerLine4;    
+    printf(":: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf(":: ██╔══██╗██╔═══██╗██╔════╝ ::%-107s::\n", bannerLine1);
+    printf(":: ██████╔╝██║   ██║███████╗ ::%-107s::\n", bannerLine2);
+    printf(":: ██╔═══╝ ██║   ██║╚════██║ ::%-107s::\n", bannerLine3);
+    printf(":: ██║     ╚██████╔╝███████║ ::%-107s::\n", bannerLine4);
+    printf(":: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
-void customerDatabase(){
-
-}
-void transactionDatabase(){
-
-}
-void inventoryDatabase(){
-
-}
-void salesDatabase(){
-
-}
-void promotionDatabase(){
-
+void bannerFullBorder(){
+    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
-/*               May the god be with us...
+void bannerBlankBorder(char text){
+    printf(":: %-137s ::",text);
+}
+
+void bannerBlankBorderText(){
+    printf("::%139s::\n", "");
+}
+/*
+
+                May the god be with us...
                            _
                         _ooOoo_
                        o8888888o
@@ -248,7 +291,7 @@ void promotionDatabase(){
           \  \ `-.   \_\_`. _.'_/_/  -' _.' /
 ===========`-.`___`-.__\ \___  /__.-'_.'_.-'================
                         `=--=-'
-                Programs' bug best enemy
+                Program bug best enemy
         Please. No bug. No crash. No interruption.         */
 
 

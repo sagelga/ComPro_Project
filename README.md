@@ -4,8 +4,8 @@ Master branch is
 
 # Welcome to this Project Computer Programming!
 We are currently doing something awesome. So please be patient!
-# Please read! How to do work in GitHub
 
+# Please read! How to do work in GitHub
 Step 1 : Make a branch for yourself (or use other developer's branch) by using the latest master branch as your initial branch branching.
 
 Step 2 : Make a change (NOT IN MASTER! Read below on why)
