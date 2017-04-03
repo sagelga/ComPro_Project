@@ -1,2 +1,7 @@
-click_here_to_run: main.c main.h
-	gcc -o click_here_to_run main.c -std=c11 -I.
+EXEC = click_here_to_run
+
+$(EXEC): main.c main.h
+	gcc -o $(EXEC) main.c -std=c99 -I.
+
+clean:
+	rm -f $(EXEC)
