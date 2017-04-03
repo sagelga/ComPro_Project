@@ -257,8 +257,8 @@ void inventoryDatabase(){
     char id[MAX_LNG_ID];
     char name[MAX_LNG_SCREEN];
     double price;
-    double profit; // Profit per item
-    char categoryId[MAX_LNG_ID]; // Category ID
+    double profit;                      // Profit per item
+    char categoryId[MAX_LNG_ID];        // Category ID
     unsigned int remain;
 
     int i = 0;
@@ -282,12 +282,52 @@ void categoryDatabase(){
         fopen(categoryDatabaseFile, "w");
     }
 
+    // Fetch records form a Database file to the program memory
+    FILE *fp;                           // File Pointer
+    char id[MAX_LNG_ID];
+    char name[MAX_LNG_TEXT];
+
+    int i = 0;
+    fp = fopen(categoryDatabaseFile, "r");
+
+    while(fscanf(fp, "%s\t%[^\n]", Category[i].id, Category[i].name) != EOF){
+        i++;
+    }
+
+    RecordCount.category = i;          // Save a number of records to the Record Counter
+    fclose(fp);
+
+    // For debuging
+    // i--;
+    // printf(">>>> %s\t%s\n", Category[i].id, Category[i].name);
+
+
 }
 void transactionDatabase(){
     // Check a Database file existance, if it doesn't exist then create the new one.
     if(!isFileExist(transactionDatabaseFile)){
         fopen(transactionDatabaseFile, "w");
     }
+
+    // Fetch records form a Database file to the program memory
+    FILE *fp;                           // File Pointer
+    char id[MAX_LNG_ID];
+    char purchaseId[MAX_LNG_ID];
+    char inventoryId[MAX_LNG_ID];
+
+    int i = 0;
+    fp = fopen(transactionDatabaseFile, "r");
+
+    while(fscanf(fp, "%s\t%s\t%s", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId) != EOF){
+        i++;
+    }
+
+    RecordCount.transaction = i;          // Save a number of records to the Record Counter
+    fclose(fp);
+
+    // For debuging
+    // i--;
+    // printf(">>>> %s-%s-%s\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId);
 
 }
 void purchaseDatabase(){
@@ -296,12 +336,56 @@ void purchaseDatabase(){
         fopen(purchaseDatabaseFile, "w");
     }
 
+    // Fetch records form a Database file to the program memory
+    FILE *fp;                           // File Pointer
+    char id[MAX_LNG_ID];
+    double totalPrice;
+    char customerId[MAX_LNG_ID];
+    char personnelId[MAX_LNG_ID];       // Cashier
+    time_t datetime;                    // Epoch timestamp
+
+    int i = 0;
+    fp = fopen(purchaseDatabaseFile, "r");
+
+    while(fscanf(fp, "%s\t%lf\t%s\t%s\t%lu", Purchase[i].id, &Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, &Purchase[i].datetime) != EOF){
+        i++;
+    }
+
+    RecordCount.purchase = i;          // Save a number of records to the Record Counter
+    fclose(fp);
+
+    // For debuging
+    // i--;
+    // printf(">>>> %s\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].datetime);
+
 }
 void customerDatabase(){
     // Check a Database file existance, if it doesn't exist then create the new one.
     if(!isFileExist(customerDatabaseFile)){
         fopen(customerDatabaseFile, "w");
     }
+
+    // Fetch records form a Database file to the program memory
+    FILE *fp;                           // File Pointer
+    char id[MAX_LNG_ID];
+    char firstname[MAX_LNG_TEXT];
+    char lastname[MAX_LNG_TEXT];
+    char gender; // 'F' = Female | 'M' = Male
+    double point;
+
+    int i = 0;
+    fp = fopen(customerDatabaseFile, "r");
+
+    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%c\t%lf", Customer[i].id, Customer[i].firstname, Customer[i].lastname, &Customer[i].gender, &Customer[i].point) != EOF){
+        i++;
+    }
+
+    RecordCount.customer = i;          // Save a number of records to the Record Counter
+    fclose(fp);
+
+    // For debuging
+    // i--;
+    // printf(">>>> %s\t%s\t%s\t%c\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point);
 
 }
 void promotionDatabase(){
@@ -310,12 +394,48 @@ void promotionDatabase(){
         fopen(promotionDatabaseFile, "w");
     }
 
+    // Fetch records form a Database file to the program memory
+    FILE *fp;                           // File Pointer
+    char id[MAX_LNG_ID];
+    double price;
+    int status; // 1 = active | 0 = used (exprired)
+
+    int i = 0;
+    fp = fopen(promotionDatabaseFile, "r");
+
+    while(fscanf(fp, "%s\t%lf\t%d", Promotion[i].id, &Promotion[i].price, &Promotion[i].status) != EOF){
+        i++;
+    }
+
+    RecordCount.promotion = i;          // Save a number of records to the Record Counter
+    fclose(fp);
+
+    // For debuging
+    // i--;
+    // printf(">>>> %s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
+
 }
 void settingDatabase(){
     // Check a Database file existance, if it doesn't exist then create the new one.
     if(!isFileExist(settingDatabaseFile)){
         fopen(settingDatabaseFile, "w");
     }
+
+    // Fetch records form a Database file to the program memory
+    FILE *fp;                           // File Pointer
+    char storeName[MAX_LNG_SCREEN];
+    char storeAddress[MAX_LNG_SCREEN];
+    double priceToPoint; // When you pay N Baht, you'll receive `N * priceToPoint` points.
+    double pointToPrice; // `pointToPrice` point is equal to 1 Baht.
+
+
+    fp = fopen(settingDatabaseFile, "r");
+
+    fscanf(fp, "%[^\t]\t%[^\t]\t%lf\t%lf", Setting.storeName, Setting.storeAddress, &Setting.priceToPoint, &Setting.pointToPrice);
+    fclose(fp);
+
+    // For debuging
+    // printf(">>>> %s--%s--%lf--%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
 
 }
 
