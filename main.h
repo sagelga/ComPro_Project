@@ -64,6 +64,14 @@ typedef struct
   unsigned int remain;
 
 } INVENTORY;
+// 03. CATEGORY
+typedef struct
+{
+  char id[20];
+  char name[50];
+} CATEGORY;
+
+
 
 
 /*-----------------------------------------------------------------------------
