@@ -6,6 +6,7 @@ int main(){
 // This program will run first. POS Interface configuration will be called, and ready to work.
     screenAdjust();
     switchHub();
+    initDatabase();
     return 0;
 }
 
@@ -172,6 +173,15 @@ void settings(){
     }
 }
 
+int isFileExist(const char *filename){
+    if( access( filename, F_OK ) != -1 ) {
+        // file exists
+        return 1;
+    } else {
+        // file doesn't exist
+        return 0;
+    }
+}
 
 void initDatabase(){
 
@@ -187,7 +197,27 @@ void initDatabase(){
 }
 
 void personnelDatabase(){
+    /*
     
+    if(!isFileExist(personnelDatabaseFile)){
+        printf("Found!!!!!");
+    }
+
+    FILE *fp;
+    char pid[255];
+    char productName[255];
+    double price;
+
+    fp = fopen("test.txt", "r");
+
+    //fprintf(fp, "%s\t%s\t%lf\n", "9781133315711", "LifeBook", 300.0);
+
+    while(fscanf(fp, "%s\t%s\t%lf", pid, productName, &price) != EOF)
+      printf(">> %s --- %s --- %lf\n", pid, productName, price);
+
+    fclose(fp);
+
+    */
 }
 
 void inventoryDatabase(){

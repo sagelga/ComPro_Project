@@ -30,6 +30,15 @@ char username[140] = "Default"; // Username cannot go further than 140, as the m
 int userPermission = 0; // 0 = Not sign-in | 1 = Sales | 2 = Manager | 3 = Admin
 char storeName[140] = "Default";
 char storeAddress[140] = "Default";
+// Path to Database file
+const char personnelDatabaseFile[] = "Database/personnel.db";
+const char inventoryDatabaseFile[] = "Database/inventory.db";
+const char categoryDatabaseFile[] = "Database/category.db";
+const char logDatabaseFile[] = "Database/log.db";
+const char transactionDatabaseFile[] = "Database/transaction.db";
+const char customerDatabaseFile[] = "Database/customer.db";
+const char promotionDatabaseFile[] = "Database/promotion.db";
+const char settingDatabaseFile[] = "Database/setting.db";
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
@@ -38,6 +47,7 @@ void terminate();               // For save and stop the program
 void screenAdjust();            // For calculating the screen size to the optimum size
 void screenClear();             // For refreshing the screen to the new one
 void settings();                // For setting up the screensize, default login scheme
+int isFileExist(const char *filename); // For check a file exist. If the file is exist then return 1 otherwise return 0
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions*/
