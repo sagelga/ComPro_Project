@@ -1,22 +1,20 @@
-/* Welcome to the POS System program.
- * Please feel free to look around...
- * Created by the 1st year student of Information Technology Ladkrabang.
- * Redistribution or copies are not allowed. No commercial use is allowed.
- *
- * Thank you for participating.
- * The Team
+/* :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+   :: ██╔══██╗██╔═══██╗██╔════╝ :: Welcome to the POS System program.									                                     ::
+   :: ██████╔╝██║   ██║███████╗ :: Please feel free to look around...									                                     ::
+   :: ██╔═══╝ ██║   ██║╚════██║ :: Created by the 1st year student of Information Technology Ladkrabang.									 ::
+   :: ██║     ╚██████╔╝███████║ :: Redistribution or copies are not allowed. No commercial use is allowed.									 ::
+   :: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
- * ---------------------
- * Lists of the team members
- * Kunanon Srisuntiroj      @sagelga    59070022    UI Team
- * Thanawat Laodkaew        @skydddoogg 59070071    Background Work Team
- * Noppanut Ploywong        @noppanut15 59070082    Background Work Team
- *                          @59070156   59070156    Background Work Team
- *
+      Lists of the team members
+      Kunanon Srisuntiroj      @sagelga    59070022    UI Team
+      Thanawat Laodkaew        @skydddoogg 59070071    Background Work Team
+      Noppanut Ploywong        @noppanut15 59070082    Background Work Team
+                               @59070156   59070156    Background Work Team
+  
  */
 
 /*-----------------------------------------------------------------------------
-Declare all the libraries that we are going to use here*/
+Declare all the libraries that we are going to use in this project*/
 #include <stdio.h>              // Pretty much the basic things
 #include <string.h>             // Compares strings and other kind of stuff
 #include <math.h>               // Calculate difficult 7-years-old Math
@@ -37,8 +35,8 @@ Define all the constant values here*/
 
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
-char username[140] = "Default"; // Username cannot go further than 140, as the maximum border size is 140.
-int userPermission = 0; // 0 = Not sign-in | 1 = Sales | 2 = Manager | 3 = Admin
+char username[140] = "Default"; 	// Username cannot go further than 140, as the maximum border size is 140.
+int userPermission = 0; 			// 0 = Not sign-in | 1 = Sales | 2 = Manager | 3 = Admin
 char storeName[140] = "Default";
 char storeAddress[140] = "Default";
 
@@ -141,7 +139,7 @@ SETTING Setting;                                  // Declare the Setting schema
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
-void switchHub(char username, int userPermission);               	// For moving to the selection of the functions
+void switchHub();               	// For moving to the selection of the functions
 void terminate();               									// For save and stop the program
 void screenAdjust();            									// For calculating the screen size to the optimum size
 void screenClear();             									// For refreshing the screen to the new one
@@ -150,11 +148,12 @@ int isFileExist(const char *filename); 								// For check a file exist. If the
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions*/
-void bannerFullBorder();
-void bannerBlankBorder();
-void bannerBlankBorderText(char *text);
-void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);
-void bannerInversed(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);
+void bannerFullBorder();											// Prints a full 140 character full of :
+void bannerBlankBorder();											// Prints a :: + 136 charaacter space + ::
+void bannerBlankBorderText(char *text);								// Prints a :: + + 134 character space + + ::
+void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);	// Prints banner with configurable character
+void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);	// Prints banner (with POS logo in the right) with configurable character
+void bannerBlankTerminate(); // Prints a prompt for input from user
 
 /*-----------------------------------------------------------------------------
 Declare all the database file !!build!! functions*/
@@ -255,7 +254,6 @@ void authInterfaceFailed();     // For non - complete sign in interface (Error f
 void authInterfaceError();      // For non - complete sign in interface (Other type of error)
 
 /*
-
                 May the god be with us...
                            _
                         _ooOoo_
@@ -277,5 +275,5 @@ void authInterfaceError();      // For non - complete sign in interface (Other t
 ===========`-.`___`-.__\ \___  /__.-'_.'_.-'================
                         `=--=-'
                 Program bug best enemy
-        Please. No bug. No crash. No interruption.         */
-
+          Please. No bug. No crash. No interrupt.         
+*/

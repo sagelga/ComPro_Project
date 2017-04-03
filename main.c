@@ -4,68 +4,91 @@
 /*---------------------------------------------------------------------------*/
 int main(){
 // This program will run first. POS Interface configuration will be called, and ready to work.
+    screenClear();
     screenAdjust();
-    switchHub();
-    initDatabase();
     return 0;
 }
 
-void switchHub(char username, int userPermission) {
+void switchHub() {
     // New Switch Hub
-    char text1[107] = "";
-    char text2[107] = "Welcome back!";
-    char text3[107] = "You are now connecting to the POS system using : ";
-    char text4[107] = username;
-    bannerInversed(text1, text2, text3, text4);
-    /* Original switchHub();
-    // This function will be the STARTUP PROGRAM INTERFACES
-    printf("\n\nWhat do you like to do?\t\tSign in as %.6s\n_________________________________________________\n",username);
+    char text1[107] = "Welcome back <user_name_goes_here>!";
+    char text2[107] = "";
+    char text3[107] = "You are now connecting to the POS system";
+    char text4[107] = "<user_permission_level_goes_here_in_this_line>";
+    bannerInverse(text1, text2, text3, text4);
 
-    // Choose the following functions. Can be programmed in 1 character (from 1-9 and a-z and A-Z)
-    printf("1: Login\t\t2: Check Stock\n3: Sales Export\t\t4: Quit\nS: Check Screen Size\n");
+    bannerBlankBorderText("What do you want to do?");
+    bannerBlankBorder();
 
-    printf("\nPlease type in your desire! >>> ");
+    //These choice will be removed, when the program detects the permission level.
+    bannerBlankBorderText("1. Login / Logout");
+    bannerBlankBorderText("2. Go to Sales");
+    bannerBlankBorderText("3. Check Inventory Database");
+    bannerBlankBorderText("4. Check Customer Database");
+    bannerBlankBorderText("5. Check Category Database");
+    bannerBlankBorderText("6. Check Customer Database");
+    bannerBlankBorderText("7. Check Forecast");
+    bannerBlankBorderText("8. Settings");
+    bannerBlankBorder();
+
+    for (int i = 0;i<20;i++)
+        bannerBlankBorder();
+
+    bannerBlankBorderText("                                                  or type 'N' to save and quit");
+    bannerFullBorder();
+    bannerBlankTerminate();
+
     char functionscall;
     scanf(" %c", &functionscall);
 
-    // Calls other function that are separately programmed
     switch (functionscall) {
         case ('1'):
-
+            initDatabase();
             return;
+        
         case ('2'):
-
+            initDatabase();
             return;
+        
         case ('3'):
-
+            initDatabase();
             return;
-        case ('4'):
+        
+        case ('n'):
             terminate();
             return;
-        case('S'):
-            // Calling the >>terminal_ruler<< function
-            printf("Ok. We will try to configure your screen");
-            screenAdjust();
+        
+        case ('N'):
+            terminate();
             return;
+        
         default:
             // The input is invalid. Trying to route back to ask for a valid input
             printf("Your input is invalid. Please try again.\n\n\n");
             switchHub();
             return;
     }
-    */
 }
 
 void terminate(){
     // Type in the text that will be displayed after the user wants to terminate the program
+    screenClear();
+
+    bannerFullBorder();
+    bannerBlankBorderText("                            You about to terminate the POS system...");
+    bannerFullBorder();
+
     printf("Are you really sure about this? (Type Y or N) >>");
+
     char text;
     scanf(" %c",&text);
     text = toupper(text);
+
     switch(text){
         case ('Y'):
-            printf("Have a good luck. Bye Bye!");
-            return;
+            printf("Shutting the program down.... Please be patient!\n");
+            printf("Have a good luck. Bye Bye!\n");
+            exit(0);
 
         case ('N'):
             printf("I'm so happy that you're back! Redirecting.......\n\n");
@@ -87,7 +110,7 @@ void screenAdjust(){
     char text2[107] = "  This is the initiation of the POS Systems!";
     char text3[107] = "  The program screen size is optimized for 140 x pixel terminal";
     char text4[107] = "";
-    bannerInversed(text1, text2, text3, text4);
+    banner(text1, text2, text3, text4);
     
     for (int i = 0;i<3;i++)
         bannerBlankBorder();
@@ -95,12 +118,13 @@ void screenAdjust(){
     bannerBlankBorderText("            The box is 140 x 40 pixel in size. If any lines has broken, please configure the terminal screen to optimum size.");
     bannerBlankBorderText("            -----------------------------------------------------------------------------------------------------------------");
     
-    for (int i = 0;i<27;i++)
+    for (int i = 0;i<26;i++)
         bannerBlankBorder();
     
-    bannerBlankBorderText("                                                         Please type 'Y' to continue...");
+    bannerBlankBorderText("                                                   Please type 'Y' to continue...");
     bannerFullBorder();
 
+    bannerBlankTerminate();
     char flags;
     scanf(" %c",&flags);
     flags = toupper(flags);
@@ -140,7 +164,7 @@ void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *banne
     printf(":: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
-void bannerInversed(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
+void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
     // This function will print out the official banner.
     printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ ::\n");
     printf(":: %105s :: ██╔══██╗██╔═══██╗██╔════╝ ::\n", bannerLine1);
@@ -151,7 +175,9 @@ void bannerInversed(char *bannerLine1, char *bannerLine2, char *bannerLine3, cha
 }
 
 void bannerFullBorder(){
-    printf(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    for (int i = 0;i<140;i++)
+        printf(":");
+    printf("\n");
 }
 
 void bannerBlankBorderText(char *text){
@@ -162,6 +188,10 @@ void bannerBlankBorder(){
     printf("::%136s::\n", "");
 }
 
+void bannerBlankTerminate(){
+    printf("What do you want to do? >>> ");
+}
+
 void settings(){
     bannerFullBorder();
     bannerBlankBorderText("                                                Settings");
@@ -170,7 +200,9 @@ void settings(){
     bannerBlankBorderText("What do you want to do?");
     bannerBlankBorderText("1. Change Username");
     bannerBlankBorderText("2. Change Password");
+    
     bannerFullBorder();
+    
     bannerBlankBorderText("3. Change store name");
     bannerBlankBorderText("4. Change store address");
 
@@ -268,7 +300,6 @@ void settingDatabase(){
 }
 
 /*
-
                 May the god be with us...
                            _
                         _ooOoo_
@@ -290,6 +321,21 @@ void settingDatabase(){
 ===========`-.`___`-.__\ \___  /__.-'_.'_.-'================
                         `=--=-'
                 Program bug best enemy
-        Please. No bug. No crash. No interruption.         */
+          Please. No bug. No crash. No interrupt.         
+*/
 
+/* :: ██████╗  ██████╗ ███████╗ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+   :: ██╔══██╗██╔═══██╗██╔════╝ :: Welcome to the POS System program.                                       ::
+   :: ██████╔╝██║   ██║███████╗ :: Please feel free to look around...                                       ::
+   :: ██╔═══╝ ██║   ██║╚════██║ :: Created by the 1st year student of Information Technology Ladkrabang.    ::
+   :: ██║     ╚██████╔╝███████║ :: Redistribution or copies are not allowed. No commercial use is allowed.  ::
+   :: ╚═╝      ╚═════╝ ╚══════╝ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+      Lists of the team members
+      Kunanon Srisuntiroj      @sagelga    59070022    UI Team
+      Thanawat Laodkaew        @skydddoogg 59070071    Background Work Team
+      Noppanut Ploywong        @noppanut15 59070082    Background Work Team
+                               @59070156   59070156    Background Work Team
+  
+ */
 
