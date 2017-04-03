@@ -26,13 +26,13 @@ Declare all the libraries that we are going to use here*/
 #include <unistd.h>             // Use access() to check a file is exist
 /*-----------------------------------------------------------------------------
 Define all the constant values here*/
-#define MAX_IDX_PERSONNEL 10        // Max amount of Personnels
-#define MAX_IDX_INVENTORY 100       // Max amount of Inventory
-#define MAX_IDX_CATEGORY 10         // Max amount of Category
-#define MAX_IDX_TRANSACTION 100000  // Max amount of Transaction
-#define MAX_IDX_PURCHASE 100000     // Max amount of Purchase
-#define MAX_IDX_CUSTOMER 100        // Max amount of Customer
-#define MAX_IDX_PROMOTION 1000      // Max amount of Promotion
+#define MAX_IDX_PERSONNEL 10        // Maximum amount of Personnels
+#define MAX_IDX_INVENTORY 100       // Maximum amount of Inventory
+#define MAX_IDX_CATEGORY 10         // Maximum amount of Category
+#define MAX_IDX_TRANSACTION 100000  // Maximum amount of Transaction
+#define MAX_IDX_PURCHASE 100000     // Maximum amount of Purchase
+#define MAX_IDX_CUSTOMER 100        // Maximum amount of Customer
+#define MAX_IDX_PROMOTION 1000      // Maximum amount of Promotion
 
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
@@ -121,6 +121,15 @@ typedef struct
   double pointToPrice; // `pointToPrice` point is equal to 1 Baht.
 } SETTING;
 
+
+PERSONNEL Personnel[MAX_IDX_PERSONNEL];           // Declare the Personnel schema
+INVENTORY Inventory[MAX_IDX_INVENTORY];           // Declare the Inventory schema
+CATEGORY Category[MAX_IDX_CATEGORY];              // Declare the Category schema
+TRANSACTION Transaction[MAX_IDX_TRANSACTION];     // Declare the Transaction schema
+PURCHASE Purchase[MAX_IDX_PURCHASE];              // Declare the Purchase schema
+CUSTOMER Customer[MAX_IDX_CUSTOMER];              // Declare the Customer schema
+PROMOTION Promotion[MAX_IDX_PROMOTION];           // Declare the Promotion schema
+SETTING Setting;                                  // Declare the Setting schema
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
