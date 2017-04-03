@@ -30,6 +30,7 @@ char username[140] = "Default"; // Username cannot go further than 140, as the m
 int userPermission = 0; // 0 = Not sign-in | 1 = Sales | 2 = Manager | 3 = Admin
 char storeName[140] = "Default";
 char storeAddress[140] = "Default";
+
 // Path to Database file
 const char personnelDatabaseFile[] = "Database/personnel.db";
 const char inventoryDatabaseFile[] = "Database/inventory.db";
@@ -39,6 +40,21 @@ const char transactionDatabaseFile[] = "Database/transaction.db";
 const char customerDatabaseFile[] = "Database/customer.db";
 const char promotionDatabaseFile[] = "Database/promotion.db";
 const char settingDatabaseFile[] = "Database/setting.db";
+
+// Database structure
+// 01. PERSONNEL
+typedef struct
+{
+  char id[20];
+  char firstname[50];
+  char lastname[50];
+  int role; // 0 = Manager | 1 = Marketing | 2 = Sale
+  char username[50];
+  char password[50];
+  char barcode_token[255]; // For use a barcode authentication
+} PERSONNEL;
+
+
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
