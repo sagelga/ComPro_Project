@@ -6,10 +6,10 @@
    :: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
       Lists of the team members
-      Kunanon Srisuntiroj      @sagelga    59070022    UI Team
-      Thanawat Laodkaew        @skydddoogg 59070071    Background Work Team
-      Noppanut Ploywong        @noppanut15 59070082    Background Work Team
-                               @59070156   59070156    Background Work Team
+      Kunanon Srisuntiroj      @sagelga    		59070022    UI Team
+      Thanawat Laodkaew        @skydddoogg 		59070071    Background Work Team
+      Noppanut Ploywong        @noppanut15 		59070082    Background Work Team
+      Vasanchai Prakobkij      @59070156   		59070156    Background Work Team
   
  */
 
