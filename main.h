@@ -53,7 +53,17 @@ typedef struct
   char password[50];
   char barcode_token[255]; // For use a barcode authentication
 } PERSONNEL;
+// 02. INVENTORY
+typedef struct
+{
+  char id[20];
+  char name[140];
+  double price;
+  double profit; // Profit per item
+  char category; // Category ID
+  unsigned int remain;
 
+} INVENTORY;
 
 
 /*-----------------------------------------------------------------------------
