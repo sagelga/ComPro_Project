@@ -60,7 +60,7 @@ typedef struct
   char name[140];
   double price;
   double profit; // Profit per item
-  char category; // Category ID
+  char categoryId; // Category ID
   unsigned int remain;
 
 } INVENTORY;
@@ -70,8 +70,13 @@ typedef struct
   char id[20];
   char name[50];
 } CATEGORY;
-
-
+// 04. TRANSACTION
+typedef struct
+{
+  char id[20];
+  char purchaseId[20];
+  char inventoryId[20];
+} TRANSACTION;
 
 
 /*-----------------------------------------------------------------------------
