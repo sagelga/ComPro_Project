@@ -25,6 +25,16 @@ Declare all the libraries that we are going to use here*/
 #include <ctype.h>              // Compares the string to type of string
 #include <unistd.h>             // Use access() to check a file is exist
 /*-----------------------------------------------------------------------------
+Define all the constant values here*/
+#define MAX_IDX_PERSONNEL 10        // Max amount of Personnels
+#define MAX_IDX_INVENTORY 100       // Max amount of Inventory
+#define MAX_IDX_CATEGORY 10         // Max amount of Category
+#define MAX_IDX_TRANSACTION 100000  // Max amount of Transaction
+#define MAX_IDX_PURCHASE 100000     // Max amount of Purchase
+#define MAX_IDX_CUSTOMER 100        // Max amount of Customer
+#define MAX_IDX_PROMOTION 1000      // Max amount of Promotion
+
+/*-----------------------------------------------------------------------------
 Declare all the global variables here*/
 char username[140] = "Default"; // Username cannot go further than 140, as the maximum border size is 140.
 int userPermission = 0; // 0 = Not sign-in | 1 = Sales | 2 = Manager | 3 = Admin
