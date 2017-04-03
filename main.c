@@ -234,13 +234,16 @@ void personnelDatabase(){
     int i = 0;
     fp = fopen(personnelDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%s\t%s\t%d\t%s\t%s\t%s", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, &Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcode_token) != EOF){
+    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%d\t%[^\t]\t%[^\t]\t%[^\n]", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, &Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcode_token) != EOF){
         i++;
     }
 
     RecordCount.personnel = i;          // Save a number of records to the Record Counter
     fclose(fp);
 
+    // For debuging
+    // i--;
+    // printf(">>>> %s-%s-%s-%d-%s-%s-%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcode_token);
 }
 
 void inventoryDatabase(){
@@ -261,12 +264,16 @@ void inventoryDatabase(){
     int i = 0;
     fp = fopen(inventoryDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%s\t%lf\t%lf\t%s\t%u", Inventory[i].id, Inventory[i].name, &Inventory[i].price, &Inventory[i].profit, Inventory[i].categoryId, &Inventory[i].remain) != EOF){
+    while(fscanf(fp, "%s\t%[^\t]\t%lf\t%lf\t%s\t%u", Inventory[i].id, Inventory[i].name, &Inventory[i].price, &Inventory[i].profit, Inventory[i].categoryId, &Inventory[i].remain) != EOF){
         i++;
     }
 
     RecordCount.inventory = i;          // Save a number of records to the Record Counter
     fclose(fp);
+
+    // For debuging
+    // i--;
+    // printf(">>>> %s\t%s\t%lf\t%lf\t%s\t%u\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
 
 }
 void categoryDatabase(){
