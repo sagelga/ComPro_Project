@@ -206,8 +206,8 @@ Declare all the database call functions*/
 
 /*-----------------------------------------------------------------------------
 Declare all the other database functions*/
-int isFileExist(const char *filename); // For check a file exist. If the file is exist then return 1 otherwise return 0
-unsigned int tailIndex();
+int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
+unsigned int tail(unsigned int table);  // Return the first empty index of the list (For insert new record)
 
 /*-----------------------------------------------------------------------------
 Declare all the interface functions*/

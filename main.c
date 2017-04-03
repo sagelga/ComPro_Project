@@ -182,14 +182,24 @@ int isFileExist(const char *filename){
         return 0;
     }
 }
-/*
-unsigned int tailIndex(unsigned int table){
-    if(table == 1){
-        // PersonnelDatabase
 
-    }
-
-}*/
+unsigned int tail(unsigned int table){
+    if(table == 1)
+        return RecordCount.personnel;
+    else if(table == 2)
+        return RecordCount.inventory;
+    else if(table == 3)
+        return RecordCount.category;
+    else if(table == 4)
+        return RecordCount.transaction;
+    else if(table == 5)
+        return RecordCount.purchase;
+    else if(table == 6)
+        return RecordCount.customer;
+    else if(table == 7)
+        return RecordCount.promotion;
+    return 0;
+}
 
 void initDatabase(){
 
