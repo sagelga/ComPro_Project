@@ -1,132 +1,5 @@
-/* Welcome to the POS System program.
- * Please feel free to look around...
- * Created by the 1st year student of Information Technology Ladkrabang.
- * Redistribution or copies are not allowed. No commercial use is allowed.
- *
- * Thank you for participating.
- * The Team
-
- * ---------------------
- * Lists of the team members
- * Kunanon Srisuntiroj @sagelga Lead UI Team
- * Noppanut Ploywong @noppanut Lead Background Work Team
- *
- */
-
-/*-----------------------------------------------------------------------------
-Declare all the libraries that we are going to use here*/
-#include <stdio.h>              // Pretty much the basic things
-#include <string.h>             // Compares strings and other kind of stuff
-#include <math.h>               // Calculate difficult 7-years-old Math
-#include <stdlib.h>             // IDK what that will do, but I added it anyways...
-#include <time.h>               // Synchronize and manage the time between program and you
-#include <ctype.h>              // Compares the string to type of string
-
-/*-----------------------------------------------------------------------------
-Declare all the global variables here*/
-char username[140] = "Kumamon";
-int userPermission = 0; // 0 = Not sign in | 1 = Sales | 2 = Manager | 3 = Admin
-
-/*-----------------------------------------------------------------------------
-Declare all the gimmicks functions*/
-void switchHub();               // For moving to the selection of the functions
-void terminate();               // For save and stop the program
-void screenAdjust();            // For calculating the screen size to the optimum size
-void screenClear();             // For refreshing the screen to the new one
-void settings();                // For setting up the screensize, default login scheme
-
-/*-----------------------------------------------------------------------------
-Declare all the gimmicks functions*/
-void bannerFullBorder();
-void bannerBlankBorder(char text);
-void bannerBlankBorderText();
-void banner(char bannerLine1, char bannerLine2, char bannerLine3, char bannerLine4); // For showing the program banner
-
-/*-----------------------------------------------------------------------------
-Declare all the database file !!build!! functions*/
-void customerDatabase();        // For Customer Database
-void transactionDatabase();     // For Transaction Database
-void inventoryDatabase();       // For Inventory Database
-void salesDatabase();           // For Sales Database
-void promotionDatabase();       // For Promotion Database
-
-/*-----------------------------------------------------------------------------
-Declare all the database file >>Read>> functions*/
-void customerFileRead();        // For Customer Database
-void transactionFileRead();     // For Transaction Database
-void inventoryFileRead();       // For Inventory Database
-void salesFileRead();           // For Sales Database
-void promotionFileRead();       // For Promotion Database
-
-/*-----------------------------------------------------------------------------
-Declare all the database file <<Write<< functions*/
-void customerFileWrite();       // For Customer Database
-void transactionFileWrite();    // For Transaction Database
-void inventoryFileWrite();      // For Inventory Database
-void salesFileWrite();          // For Sales Database
-void promotionFileWrite();      // For Promotion Database
-
-/*-----------------------------------------------------------------------------
-Declare all the database call functions*/
-
-/*-----------------------------------------------------------------------------
-Declare all the interface functions*/
-
-/*-----------------------------------------------------------------------------
-Declare all the admin tools*/
-void adminAuthenticate();
-void adminRoleAuthen();
-void adminRoleDeauthen();
-void adminBackgroundMaintain();
-
-/*-----------------------------------------------------------------------------
-Declare all the Inventory can do*/
-void inventoryAdd();
-void inventoryModify();
-void inventoryRemove();
-
-/*-----------------------------------------------------------------------------
-Declare all the Customer Database can do*/
-void customerAdd();
-void customerModify();
-void customerRemove();
-
-/*-----------------------------------------------------------------------------
-Declare all the Sales Database can do*/
-void SaleAdd();
-void SaleModify();
-void SaleRemove();
-
-/*-----------------------------------------------------------------------------
-Declare all the forecast function can do*/
-void monthlyForecast();
-void quarterForecast();
-void annualForecast();
-
-void forecastResults();
-void forecastProgram();
-
-void forecastPrint();
-
-/*-----------------------------------------------------------------------------
-Declare all the Promotion Database can do*/
-void promotionAdd();
-void promotionModify();
-void promotionRemove();
-
-/*-----------------------------------------------------------------------------
-Declasre what the seller can do*/
-void cashierInterface();
-
-/*-----------------------------------------------------------------------------
-Declares all the authentication functions and interface*/
-void authenticate();            // For signing in
-void deauthenticate();          // For signing out
-//
-void authenInternface();
-void authenInterfaceComplete();
-void authenInterfaceFailed();
-void authenInternfaceError();
+// Welcome to the program. The declaration of the functions and the library used is in .h file
+#include "main.h"
 
 /*---------------------------------------------------------------------------*/
 int main(){
@@ -137,6 +10,9 @@ int main(){
 }
 
 void switchHub() {
+    // New Switch Hub
+
+    /* Original switchHub();
     // This function will be the STARTUP PROGRAM INTERFACES
     printf("\n\nWhat do you like to do?\t\tSign in as %.6s\n_________________________________________________\n",username);
 
@@ -159,7 +35,6 @@ void switchHub() {
 
             return;
         case ('4'):
-            printf("Are you really sure about this? (Type Y or N) >>");
             terminate();
             return;
         case('S'):
@@ -173,10 +48,12 @@ void switchHub() {
             switchHub();
             return;
     }
+    */
 }
 
 void terminate(){
     // Type in the text that will be displayed after the user wants to terminate the program
+    printf("Are you really sure about this? (Type Y or N) >>");
     char text;
     scanf(" %c",&text);
     text = toupper(text);
@@ -187,7 +64,7 @@ void terminate(){
 
         case ('N'):
             printf("I'm so happy that you're back! Redirecting.......\n\n");
-            switchHub();
+            screenClear();
             return;
 
         default:
@@ -199,23 +76,24 @@ void terminate(){
 
 
 void screenAdjust(){
-          //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::70 chart 
+                     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::70 chart 
+                     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     char text1[107] = "";
-    char text2[107] = "                                       This is the initiation of the POS Systems!";
-    char text3[107] = "              The program screen size is optimized for 140 x pixel terminal";
+    char text2[107] = "  This is the initiation of the POS Systems!";
+    char text3[107] = "  The program screen size is optimized for 140 x pixel terminal";
     char text4[107] = "";
-    //banner(text1, text2, text3, text4);
-    bannerBlankBorderText();
-    printf("::                                                        140 x 40 pixel terminal                                                          :\n");
-    for (int i = 0;i<3;i++){
-        bannerBlankBorderText();
-    }
-    printf("::            The box is 140 x 40 pixel in size. If any lines has broken, please configure the terminal screen to optimum size.            :\n");
-    printf("::            -----------------------------------------------------------------------------------------------------------------            :\n");
-    for (int i = 0;i<27;i++){
-        bannerBlankBorderText();
-    }
-    printf("::                                                         Please type 'Y' to continue...                                                  :\n");
+    banner(text1, text2, text3, text4);
+    
+    for (int i = 0;i<3;i++)
+        bannerBlankBorder();
+    
+    bannerBlankBorderText("            The box is 140 x 40 pixel in size. If any lines has broken, please configure the terminal screen to optimum size.");
+    bannerBlankBorderText("            -----------------------------------------------------------------------------------------------------------------");
+    
+    for (int i = 0;i<27;i++)
+        bannerBlankBorder();
+    
+    bannerBlankBorderText("                                                         Please type 'Y' to continue...");
     bannerFullBorder();
 
     char flags;
@@ -225,9 +103,12 @@ void screenAdjust(){
     switch (flags){
 
         case('Y'):
+            screenClear();
+            switchHub();
             return;
 
         case('N'):
+            screenClear();
             terminate();
             return;
 
@@ -241,33 +122,54 @@ void screenAdjust(){
 
 void screenClear(){
     // This function will clean the screen, and the other function will reprint the page.
-    system("@cls||clear");
+    system("clear");
 }
 
-void banner(char bannerLine1, char bannerLine2, char bannerLine3, char bannerLine4){
+void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
     // This function will print out the official banner.
-    char bannerLine1 = *bannerLine1;
-    char bannerLine2 = *bannerLine2;
-    char bannerLine3 = *bannerLine3;
-    char bannerLine4 = *bannerLine4;    
     printf(":: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf(":: ██╔══██╗██╔═══██╗██╔════╝ ::%-107s::\n", bannerLine1);
-    printf(":: ██████╔╝██║   ██║███████╗ ::%-107s::\n", bannerLine2);
-    printf(":: ██╔═══╝ ██║   ██║╚════██║ ::%-107s::\n", bannerLine3);
-    printf(":: ██║     ╚██████╔╝███████║ ::%-107s::\n", bannerLine4);
+    printf(":: ██╔══██╗██╔═══██╗██╔════╝ :: %-105s ::\n", bannerLine1);
+    printf(":: ██████╔╝██║   ██║███████╗ :: %-105s ::\n", bannerLine2);
+    printf(":: ██╔═══╝ ██║   ██║╚════██║ :: %-105s ::\n", bannerLine3);
+    printf(":: ██║     ╚██████╔╝███████║ :: %-105s ::\n", bannerLine4);
     printf(":: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
 void bannerFullBorder(){
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
-void bannerBlankBorder(char text){
-    printf(":: %-137s ::",text);
+void bannerBlankBorderText(char *text){
+    printf(":: %-134s ::\n", text);
 }
 
-void bannerBlankBorderText(){
-    printf("::%139s::\n", "");
+void bannerBlankBorder(){
+    printf("::%136s::\n", "");
+}
+
+void settings(){
+    bannerFullBorder();
+    bannerBlankBorderText("                                                Settings");
+    bannerFullBorder();
+
+    bannerBlankBorderText("What do you want to do?");
+    bannerBlankBorderText("1. Change Username");
+    bannerBlankBorderText("2. Change Password");
+    bannerFullBorder();
+    bannerBlankBorderText("3. Change store name");
+    bannerBlankBorderText("4. Change store address");
+
+    char functionSwitch;
+    scanf("%c", &functionSwitch);
+
+    switch(functionSwitch){
+
+        case ('1'):
+            return;
+        default:
+            return;
+
+    }
 }
 /*
 
