@@ -157,7 +157,6 @@ void terminate();               // For save and stop the program
 void screenAdjust();            // For calculating the screen size to the optimum size
 void screenClear();             // For refreshing the screen to the new one
 void settings();                // For setting up the screensize, default login scheme
-void init();                    // For initializing the program (Prepare initial value of variables)
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions*/

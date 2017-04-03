@@ -10,17 +10,6 @@ int main(){
     return 0;
 }
 
-void init(){
-    // Initial the value of Record counter
-    RecordCount.personnel = 0;
-    RecordCount.inventory = 0;
-    RecordCount.category = 0;
-    RecordCount.transaction = 0;
-    RecordCount.purchase = 0;
-    RecordCount.customer = 0;
-    RecordCount.promotion = 0;
-}
-
 void switchHub() {
     // New Switch Hub
 
