@@ -97,7 +97,7 @@ void screenAdjust(){
     bannerFullBorder();
 
     char flags;
-    scanf("%c",&flags);
+    scanf(" %c",&flags);
     flags = toupper(flags);
 
     switch (flags){

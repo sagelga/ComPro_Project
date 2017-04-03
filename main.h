@@ -10,7 +10,7 @@
  * Lists of the team members
  * Kunanon Srisuntiroj      @sagelga    59070022    UI Team
  * Thanawat Laodkaew        @skydddoogg 59070071    Background Work Team
- * Noppanut Ploywong        @noppanut   59070082    Background Work Team
+ * Noppanut Ploywong        @noppanut15 59070082    Background Work Team
  *                          @59070156   59070156    Background Work Team
  *
  */
@@ -48,27 +48,38 @@ void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *banne
 
 /*-----------------------------------------------------------------------------
 Declare all the database file !!build!! functions*/
-void customerDatabase();        // For Customer Database
-void transactionDatabase();     // For Transaction Database
+
+void personnelDatabase();       // For Personnel Database
 void inventoryDatabase();       // For Inventory Database
-void salesDatabase();           // For Sales Database
+void categoryDatabase();        // For Category Database
+void logDatabase();             // For Log Database
+void transactionDatabase();     // For Transaction Database
+void customerDatabase();        // For Customer Database
 void promotionDatabase();       // For Promotion Database
+void settingDatabase();         // For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database file >>Read>> functions*/
-void customerFileRead(int keyID, char name, char nameMeta, double value, double accuValue);        // For Customer Database
-void transactionFileRead();     // For Transaction Database
+
+void personnelFileRead(int keyID, char name, char nameMeta, double value, double accuValue);;       // For Personnel Database
 void inventoryFileRead();       // For Inventory Database
-void salesFileRead();           // For Sales Database
+void categoryFileRead();        // For Category Database
+void logFileRead();             // For Log Database
+void transactionFileRead();     // For Transaction Database
+void customerFileRead();        // For Customer Database
 void promotionFileRead();       // For Promotion Database
+void settingFileRead();         // For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database file <<Write<< functions*/
 void customerFileWrite(int keyID, char name, char nameMeta, double value, double accuValue);       // For Customer Database
-void transactionFileWrite();    // For Transaction Database
-void inventoryFileWrite();      // For Inventory Database
-void salesFileWrite();          // For Sales Database
-void promotionFileWrite();      // For Promotion Database
+void inventoryFileWrite();       // For Inventory Database
+void categoryFileWrite();        // For Category Database
+void logFileWrite();             // For Log Database
+void transactionFileWrite();     // For Transaction Database
+void customerFileWrite();        // For Customer Database
+void promotionFileWrite();       // For Promotion Database
+void settingFileWrite();         // For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database call functions*/
