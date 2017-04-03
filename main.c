@@ -197,48 +197,59 @@ void initDatabase(){
 }
 
 void personnelDatabase(){
-    /*
-    
+    // Check a Database file existance, if it doesn't exist then create the new one.
     if(!isFileExist(personnelDatabaseFile)){
-        printf("Found!!!!!");
+        fopen(personnelDatabaseFile, "w");
     }
-
-    FILE *fp;
-    char pid[255];
-    char productName[255];
-    double price;
-
-    fp = fopen("test.txt", "r");
-
-    //fprintf(fp, "%s\t%s\t%lf\n", "9781133315711", "LifeBook", 300.0);
-
-    while(fscanf(fp, "%s\t%s\t%lf", pid, productName, &price) != EOF)
-      printf(">> %s --- %s --- %lf\n", pid, productName, price);
-
-    fclose(fp);
-
-    */
 }
 
 void inventoryDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(inventoryDatabaseFile)){
+        fopen(inventoryDatabaseFile, "w");
+    }
 
 }
 void categoryDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(categoryDatabaseFile)){
+        fopen(categoryDatabaseFile, "w");
+    }
 
 }
 void logDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(logDatabaseFile)){
+        fopen(logDatabaseFile, "w");
+    }
 
 }
 void transactionDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(transactionDatabaseFile)){
+        fopen(transactionDatabaseFile, "w");
+    }
 
 }
 void customerDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(customerDatabaseFile)){
+        fopen(customerDatabaseFile, "w");
+    }
 
 }
 void promotionDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(promotionDatabaseFile)){
+        fopen(promotionDatabaseFile, "w");
+    }
 
 }
 void settingDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(settingDatabaseFile)){
+        fopen(settingDatabaseFile, "w");
+    }
 
 }
 
