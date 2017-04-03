@@ -10,6 +10,17 @@ int main(){
     return 0;
 }
 
+void init(){
+    // Initial the value of Record counter
+    RecordCount.personnel = 0;
+    RecordCount.inventory = 0;
+    RecordCount.category = 0;
+    RecordCount.transaction = 0;
+    RecordCount.purchase = 0;
+    RecordCount.customer = 0;
+    RecordCount.promotion = 0;
+}
+
 void switchHub() {
     // New Switch Hub
 
@@ -182,6 +193,14 @@ int isFileExist(const char *filename){
         return 0;
     }
 }
+/*
+unsigned int tailIndex(unsigned int table){
+    if(table == 1){
+        // PersonnelDatabase
+
+    }
+
+}*/
 
 void initDatabase(){
 
@@ -201,6 +220,27 @@ void personnelDatabase(){
     if(!isFileExist(personnelDatabaseFile)){
         fopen(personnelDatabaseFile, "w");
     }
+
+    // Fetch records form a Database file to the program
+    FILE *fp;                           // File Pointer
+    char id[MAX_LNG_ID];
+    char firstname[MAX_LNG_TEXT];
+    char lastname[MAX_LNG_TEXT];
+    int role;                           // 0 = Manager | 1 = Marketing | 2 = Sale
+    char username[MAX_LNG_TEXT];
+    char password[MAX_LNG_TEXT];
+    char barcode_token[MAX_LNG_TOKEN];  // For use a barcode authentication
+
+    int i = 0;
+    fp = fopen(personnelDatabaseFile, "r");
+
+    while(fscanf(fp, "%s\t%s\t%s\t%d\t%s\t%s\t%s", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, &Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcode_token) != EOF){
+        i++;
+    }
+
+    RecordCount.personnel = i;
+    fclose(fp);
+
 }
 
 void inventoryDatabase(){
