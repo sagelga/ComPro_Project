@@ -61,7 +61,7 @@ void settingDatabase();         // For Setting Database
 /*-----------------------------------------------------------------------------
 Declare all the database file >>Read>> functions*/
 
-void personnelFileRead(int keyID, char name, char nameMeta, double value, double accuValue);;       // For Personnel Database
+void personnelFileRead(int keyID, char name, char nameMeta, double value, double accuValue);       // For Personnel Database
 void inventoryFileRead();       // For Inventory Database
 void categoryFileRead();        // For Category Database
 void logFileRead();             // For Log Database
@@ -72,7 +72,7 @@ void settingFileRead();         // For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database file <<Write<< functions*/
-void customerFileWrite(int keyID, char name, char nameMeta, double value, double accuValue);       // For Customer Database
+void personnelFileWrite(int keyID, char name, char nameMeta, double value, double accuValue);       // For Personnel Database
 void inventoryFileWrite();       // For Inventory Database
 void categoryFileWrite();        // For Category Database
 void logFileWrite();             // For Log Database
