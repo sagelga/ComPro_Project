@@ -35,8 +35,8 @@ char storeAddress[140] = "Default";
 const char personnelDatabaseFile[] = "Database/personnel.db";
 const char inventoryDatabaseFile[] = "Database/inventory.db";
 const char categoryDatabaseFile[] = "Database/category.db";
-const char logDatabaseFile[] = "Database/log.db";
 const char transactionDatabaseFile[] = "Database/transaction.db";
+const char purchaseDatabaseFile[] = "Database/purchase.db";
 const char customerDatabaseFile[] = "Database/customer.db";
 const char promotionDatabaseFile[] = "Database/promotion.db";
 const char settingDatabaseFile[] = "Database/setting.db";
@@ -97,8 +97,8 @@ void initDatabase();            // For Database Initialization
 void personnelDatabase();       // For Personnel Database
 void inventoryDatabase();       // For Inventory Database
 void categoryDatabase();        // For Category Database
-void logDatabase();             // For Log Database
 void transactionDatabase();     // For Transaction Database
+void purchaseDatabase();        // For Purchase Database
 void customerDatabase();        // For Customer Database
 void promotionDatabase();       // For Promotion Database
 void settingDatabase();         // For Setting Database
@@ -109,8 +109,8 @@ Declare all the database file >>Read>> functions*/
 void personnelFileRead(int keyID, char name, char nameMeta, double value, double accuValue);       // For Personnel Database
 void inventoryFileRead();       // For Inventory Database
 void categoryFileRead();        // For Category Database
-void logFileRead();             // For Log Database
 void transactionFileRead();     // For Transaction Database
+void purchaseFileRead();        // For Purchase Database
 void customerFileRead();        // For Customer Database
 void promotionFileRead();       // For Promotion Database
 void settingFileRead();         // For Setting Database
@@ -120,8 +120,8 @@ Declare all the database file <<Write<< functions*/
 void personnelFileWrite(int keyID, char name, char nameMeta, double value, double accuValue);       // For Personnel Database
 void inventoryFileWrite();       // For Inventory Database
 void categoryFileWrite();        // For Category Database
-void logFileWrite();             // For Log Database
 void transactionFileWrite();     // For Transaction Database
+void purchaseFileWrite();        // For Purchase Database
 void customerFileWrite();        // For Customer Database
 void promotionFileWrite();       // For Promotion Database
 void settingFileWrite();         // For Setting Database

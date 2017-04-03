@@ -188,8 +188,8 @@ void initDatabase(){
     personnelDatabase();
     inventoryDatabase();
     categoryDatabase();
-    logDatabase();
     transactionDatabase();
+    purchaseDatabase();
     customerDatabase();
     promotionDatabase();
     settingDatabase();
@@ -217,17 +217,17 @@ void categoryDatabase(){
     }
 
 }
-void logDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(logDatabaseFile)){
-        fopen(logDatabaseFile, "w");
-    }
-
-}
 void transactionDatabase(){
     // Check a Database file existance, if it doesn't exist then create the new one.
     if(!isFileExist(transactionDatabaseFile)){
         fopen(transactionDatabaseFile, "w");
+    }
+
+}
+void purchaseDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(purchaseDatabaseFile)){
+        fopen(purchaseDatabaseFile, "w");
     }
 
 }
