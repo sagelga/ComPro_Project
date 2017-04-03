@@ -86,6 +86,15 @@ typedef struct
   char personnelId[20]; // Cashier
   time_t datetime; // Epoch timestamp
 } PURCHASE;
+// 06. CUSTOMER
+typedef struct
+{
+  char id[20];
+  char firstname[50];
+  char lastname[50];
+  char gender; // 'F' = Female | 'M' = Male
+  double point;
+} CUSTOMER;
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
