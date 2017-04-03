@@ -146,6 +146,7 @@ void bannerFullBorder();
 void bannerBlankBorder();
 void bannerBlankBorderText(char *text);
 void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);
+void bannerInversed(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);
 
 /*-----------------------------------------------------------------------------
 Declare all the database file !!build!! functions*/

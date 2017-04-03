@@ -83,7 +83,7 @@ void screenAdjust(){
     char text2[107] = "  This is the initiation of the POS Systems!";
     char text3[107] = "  The program screen size is optimized for 140 x pixel terminal";
     char text4[107] = "";
-    banner(text1, text2, text3, text4);
+    bannerInversed(text1, text2, text3, text4);
     
     for (int i = 0;i<3;i++)
         bannerBlankBorder();
@@ -134,6 +134,16 @@ void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *banne
     printf(":: ██╔═══╝ ██║   ██║╚════██║ :: %-105s ::\n", bannerLine3);
     printf(":: ██║     ╚██████╔╝███████║ :: %-105s ::\n", bannerLine4);
     printf(":: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+}
+
+void bannerInversed(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
+    // This function will print out the official banner.
+    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ ::\n");
+    printf(":: %105s :: ██╔══██╗██╔═══██╗██╔════╝ ::\n", bannerLine1);
+    printf(":: %105s :: ██████╔╝██║   ██║███████╗ ::\n", bannerLine2);
+    printf(":: %105s :: ██╔═══╝ ██║   ██║╚════██║ ::\n", bannerLine3);
+    printf(":: %105s :: ██║     ╚██████╔╝███████║ ::\n", bannerLine4);
+    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ╚═╝      ╚═════╝ ╚══════╝ ::\n");
 }
 
 void bannerFullBorder(){
