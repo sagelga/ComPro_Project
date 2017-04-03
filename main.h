@@ -77,7 +77,15 @@ typedef struct
   char purchaseId[20];
   char inventoryId[20];
 } TRANSACTION;
-
+// 05. PURCHASE
+typedef struct
+{
+  char id[20];
+  double totalPrice;
+  char customerId[20];
+  char personnelId[20]; // Cashier
+  time_t datetime; // Epoch timestamp
+} PURCHASE;
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
