@@ -95,6 +95,13 @@ typedef struct
   char gender; // 'F' = Female | 'M' = Male
   double point;
 } CUSTOMER;
+// 07. PROMOTION
+typedef struct
+{
+  char id[20];
+  double price;
+  int status; // 1 = active | 0 = used (exprired)
+} PROMOTION;
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
