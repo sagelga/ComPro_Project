@@ -33,6 +33,11 @@ Define all the constant values here*/
 #define MAX_IDX_CUSTOMER 100        // Maximum amount of Customer
 #define MAX_IDX_PROMOTION 1000      // Maximum amount of Promotion
 
+#define MAX_LNG_ID 20               // Maximum length of ID
+#define MAX_LNG_TEXT 50             // Maximum length of Normal Text
+#define MAX_LNG_SCREEN 140          // Maximum length of (Text on) Screen's width
+#define MAX_LNG_TOKEN 255           // Maximum length of Token
+
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
 char username[140] = "Default"; 	// Username cannot go further than 140, as the maximum border size is 140.
@@ -55,57 +60,57 @@ const char *settingDatabaseFile = "Database/setting.db";
 // 01. PERSONNEL
 typedef struct
 {
-  char id[20];
-  char firstname[50];
-  char lastname[50];
+  char id[MAX_LNG_ID];
+  char firstname[MAX_LNG_TEXT];
+  char lastname[MAX_LNG_TEXT];
   int role; // 0 = Manager | 1 = Marketing | 2 = Sale
-  char username[50];
-  char password[50];
-  char barcode_token[255]; // For use a barcode authentication
+  char username[MAX_LNG_TEXT];
+  char password[MAX_LNG_TEXT];
+  char barcode_token[MAX_LNG_TOKEN]; // For use a barcode authentication
 } PERSONNEL;
 
 // 02. INVENTORY
 typedef struct
 {
-  char id[20];
-  char name[140];
+  char id[MAX_LNG_ID];
+  char name[MAX_LNG_SCREEN];
   double price;
   double profit; // Profit per item
-  char categoryId; // Category ID
+  char categoryId[MAX_LNG_ID]; // Category ID
   unsigned int remain;
 } INVENTORY;
 
 // 03. CATEGORY
 typedef struct
 {
-  char id[20];
-  char name[50];
+  char id[MAX_LNG_ID];
+  char name[MAX_LNG_TEXT];
 } CATEGORY;
 
 // 04. TRANSACTION
 typedef struct
 {
-  char id[20];
-  char purchaseId[20];
-  char inventoryId[20];
+  char id[MAX_LNG_ID];
+  char purchaseId[MAX_LNG_ID];
+  char inventoryId[MAX_LNG_ID];
 } TRANSACTION;
 
 // 05. PURCHASE
 typedef struct
 {
-  char id[20];
+  char id[MAX_LNG_ID];
   double totalPrice;
-  char customerId[20];
-  char personnelId[20]; // Cashier
+  char customerId[MAX_LNG_ID];
+  char personnelId[MAX_LNG_ID]; // Cashier
   time_t datetime; // Epoch timestamp
 } PURCHASE;
 
 // 06. CUSTOMER
 typedef struct
 {
-  char id[20];
-  char firstname[50];
-  char lastname[50];
+  char id[MAX_LNG_ID];
+  char firstname[MAX_LNG_TEXT];
+  char lastname[MAX_LNG_TEXT];
   char gender; // 'F' = Female | 'M' = Male
   double point;
 } CUSTOMER;
@@ -113,7 +118,7 @@ typedef struct
 // 07. PROMOTION
 typedef struct
 {
-  char id[20];
+  char id[MAX_LNG_ID];
   double price;
   int status; // 1 = active | 0 = used (exprired)
 } PROMOTION;
@@ -121,30 +126,43 @@ typedef struct
 // 08. SETTINGS
 typedef struct
 {
-  char storeName[140];
-  char storeAddress[140];
+  char storeName[MAX_LNG_SCREEN];
+  char storeAddress[MAX_LNG_SCREEN];
   double priceToPoint; // When you pay N Baht, you'll receive `N * priceToPoint` points.
   double pointToPrice; // `pointToPrice` point is equal to 1 Baht.
 } SETTING;
 
+// Record Counter
+typedef struct{
+  unsigned int personnel;
+  unsigned int inventory;
+  unsigned int category;
+  unsigned int transaction;
+  unsigned int purchase;
+  unsigned int customer;
+  unsigned int promotion;
 
-PERSONNEL Personnel[MAX_IDX_PERSONNEL];           // Declare the Personnel schema
-INVENTORY Inventory[MAX_IDX_INVENTORY];           // Declare the Inventory schema
-CATEGORY Category[MAX_IDX_CATEGORY];              // Declare the Category schema
-TRANSACTION Transaction[MAX_IDX_TRANSACTION];     // Declare the Transaction schema
-PURCHASE Purchase[MAX_IDX_PURCHASE];              // Declare the Purchase schema
-CUSTOMER Customer[MAX_IDX_CUSTOMER];              // Declare the Customer schema
-PROMOTION Promotion[MAX_IDX_PROMOTION];           // Declare the Promotion schema
-SETTING Setting;                                  // Declare the Setting schema
+} RECORDCOUNT;
+
+
+PERSONNEL Personnel[MAX_IDX_PERSONNEL];           // Declare the Personnel table
+INVENTORY Inventory[MAX_IDX_INVENTORY];           // Declare the Inventory table
+CATEGORY Category[MAX_IDX_CATEGORY];              // Declare the Category table
+TRANSACTION Transaction[MAX_IDX_TRANSACTION];     // Declare the Transaction table
+PURCHASE Purchase[MAX_IDX_PURCHASE];              // Declare the Purchase table
+CUSTOMER Customer[MAX_IDX_CUSTOMER];              // Declare the Customer table
+PROMOTION Promotion[MAX_IDX_PROMOTION];           // Declare the Promotion table
+SETTING Setting;                                  // Declare the Setting table
+
+RECORDCOUNT RecordCount;                          // Declare the Record Counter
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
-void switchHub();               	// For moving to the selection of the functions
-void terminate();               									// For save and stop the program
-void screenAdjust();            									// For calculating the screen size to the optimum size
-void screenClear();             									// For refreshing the screen to the new one
-void settings();                									// For setting up the screensize, default login scheme
-int isFileExist(const char *filename); 								// For check a file exist. If the file is exist then return 1 otherwise return 0
+void switchHub();               // For moving to the selection of the functions
+void terminate();               // For save and stop the program
+void screenAdjust();            // For calculating the screen size to the optimum size
+void screenClear();             // For refreshing the screen to the new one
+void settings();                // For setting up the screensize, default login scheme
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions*/
@@ -193,6 +211,11 @@ void settingFileWrite();         									// For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database call functions*/
+
+/*-----------------------------------------------------------------------------
+Declare all the other database functions*/
+int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
+unsigned int tail(unsigned int table);  // Return the first empty index of the list (For insert new record)
 
 /*-----------------------------------------------------------------------------
 Declare all the interface functions*/
