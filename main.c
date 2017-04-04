@@ -34,7 +34,7 @@ void switchHub() {
     for (int i = 0;i<20;i++)
         bannerBlankBorder();
 
-    bannerBlankBorderText("                                                  or type 'N' to save and quit");
+    bannerBlankBorderText("or type 'N' to save and quit");
     bannerFullBorder();
     bannerBlankTerminate();
 
@@ -75,7 +75,7 @@ void terminate(){
     screenClear();
 
     bannerFullBorder();
-    bannerBlankBorderText("                            You about to terminate the POS system...");
+    bannerBlankBorderText("You about to terminate the POS system...");
     bannerFullBorder();
 
     printf("Are you really sure about this? (Type Y or N) >>");
@@ -108,20 +108,19 @@ void screenAdjust(){
                      //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     char text1[107] = "";
     char text2[107] = "  This is the initiation of the POS Systems!";
-    char text3[107] = "  The program screen size is optimized for 140 x pixel terminal";
+    char text3[107] = "  The program screen size is optimized for 140 x 40 pixel terminal";
     char text4[107] = "";
     banner(text1, text2, text3, text4);
     
     for (int i = 0;i<3;i++)
         bannerBlankBorder();
     
-    bannerBlankBorderText("            The box is 140 x 40 pixel in size. If any lines has broken, please configure the terminal screen to optimum size.");
-    bannerBlankBorderText("            -----------------------------------------------------------------------------------------------------------------");
+    bannerBlankBorderText("Please configure the terminal screen to optimum size.");
     
-    for (int i = 0;i<26;i++)
+    for (int i = 0;i<27;i++)
         bannerBlankBorder();
     
-    bannerBlankBorderText("                                                   Please type 'Y' to continue...");
+    bannerBlankBorderText("Type 'Y' to continue...");
     bannerFullBorder();
 
     bannerBlankTerminate();
@@ -181,18 +180,10 @@ void bannerFullBorder(){
 }
 
 void bannerBlankBorderText(char *text){
-    int charLength = strlen(text);
-    int leftAlign = (134-charLength)/2;
-    int rightAlign = (134-charLength)/2;
+    int length = strlen(text) - 1;  // Remove the terminal '\0'
+    int pad = (length >= 134) ? 0 : ((134 - length) / 2);
 
-    printf(":: ");
-    for (int i =leftAlign;i>0;i--);
-        printf(" ");
-    
-    for (int i = rightAlign;i>0;i--);
-        printf(" ");
-    printf(" ::\n");
-    //printf(":: %-134s ::\n", text);
+    printf(":: %*s%s%*s ::\n", pad," ",text,133-pad-length," ");
 }
 
 void bannerBlankBorder(){
@@ -200,12 +191,12 @@ void bannerBlankBorder(){
 }
 
 void bannerBlankTerminate(){
-    printf("What do you want to do? >>> ");
+    printf("\n>>> ");
 }
 
 void settings(){
     bannerFullBorder();
-    bannerBlankBorderText("                                                Settings");
+    bannerBlankBorderText("Settings");
     bannerFullBorder();
 
     bannerBlankBorderText("What do you want to do?");
@@ -349,4 +340,3 @@ void settingDatabase(){
       Vasanchai Prakobkij      @59070156        59070156    Background Work Team
   
  */
-
