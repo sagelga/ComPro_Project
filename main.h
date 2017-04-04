@@ -1,18 +1,3 @@
-/* :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-   :: ██╔══██╗██╔═══██╗██╔════╝ :: Welcome to the POS System program.									                                     ::
-   :: ██████╔╝██║   ██║███████╗ :: Please feel free to look around...									                                     ::
-   :: ██╔═══╝ ██║   ██║╚════██║ :: Created by the 1st year student of Information Technology Ladkrabang.									 ::
-   :: ██║     ╚██████╔╝███████║ :: Redistribution or copies are not allowed. No commercial use is allowed.									 ::
-   :: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-      Lists of the team members
-      Kunanon Srisuntiroj      @sagelga    		59070022    UI Team
-      Thanawat Laodkaew        @skydddoogg 		59070071    Background Work Team
-      Noppanut Ploywong        @noppanut15 		59070082    Background Work Team
-      Vasanchai Prakobkij      @59070156   		59070156    Background Work Team
-  
- */
-
 /*-----------------------------------------------------------------------------
 Declare all the libraries that we are going to use in this project*/
 #include <stdio.h>              // Pretty much the basic things
@@ -300,3 +285,18 @@ void authInterfaceError();      // For non - complete sign in interface (Other t
                 Program bug best enemy
           Please. No bug. No crash. No interrupt.         
 */
+
+/* :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+   :: ██╔══██╗██╔═══██╗██╔════╝ :: Welcome to the POS System program.									                                     ::
+   :: ██████╔╝██║   ██║███████╗ :: Please feel free to look around...									                                     ::
+   :: ██╔═══╝ ██║   ██║╚════██║ :: Created by the 1st year student of Information Technology Ladkrabang.									 ::
+   :: ██║     ╚██████╔╝███████║ :: Redistribution or copies are not allowed. No commercial use is allowed.									 ::
+   :: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+      Lists of the team members
+      Kunanon Srisuntiroj      @sagelga    		59070022    UI Team
+      Thanawat Laodkaew        @skydddoogg 		59070071    Background Work Team
+      Noppanut Ploywong        @noppanut15 		59070082    Background Work Team
+      Vasanchai Prakobkij      @59070156   		59070156    Background Work Team
+  
+ */
