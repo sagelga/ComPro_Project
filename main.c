@@ -181,7 +181,18 @@ void bannerFullBorder(){
 }
 
 void bannerBlankBorderText(char *text){
-    printf(":: %-134s ::\n", text);
+    int charLength = strlen(text);
+    int leftAlign = (134-charLength)/2;
+    int rightAlign = (134-charLength)/2;
+
+    printf(":: ");
+    for (int i =leftAlign;i>0;i--);
+        printf(" ");
+    
+    for (int i = rightAlign;i>0;i--);
+        printf(" ");
+    printf(" ::\n");
+    //printf(":: %-134s ::\n", text);
 }
 
 void bannerBlankBorder(){
