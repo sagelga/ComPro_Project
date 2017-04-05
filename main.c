@@ -201,6 +201,12 @@ unsigned int tail(unsigned int table){
     return 0;
 }
 
+void intToString(char *str, int number){
+    char buffer[200];
+    sprintf(buffer, "%d", number);
+    strcpy(str, buffer);
+}
+
 void initDatabase(){
     // Database Initial
     personnelDatabase();
@@ -471,6 +477,8 @@ void settingFileRead(){
     // printf(">>>> %s--%s--%lf--%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
 
 }
+
+
 /*
 
                 May the god be with us...

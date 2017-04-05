@@ -206,34 +206,78 @@ void promotionFileWrite();       // For Promotion Database
 void settingFileWrite();         // For Setting Database
 
 /*-----------------------------------------------------------------------------
-Declare all the database call functions*/
-
-/*-----------------------------------------------------------------------------
 Declare all the other database functions*/
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
 unsigned int tail(unsigned int table);  // Return the first empty index of the list (For insert new record)
+void intToString(char *str, int number); // Convert from integer to string
 
 /*-----------------------------------------------------------------------------
 Declare all the interface functions*/
 
+/*-----------------------------------------------------------------------------
+Declare all the Personnel Database can do*/
+void personnelSelectById(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);  // To use: personnelSelectById(id, firstname, lastname, &role, username, password, barcode_token);
+void personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);
+void personnelUpdateFirstname(char *id, char *firstname);
+void personnelUpdateLastname(char *id, char *lastname);
+void personnelUpdateRole(char *id, int role);
+void personnelUpdatePassword(char *id, char *password);
+void personnelDelete(char *id);
 
 /*-----------------------------------------------------------------------------
-Declare all the Inventory can do*/
-void inventoryAdd();
-void inventoryModify();
-void inventoryRemove();
+Declare all the Inventory Database can do*/
+void inventorySelectById(char *id, char *name, double *price, double *profit, char *categoryId, unsigned int *remain);              // To use: inventorySelectById(id, name, &price, &profit, categoryId, &remain);
+void inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain);
+void inventoryUpdateName(char *id, char *name);
+void inventoryUpdatePrice(char *id, double price);
+void inventoryUpdateProfit(char *id, double profit);
+void inventoryUpdateCategory(char *id, char *categoryId);
+void inventoryUpdateRemain(char *id, unsigned int remain);
+void inventoryDelete(char *id);
+
+/*-----------------------------------------------------------------------------
+Declare all the Category Database can do*/
+void categorySelectById(char *id, char *name);
+void categoryInsert(char *id, char *name);
+void categoryUpdateName(char *id, char *name);
+void categoryDelete(char *id);
+
+/*-----------------------------------------------------------------------------
+Declare all the Transaction Database can do*/
+void transactionSelectById(char *id, char *purchaseId, char *inventoryId);
+void transactionInsert(char *id, char *purchaseId, char *inventoryId);
+
+/*-----------------------------------------------------------------------------
+Declare all the Purchase Database can do*/
+void purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime);                       // To use: purchaseSelectById(id, &totalPrice, customerId, personnelId, &datetime);
+void purchaseInsert(char *id, double totalPrice, char *customerId, char *personnelId, time_t datetime);
 
 /*-----------------------------------------------------------------------------
 Declare all the Customer Database can do*/
-void customerAdd();
-void customerModify();
-void customerRemove();
+void customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy);                  // To use: customerSelectById(id, firstname, lastname, &gender, &point, &totalBuy);
+void customerInsert(char *id, char *firstname, char *lastname, char gender, double point, double totalBuy);
+void customerUpdateFirstname(char *id, char *firstname);
+void customerUpdateLastname(char *id, char *lastname);
+void customerUpdateGender(char *id, char gender);
+void customerUpdatePoint(char *id, double point);
+void customerUpdatetotalBuy(char *id, double totalBuy);
+void customerDelete(char *id);
 
 /*-----------------------------------------------------------------------------
-Declare all the Sales Database can do*/
-void SaleAdd();         // For adding the ID data from Database
-void SaleModify();          // For modifying the ID data from Database
-void SaleRemove();          //For removing the ID data from Database
+Declare all the Promotion Database can do*/
+void promotionSelectById(char *id, double *price, int *status);                                                                     // To use: promotionSelectById(id, &price, &status);
+void promotionInsert(char *id, double price, int status);
+void promotionUpdatePrice(char *id, double price);
+void promotionUpdateStatus(char *id, int status);
+void promotionDelete(char *id);
+
+/*-----------------------------------------------------------------------------
+Declare all the Setting Database can do*/
+void settingSelectById(char *id);
+void settingUpdateStoreName(char *storeName);
+void settingUpdateAddress(char *storeAddress);
+void settingUpdatePriceToPoint(double priceToPoint);
+void settingUpdatePointToPrice(double pointToPrice);
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/
@@ -245,12 +289,6 @@ void forecastResults();
 void forecastProgram();
 
 void forecastPrint();
-
-/*-----------------------------------------------------------------------------
-Declare all the Promotion Database can do*/
-void promotionAdd(int keyID, char name, char nameMeta, int values);            // For adding the ID data from Database
-void promotionModify(int keyID, char name, char nameMeta, int values);         // For modifying the ID data from Database
-void promotionRemove(int keyID, char name, char nameMeta, int values);         //For removing the ID data from Database
 
 /*-----------------------------------------------------------------------------
 Decease what the seller can do*/
