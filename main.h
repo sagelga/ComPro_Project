@@ -200,6 +200,7 @@ void settingFileRead();         // For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database file <<Write<< functions*/
+/*
 void personnelFileWrite();       // For Personnel Database
 void inventoryFileWrite();       // For Inventory Database
 void categoryFileWrite();        // For Category Database
@@ -208,7 +209,7 @@ void purchaseFileWrite();        // For Purchase Database
 void customerFileWrite();        // For Customer Database
 void promotionFileWrite();       // For Promotion Database
 void settingFileWrite();         // For Setting Database
-
+*/
 /*-----------------------------------------------------------------------------
 Declare all the other database functions*/
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
@@ -220,24 +221,38 @@ Declare all the interface functions*/
 
 /*-----------------------------------------------------------------------------
 Declare all the Personnel Database can do*/
-void personnelSelectById(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);  // To use: personnelSelectById(id, firstname, lastname, &role, username, password, barcode_token);
-void personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);
-void personnelUpdateFirstname(char *id, char *firstname);
-void personnelUpdateLastname(char *id, char *lastname);
-void personnelUpdateRole(char *id, int role);
-void personnelUpdatePassword(char *id, char *password);
-void personnelDelete(char *id);
+/* 
+  Note: To use a function `personnelSelectById`
+         - Pass the values by reference e.g. personnelSelectById(id, firstname, lastname, &role, username, password, barcode_token); 
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+int personnelSelectById(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);  // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+
+void personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);   // Adding a new record to the database
+int personnelUpdateFirstname(char *id, char *firstname);    // For modifying the `firstname` (Select the record by `id`)
+int personnelUpdateLastname(char *id, char *lastname);      // For modifying the `lastname` (Select the record by `id`)
+int personnelUpdateRole(char *id, int role);                // For modifying the `role` (Select the record by `id`)
+int personnelUpdatePassword(char *id, char *password);      // For modifying the `password` (Select the record by `id`)
+int personnelDelete(char *id);                              // Delete the record (Select by `id`)
 
 /*-----------------------------------------------------------------------------
 Declare all the Inventory Database can do*/
-void inventorySelectById(char *id, char *name, double *price, double *profit, char *categoryId, unsigned int *remain);              // To use: inventorySelectById(id, name, &price, &profit, categoryId, &remain);
-void inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain);
-void inventoryUpdateName(char *id, char *name);
-void inventoryUpdatePrice(char *id, double price);
-void inventoryUpdateProfit(char *id, double profit);
-void inventoryUpdateCategory(char *id, char *categoryId);
-void inventoryUpdateRemain(char *id, unsigned int remain);
-void inventoryDelete(char *id);
+/* 
+  Note: To use a function `inventorySelectById`
+         - Pass the values by reference e.g. inventorySelectById(id, name, &price, &profit, categoryId, &remain);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+int inventorySelectById(char *id, char *name, double *price, double *profit, char *categoryId, unsigned int *remain); // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+
+void inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain);   // Adding a new record to the database
+int inventoryUpdateName(char *id, char *name);              // For modifying the `name` (Select the record by `id`)
+int inventoryUpdatePrice(char *id, double price);           // For modifying the `price` (Select the record by `id`)
+int inventoryUpdateProfit(char *id, double profit);         // For modifying the `profit` (Select the record by `id`)
+int inventoryUpdateCategory(char *id, char *categoryId);    // For modifying the `categoryId` (Select the record by `id`)
+int inventoryUpdateRemain(char *id, unsigned int remain);   // For modifying the `remain` (Select the record by `id`)
+int inventoryDelete(char *id);                              // Delete the record (Select by `id`)
 
 void inventoryAddInterface ();
 
@@ -247,50 +262,85 @@ void inventoryRemoveInterface ();
 
 /*-----------------------------------------------------------------------------
 Declare all the Category Database can do*/
-void categorySelectById(char *id, char *name);
-void categoryInsert(char *id, char *name);
-void categoryUpdateName(char *id, char *name);
-void categoryDelete(char *id);
+/* 
+  Note: To use a function `categorySelectById`
+         - Pass the values by reference e.g. categorySelectById(id, name);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+int categorySelectById(char *id, char *name);               // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+
+void categoryInsert(char *id, char *name);                  // Adding a new record to the database
+int categoryUpdateName(char *id, char *name);               // For modifying the `name` (Select the record by `id`)
+int categoryDelete(char *id);                               // Delete the record (Select by `id`)
 
 /*-----------------------------------------------------------------------------
 Declare all the Transaction Database can do*/
-void transactionSelectById(char *id, char *purchaseId, char *inventoryId);
-void transactionInsert(char *id, char *purchaseId, char *inventoryId);
+/* 
+  Note: To use a function `transactionSelectById`
+         - Pass the values by reference e.g. transactionSelectById(id, purchaseId, inventoryId);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+int transactionSelectById(char *id, char *purchaseId, char *inventoryId);   // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+
+void transactionInsert(char *id, char *purchaseId, char *inventoryId);      // Adding a new record to the database
 
 /*-----------------------------------------------------------------------------
 Declare all the Purchase Database can do*/
-void purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime);                       // To use: purchaseSelectById(id, &totalPrice, customerId, personnelId, &datetime);
-void purchaseInsert(char *id, double totalPrice, char *customerId, char *personnelId, time_t datetime);
+/* 
+  Note: To use a function `purchaseSelectById`
+         - Pass the values by reference e.g. purchaseSelectById(id, &totalPrice, customerId, personnelId, &datetime);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+
+void purchaseInsert(char *id, double totalPrice, char *customerId, char *personnelId, time_t datetime);         // Adding a new record to the database
 
 /*-----------------------------------------------------------------------------
 Declare all the Customer Database can do*/
-void customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy);                  // To use: customerSelectById(id, firstname, lastname, &gender, &point, &totalBuy);
-void customerInsert(char *id, char *firstname, char *lastname, char gender, double point, double totalBuy);
-void customerUpdateFirstname(char *id, char *firstname);
-void customerUpdateLastname(char *id, char *lastname);
-void customerUpdateGender(char *id, char gender);
-void customerUpdatePoint(char *id, double point);
-void customerUpdatetotalBuy(char *id, double totalBuy);
-void customerDelete(char *id);
+/* 
+  Note: To use a function `customerSelectById`
+         - Pass the values by reference e.g. customerSelectById(id, firstname, lastname, &gender, &point, &totalBuy);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+int customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy);   // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+
+void customerInsert(char *id, char *firstname, char *lastname, char gender, double point, double totalBuy);         // Adding a new record to the database
+int customerUpdateFirstname(char *id, char *firstname);     // For modifying the `firstname` (Select the record by `id`)
+int customerUpdateLastname(char *id, char *lastname);       // For modifying the `lastname` (Select the record by `id`)
+int customerUpdateGender(char *id, char gender);            // For modifying the `gender` (Select the record by `id`)
+int customerUpdatePoint(char *id, double point);            // For modifying the `point` (Select the record by `id`)
+int customerUpdatetotalBuy(char *id, double totalBuy);      // For modifying the `totalBuy` (Select the record by `id`)
+int customerDelete(char *id);                               // Delete the record (Select by `id`)
 
 /*-----------------------------------------------------------------------------
 Declare all the Promotion Database can do*/
-void promotionSelectById(char *id, double *price, int *status);                                                                     // To use: promotionSelectById(id, &price, &status);
-void promotionInsert(char *id, double price, int status);
-void promotionUpdatePrice(char *id, double price);
-void promotionUpdateStatus(char *id, int status);
-void promotionDelete(char *id);
+/* 
+  Note: To use a function `promotionSelectById`
+         - Pass the values by reference e.g. promotionSelectById(id, &price, &status);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+int promotionSelectById(char *id, double *price, int *status);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+
+void promotionInsert(char *id, double price, int status);         // Adding a new record to the database
+int promotionUpdatePrice(char *id, double price);                 // For modifying the `price` (Select the record by `id`)
+int promotionUpdateStatus(char *id, int status);                  // For modifying the `status` (Select the record by `id`)
+int promotionDelete(char *id);                                    // Delete the record (Select by `id`)
 
 /*-----------------------------------------------------------------------------
 Declare all the Setting Database can do*/
-void settingSelectById(char *id);
-void settingUpdateStoreName(char *storeName);
-void settingUpdateAddress(char *storeAddress);
-void settingUpdatePriceToPoint(double priceToPoint);
-void settingUpdatePointToPrice(double pointToPrice);
+void settingUpdateStoreName(char *storeName);           // For modifying the `storeName`
+void settingUpdateAddress(char *storeAddress);          // For modifying the `storeAddress`
+void settingUpdatePriceToPoint(double priceToPoint);    // For modifying the `priceToPoint`
+void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `pointToPrice`
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/
+/*
 void monthlyForecast();
 void quarterForecast();
 void annualForecast();
@@ -299,21 +349,25 @@ void forecastResults();
 void forecastProgram();
 
 void forecastPrint();
+*/
 
 /*-----------------------------------------------------------------------------
 Decease what the seller can do*/
+/*
 void cashierInterface();
+*/
 
 /*-----------------------------------------------------------------------------
 Declares all the authentication functions and interface*/
-void authenticate(char username, char password);            // For signing in
+void authenticateByUsername(char *username, char *password);    // For signing in
+void authenticateByToken(char *token);                          // For signing in
 void deauthenticate();          // For signing out
-//
+/*
 void authInterface();           // For sign in interface
 void authInterfaceComplete();   // For complete sign in interface
 void authInterfaceFailed();     // For non - complete sign in interface (Error from cancel)
 void authInterfaceError();      // For non - complete sign in interface (Other type of error)
-
+*/
 /*
                 May the god be with us...
                            _
