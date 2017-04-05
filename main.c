@@ -1052,6 +1052,28 @@ int promotionDelete(char *id){
     return 0;   // Not found the given `id` in the records
 }
 
+void settingUpdateStoreName(char *storeName){
+
+    strcpy(Setting.storeName, storeName);
+    settingFileWrite();    // Save to a Database file
+
+}
+
+void settingUpdateAddress(char *storeAddress){
+    strcpy(Setting.storeAddress, storeAddress);
+    settingFileWrite();    // Save to a Database file
+}
+
+void settingUpdatePriceToPoint(double priceToPoint){
+    Setting.priceToPoint = priceToPoint;
+    settingFileWrite();    // Save to a Database file
+}
+
+void settingUpdatePointToPrice(double pointToPrice){
+    Setting.pointToPrice = pointToPrice;
+    settingFileWrite();    // Save to a Database file
+}
+
 
 /*
 
