@@ -7,7 +7,6 @@ int main(){
     //screenAdjust();
     //switchHub();
     initDatabase();
-    categoryInsert("TEST");
     return 0;
 }
 
@@ -1074,6 +1073,44 @@ void settingUpdatePointToPrice(double pointToPrice){
     settingFileWrite();    // Save to a Database file
 }
 
+int authenticateByUsername(char *username, char *password){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.personnel;
+
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Personnel[i].username, username) == 0){
+            if(strcmp(Personnel[i].password, password) == 0){
+                // Save user's information on the Session
+                Session.user = Personnel[i];
+                Session.isLogedin = 1;
+                return 1;
+            }
+            else
+                return 0;
+        }
+    }
+    return 0;
+}
+
+int authenticateByToken(char *barcodeToken){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.personnel;
+
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Personnel[i].barcodeToken, barcodeToken) == 0){
+            // Save user's information on the Session
+            Session.user = Personnel[i];
+            Session.isLogedin = 1;
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void deauthenticate(){
+    Session.isLogedin = 0;
+    free(&Session.user);
+}
 
 /*
 

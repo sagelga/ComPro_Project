@@ -137,7 +137,8 @@ typedef struct{
 
 // SESSION Collector
 typedef struct{
-  PERSONNEL merchant;                             // For store user's information
+  int isLogedin;                                  // 1 = Loged-in | 0 = Not-Login (Guest)
+  PERSONNEL user;                             // For store user's information
 
 } SESSION;
 
@@ -348,8 +349,8 @@ void cashierInterface();
 
 /*-----------------------------------------------------------------------------
 Declares all the authentication functions and interface*/
-void authenticateByUsername(char *username, char *password);    // For signing in
-void authenticateByToken(char *token);                          // For signing in
+int authenticateByUsername(char *username, char *password);    // For signing in (Return 1 = Success | 0 = Incorrect Username/Password)
+int authenticateByToken(char *barcodeToken);                   // For signing in (Return 1 = Success | 0 = Token Not found)
 void deauthenticate();          // For signing out
 /*
 void authInterface();           // For sign in interface
