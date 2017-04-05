@@ -635,6 +635,121 @@ int personnelDelete(char *id){
     return 0;   // Not found the given `id` in the records
 }
 
+int inventorySelectById(char *id, char *name, double *price, double *profit, char *categoryId, unsigned int *remain){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.inventory;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Inventory[i].id, id) == 0){
+            // Return all values back by reference
+            strcpy(name, Inventory[i].name);
+            *price = Inventory[i].price;
+            *profit = Inventory[i].profit;
+            strcpy(categoryId, Inventory[i].categoryId);
+            *remain = Inventory[i].remain;
+
+            return 1;   // Found a record
+        }
+    }
+    return 0;           // Not found the given `id` in the records
+}
+
+void inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain){
+    int tailIndex = RecordCount.inventory;
+
+    strcpy(Inventory[tailIndex].id, id);
+    strcpy(Inventory[tailIndex].name, name);
+    Inventory[tailIndex].price = price;
+    Inventory[tailIndex].profit = profit;
+    strcpy(Inventory[tailIndex].categoryId, categoryId);
+    Inventory[tailIndex].remain = remain;
+
+    RecordCount.inventory++;    // Update the amount of records
+
+    inventoryFileWrite();       // Save to a Database file
+}
+
+int inventoryUpdateName(char *id, char *name){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.inventory;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Inventory[i].id, id) == 0){
+            strcpy(Inventory[i].name, name);
+            inventoryFileWrite();   // Save to a Database file
+            return 1;               // Record successfully updated
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int inventoryUpdatePrice(char *id, double price){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.inventory;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Inventory[i].id, id) == 0){
+            Inventory[i].price = price;
+            inventoryFileWrite();   // Save to a Database file
+            return 1;               // Record successfully updated
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int inventoryUpdateProfit(char *id, double profit){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.inventory;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Inventory[i].id, id) == 0){
+            Inventory[i].profit = profit;
+            inventoryFileWrite();   // Save to a Database file
+            return 1;               // Record successfully updated
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int inventoryUpdateCategory(char *id, char *categoryId){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.inventory;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Inventory[i].id, id) == 0){
+            strcpy(Inventory[i].categoryId, categoryId);
+            inventoryFileWrite();   // Save to a Database file
+            return 1;               // Record successfully updated
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int inventoryUpdateRemain(char *id, unsigned int remain){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.inventory;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Inventory[i].id, id) == 0){
+            Inventory[i].remain = remain;
+            inventoryFileWrite();   // Save to a Database file
+            return 1;               // Record successfully updated
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int inventoryDelete(char *id){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.inventory;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Inventory[i].id, id) == 0){
+            while(i < numberOfRecords - 1){
+                Inventory[i] = Inventory[i+1];
+                i++;
+            }
+            RecordCount.inventory--;    // Update the amount of records
+            inventoryFileWrite();   // Save to a Database file
+            return 1;               // Record successfully deleted
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
 
 /*
 
