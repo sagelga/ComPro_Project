@@ -10,9 +10,10 @@ int main(){
 }
 
 void switchHub() {
-
-    char text1[107] = "Welcome back <user_name_goes_here>!";
+    char username[8] = "Default";
+    char text1[107] = "Welcome back ";
     strcat(text1,username);
+    strcat(text1,"!");
     char text2[107] = "";
     char text3[107] = "You are now connecting to the POS system";
     char text4[107] = "<user_permission_level_goes_here_in_this_line>";
@@ -374,7 +375,7 @@ void categoryDatabase(){
     RecordCount.category = i;          // Save a number of records to the Record Counter
     fclose(fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %s\t%s\n", Category[i].id, Category[i].name);
 
@@ -607,14 +608,15 @@ void inventorySwitchHub () {
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("1. Check the database");
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("2. Add data to the database manually");
-    bannerBlankBorderTextCen ("3. Add data to the database automatically");
+    bannerBlankBorderTextCen ("2. Add data to the database");
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("4. Edit data from the database manually");
-    bannerBlankBorderTextCen ("5. Edit data from the database using the scanner");
+    bannerBlankBorderTextCen ("3. Edit data from the database");
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("6. Removing data from the database");
-    for ( int i = 0; i < 23; i++ ) {
+    bannerBlankBorderTextCen ("4. Removing data from the database");
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("5. Check Category");
+
+    for ( int i = 0; i < 25; i++ ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("or type 'N' to return back to the hub");
@@ -649,10 +651,20 @@ void inventorySwitchHub () {
 }
 
 void authInterface () {
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Sign in to the System");
+
 
 }
 
 void cashierInterface () {
+    char text1[107] = "<store_name>";
+    char text2[107] = "Welcome! My name is ";
+    strcpy(text2,username);
+    char text3[107] = "";
+    char text4[107] = "";
+    banner (text1,text2,text3,text4);
+
 
 }
 
@@ -678,7 +690,6 @@ void promotionSwitchHub () {
 
 void inventoryAddInterface () {
     bannerBlankBorderTextCen ("Inventory in mode 'ADD'");
-    user
 }
 
 void inventoryModifyInterface () {
