@@ -17,8 +17,8 @@ Define all the constant values here*/
 #define MAX_IDX_PERSONNEL 10        // Maximum amount of Personnels
 #define MAX_IDX_INVENTORY 100       // Maximum amount of Inventory
 #define MAX_IDX_CATEGORY 10         // Maximum amount of Category
-#define MAX_IDX_TRANSACTION 100000  // Maximum amount of Transaction
-#define MAX_IDX_PURCHASE 100000     // Maximum amount of Purchase
+#define MAX_IDX_TRANSACTION 100000  // Maximum amount of Transaction (Count when item changed)
+#define MAX_IDX_PURCHASE 100000     // Maximum amount of Purchase (Count when checkout)
 #define MAX_IDX_CUSTOMER 100        // Maximum amount of Customer
 #define MAX_IDX_PROMOTION 1000      // Maximum amount of Promotion
 
@@ -26,13 +26,6 @@ Define all the constant values here*/
 #define MAX_LNG_TEXT 50             // Maximum length of Normal Text
 #define MAX_LNG_SCREEN 140          // Maximum length of (Text on) Screen's width
 #define MAX_LNG_TOKEN 255           // Maximum length of Token
-
-/*-----------------------------------------------------------------------------
-Declare all the global variables here*/
-char username[140] = "Default"; 	// Username cannot go further than 140, as the maximum border size is 140.
-int userPermission = 0; 			// 0 = Not sign-in | 1 = Sales | 2 = Manager | 3 = Admin
-char storeName[140] = "Default";
-char storeAddress[140] = "Default";
 
 // Path to Database file
 const char *personnelDatabaseFile = "Database/personnel.db";
@@ -49,7 +42,7 @@ const char *settingDatabaseFile = "Database/setting.db";
 // 01. PERSONNEL
 typedef struct
 {
-    char id[MAX_LNG_ID];
+    char id[MAX_LNG_ID];  /
     char firstname[MAX_LNG_TEXT];
     char lastname[MAX_LNG_TEXT];
     int role; // 0 = Manager | 1 = Marketing | 2 = Sale
@@ -66,7 +59,7 @@ typedef struct
     double price;
     double profit; // Profit per item
     char categoryId[MAX_LNG_ID]; // Category ID
-    unsigned int remain;
+    unsigned int remain; //Stock left in inventory
 } INVENTORY;
 
 // 03. CATEGORY
@@ -173,7 +166,7 @@ void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char
 void bannerUserInput(); 											// Asks for input from user
 
 /*-----------------------------------------------------------------------------
-Declare all the database file !!build!! functions*/
+Declare all the database file !!fetch!! functions*/
 
 void initDatabase();            									// For Database Initialization
 void personnelDatabase();       									// For Personnel Database

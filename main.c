@@ -677,7 +677,8 @@ void promotionSwitchHub () {
 }
 
 void inventoryAddInterface () {
-
+    bannerBlankBorderTextCen ("Inventory in mode 'ADD'");
+    user
 }
 
 void inventoryModifyInterface () {
