@@ -289,13 +289,6 @@ void settingDatabase(){
 void personnelFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
-    char id[MAX_LNG_ID];
-    char firstname[MAX_LNG_TEXT];
-    char lastname[MAX_LNG_TEXT];
-    int role;                           // 0 = Manager | 1 = Marketing | 2 = Sale
-    char username[MAX_LNG_TEXT];
-    char password[MAX_LNG_TEXT];
-    char barcode_token[MAX_LNG_TOKEN];  // For use a barcode authentication
 
     int i = 0;
     fp = fopen(personnelDatabaseFile, "r");
@@ -316,12 +309,6 @@ void personnelFileRead(){
 void inventoryFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
-    char id[MAX_LNG_ID];
-    char name[MAX_LNG_SCREEN];
-    double price;
-    double profit;                      // Profit per item
-    char categoryId[MAX_LNG_ID];        // Category ID
-    unsigned int remain;
 
     int i = 0;
     fp = fopen(inventoryDatabaseFile, "r");
@@ -342,8 +329,6 @@ void inventoryFileRead(){
 void categoryFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
-    char id[MAX_LNG_ID];
-    char name[MAX_LNG_TEXT];
 
     int i = 0;
     fp = fopen(categoryDatabaseFile, "r");
@@ -365,9 +350,6 @@ void transactionFileRead(){
 
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
-    char id[MAX_LNG_ID];
-    char purchaseId[MAX_LNG_ID];
-    char inventoryId[MAX_LNG_ID];
 
     int i = 0;
     fp = fopen(transactionDatabaseFile, "r");
@@ -389,11 +371,6 @@ void purchaseFileRead(){
 
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
-    char id[MAX_LNG_ID];
-    double totalPrice;
-    char customerId[MAX_LNG_ID];
-    char personnelId[MAX_LNG_ID];       // Cashier
-    time_t datetime;                    // Epoch timestamp
 
     int i = 0;
     fp = fopen(purchaseDatabaseFile, "r");
@@ -414,11 +391,6 @@ void purchaseFileRead(){
 void customerFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
-    char id[MAX_LNG_ID];
-    char firstname[MAX_LNG_TEXT];
-    char lastname[MAX_LNG_TEXT];
-    char gender; // 'F' = Female | 'M' = Male
-    double point;
 
     int i = 0;
     fp = fopen(customerDatabaseFile, "r");
@@ -439,9 +411,6 @@ void customerFileRead(){
 void promotionFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
-    char id[MAX_LNG_ID];
-    double price;
-    int status; // 1 = active | 0 = used (exprired)
 
     int i = 0;
     fp = fopen(promotionDatabaseFile, "r");
@@ -462,11 +431,6 @@ void promotionFileRead(){
 void settingFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
-    char storeName[MAX_LNG_SCREEN];
-    char storeAddress[MAX_LNG_SCREEN];
-    double priceToPoint; // When you pay N Baht, you'll receive `N * priceToPoint` points.
-    double pointToPrice; // `pointToPrice` point is equal to 1 Baht.
-
 
     fp = fopen(settingDatabaseFile, "r");
 
@@ -476,6 +440,114 @@ void settingFileRead(){
     // For debuging
     // printf(">>>> %s--%s--%lf--%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
 
+}
+
+void personnelFileWrite(){
+    // Save all of the records to a database file
+    FILE *fp;               // File Pointer
+    int numberOfRecords;    // Number of the records in a table
+
+    numberOfRecords = tail(1);
+    fp = fopen(personnelDatabaseFile, "w+");
+
+    for(int i = 0; i < numberOfRecords; i++)
+        fprintf(fp, "%s\t%s\t%s\t%d\t%s\t%s\t%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcode_token);
+
+    fclose(fp);
+}
+
+void inventoryFileWrite(){
+    // Save all of the records to a database file
+    FILE *fp;               // File Pointer
+    int numberOfRecords;    // Number of the records in a table
+
+    numberOfRecords = tail(2);
+    fp = fopen(inventoryDatabaseFile, "w+");
+
+    for(int i = 0; i < numberOfRecords; i++)
+        fprintf(fp, "%s\t%s\t%lf\t%lf\t%s\t%u\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
+
+    fclose(fp);
+}
+
+void categoryFileWrite(){
+    // Save all of the records to a database file
+    FILE *fp;               // File Pointer
+    int numberOfRecords;    // Number of the records in a table
+
+    numberOfRecords = tail(3);
+    fp = fopen(categoryDatabaseFile, "w+");
+
+    for(int i = 0; i < numberOfRecords; i++)
+        fprintf(fp, "%s\t%s\n", Category[i].id, Category[i].name);
+
+    fclose(fp);
+}
+
+void transactionFileWrite(){
+    // Save all of the records to a database file
+    FILE *fp;               // File Pointer
+    int numberOfRecords;    // Number of the records in a table
+
+    numberOfRecords = tail(4);
+    fp = fopen(transactionDatabaseFile, "w+");
+
+    for(int i = 0; i < numberOfRecords; i++)
+        fprintf(fp, "%s\t%s\t%s\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId);
+
+    fclose(fp);
+}
+
+void purchaseFileWrite(){
+    // Save all of the records to a database file
+    FILE *fp;               // File Pointer
+    int numberOfRecords;    // Number of the records in a table
+
+    numberOfRecords = tail(5);
+    fp = fopen(purchaseDatabaseFile, "w+");
+
+    for(int i = 0; i < numberOfRecords; i++)
+        fprintf(fp, "%s\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].datetime);
+
+    fclose(fp);
+}
+
+void customerFileWrite(){
+    // Save all of the records to a database file
+    FILE *fp;               // File Pointer
+    int numberOfRecords;    // Number of the records in a table
+
+    numberOfRecords = tail(6);
+    fp = fopen(customerDatabaseFile, "w+");
+
+    for(int i = 0; i < numberOfRecords; i++)
+        fprintf(fp, "%s\t%s\t%s\t%c\t%lf\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point, Customer[i].totalBuy);
+
+    fclose(fp);
+}
+
+void promotionFileWrite(){
+    // Save all of the records to a database file
+    FILE *fp;               // File Pointer
+    int numberOfRecords;    // Number of the records in a table
+
+    numberOfRecords = tail(7);
+    fp = fopen(promotionDatabaseFile, "w+");
+
+    for(int i = 0; i < numberOfRecords; i++)
+        fprintf(fp, "%s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
+
+    fclose(fp);
+}
+
+void settingFileWrite(){
+    // Save all of the settings to a database file
+    FILE *fp;               // File Pointer
+
+    fp = fopen(settingDatabaseFile, "w+");
+
+    fprintf(fp, "%s\t%s\t%lf\t%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
+    fclose(fp);
 }
 
 

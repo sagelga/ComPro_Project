@@ -196,7 +196,7 @@ void settingFileRead();         // For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database file <<Write<< functions*/
-/*
+
 void personnelFileWrite();       // For Personnel Database
 void inventoryFileWrite();       // For Inventory Database
 void categoryFileWrite();        // For Category Database
@@ -205,7 +205,7 @@ void purchaseFileWrite();        // For Purchase Database
 void customerFileWrite();        // For Customer Database
 void promotionFileWrite();       // For Promotion Database
 void settingFileWrite();         // For Setting Database
-*/
+
 /*-----------------------------------------------------------------------------
 Declare all the other database functions*/
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
