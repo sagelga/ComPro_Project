@@ -807,6 +807,65 @@ int categoryDelete(char *id){
     return 0;   // Not found the given `id` in the records
 }
 
+int transactionSelectById(char *id, char *purchaseId, char *inventoryId){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.transaction;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Transaction[i].id, id) == 0){
+            // Return all values back by reference
+            strcpy(purchaseId, Transaction[i].purchaseId);
+            strcpy(inventoryId, Transaction[i].inventoryId);
+
+            return 1;   // Found a record
+        }
+    }
+    return 0;           // Not found the given `id` in the records
+}
+
+void transactionInsert(char *purchaseId, char *inventoryId){
+    int tailIndex = RecordCount.transaction;
+    char id[10];
+    intToString(id, tailIndex + 1);     // Auto-increment (+ 1 to Start at 1)
+    strcpy(Transaction[tailIndex].id, id);
+    strcpy(Transaction[tailIndex].purchaseId, purchaseId);
+    strcpy(Transaction[tailIndex].inventoryId, inventoryId);
+
+    RecordCount.transaction++;    // Update the amount of records
+
+    transactionFileWrite();       // Save to a Database file
+}
+
+int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.purchase;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Purchase[i].id, id) == 0){
+            // Return all values back by reference
+            *totalPrice = Purchase[i].totalPrice;
+            strcpy(customerId, Purchase[i].customerId);
+            strcpy(personnelId, Purchase[i].personnelId);
+            *datetime = Purchase[i].datetime;
+
+            return 1;   // Found a record
+        }
+    }
+    return 0;           // Not found the given `id` in the records
+}
+
+void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time_t datetime){
+    int tailIndex = RecordCount.purchase;
+    char id[10];
+    intToString(id, tailIndex + 1);     // Auto-increment (+ 1 to Start at 1)
+    strcpy(Purchase[tailIndex].id, id);
+    Purchase[tailIndex].totalPrice = totalPrice;
+    strcpy(Purchase[tailIndex].customerId, customerId);
+    strcpy(Purchase[tailIndex].personnelId, personnelId);
+    Purchase[tailIndex].datetime = datetime;
+
+    RecordCount.purchase++;    // Update the amount of records
+
+    purchaseFileWrite();       // Save to a Database file
+}
 
 /*
 

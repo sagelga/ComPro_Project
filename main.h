@@ -273,7 +273,7 @@ Declare all the Transaction Database can do*/
 */
 int transactionSelectById(char *id, char *purchaseId, char *inventoryId);   // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void transactionInsert(char *id, char *purchaseId, char *inventoryId);      // Adding a new record to the database
+void transactionInsert(char *purchaseId, char *inventoryId);      // Adding a new record to the database
 
 /*-----------------------------------------------------------------------------
 Declare all the Purchase Database can do*/
@@ -285,7 +285,7 @@ Declare all the Purchase Database can do*/
 */
 int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void purchaseInsert(char *id, double totalPrice, char *customerId, char *personnelId, time_t datetime);         // Adding a new record to the database
+void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time_t datetime);         // Adding a new record to the database
 
 /*-----------------------------------------------------------------------------
 Declare all the Customer Database can do*/
