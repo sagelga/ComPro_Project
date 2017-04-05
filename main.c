@@ -60,7 +60,7 @@ void terminate(){
     text = toupper(text);
     switch(text){
         case ('Y'):
-            printf("Have a good luck. Bye Bye!");
+            printf("Have a good luck. Bye Bye! MyDay");
             return;
 
         case ('N'):
