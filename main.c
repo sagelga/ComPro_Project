@@ -9,6 +9,89 @@ int main(){
     return 0;
 }
 
+void screenAdjust(){
+                     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::70 chart 
+                     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    char text1[107] = "";
+    char text2[107] = "  This is the initiation of the POS Systems!";
+    char text3[107] = "  The program screen size is optimized for 140 x 40 pixel terminal";
+    char text4[107] = "";
+    banner(text1, text2, text3, text4);
+    
+    for (int i = 0;i<3;i++)
+        bannerBlankBorder();
+    
+    bannerBlankBorderTextCen("Please configure the terminal screen to optimum size.");
+    
+    for (int i = 0;i<27;i++)
+        bannerBlankBorder();
+    
+    bannerBlankBorderTextCen("Type 'Y' to continue...");
+    bannerFullBorder();
+
+    bannerUserInput();
+    char flags;
+    scanf(" %c",&flags);
+    flags = toupper(flags);
+
+    switch (flags){
+
+        case('Y'):
+            screenClear();
+            authInterface();
+            return;
+
+        case('N'):
+            screenClear();
+            terminate();
+            return;
+
+        default:
+            screenClear();
+            printf("Invalid response. Try again. \n\n");
+            screenAdjust();
+            return;
+    }
+}
+
+void authInterface () {
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Sign in to the System");
+    bannerFullBorder();
+    bannerBlankBorderTextCen ("Please type in your username");
+    for (int i = 0;i<34;i++)
+        bannerBlankBorder();
+    bannerFullBorder();
+    bannerUserInput();
+
+    char flags[130] = "Welcome Back";
+    char username;
+    scanf("%s",username); // Then save to session struct
+
+    strcpy(flags,username);
+    strcpy(flags,"!");
+
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Sign in to the System");
+    bannerFullBorder();
+    bannerBlankBorderTextCen(flags);
+    bannerBlankBorder();
+    bannerBlankBorderTextCen("Please type in your password");
+    for (int i = 0;i<28;i++)
+        bannerBlankBorder();
+    bannerFullBorder();
+    bannerUserInput();
+
+    char password;
+    scanf("%s",password);
+
+    screenClear();
+    // If the username and the password is matched from the database -> Call authInterfaceComplete();
+    // If the username and the password is not matched from the database -> Call authInterfaceFail();
+    // If these were interrupt -> Call authInterfaceError();
+
+}
+
 void switchHub() {
     char username[8] = "Default";
     char text1[107] = "Welcome back ";
@@ -40,10 +123,10 @@ void switchHub() {
     bannerFullBorder();
     bannerUserInput();
 
-    char functionscall;
-    scanf(" %c", &functionscall);
+    char flags;
+    scanf(" %c", &flags);
 
-    switch (functionscall) {
+    switch (flags) {
         case ('1'): // Sign In / Sign Out
             authInterface ();
             return;
@@ -107,11 +190,11 @@ void terminate(){
 
     printf("Are you really sure about this? (Type Y or N) >>");
 
-    char text;
-    scanf(" %c",&text);
-    text = toupper(text);
+    char flags;
+    scanf(" %c",&flags);
+    flags = toupper(flags);
 
-    switch(text){
+    switch(flags){
         case ('Y'):
             printf("Shutting the program down.... Please be patient!\n");
             printf("Have a good luck. Bye Bye!\n");
@@ -129,51 +212,6 @@ void terminate(){
     }
 } 
 
-
-void screenAdjust(){
-                     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::70 chart 
-                     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    char text1[107] = "";
-    char text2[107] = "  This is the initiation of the POS Systems!";
-    char text3[107] = "  The program screen size is optimized for 140 x 40 pixel terminal";
-    char text4[107] = "";
-    banner(text1, text2, text3, text4);
-    
-    for (int i = 0;i<3;i++)
-        bannerBlankBorder();
-    
-    bannerBlankBorderTextCen("Please configure the terminal screen to optimum size.");
-    
-    for (int i = 0;i<27;i++)
-        bannerBlankBorder();
-    
-    bannerBlankBorderTextCen("Type 'Y' to continue...");
-    bannerFullBorder();
-
-    bannerUserInput();
-    char flags;
-    scanf(" %c",&flags);
-    flags = toupper(flags);
-
-    switch (flags){
-
-        case('Y'):
-            screenClear();
-            switchHub();
-            return;
-
-        case('N'):
-            screenClear();
-            terminate();
-            return;
-
-        default:
-            screenClear();
-            printf("Invalid response. Try again. \n\n");
-            screenAdjust();
-            return;
-    }
-}
 
 void screenClear(){
     // This function will clean the screen, and the other function will reprint the page.
@@ -218,11 +256,15 @@ void bannerBlankBorderText(char *text){
 }
 
 void bannerBlankBorder(){
-    printf("::%136s::\n", "");
+    printf(":: %134s ::\n", "");
 }
 
 void bannerUserInput(){
     printf("\n>>> ");
+}
+
+void bannerFullBorderSection(){
+    printf(":: %*s ::\n", 134,"-");
 }
 
 void settingsSwitchHub () {
@@ -251,6 +293,69 @@ void settingsSwitchHub () {
 
     }
 }
+
+void inventorySwitchHub () {
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Inventory Hub");
+    bannerFullBorder ();
+
+    bannerBlankBorderTextCen ("What are you going to do?");
+    bannerBlankBorder ();
+    bannerBlankBorderText("Inventory");
+    bannerBlankBorderText("Inventory"); 
+    bannerBlankBorderTextCen ("1. Check the database");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("2. Add data to the database");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("3. Edit data from the database");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("4. Removing data from the database");
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("5. Check Category");
+
+    for ( int i = 0; i < 25; i++ ) {
+        bannerBlankBorder ();
+    }
+    bannerBlankBorderTextCen ("or type 'N' to return back to the hub");
+    bannerFullBorder ();
+    bannerUserInput ();
+
+    char userInput;
+    scanf (" %c", &userInput);
+
+    switch ( userInput ) {
+        case ('1'):
+            inventoryDatabaseInterface ();
+            return;
+        case ('2'):
+            inventoryAddInterface ();
+            return;
+        case ('3'):
+            return;
+        case ('4'):
+            inventoryModifyInterface ();
+            return;
+        case ('5'):
+            return;
+        case ('6'):
+            inventoryRemoveInterface ();
+            return;
+        default:
+            printf ("Your input is invalid. Please try again...");
+            inventorySwitchHub ();
+            return;
+    }
+}
+
+void authInterfaceComplete(){
+    bannerFullBorder();
+    ban
+}
+
+
+
+
+
 
 int isFileExist(const char *filename){
     if( access( filename, F_OK ) != -1 ) {
@@ -518,8 +623,12 @@ void settingDatabase(){
 }
 
 void inventoryDatabaseInterface(){
+
+    /*ID|Name|Price|Profit|Category|In Stock
+      -|-|-|-|-|-
+      13 char|62 char|10 double|10 double|25 char|8 int*/
     bannerFullBorder();
-    bannerBlankBorderText(" ID                 | Name                                             | Price         | Profit        | Category                ");
+    bannerBlankBorderText(" ID          | Name                                                         | Price    | Profit   | Category                | In Stock");
 
     /* REMOVE THIS LINE UNTIL IT WAS REDONE
     for (int i = 0;i<36;i--){ // Using 10 data as an example... Maxed with 36 lines...
@@ -596,64 +705,6 @@ void inventoryDatabaseInterface(){
     REMOVE THIS LINE UNTIL IT WAS REDONE*/
 
     bannerFullBorder();
-
-}
-
-void inventorySwitchHub () {
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("Inventory Hub");
-    bannerFullBorder ();
-
-    bannerBlankBorderTextCen ("What are you going to do?");
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("1. Check the database");
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("2. Add data to the database");
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("3. Edit data from the database");
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("4. Removing data from the database");
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("5. Check Category");
-
-    for ( int i = 0; i < 25; i++ ) {
-        bannerBlankBorder ();
-    }
-    bannerBlankBorderTextCen ("or type 'N' to return back to the hub");
-    bannerFullBorder ();
-    bannerUserInput ();
-
-    char userInput;
-    scanf (" %c", &userInput);
-
-    switch ( userInput ) {
-        case ('1'):
-            inventoryDatabaseInterface ();
-            return;
-        case ('2'):
-            inventoryAddInterface ();
-            return;
-        case ('3'):
-            return;
-        case ('4'):
-            inventoryModifyInterface ();
-            return;
-        case ('5'):
-            return;
-        case ('6'):
-            inventoryRemoveInterface ();
-            return;
-        default:
-            printf ("Your input is invalid. Please try again...");
-            inventorySwitchHub ();
-            return;
-    }
-}
-
-void authInterface () {
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("Sign in to the System");
-
 
 }
 
