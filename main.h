@@ -62,7 +62,7 @@ typedef struct
   int role; // 0 = Manager | 1 = Marketing | 2 = Sale
   char username[MAX_LNG_TEXT];
   char password[MAX_LNG_TEXT];
-  char barcode_token[MAX_LNG_TOKEN]; // For use a barcode authentication
+  char barcodeToken[MAX_LNG_TOKEN]; // For use a barcode authentication
 } PERSONNEL;
 // 02. INVENTORY
 typedef struct
@@ -209,7 +209,6 @@ void settingFileWrite();         // For Setting Database
 /*-----------------------------------------------------------------------------
 Declare all the other database functions*/
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
-unsigned int tail(unsigned int table);  // Return the first empty index of the list (For insert new record)
 void intToString(char *str, int number); // Convert from integer to string
 
 /*-----------------------------------------------------------------------------
@@ -219,13 +218,13 @@ Declare all the interface functions*/
 Declare all the Personnel Database can do*/
 /* 
   Note: To use a function `personnelSelectById`
-         - Pass the values by reference e.g. personnelSelectById(id, firstname, lastname, &role, username, password, barcode_token); 
+         - Pass the values by reference e.g. personnelSelectById(id, firstname, lastname, &role, username, password, barcodeToken); 
         All of the `int` functions
          - If the record is be found then return 1 otherwise, return 0
 */
-int personnelSelectById(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);  // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+int personnelSelectById(char *id, char *firstname, char *lastname, int *role, char *username, char *password, char *barcodeToken);  // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);   // Adding a new record to the database
+void personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcodeToken);   // Adding a new record to the database
 int personnelUpdateFirstname(char *id, char *firstname);    // For modifying the `firstname` (Select the record by `id`)
 int personnelUpdateLastname(char *id, char *lastname);      // For modifying the `lastname` (Select the record by `id`)
 int personnelUpdateRole(char *id, int role);                // For modifying the `role` (Select the record by `id`)

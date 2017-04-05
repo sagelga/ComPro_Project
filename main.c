@@ -4,8 +4,8 @@
 /*---------------------------------------------------------------------------*/
 int main(){
 // This program will run first. POS Interface configuration will be called, and ready to work.
-    screenAdjust();
-    switchHub();
+    //screenAdjust();
+    //switchHub();
     initDatabase();
     return 0;
 }
@@ -183,24 +183,6 @@ int isFileExist(const char *filename){
     }
 }
 
-unsigned int tail(unsigned int table){
-    if(table == 1)
-        return RecordCount.personnel;
-    else if(table == 2)
-        return RecordCount.inventory;
-    else if(table == 3)
-        return RecordCount.category;
-    else if(table == 4)
-        return RecordCount.transaction;
-    else if(table == 5)
-        return RecordCount.purchase;
-    else if(table == 6)
-        return RecordCount.customer;
-    else if(table == 7)
-        return RecordCount.promotion;
-    return 0;
-}
-
 void intToString(char *str, int number){
     char buffer[200];
     sprintf(buffer, "%d", number);
@@ -293,7 +275,7 @@ void personnelFileRead(){
     int i = 0;
     fp = fopen(personnelDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%d\t%[^\t]\t%[^\t]\t%[^\n]", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, &Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcode_token) != EOF){
+    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%d\t%[^\t]\t%[^\t]\t%[^\n]", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, &Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken) != EOF){
         i++;
     }
 
@@ -302,7 +284,7 @@ void personnelFileRead(){
 
     // For debuging
     // i--;
-    // printf(">>>> %s-%s-%s-%d-%s-%s-%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcode_token);
+    // printf(">>>> %s-%s-%s-%d-%s-%s-%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken);
 
 }
 
@@ -444,24 +426,24 @@ void settingFileRead(){
 
 void personnelFileWrite(){
     // Save all of the records to a database file
-    FILE *fp;               // File Pointer
-    int numberOfRecords;    // Number of the records in a table
+    FILE *fp;                   // File Pointer
+    int numberOfRecords;        // Number of the records in a table
 
-    numberOfRecords = tail(1);
+    numberOfRecords = RecordCount.personnel;
     fp = fopen(personnelDatabaseFile, "w+");
 
     for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%s\t%s\t%d\t%s\t%s\t%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcode_token);
+        fprintf(fp, "%s\t%s\t%s\t%d\t%s\t%s\t%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken);
 
     fclose(fp);
 }
 
 void inventoryFileWrite(){
     // Save all of the records to a database file
-    FILE *fp;               // File Pointer
-    int numberOfRecords;    // Number of the records in a table
+    FILE *fp;                   // File Pointer
+    int numberOfRecords;        // Number of the records in a table
 
-    numberOfRecords = tail(2);
+    numberOfRecords = RecordCount.inventory;
     fp = fopen(inventoryDatabaseFile, "w+");
 
     for(int i = 0; i < numberOfRecords; i++)
@@ -472,10 +454,10 @@ void inventoryFileWrite(){
 
 void categoryFileWrite(){
     // Save all of the records to a database file
-    FILE *fp;               // File Pointer
-    int numberOfRecords;    // Number of the records in a table
+    FILE *fp;                   // File Pointer
+    int numberOfRecords;        // Number of the records in a table
 
-    numberOfRecords = tail(3);
+    numberOfRecords = RecordCount.category;
     fp = fopen(categoryDatabaseFile, "w+");
 
     for(int i = 0; i < numberOfRecords; i++)
@@ -486,10 +468,10 @@ void categoryFileWrite(){
 
 void transactionFileWrite(){
     // Save all of the records to a database file
-    FILE *fp;               // File Pointer
-    int numberOfRecords;    // Number of the records in a table
+    FILE *fp;                   // File Pointer
+    int numberOfRecords;        // Number of the records in a table
 
-    numberOfRecords = tail(4);
+    numberOfRecords = RecordCount.transaction;
     fp = fopen(transactionDatabaseFile, "w+");
 
     for(int i = 0; i < numberOfRecords; i++)
@@ -500,10 +482,10 @@ void transactionFileWrite(){
 
 void purchaseFileWrite(){
     // Save all of the records to a database file
-    FILE *fp;               // File Pointer
-    int numberOfRecords;    // Number of the records in a table
+    FILE *fp;                   // File Pointer
+    int numberOfRecords;        // Number of the records in a table
 
-    numberOfRecords = tail(5);
+    numberOfRecords = RecordCount.purchase;
     fp = fopen(purchaseDatabaseFile, "w+");
 
     for(int i = 0; i < numberOfRecords; i++)
@@ -514,10 +496,10 @@ void purchaseFileWrite(){
 
 void customerFileWrite(){
     // Save all of the records to a database file
-    FILE *fp;               // File Pointer
-    int numberOfRecords;    // Number of the records in a table
+    FILE *fp;                   // File Pointer
+    int numberOfRecords;        // Number of the records in a table
 
-    numberOfRecords = tail(6);
+    numberOfRecords = RecordCount.customer;
     fp = fopen(customerDatabaseFile, "w+");
 
     for(int i = 0; i < numberOfRecords; i++)
@@ -528,10 +510,10 @@ void customerFileWrite(){
 
 void promotionFileWrite(){
     // Save all of the records to a database file
-    FILE *fp;               // File Pointer
-    int numberOfRecords;    // Number of the records in a table
+    FILE *fp;                   // File Pointer
+    int numberOfRecords;        // Number of the records in a table
 
-    numberOfRecords = tail(7);
+    numberOfRecords = RecordCount.promotion;
     fp = fopen(promotionDatabaseFile, "w+");
 
     for(int i = 0; i < numberOfRecords; i++)
@@ -548,6 +530,109 @@ void settingFileWrite(){
 
     fprintf(fp, "%s\t%s\t%lf\t%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
     fclose(fp);
+}
+
+int personnelSelectById(char *id, char *firstname, char *lastname, int *role, char *username, char *password, char *barcodeToken){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.personnel;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Personnel[i].id, id) == 0){
+            // Return all values back by reference
+            strcpy(firstname, Personnel[i].firstname);
+            strcpy(lastname, Personnel[i].lastname);
+            *role = Personnel[i].role;
+            strcpy(username, Personnel[i].username);
+            strcpy(password, Personnel[i].password);
+            strcpy(barcodeToken, Personnel[i].barcodeToken);
+            return 1;   // Found a record
+        }
+    }
+    return 0;           // Not found the given `id` in the records
+}
+
+void personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcodeToken){
+    int tailIndex = RecordCount.personnel;
+
+    strcpy(Personnel[tailIndex].id, id);
+    strcpy(Personnel[tailIndex].firstname, firstname);
+    strcpy(Personnel[tailIndex].lastname, lastname);
+    Personnel[tailIndex].role = role;
+    strcpy(Personnel[tailIndex].username, username);
+    strcpy(Personnel[tailIndex].password, password);
+    strcpy(Personnel[tailIndex].barcodeToken, barcodeToken);
+
+    RecordCount.personnel++;    // Update the amount of records
+
+    personnelFileWrite();       // Save to a Database file
+}
+
+int personnelUpdateFirstname(char *id, char *firstname){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.personnel;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Personnel[i].id, id) == 0){
+            strcpy(Personnel[i].firstname, firstname);
+            personnelFileWrite();   // Save to a Database file
+            return 1;               // Record successfully updated
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int personnelUpdateLastname(char *id, char *lastname){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.personnel;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Personnel[i].id, id) == 0){
+            strcpy(Personnel[i].lastname, lastname);
+            personnelFileWrite();   // Save to a Database file
+            return 1;               // Record successfully updated
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int personnelUpdateRole(char *id, int role){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.personnel;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Personnel[i].id, id) == 0){
+            Personnel[i].role = role;
+            personnelFileWrite();   // Save to a Database file
+            return 1;               // Record successfully updated
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int personnelUpdatePassword(char *id, char *password){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.personnel;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Personnel[i].id, id) == 0){
+            strcpy(Personnel[i].password, password);
+            personnelFileWrite();   // Save to a Database file
+            return 1;               // Record successfully updated
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int personnelDelete(char *id){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.personnel;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Personnel[i].id, id) == 0){
+            while(i < numberOfRecords - 1){
+                Personnel[i] = Personnel[i+1];
+                i++;
+            }
+            RecordCount.personnel--;    // Update the amount of records
+            personnelFileWrite();   // Save to a Database file
+            return 1;               // Record successfully deleted
+        }
+    }
+    return 0;   // Not found the given `id` in the records
 }
 
 
