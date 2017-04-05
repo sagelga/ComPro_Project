@@ -550,8 +550,14 @@ int personnelSelectById(char *id, char *firstname, char *lastname, int *role, ch
     return 0;           // Not found the given `id` in the records
 }
 
-void personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcodeToken){
+int personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcodeToken){
     int tailIndex = RecordCount.personnel;
+
+    // To comfirm that `id`, `username` and `barcodeToken` is unique
+    for(int i = 0; i < tailIndex; i++){
+        if(strcmp(Personnel[i].id, id) == 0 || strcmp(Personnel[i].username, username) == 0 || strcmp(Personnel[i].barcodeToken, barcodeToken) == 0)
+            return 0;   // Error: Some field already exists
+    }
 
     strcpy(Personnel[tailIndex].id, id);
     strcpy(Personnel[tailIndex].firstname, firstname);
@@ -564,6 +570,7 @@ void personnelInsert(char *id, char *firstname, char *lastname, int role, char *
     RecordCount.personnel++;    // Update the amount of records
 
     personnelFileWrite();       // Save to a Database file
+    return 1;   // Operation Success
 }
 
 int personnelUpdateFirstname(char *id, char *firstname){
@@ -653,8 +660,14 @@ int inventorySelectById(char *id, char *name, double *price, double *profit, cha
     return 0;           // Not found the given `id` in the records
 }
 
-void inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain){
+int inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain){
     int tailIndex = RecordCount.inventory;
+
+    // To comfirm that `id` is unique
+    for(int i = 0; i < tailIndex; i++){
+        if(strcmp(Inventory[i].id, id) == 0)
+            return 0;   // Error: Barcode ID already exists
+    }
 
     strcpy(Inventory[tailIndex].id, id);
     strcpy(Inventory[tailIndex].name, name);
@@ -666,6 +679,7 @@ void inventoryInsert(char *id, char *name, double price, double profit, char *ca
     RecordCount.inventory++;    // Update the amount of records
 
     inventoryFileWrite();       // Save to a Database file
+    return 1;                   // Operation Success
 }
 
 int inventoryUpdateName(char *id, char *name){
@@ -764,8 +778,15 @@ int categorySelectById(char *id, char *name){
     return 0;           // Not found the given `id` in the records
 }
 
-void categoryInsert(char *name){
+int categoryInsert(char *name){
     int tailIndex = RecordCount.category;
+
+    // To comfirm that `name` is unique
+    for(int i = 0; i < tailIndex; i++){
+        if(strcmp(Inventory[i].name, name) == 0)
+            return 0;   // Error: Category name already exists
+    }
+
     char id[10];
     intToString(id, tailIndex + 1);     // Auto-increment (+ 1 to Start at 1)
     strcpy(Category[tailIndex].id, id);
@@ -774,6 +795,7 @@ void categoryInsert(char *name){
     RecordCount.category++;    // Update the amount of records
 
     categoryFileWrite();       // Save to a Database file
+    return 1;                  // Operation Success
 }
 
 int categoryUpdateName(char *id, char *name){
@@ -884,19 +906,26 @@ int customerSelectById(char *id, char *firstname, char *lastname, char *gender, 
     return 0;           // Not found the given `id` in the records
 }
 
-void customerInsert(char *id, char *firstname, char *lastname, char gender, double point, double totalBuy){
+int customerInsert(char *id, char *firstname, char *lastname, char gender){
     int tailIndex = RecordCount.customer;
+
+    // To comfirm that `id` is unique
+    for(int i = 0; i < tailIndex; i++){
+        if(strcmp(Customer[i].id, id) == 0)
+            return 0;   // Error: Customer ID already exists
+    }
 
     strcpy(Customer[tailIndex].id, id);
     strcpy(Customer[tailIndex].firstname, firstname);
     strcpy(Customer[tailIndex].lastname, lastname);
     Customer[tailIndex].gender = gender;
-    Customer[tailIndex].point = point;
-    Customer[tailIndex].totalBuy = totalBuy;
+    Customer[tailIndex].point = 0;          // Initail value
+    Customer[tailIndex].totalBuy = 0;       // Initail value
 
     RecordCount.customer++;    // Update the amount of records
 
     customerFileWrite();       // Save to a Database file
+    return 1;                  // Operation Success
 }
 
 int customerUpdateFirstname(char *id, char *firstname){
@@ -996,16 +1025,23 @@ int promotionSelectById(char *id, double *price, int *status){
     return 0;           // Not found the given `id` in the records
 }
 
-void promotionInsert(char *id, double price, int status){
+int promotionInsert(char *id, double price){
     int tailIndex = RecordCount.promotion;
+
+    // To comfirm that `id` is unique
+    for(int i = 0; i < tailIndex; i++){
+        if(strcmp(Promotion[i].id, id) == 0)
+            return 0;   // Error: Barcode ID already exists
+    }
 
     strcpy(Promotion[tailIndex].id, id);
     Promotion[tailIndex].price = price;
-    Promotion[tailIndex].status = status;
+    Promotion[tailIndex].status = 1;        // Initail Value (1 = Active)
 
-    RecordCount.promotion++;    // Update the amount of records
+    RecordCount.promotion++;                // Update the amount of records
 
-    promotionFileWrite();       // Save to a Database file
+    promotionFileWrite();                   // Save to a Database file
+    return 1;                   // Operation Success
 }
 
 int promotionUpdatePrice(char *id, double price){

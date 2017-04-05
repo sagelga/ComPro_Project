@@ -221,11 +221,11 @@ Declare all the Personnel Database can do*/
   Note: To use a function `personnelSelectById`
          - Pass the values by reference e.g. personnelSelectById(id, firstname, lastname, &role, username, password, barcodeToken); 
         All of the `int` functions
-         - If the record is be found then return 1 otherwise, return 0
+         - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
 int personnelSelectById(char *id, char *firstname, char *lastname, int *role, char *username, char *password, char *barcodeToken);  // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcodeToken);   // Adding a new record to the database
+int personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcodeToken);   // Adding a new record to the database
 int personnelUpdateFirstname(char *id, char *firstname);    // For modifying the `firstname` (Select the record by `id`)
 int personnelUpdateLastname(char *id, char *lastname);      // For modifying the `lastname` (Select the record by `id`)
 int personnelUpdateRole(char *id, int role);                // For modifying the `role` (Select the record by `id`)
@@ -238,11 +238,11 @@ Declare all the Inventory Database can do*/
   Note: To use a function `inventorySelectById`
          - Pass the values by reference e.g. inventorySelectById(id, name, &price, &profit, categoryId, &remain);
         All of the `int` functions
-         - If the record is be found then return 1 otherwise, return 0
+         - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
 int inventorySelectById(char *id, char *name, double *price, double *profit, char *categoryId, unsigned int *remain); // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain);   // Adding a new record to the database
+int inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain);   // Adding a new record to the database
 int inventoryUpdateName(char *id, char *name);              // For modifying the `name` (Select the record by `id`)
 int inventoryUpdatePrice(char *id, double price);           // For modifying the `price` (Select the record by `id`)
 int inventoryUpdateProfit(char *id, double profit);         // For modifying the `profit` (Select the record by `id`)
@@ -256,11 +256,11 @@ Declare all the Category Database can do*/
   Note: To use a function `categorySelectById`
          - Pass the values by reference e.g. categorySelectById(id, name);
         All of the `int` functions
-         - If the record is be found then return 1 otherwise, return 0
+         - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
 int categorySelectById(char *id, char *name);               // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void categoryInsert(char *name);                            // Adding a new record to the database
+int categoryInsert(char *name);                            // Adding a new record to the database
 int categoryUpdateName(char *id, char *name);               // For modifying the `name` (Select the record by `id`)
 int categoryDelete(char *id);                               // Delete the record (Select by `id`)
 
@@ -270,7 +270,7 @@ Declare all the Transaction Database can do*/
   Note: To use a function `transactionSelectById`
          - Pass the values by reference e.g. transactionSelectById(id, purchaseId, inventoryId);
         All of the `int` functions
-         - If the record is be found then return 1 otherwise, return 0
+         - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
 int transactionSelectById(char *id, char *purchaseId, char *inventoryId);   // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
@@ -282,7 +282,7 @@ Declare all the Purchase Database can do*/
   Note: To use a function `purchaseSelectById`
          - Pass the values by reference e.g. purchaseSelectById(id, &totalPrice, customerId, personnelId, &datetime);
         All of the `int` functions
-         - If the record is be found then return 1 otherwise, return 0
+         - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
 int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
@@ -294,11 +294,11 @@ Declare all the Customer Database can do*/
   Note: To use a function `customerSelectById`
          - Pass the values by reference e.g. customerSelectById(id, firstname, lastname, &gender, &point, &totalBuy);
         All of the `int` functions
-         - If the record is be found then return 1 otherwise, return 0
+         - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
 int customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy);   // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void customerInsert(char *id, char *firstname, char *lastname, char gender, double point, double totalBuy);         // Adding a new record to the database
+int customerInsert(char *id, char *firstname, char *lastname, char gender);         // Adding a new record to the database
 int customerUpdateFirstname(char *id, char *firstname);     // For modifying the `firstname` (Select the record by `id`)
 int customerUpdateLastname(char *id, char *lastname);       // For modifying the `lastname` (Select the record by `id`)
 int customerUpdateGender(char *id, char gender);            // For modifying the `gender` (Select the record by `id`)
@@ -312,11 +312,11 @@ Declare all the Promotion Database can do*/
   Note: To use a function `promotionSelectById`
          - Pass the values by reference e.g. promotionSelectById(id, &price, &status);
         All of the `int` functions
-         - If the record is be found then return 1 otherwise, return 0
+         - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
 int promotionSelectById(char *id, double *price, int *status);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void promotionInsert(char *id, double price, int status);         // Adding a new record to the database
+int promotionInsert(char *id, double price);                      // Adding a new record to the database
 int promotionUpdatePrice(char *id, double price);                 // For modifying the `price` (Select the record by `id`)
 int promotionUpdateStatus(char *id, int status);                  // For modifying the `status` (Select the record by `id`)
 int promotionDelete(char *id);                                    // Delete the record (Select by `id`)
