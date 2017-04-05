@@ -185,7 +185,7 @@ void settingDatabase();         // For Setting Database
 /*-----------------------------------------------------------------------------
 Declare all the database file >>Read>> functions*/
 
-void personnelFileRead(int keyID, char name, char nameMeta, double value, double accuValue);       // For Personnel Database
+void personnelFileRead();       // For Personnel Database
 void inventoryFileRead();       // For Inventory Database
 void categoryFileRead();        // For Category Database
 void transactionFileRead();     // For Transaction Database
@@ -196,7 +196,7 @@ void settingFileRead();         // For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database file <<Write<< functions*/
-void personnelFileWrite(int keyID, char name, char nameMeta, double value, double accuValue);       // For Personnel Database
+void personnelFileWrite();       // For Personnel Database
 void inventoryFileWrite();       // For Inventory Database
 void categoryFileWrite();        // For Category Database
 void transactionFileWrite();     // For Transaction Database
@@ -216,12 +216,6 @@ unsigned int tail(unsigned int table);  // Return the first empty index of the l
 /*-----------------------------------------------------------------------------
 Declare all the interface functions*/
 
-/*-----------------------------------------------------------------------------
-Declare all the admin tools*/
-void adminAuthenticate(char adminID, char username);
-void adminRoleAuth(char adminID, char username);
-void adminRoleDeauth(char adminID, char username);
-void adminBackgroundMaintain();
 
 /*-----------------------------------------------------------------------------
 Declare all the Inventory can do*/
