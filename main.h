@@ -139,6 +139,12 @@ typedef struct{
 
 } RECORDCOUNT;
 
+// SESSION Collector
+typedef struct{
+  PERSONNEL merchant;
+
+} SESSION;
+
 
 PERSONNEL Personnel[MAX_IDX_PERSONNEL];           // Declare the Personnel table
 INVENTORY Inventory[MAX_IDX_INVENTORY];           // Declare the Inventory table
@@ -150,6 +156,7 @@ PROMOTION Promotion[MAX_IDX_PROMOTION];           // Declare the Promotion table
 SETTING Setting;                                  // Declare the Setting table
 
 RECORDCOUNT RecordCount;                          // Declare the Record Counter
+SESSION Session;                                  // Declare the Session Collector
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
