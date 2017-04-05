@@ -196,6 +196,7 @@ void settingFileRead();         // For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database file <<Write<< functions*/
+/*
 void personnelFileWrite();       // For Personnel Database
 void inventoryFileWrite();       // For Inventory Database
 void categoryFileWrite();        // For Category Database
@@ -204,7 +205,7 @@ void purchaseFileWrite();        // For Purchase Database
 void customerFileWrite();        // For Customer Database
 void promotionFileWrite();       // For Promotion Database
 void settingFileWrite();         // For Setting Database
-
+*/
 /*-----------------------------------------------------------------------------
 Declare all the other database functions*/
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
@@ -216,7 +217,14 @@ Declare all the interface functions*/
 
 /*-----------------------------------------------------------------------------
 Declare all the Personnel Database can do*/
-void personnelSelectById(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);  // To use: personnelSelectById(id, firstname, lastname, &role, username, password, barcode_token);
+/* 
+  Note: To use a function `personnelSelectById`
+         - Pass the values by reference e.g. personnelSelectById(id, firstname, lastname, &role, username, password, barcode_token); 
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+int personnelSelectById(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);
+
 void personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);
 void personnelUpdateFirstname(char *id, char *firstname);
 void personnelUpdateLastname(char *id, char *lastname);
@@ -226,7 +234,14 @@ void personnelDelete(char *id);
 
 /*-----------------------------------------------------------------------------
 Declare all the Inventory Database can do*/
-void inventorySelectById(char *id, char *name, double *price, double *profit, char *categoryId, unsigned int *remain);              // To use: inventorySelectById(id, name, &price, &profit, categoryId, &remain);
+/* 
+  Note: To use a function `inventorySelectById`
+         - Pass the values by reference e.g. inventorySelectById(id, name, &price, &profit, categoryId, &remain);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+void inventorySelectById(char *id, char *name, double *price, double *profit, char *categoryId, unsigned int *remain);
+
 void inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain);
 void inventoryUpdateName(char *id, char *name);
 void inventoryUpdatePrice(char *id, double price);
@@ -237,24 +252,52 @@ void inventoryDelete(char *id);
 
 /*-----------------------------------------------------------------------------
 Declare all the Category Database can do*/
+/* 
+  Note: To use a function `categorySelectById`
+         - Pass the values by reference e.g. categorySelectById(id, name);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
 void categorySelectById(char *id, char *name);
+
 void categoryInsert(char *id, char *name);
 void categoryUpdateName(char *id, char *name);
 void categoryDelete(char *id);
 
 /*-----------------------------------------------------------------------------
 Declare all the Transaction Database can do*/
+/* 
+  Note: To use a function `transactionSelectById`
+         - Pass the values by reference e.g. transactionSelectById(id, purchaseId, inventoryId);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
 void transactionSelectById(char *id, char *purchaseId, char *inventoryId);
+
 void transactionInsert(char *id, char *purchaseId, char *inventoryId);
 
 /*-----------------------------------------------------------------------------
 Declare all the Purchase Database can do*/
-void purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime);                       // To use: purchaseSelectById(id, &totalPrice, customerId, personnelId, &datetime);
+/* 
+  Note: To use a function `purchaseSelectById`
+         - Pass the values by reference e.g. purchaseSelectById(id, &totalPrice, customerId, personnelId, &datetime);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+void purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime);
+
 void purchaseInsert(char *id, double totalPrice, char *customerId, char *personnelId, time_t datetime);
 
 /*-----------------------------------------------------------------------------
 Declare all the Customer Database can do*/
-void customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy);                  // To use: customerSelectById(id, firstname, lastname, &gender, &point, &totalBuy);
+/* 
+  Note: To use a function `customerSelectById`
+         - Pass the values by reference e.g. customerSelectById(id, firstname, lastname, &gender, &point, &totalBuy);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+void customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy);
+
 void customerInsert(char *id, char *firstname, char *lastname, char gender, double point, double totalBuy);
 void customerUpdateFirstname(char *id, char *firstname);
 void customerUpdateLastname(char *id, char *lastname);
@@ -265,7 +308,14 @@ void customerDelete(char *id);
 
 /*-----------------------------------------------------------------------------
 Declare all the Promotion Database can do*/
-void promotionSelectById(char *id, double *price, int *status);                                                                     // To use: promotionSelectById(id, &price, &status);
+/* 
+  Note: To use a function `promotionSelectById`
+         - Pass the values by reference e.g. promotionSelectById(id, &price, &status);
+        All of the `int` functions
+         - If the record is be found then return 1 otherwise, return 0
+*/
+void promotionSelectById(char *id, double *price, int *status);
+
 void promotionInsert(char *id, double price, int status);
 void promotionUpdatePrice(char *id, double price);
 void promotionUpdateStatus(char *id, int status);
@@ -273,7 +323,6 @@ void promotionDelete(char *id);
 
 /*-----------------------------------------------------------------------------
 Declare all the Setting Database can do*/
-void settingSelectById(char *id);
 void settingUpdateStoreName(char *storeName);
 void settingUpdateAddress(char *storeAddress);
 void settingUpdatePriceToPoint(double priceToPoint);
@@ -281,6 +330,7 @@ void settingUpdatePointToPrice(double pointToPrice);
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/
+/*
 void monthlyForecast();
 void quarterForecast();
 void annualForecast();
@@ -289,21 +339,25 @@ void forecastResults();
 void forecastProgram();
 
 void forecastPrint();
+*/
 
 /*-----------------------------------------------------------------------------
 Decease what the seller can do*/
+/*
 void cashierInterface();
+*/
 
 /*-----------------------------------------------------------------------------
 Declares all the authentication functions and interface*/
-void authenticate(char username, char password);            // For signing in
+void authenticateByUsername(char *username, char *password);    // For signing in
+void authenticateByToken(char *token);                          // For signing in
 void deauthenticate();          // For signing out
-//
+/*
 void authInterface();           // For sign in interface
 void authInterfaceComplete();   // For complete sign in interface
 void authInterfaceFailed();     // For non - complete sign in interface (Error from cancel)
 void authInterfaceError();      // For non - complete sign in interface (Other type of error)
-
+*/
 /*
 
                 May the god be with us...
