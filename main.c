@@ -385,8 +385,14 @@ unsigned int tail(unsigned int table){
     return 0;
 }
 
-void initDatabase(){
+void intToString(char *str, int number){
+    char buffer[200];
+    sprintf(buffer, "%d", number);
+    strcpy(str, buffer);
+}
 
+void initDatabase(){
+    // Database Initial
     personnelDatabase();
     inventoryDatabase();
     categoryDatabase();
@@ -396,6 +402,16 @@ void initDatabase(){
     promotionDatabase();
     settingDatabase();
 
+    // Database Seeding
+    personnelFileRead();  
+    inventoryFileRead();  
+    categoryFileRead();   
+    transactionFileRead();
+    purchaseFileRead();   
+    customerFileRead();   
+    promotionFileRead();  
+    settingFileRead();    
+
 }
 
 void personnelDatabase(){
@@ -403,7 +419,58 @@ void personnelDatabase(){
     if(!isFileExist(personnelDatabaseFile)){
         fopen(personnelDatabaseFile, "w");
     }
+}
 
+void inventoryDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(inventoryDatabaseFile)){
+        fopen(inventoryDatabaseFile, "w");
+    }
+}
+
+void categoryDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(categoryDatabaseFile)){
+        fopen(categoryDatabaseFile, "w");
+    }
+}
+
+void transactionDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(transactionDatabaseFile)){
+        fopen(transactionDatabaseFile, "w");
+    }
+}
+
+void purchaseDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(purchaseDatabaseFile)){
+        fopen(purchaseDatabaseFile, "w");
+    }
+}
+
+void customerDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(customerDatabaseFile)){
+        fopen(customerDatabaseFile, "w");
+    }
+}
+
+void promotionDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(promotionDatabaseFile)){
+        fopen(promotionDatabaseFile, "w");
+    }
+}
+
+void settingDatabase(){
+    // Check a Database file existance, if it doesn't exist then create the new one.
+    if(!isFileExist(settingDatabaseFile)){
+        fopen(settingDatabaseFile, "w");
+    }
+}
+
+void personnelFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
     char id[MAX_LNG_ID];
@@ -427,14 +494,10 @@ void personnelDatabase(){
     // For debuging
     // i--;
     // printf(">>>> %s-%s-%s-%d-%s-%s-%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcode_token);
+
 }
 
-void inventoryDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(inventoryDatabaseFile)){
-        fopen(inventoryDatabaseFile, "w");
-    }
-
+void inventoryFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
     char id[MAX_LNG_ID];
@@ -459,12 +522,8 @@ void inventoryDatabase(){
     // printf(">>>> %s\t%s\t%lf\t%lf\t%s\t%u\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
 
 }
-void categoryDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(categoryDatabaseFile)){
-        fopen(categoryDatabaseFile, "w");
-    }
 
+void categoryFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
     char id[MAX_LNG_ID];
@@ -484,13 +543,9 @@ void categoryDatabase(){
     // i--;
     // printf(">>>> %s\t%s\n", Category[i].id, Category[i].name);
 
-
 }
-void transactionDatabase(){
-    // Check a Database file existence, if it doesn't exist then create the new one.
-    if(!isFileExist(transactionDatabaseFile)){
-        fopen(transactionDatabaseFile, "w");
-    }
+
+void transactionFileRead(){
 
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
@@ -513,11 +568,8 @@ void transactionDatabase(){
     // printf(">>>> %s-%s-%s\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId);
 
 }
-void purchaseDatabase(){
-    // Check a Database file existence, if it doesn't exist then create the new one.
-    if(!isFileExist(purchaseDatabaseFile)){
-        fopen(purchaseDatabaseFile, "w");
-    }
+
+void purchaseFileRead(){
 
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
@@ -542,12 +594,8 @@ void purchaseDatabase(){
     // printf(">>>> %s\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].datetime);
 
 }
-void customerDatabase(){
-    // Check a Database file existence, if it doesn't exist then create the new one.
-    if(!isFileExist(customerDatabaseFile)){
-        fopen(customerDatabaseFile, "w");
-    }
 
+void customerFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
     char id[MAX_LNG_ID];
@@ -559,7 +607,7 @@ void customerDatabase(){
     int i = 0;
     fp = fopen(customerDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%c\t%lf", Customer[i].id, Customer[i].firstname, Customer[i].lastname, &Customer[i].gender, &Customer[i].point) != EOF){
+    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%c\t%lf\t%lf", Customer[i].id, Customer[i].firstname, Customer[i].lastname, &Customer[i].gender, &Customer[i].point, &Customer[i].totalBuy) != EOF){
         i++;
     }
 
@@ -568,15 +616,11 @@ void customerDatabase(){
 
     // For debugging
     // i--;
-    // printf(">>>> %s\t%s\t%s\t%c\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point);
+    // printf(">>>> %s\t%s\t%s\t%c\t%lf\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point, Customer[i].totalBuy);
 
 }
-void promotionDatabase(){
-    // Check a Database file existence, if it doesn't exist then create the new one.
-    if(!isFileExist(promotionDatabaseFile)){
-        fopen(promotionDatabaseFile, "w");
-    }
 
+void promotionFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
     char id[MAX_LNG_ID];
@@ -598,12 +642,8 @@ void promotionDatabase(){
     // printf(">>>> %s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
 
 }
-void settingDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(settingDatabaseFile)){
-        fopen(settingDatabaseFile, "w");
-    }
 
+void settingFileRead(){
     // Fetch records form a Database file to the program memory
     FILE *fp;                           // File Pointer
     char storeName[MAX_LNG_SCREEN];
