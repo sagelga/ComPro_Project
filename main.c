@@ -10,7 +10,6 @@ int main(){
 }
 
 void switchHub() {
-    
 
     char text1[107] = "Welcome back <user_name_goes_here>!";
     strcat(text1,username);
@@ -24,11 +23,11 @@ void switchHub() {
 
     //These choice will be removed, when the program detects the permission level.
     bannerBlankBorderTextCen("1. Login / Logout");
-    bannerBlankBorderTextCen("2. Go to Sales");
+    bannerBlankBorderTextCen ("2. Go to POS System");
     bannerBlankBorderTextCen("3. Check Inventory Database");
     bannerBlankBorderTextCen("4. Check Customer Database");
     bannerBlankBorderTextCen("5. Check Category Database");
-    bannerBlankBorderTextCen("6. Check Customer Database");
+    bannerBlankBorderTextCen ("6. Check Promotion Database");
     bannerBlankBorderTextCen("7. Check Forecast");
     bannerBlankBorderTextCen("8. Settings");
     bannerBlankBorder();
@@ -44,16 +43,41 @@ void switchHub() {
     scanf(" %c", &functionscall);
 
     switch (functionscall) {
-        case ('1'):
-            initDatabase();
+        case ('1'): // Sign In / Sign Out
+            authInterface ();
             return;
-        
-        case ('2'):
+
+        case ('2'):// Go to POS Systems Interface (for cashier)
             initDatabase();
+            cashierInterface ();
             return;
-        
-        case ('3'):
+
+        case ('3'):// Go to check Inventory Database
             initDatabase();
+            inventorySwitchHub ();
+            return;
+
+        case ('4'):
+            customerSwitchHub ();
+            return;
+
+        case ('5'):
+            initDatabase();
+
+            return;
+
+        case ('6'):
+            initDatabase ();
+            promotionSwitchHub ();
+            return;
+
+        case ('7'):
+            initDatabase ();
+
+            return;
+
+        case ('8'):
+            settingsSwitchHub ();
             return;
         
         case ('n'):
@@ -176,8 +200,8 @@ void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char
 }
 
 void bannerFullBorder(){
-    for (int i = 0;i<140;i++)
-        printf(":");
+    for ( int i = 0; i < 14; i++ )
+        printf ("::::::::::");
     printf("\n");
 }
 
@@ -200,7 +224,7 @@ void bannerUserInput(){
     printf("\n>>> ");
 }
 
-void settings(){
+void settingsSwitchHub () {
     bannerFullBorder();
     bannerBlankBorderTextCen("Settings");
     bannerFullBorder();
@@ -357,7 +381,7 @@ void categoryDatabase(){
 
 }
 void transactionDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if(!isFileExist(transactionDatabaseFile)){
         fopen(transactionDatabaseFile, "w");
     }
@@ -378,13 +402,13 @@ void transactionDatabase(){
     RecordCount.transaction = i;          // Save a number of records to the Record Counter
     fclose(fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %s-%s-%s\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId);
 
 }
 void purchaseDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if(!isFileExist(purchaseDatabaseFile)){
         fopen(purchaseDatabaseFile, "w");
     }
@@ -407,13 +431,13 @@ void purchaseDatabase(){
     RecordCount.purchase = i;          // Save a number of records to the Record Counter
     fclose(fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %s\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].datetime);
 
 }
 void customerDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if(!isFileExist(customerDatabaseFile)){
         fopen(customerDatabaseFile, "w");
     }
@@ -436,13 +460,13 @@ void customerDatabase(){
     RecordCount.customer = i;          // Save a number of records to the Record Counter
     fclose(fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %s\t%s\t%s\t%c\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point);
 
 }
 void promotionDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if(!isFileExist(promotionDatabaseFile)){
         fopen(promotionDatabaseFile, "w");
     }
@@ -463,7 +487,7 @@ void promotionDatabase(){
     RecordCount.promotion = i;          // Save a number of records to the Record Counter
     fclose(fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
 
@@ -487,7 +511,7 @@ void settingDatabase(){
     fscanf(fp, "%[^\t]\t%[^\t]\t%lf\t%lf", Setting.storeName, Setting.storeAddress, &Setting.priceToPoint, &Setting.pointToPrice);
     fclose(fp);
 
-    // For debuging
+    // For debugging
     // printf(">>>> %s--%s--%lf--%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
 
 }
@@ -495,8 +519,8 @@ void settingDatabase(){
 void inventoryDatabaseInterface(){
     bannerFullBorder();
     bannerBlankBorderText(" ID                 | Name                                             | Price         | Profit        | Category                ");
-    
-    /* REMOVE THIS SEAL WHEN THIS FUNCTION WORKS PROPERLY
+
+    /* REMOVE THIS LINE UNTIL IT WAS REDONE
     for (int i = 0;i<36;i--){ // Using 10 data as an example... Maxed with 36 lines...
 
         // Pulls data from the database...
@@ -507,25 +531,123 @@ void inventoryDatabaseInterface(){
         char category[25] = "<this_is_category>";
 
         char text_formation = "";
-        strcpy(id,"|")
-        bannerBlankBorderText("%20s|%50s|%15s|%15s|%25s",id,name,price,profit,category);
+        strcpy(id,"|");
+        strcpy(name,"|");
+        strcpy(price,"|");
+        strcpy(profit,"|");
+        strcpy(category,"|");
+
+        strcpy(text_formation,id);
+        strcpy(text_formation,name);
+        strcpy(text_formation,price);
+        strcpy(text_formation,profit);
+        strcpy(text_formation,category);
+
+        bannerBlankBorderText(text_formation);
     }
     int page = 1; // Current page number
     int total_page = 1; // Total page number
 
-    char previous_max = "|<<"; // Visible when page > total page by 2
-    char previous = "<"; // Visible when page > total page by 1
+    if(page-total_page >= 2){
+        char previous_max = "|<<"; // Visible when page > total page by 2
+    }
+    else{
+        char previous_max = "   ";
+    }
 
-    char next = ">"; // Visible when page < total page by 1
-    char next_max = ">>|"; // Visible when page < total page by 2
+    if (page-total_page >= 1){
+        char previous = "<"; // Visible when page > total page by 1
+    }
+    else{
+        char previous = " ";
+    }
 
-    text_formation = "%s  %s  ( Page %d of %d )  %s  %s",previous_max,previous,page,total_page,next,next_max;
-    bannerBlankBorderTextCen(text_formation);
+
+    if (total_page-page >= 1){
+        char next = ">"; // Visible when page < total page by 1
+    }
+    else{
+        char next = " ";
+    }
+
+    if (total_page-page >= 2){
+        char next_max = ">>|"; // Visible when page < total page by 2
+    }
+    else{
+        char next_max = "   ";
+    }
+
+    //char text_formation = "%s  %s  ( Page %d of %d )  %s  %s",previous_max,previous,page,total_page,next,next_max;
+    char text_formation = "";
+
+    strcpy(text_formation,previous_max);
+    strcpy(text_formation,previous);
+    strcpy(text_formation,"( Page");
+    strcpy(text_formation,page);
+    strcpy(text_formation,"of");
+    strcpy(text_formation,total_page);
+    strcpy(text_formation,")");
+    strcpy(text_formation,next);
+    strcpy(text_formation,next_max);
+
+    bannerBlankBorderTextCen(&text_formation);
     
-    REMOVE THIS SEAL WHEN THIS FUNCTION WORKS PROPERLY */
+    REMOVE THIS LINE UNTIL IT WAS REDONE*/
+
     bannerFullBorder();
 
 }
+
+void inventorySwitchHub () {
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Inventory Hub");
+    bannerFullBorder ();
+
+    bannerBlankBorderTextCen ("What are you going to do?");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("1. Check the database");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("2. Add data to the database manually");
+    bannerBlankBorderTextCen ("3. Add data to the database automatically");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("4. Edit data from the database manually");
+    bannerBlankBorderTextCen ("5. Edit data from the database using the scanner");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("6. Removing data from the database");
+    for ( int i = 0; i < 23; i++ ) {
+        bannerBlankBorder ();
+    }
+    bannerBlankBorderTextCen ("or type 'N' to return back to the hub");
+    bannerFullBorder ();
+    bannerUserInput ();
+
+    char userInput;
+    scanf (" %c", &userInput);
+
+    switch ( userInput ) {
+        case ('1'):
+            inventoryDatabaseInterface ();
+            return;
+        case ('2'):
+            inventoryAdd ();
+            return;
+        case ('3'):
+            return;
+        case ('4'):
+            inventoryModify ();
+            return;
+        case ('5'):
+            return;
+        case ('6'):
+            inventoryRemove ();
+            return;
+        default:
+            printf ("Your input is invalid. Please try again...");
+            inventorySwitchHub ();
+            return;
+    }
+}
+
 /*
                 May the god be with us...
                            _

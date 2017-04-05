@@ -142,12 +142,21 @@ SETTING Setting;                                  // Declare the Setting table
 RECORDCOUNT RecordCount;                          // Declare the Record Counter
 
 /*-----------------------------------------------------------------------------
-Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
+Declare all the Options switching functions*/
 void switchHub();               // For moving to the selection of the functions
+void inventorySwitchHub ();               // For moving to the selection of the functions
+void categorySwitchHub ();               // For moving to the selection of the functions
+void transactionSwitchHub ();               // For moving to the selection of the functions
+void purchaseSwitchHub ();               // For moving to the selection of the functions
+void customerSwitchHub ();               // For moving to the selection of the functions
+void promotionSwitchHub ();               // For moving to the selection of the functions
+void settingsSwitchHub ();               // For moving to the selection of the functions
+
+/*-----------------------------------------------------------------------------
+Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
 void terminate();               // For save and stop the program
 void screenAdjust();            // For calculating the screen size to the optimum size
 void screenClear();             // For refreshing the screen to the new one
-void settings();                // For setting up the screensize, default login scheme
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions*/
