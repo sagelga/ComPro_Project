@@ -226,11 +226,11 @@ Declare all the Personnel Database can do*/
 int personnelSelectById(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);
 
 void personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcode_token);
-void personnelUpdateFirstname(char *id, char *firstname);
-void personnelUpdateLastname(char *id, char *lastname);
-void personnelUpdateRole(char *id, int role);
-void personnelUpdatePassword(char *id, char *password);
-void personnelDelete(char *id);
+int personnelUpdateFirstname(char *id, char *firstname);
+int personnelUpdateLastname(char *id, char *lastname);
+int personnelUpdateRole(char *id, int role);
+int personnelUpdatePassword(char *id, char *password);
+int personnelDelete(char *id);
 
 /*-----------------------------------------------------------------------------
 Declare all the Inventory Database can do*/
@@ -240,15 +240,15 @@ Declare all the Inventory Database can do*/
         All of the `int` functions
          - If the record is be found then return 1 otherwise, return 0
 */
-void inventorySelectById(char *id, char *name, double *price, double *profit, char *categoryId, unsigned int *remain);
+int inventorySelectById(char *id, char *name, double *price, double *profit, char *categoryId, unsigned int *remain);
 
 void inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain);
-void inventoryUpdateName(char *id, char *name);
-void inventoryUpdatePrice(char *id, double price);
-void inventoryUpdateProfit(char *id, double profit);
-void inventoryUpdateCategory(char *id, char *categoryId);
-void inventoryUpdateRemain(char *id, unsigned int remain);
-void inventoryDelete(char *id);
+int inventoryUpdateName(char *id, char *name);
+int inventoryUpdatePrice(char *id, double price);
+int inventoryUpdateProfit(char *id, double profit);
+int inventoryUpdateCategory(char *id, char *categoryId);
+int inventoryUpdateRemain(char *id, unsigned int remain);
+int inventoryDelete(char *id);
 
 /*-----------------------------------------------------------------------------
 Declare all the Category Database can do*/
@@ -258,11 +258,11 @@ Declare all the Category Database can do*/
         All of the `int` functions
          - If the record is be found then return 1 otherwise, return 0
 */
-void categorySelectById(char *id, char *name);
+int categorySelectById(char *id, char *name);
 
 void categoryInsert(char *id, char *name);
-void categoryUpdateName(char *id, char *name);
-void categoryDelete(char *id);
+int categoryUpdateName(char *id, char *name);
+int categoryDelete(char *id);
 
 /*-----------------------------------------------------------------------------
 Declare all the Transaction Database can do*/
@@ -272,7 +272,7 @@ Declare all the Transaction Database can do*/
         All of the `int` functions
          - If the record is be found then return 1 otherwise, return 0
 */
-void transactionSelectById(char *id, char *purchaseId, char *inventoryId);
+int transactionSelectById(char *id, char *purchaseId, char *inventoryId);
 
 void transactionInsert(char *id, char *purchaseId, char *inventoryId);
 
@@ -284,7 +284,7 @@ Declare all the Purchase Database can do*/
         All of the `int` functions
          - If the record is be found then return 1 otherwise, return 0
 */
-void purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime);
+int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime);
 
 void purchaseInsert(char *id, double totalPrice, char *customerId, char *personnelId, time_t datetime);
 
@@ -296,15 +296,15 @@ Declare all the Customer Database can do*/
         All of the `int` functions
          - If the record is be found then return 1 otherwise, return 0
 */
-void customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy);
+int customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy);
 
 void customerInsert(char *id, char *firstname, char *lastname, char gender, double point, double totalBuy);
-void customerUpdateFirstname(char *id, char *firstname);
-void customerUpdateLastname(char *id, char *lastname);
-void customerUpdateGender(char *id, char gender);
-void customerUpdatePoint(char *id, double point);
-void customerUpdatetotalBuy(char *id, double totalBuy);
-void customerDelete(char *id);
+int customerUpdateFirstname(char *id, char *firstname);
+int customerUpdateLastname(char *id, char *lastname);
+int customerUpdateGender(char *id, char gender);
+int customerUpdatePoint(char *id, double point);
+int customerUpdatetotalBuy(char *id, double totalBuy);
+int customerDelete(char *id);
 
 /*-----------------------------------------------------------------------------
 Declare all the Promotion Database can do*/
@@ -314,12 +314,12 @@ Declare all the Promotion Database can do*/
         All of the `int` functions
          - If the record is be found then return 1 otherwise, return 0
 */
-void promotionSelectById(char *id, double *price, int *status);
+int promotionSelectById(char *id, double *price, int *status);
 
 void promotionInsert(char *id, double price, int status);
-void promotionUpdatePrice(char *id, double price);
-void promotionUpdateStatus(char *id, int status);
-void promotionDelete(char *id);
+int promotionUpdatePrice(char *id, double price);
+int promotionUpdateStatus(char *id, int status);
+int promotionDelete(char *id);
 
 /*-----------------------------------------------------------------------------
 Declare all the Setting Database can do*/
