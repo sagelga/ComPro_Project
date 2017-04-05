@@ -1,3 +1,7 @@
+/*      Hello. Do you know about trucks, right? - Donald Trump
+ *      https://www.youtube.com/watch?v=oguvSPdtHQ8
+ */
+
 /*-----------------------------------------------------------------------------
 Declare all the libraries that we are going to use in this project*/
 #include <stdio.h>              // Pretty much the basic things
@@ -45,87 +49,87 @@ const char *settingDatabaseFile = "Database/setting.db";
 // 01. PERSONNEL
 typedef struct
 {
-  char id[MAX_LNG_ID];
-  char firstname[MAX_LNG_TEXT];
-  char lastname[MAX_LNG_TEXT];
-  int role; // 0 = Manager | 1 = Marketing | 2 = Sale
-  char username[MAX_LNG_TEXT];
-  char password[MAX_LNG_TEXT];
-  char barcode_token[MAX_LNG_TOKEN]; // For use a barcode authentication
+    char id[MAX_LNG_ID];
+    char firstname[MAX_LNG_TEXT];
+    char lastname[MAX_LNG_TEXT];
+    int role; // 0 = Manager | 1 = Marketing | 2 = Sale
+    char username[MAX_LNG_TEXT];
+    char password[MAX_LNG_TEXT];
+    char barcode_token[MAX_LNG_TOKEN]; // For use a barcode authentication
 } PERSONNEL;
 
 // 02. INVENTORY
 typedef struct
 {
-  char id[MAX_LNG_ID];
-  char name[MAX_LNG_SCREEN];
-  double price;
-  double profit; // Profit per item
-  char categoryId[MAX_LNG_ID]; // Category ID
-  unsigned int remain;
+    char id[MAX_LNG_ID];
+    char name[MAX_LNG_SCREEN];
+    double price;
+    double profit; // Profit per item
+    char categoryId[MAX_LNG_ID]; // Category ID
+    unsigned int remain;
 } INVENTORY;
 
 // 03. CATEGORY
 typedef struct
 {
-  char id[MAX_LNG_ID];
-  char name[MAX_LNG_TEXT];
+    char id[MAX_LNG_ID];
+    char name[MAX_LNG_TEXT];
 } CATEGORY;
 
 // 04. TRANSACTION
 typedef struct
 {
-  char id[MAX_LNG_ID];
-  char purchaseId[MAX_LNG_ID];
-  char inventoryId[MAX_LNG_ID];
+    char id[MAX_LNG_ID];
+    char purchaseId[MAX_LNG_ID];
+    char inventoryId[MAX_LNG_ID];
 } TRANSACTION;
 
 // 05. PURCHASE
 typedef struct
 {
-  char id[MAX_LNG_ID];
-  double totalPrice;
-  char customerId[MAX_LNG_ID];
-  char personnelId[MAX_LNG_ID]; // Cashier
-  time_t datetime; // Epoch timestamp
+    char id[MAX_LNG_ID];
+    double totalPrice;
+    char customerId[MAX_LNG_ID];
+    char personnelId[MAX_LNG_ID]; // Cashier
+    time_t datetime; // Epoch timestamp
 } PURCHASE;
 
 // 06. CUSTOMER
 typedef struct
 {
-  char id[MAX_LNG_ID];
-  char firstname[MAX_LNG_TEXT];
-  char lastname[MAX_LNG_TEXT];
-  char gender; // 'F' = Female | 'M' = Male
-  double point;
+    char id[MAX_LNG_ID];
+    char firstname[MAX_LNG_TEXT];
+    char lastname[MAX_LNG_TEXT];
+    char gender; // 'F' = Female | 'M' = Male
+    double point;
 } CUSTOMER;
 
 // 07. PROMOTION
 typedef struct
 {
-  char id[MAX_LNG_ID];
-  double price;
-  int status; // 1 = active | 0 = used (exprired)
+    char id[MAX_LNG_ID];
+    double price;
+    int status; // 1 = active | 0 = used (exprired)
 } PROMOTION;
 
 // 08. SETTINGS
 typedef struct
 {
-  char storeName[MAX_LNG_SCREEN];
-  char storeAddress[MAX_LNG_SCREEN];
-  double priceToPoint; // When you pay N Baht, you'll receive `N * priceToPoint` points.
-  double pointToPrice; // `pointToPrice` point is equal to 1 Baht.
+    char storeName[MAX_LNG_SCREEN];
+    char storeAddress[MAX_LNG_SCREEN];
+    double priceToPoint; // When you pay N Baht, you'll receive `N * priceToPoint` points.
+    double pointToPrice; // `pointToPrice` point is equal to 1 Baht.
 } SETTING;
 
 // Record Counter
 typedef struct{
-  unsigned int personnel;
-  unsigned int inventory;
-  unsigned int category;
-  unsigned int transaction;
-  unsigned int purchase;
-  unsigned int customer;
-  unsigned int promotion;
+    unsigned int personnel;
+    unsigned int inventory;
+    unsigned int category;
+    unsigned int transaction;
+    unsigned int purchase;
+    unsigned int customer;
+    unsigned int promotion;
 
 } RECORDCOUNT;
 
@@ -234,6 +238,12 @@ Declare all the Inventory can do*/
 void inventoryAdd();
 void inventoryModify();
 void inventoryRemove();
+
+void inventoryAddInterface ();
+
+void inventoryModifyInterface ();
+
+void inventoryRemoveInterface ();
 
 /*-----------------------------------------------------------------------------
 Declare all the Customer Database can do*/

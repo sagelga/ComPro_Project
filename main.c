@@ -629,17 +629,17 @@ void inventorySwitchHub () {
             inventoryDatabaseInterface ();
             return;
         case ('2'):
-            inventoryAdd ();
+            inventoryAddInterface ();
             return;
         case ('3'):
             return;
         case ('4'):
-            inventoryModify ();
+            inventoryModifyInterface ();
             return;
         case ('5'):
             return;
         case ('6'):
-            inventoryRemove ();
+            inventoryRemoveInterface ();
             return;
         default:
             printf ("Your input is invalid. Please try again...");
@@ -648,6 +648,45 @@ void inventorySwitchHub () {
     }
 }
 
+void authInterface () {
+
+}
+
+void cashierInterface () {
+
+}
+
+void categorySwitchHub () {
+
+}
+
+void transactionSwitchHub () {
+
+}
+
+void purchaseSwitchHub () {
+
+}
+
+void customerSwitchHub () {
+
+}
+
+void promotionSwitchHub () {
+
+}
+
+void inventoryAddInterface () {
+
+}
+
+void inventoryModifyInterface () {
+
+}
+
+void inventoryRemoveInterface () {
+
+}
 /*
                 May the god be with us...
                            _
