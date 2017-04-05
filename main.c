@@ -1145,7 +1145,6 @@ int authenticateByToken(char *barcodeToken){
 
 void deauthenticate(){
     Session.isLogedin = 0;
-    free(&Session.user);
 }
 
 /*
