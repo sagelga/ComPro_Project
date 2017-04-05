@@ -42,7 +42,7 @@ const char *settingDatabaseFile = "Database/setting.db";
 // 01. PERSONNEL
 typedef struct
 {
-    char id[MAX_LNG_ID];  /
+    char id[MAX_LNG_ID];
     char firstname[MAX_LNG_TEXT];
     char lastname[MAX_LNG_TEXT];
     int role; // 0 = Manager | 1 = Marketing | 2 = Sale
