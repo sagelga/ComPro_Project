@@ -209,7 +209,7 @@ void settingFileWrite();         // For Setting Database
 /*-----------------------------------------------------------------------------
 Declare all the other database functions*/
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
-void intToString(char *str, int number); // Convert from integer to string
+void intToString(char *str, int number); // Convert from integer to string (Return the `str` by reference)
 
 /*-----------------------------------------------------------------------------
 Declare all the interface functions*/
@@ -259,7 +259,7 @@ Declare all the Category Database can do*/
 */
 int categorySelectById(char *id, char *name);               // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void categoryInsert(char *id, char *name);                  // Adding a new record to the database
+void categoryInsert(char *name);                            // Adding a new record to the database
 int categoryUpdateName(char *id, char *name);               // For modifying the `name` (Select the record by `id`)
 int categoryDelete(char *id);                               // Delete the record (Select by `id`)
 

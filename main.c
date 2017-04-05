@@ -7,6 +7,7 @@ int main(){
     //screenAdjust();
     //switchHub();
     initDatabase();
+    categoryInsert("TEST");
     return 0;
 }
 
@@ -745,6 +746,62 @@ int inventoryDelete(char *id){
             RecordCount.inventory--;    // Update the amount of records
             inventoryFileWrite();   // Save to a Database file
             return 1;               // Record successfully deleted
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int categorySelectById(char *id, char *name){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.category;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Category[i].id, id) == 0){
+            // Return all values back by reference
+            strcpy(name, Category[i].name);
+
+            return 1;   // Found a record
+        }
+    }
+    return 0;           // Not found the given `id` in the records
+}
+
+void categoryInsert(char *name){
+    int tailIndex = RecordCount.category;
+    char id[10];
+    intToString(id, tailIndex + 1);     // Auto-increment (+ 1 to Start at 1)
+    strcpy(Category[tailIndex].id, id);
+    strcpy(Category[tailIndex].name, name);
+
+    RecordCount.category++;    // Update the amount of records
+
+    categoryFileWrite();       // Save to a Database file
+}
+
+int categoryUpdateName(char *id, char *name){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.category;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Category[i].id, id) == 0){
+            strcpy(Category[i].name, name);
+            categoryFileWrite();    // Save to a Database file
+            return 1;               // Record successfully updated
+        }
+    }
+    return 0;   // Not found the given `id` in the records
+}
+
+int categoryDelete(char *id){
+    int numberOfRecords;    // Number of the records in a table
+    numberOfRecords = RecordCount.category;
+    for(int i = 0; i < numberOfRecords; i++){
+        if(strcmp(Category[i].id, id) == 0){
+            while(i < numberOfRecords - 1){
+                Category[i] = Category[i+1];
+                i++;
+            }
+            RecordCount.category--;    // Update the amount of records
+            categoryFileWrite();       // Save to a Database file
+            return 1;                  // Record successfully deleted
         }
     }
     return 0;   // Not found the given `id` in the records
