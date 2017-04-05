@@ -41,10 +41,6 @@ Define all the constant values here*/
 
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
-char username[140] = "Default"; // Username cannot go further than 140, as the maximum border size is 140.
-int userPermission = 0; // 0 = Not sign-in | 1 = Sales | 2 = Manager | 3 = Admin
-char storeName[140] = "Default";
-char storeAddress[140] = "Default";
 
 // Path to Database file
 const char *personnelDatabaseFile = "Database/personnel.db";
@@ -141,7 +137,7 @@ typedef struct{
 
 // SESSION Collector
 typedef struct{
-  PERSONNEL merchant;
+  PERSONNEL merchant;                             // For store user's information
 
 } SESSION;
 
