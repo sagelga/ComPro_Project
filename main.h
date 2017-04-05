@@ -109,6 +109,7 @@ typedef struct
   char lastname[MAX_LNG_TEXT];
   char gender; // 'F' = Female | 'M' = Male
   double point;
+  double totalBuy;
 } CUSTOMER;
 // 07. PROMOTION
 typedef struct

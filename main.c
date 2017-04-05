@@ -375,7 +375,7 @@ void customerDatabase(){
     int i = 0;
     fp = fopen(customerDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%c\t%lf", Customer[i].id, Customer[i].firstname, Customer[i].lastname, &Customer[i].gender, &Customer[i].point) != EOF){
+    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%c\t%lf\t%lf", Customer[i].id, Customer[i].firstname, Customer[i].lastname, &Customer[i].gender, &Customer[i].point, &Customer[i].totalBuy) != EOF){
         i++;
     }
 
@@ -384,7 +384,7 @@ void customerDatabase(){
 
     // For debuging
     // i--;
-    // printf(">>>> %s\t%s\t%s\t%c\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point);
+    // printf(">>>> %s\t%s\t%s\t%c\t%lf\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point, Customer[i].totalBuy);
 
 }
 void promotionDatabase(){
