@@ -10,33 +10,35 @@ int main(){
 }
 
 void switchHub() {
-    // New Switch Hub
+    
+
     char text1[107] = "Welcome back <user_name_goes_here>!";
+    strcat(text1,username);
     char text2[107] = "";
     char text3[107] = "You are now connecting to the POS system";
     char text4[107] = "<user_permission_level_goes_here_in_this_line>";
     bannerInverse(text1, text2, text3, text4);
 
-    bannerBlankBorderText("What do you want to do?");
+    bannerBlankBorderTextCen("What do you want to do?");
     bannerBlankBorder();
 
     //These choice will be removed, when the program detects the permission level.
-    bannerBlankBorderText("1. Login / Logout");
-    bannerBlankBorderText("2. Go to Sales");
-    bannerBlankBorderText("3. Check Inventory Database");
-    bannerBlankBorderText("4. Check Customer Database");
-    bannerBlankBorderText("5. Check Category Database");
-    bannerBlankBorderText("6. Check Customer Database");
-    bannerBlankBorderText("7. Check Forecast");
-    bannerBlankBorderText("8. Settings");
+    bannerBlankBorderTextCen("1. Login / Logout");
+    bannerBlankBorderTextCen("2. Go to Sales");
+    bannerBlankBorderTextCen("3. Check Inventory Database");
+    bannerBlankBorderTextCen("4. Check Customer Database");
+    bannerBlankBorderTextCen("5. Check Category Database");
+    bannerBlankBorderTextCen("6. Check Customer Database");
+    bannerBlankBorderTextCen("7. Check Forecast");
+    bannerBlankBorderTextCen("8. Settings");
     bannerBlankBorder();
 
     for (int i = 0;i<20;i++)
         bannerBlankBorder();
 
-    bannerBlankBorderText("or type 'N' to save and quit");
+    bannerBlankBorderTextCen("or type 'N' to save and quit");
     bannerFullBorder();
-    bannerBlankTerminate();
+    bannerUserInput();
 
     char functionscall;
     scanf(" %c", &functionscall);
@@ -75,7 +77,7 @@ void terminate(){
     screenClear();
 
     bannerFullBorder();
-    bannerBlankBorderText("You about to terminate the POS system...");
+    bannerBlankBorderTextCen("You about to terminate the POS system...");
     bannerFullBorder();
 
     printf("Are you really sure about this? (Type Y or N) >>");
@@ -115,15 +117,15 @@ void screenAdjust(){
     for (int i = 0;i<3;i++)
         bannerBlankBorder();
     
-    bannerBlankBorderText("Please configure the terminal screen to optimum size.");
+    bannerBlankBorderTextCen("Please configure the terminal screen to optimum size.");
     
     for (int i = 0;i<27;i++)
         bannerBlankBorder();
     
-    bannerBlankBorderText("Type 'Y' to continue...");
+    bannerBlankBorderTextCen("Type 'Y' to continue...");
     bannerFullBorder();
 
-    bannerBlankTerminate();
+    bannerUserInput();
     char flags;
     scanf(" %c",&flags);
     flags = toupper(flags);
@@ -179,34 +181,38 @@ void bannerFullBorder(){
     printf("\n");
 }
 
-void bannerBlankBorderText(char *text){
+void bannerBlankBorderTextCen(char *text){
     int length = strlen(text) - 1;  // Remove the terminal '\0'
     int pad = (length >= 134) ? 0 : ((134 - length) / 2);
 
     printf(":: %*s%s%*s ::\n", pad," ",text,133-pad-length," ");
 }
 
+void bannerBlankBorderText(char *text){
+    printf(":: %134s ::\n", text);
+}
+
 void bannerBlankBorder(){
     printf("::%136s::\n", "");
 }
 
-void bannerBlankTerminate(){
+void bannerUserInput(){
     printf("\n>>> ");
 }
 
 void settings(){
     bannerFullBorder();
-    bannerBlankBorderText("Settings");
+    bannerBlankBorderTextCen("Settings");
     bannerFullBorder();
 
-    bannerBlankBorderText("What do you want to do?");
-    bannerBlankBorderText("1. Change Username");
-    bannerBlankBorderText("2. Change Password");
+    bannerBlankBorderTextCen("What do you want to do?");
+    bannerBlankBorderTextCen("1. Change Username");
+    bannerBlankBorderTextCen("2. Change Password");
     
     bannerFullBorder();
     
-    bannerBlankBorderText("3. Change store name");
-    bannerBlankBorderText("4. Change store address");
+    bannerBlankBorderTextCen("3. Change store name");
+    bannerBlankBorderTextCen("4. Change store address");
 
     char functionSwitch;
     scanf("%c", &functionSwitch);
@@ -486,6 +492,40 @@ void settingDatabase(){
 
 }
 
+void inventoryDatabaseInterface(){
+    bannerFullBorder();
+    bannerBlankBorderText(" ID                 | Name                                             | Price         | Profit        | Category                ");
+    
+    /* REMOVE THIS SEAL WHEN THIS FUNCTION WORKS PROPERLY
+    for (int i = 0;i<36;i--){ // Using 10 data as an example... Maxed with 36 lines...
+
+        // Pulls data from the database...
+        char id[20] = "<this_is_id>";
+        char name[50] = "<this_is_item_name>";
+        char price[15] = "<price>";
+        char profit[15] = "<profit>";
+        char category[25] = "<this_is_category>";
+
+        char text_formation = "";
+        strcpy(id,"|")
+        bannerBlankBorderText("%20s|%50s|%15s|%15s|%25s",id,name,price,profit,category);
+    }
+    int page = 1; // Current page number
+    int total_page = 1; // Total page number
+
+    char previous_max = "|<<"; // Visible when page > total page by 2
+    char previous = "<"; // Visible when page > total page by 1
+
+    char next = ">"; // Visible when page < total page by 1
+    char next_max = ">>|"; // Visible when page < total page by 2
+
+    text_formation = "%s  %s  ( Page %d of %d )  %s  %s",previous_max,previous,page,total_page,next,next_max;
+    bannerBlankBorderTextCen(text_formation);
+    
+    REMOVE THIS SEAL WHEN THIS FUNCTION WORKS PROPERLY */
+    bannerFullBorder();
+
+}
 /*
                 May the god be with us...
                            _

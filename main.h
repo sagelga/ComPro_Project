@@ -153,10 +153,11 @@ void settings();                // For setting up the screensize, default login 
 Declare all the gimmicks functions*/
 void bannerFullBorder();											// Prints a full 140 character full of :
 void bannerBlankBorder();											// Prints a :: + 136 charaacter space + ::
-void bannerBlankBorderText(char *text);								// Prints a :: + + 134 character space + + ::
+void bannerBlankBorderTextCen(char *text);								// Prints a :: + + 134 character space + + :: (Center Align)
+void bannerBlankBorderTextCen(char *text);								// Prints a :: + + 134 character space + + :: (Left Align)
 void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);	// Prints banner with configurable character
 void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);	// Prints banner (with POS logo in the right) with configurable character
-void bannerBlankTerminate(); // Prints a prompt for input from user
+void bannerUserInput(); 											// Asks for input from user
 
 /*-----------------------------------------------------------------------------
 Declare all the database file !!build!! functions*/
@@ -195,15 +196,22 @@ void promotionFileWrite();       									// For Promotion Database
 void settingFileWrite();         									// For Setting Database
 
 /*-----------------------------------------------------------------------------
-Declare all the database call functions*/
+Declare all the database display functions*/
+
+void initDatabaseInterface();            									// For Database Initialization
+void personnelDatabaseInterface();       									// For Personnel Database
+void inventoryDatabaseInterface();       									// For Inventory Database
+void categoryDatabaseInterface();        									// For Category Database
+void transactionDatabaseInterface();     									// For Transaction Database
+void purchaseDatabaseInterface();        									// For Purchase Database
+void customerDatabaseInterface();        									// For Customer Database
+void promotionDatabaseInterface();       									// For Promotion Database
+void settingDatabaseInterface();         									// For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the other database functions*/
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
 unsigned int tail(unsigned int table);  // Return the first empty index of the list (For insert new record)
-
-/*-----------------------------------------------------------------------------
-Declare all the interface functions*/
 
 /*-----------------------------------------------------------------------------
 Declare all the admin tools*/
