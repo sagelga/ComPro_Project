@@ -353,11 +353,6 @@ void authInterfaceComplete(){
     ban
 }
 
-
-
-
-
-
 int isFileExist(const char *filename){
     if( access( filename, F_OK ) != -1 ) {
         // file exists
