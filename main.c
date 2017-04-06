@@ -336,7 +336,7 @@ void transactionFileRead(){
     int i = 0;
     fp = fopen(transactionDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%s\t%s", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId) != EOF){
+    while(fscanf(fp, "%s\t%s\t%s\t%lu", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId, &Transaction[i].timestamp) != EOF){
         i++;
     }
 
@@ -345,7 +345,7 @@ void transactionFileRead(){
 
     // For debuging
     // i--;
-    // printf(">>>> %s-%s-%s\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId);
+    // printf(">>>> %s-%s-%s-%lu\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId, Transaction[i].timestamp);
 
 }
 
@@ -357,7 +357,7 @@ void purchaseFileRead(){
     int i = 0;
     fp = fopen(purchaseDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%lf\t%s\t%s\t%lu", Purchase[i].id, &Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, &Purchase[i].datetime) != EOF){
+    while(fscanf(fp, "%s\t%lf\t%s\t%s\t%lu", Purchase[i].id, &Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, &Purchase[i].timestamp) != EOF){
         i++;
     }
 
@@ -366,7 +366,7 @@ void purchaseFileRead(){
 
     // For debuging
     // i--;
-    // printf(">>>> %s\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].datetime);
+    // printf(">>>> %s\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].timestamp);
 
 }
 
@@ -475,7 +475,7 @@ void transactionFileWrite(){
     fp = fopen(transactionDatabaseFile, "w+");
 
     for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%s\t%s\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId);
+        fprintf(fp, "%s\t%s\t%s\t%lu\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId, Transaction[i].timestamp);
 
     fclose(fp);
 }
@@ -489,7 +489,7 @@ void purchaseFileWrite(){
     fp = fopen(purchaseDatabaseFile, "w+");
 
     for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].datetime);
+        fprintf(fp, "%s\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].timestamp);
 
     fclose(fp);
 }
@@ -828,7 +828,7 @@ int categoryDelete(char *id){
     return 0;   // Not found the given `id` in the records
 }
 
-int transactionSelectById(char *id, char *purchaseId, char *inventoryId){
+int transactionSelectById(char *id, char *purchaseId, char *inventoryId, time_t *timestamp){
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.transaction;
     for(int i = 0; i < numberOfRecords; i++){
@@ -836,6 +836,7 @@ int transactionSelectById(char *id, char *purchaseId, char *inventoryId){
             // Return all values back by reference
             strcpy(purchaseId, Transaction[i].purchaseId);
             strcpy(inventoryId, Transaction[i].inventoryId);
+            *timestamp = Transaction[i].timestamp;
 
             return 1;   // Found a record
         }
@@ -856,7 +857,7 @@ void transactionInsert(char *purchaseId, char *inventoryId){
     transactionFileWrite();       // Save to a Database file
 }
 
-int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime){
+int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *timestamp){
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.purchase;
     for(int i = 0; i < numberOfRecords; i++){
@@ -865,7 +866,7 @@ int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *per
             *totalPrice = Purchase[i].totalPrice;
             strcpy(customerId, Purchase[i].customerId);
             strcpy(personnelId, Purchase[i].personnelId);
-            *datetime = Purchase[i].datetime;
+            *timestamp = Purchase[i].timestamp;
 
             return 1;   // Found a record
         }
@@ -873,7 +874,7 @@ int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *per
     return 0;           // Not found the given `id` in the records
 }
 
-void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time_t datetime){
+void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time_t timestamp){
     int tailIndex = RecordCount.purchase;
     char id[10];
     intToString(id, tailIndex + 1);     // Auto-increment (+ 1 to Start at 1)
@@ -881,7 +882,7 @@ void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time
     Purchase[tailIndex].totalPrice = totalPrice;
     strcpy(Purchase[tailIndex].customerId, customerId);
     strcpy(Purchase[tailIndex].personnelId, personnelId);
-    Purchase[tailIndex].datetime = datetime;
+    Purchase[tailIndex].timestamp = timestamp;
 
     RecordCount.purchase++;    // Update the amount of records
 
@@ -1146,6 +1147,7 @@ int authenticateByToken(char *barcodeToken){
 void deauthenticate(){
     Session.isLogedin = 0;
 }
+
 
 /*
 

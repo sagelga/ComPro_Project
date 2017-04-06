@@ -87,6 +87,7 @@ typedef struct
   char id[MAX_LNG_ID];
   char purchaseId[MAX_LNG_ID];
   char inventoryId[MAX_LNG_ID];
+  time_t timestamp; // Epoch timestamp
 } TRANSACTION;
 // 05. PURCHASE
 typedef struct
@@ -95,7 +96,7 @@ typedef struct
   double totalPrice;
   char customerId[MAX_LNG_ID];
   char personnelId[MAX_LNG_ID]; // Cashier
-  time_t datetime; // Epoch timestamp
+  time_t timestamp; // Epoch timestamp
 } PURCHASE;
 // 06. CUSTOMER
 typedef struct
@@ -268,11 +269,11 @@ int categoryDelete(char *id);                               // Delete the record
 Declare all the Transaction Database can do*/
 /* 
   Note: To use a function `transactionSelectById`
-         - Pass the values by reference e.g. transactionSelectById(id, purchaseId, inventoryId);
+         - Pass the values by reference e.g. transactionSelectById(id, purchaseId, inventoryId, &timestamp);
         All of the `int` functions
          - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
-int transactionSelectById(char *id, char *purchaseId, char *inventoryId);   // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+int transactionSelectById(char *id, char *purchaseId, char *inventoryId, time_t *timestamp);   // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
 void transactionInsert(char *purchaseId, char *inventoryId);      // Adding a new record to the database
 
@@ -280,13 +281,13 @@ void transactionInsert(char *purchaseId, char *inventoryId);      // Adding a ne
 Declare all the Purchase Database can do*/
 /* 
   Note: To use a function `purchaseSelectById`
-         - Pass the values by reference e.g. purchaseSelectById(id, &totalPrice, customerId, personnelId, &datetime);
+         - Pass the values by reference e.g. purchaseSelectById(id, &totalPrice, customerId, personnelId, &timestamp);
         All of the `int` functions
          - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
-int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *timestamp);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time_t datetime);         // Adding a new record to the database
+void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time_t timestamp);         // Adding a new record to the database
 
 /*-----------------------------------------------------------------------------
 Declare all the Customer Database can do*/
@@ -327,6 +328,15 @@ void settingUpdateStoreName(char *storeName);           // For modifying the `st
 void settingUpdateAddress(char *storeAddress);          // For modifying the `storeAddress`
 void settingUpdatePriceToPoint(double priceToPoint);    // For modifying the `priceToPoint`
 void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `pointToPrice`
+
+/*-----------------------------------------------------------------------------
+Declare all the the report function can do*/
+
+int oneDayReport();                // Total of revenue on one day, return an amount of record
+int multipleDayReport();           // Total of revenue from dd/mm/yyyy to dd/mm/yyyy
+int monthlyReport();               // Total of revenue in yyyy year (show by monthly)
+void personnelSaleReport();         // Total of sale by each merchant
+
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/
