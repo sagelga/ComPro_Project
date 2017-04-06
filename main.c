@@ -5,14 +5,12 @@
 int main(){
 // This program will run first. POS Interface configuration will be called, and ready to work.
     screenClear();
-    screenAdjust();
     initDatabase();
+    screenAdjust();
     return 0;
 }
 
 void screenAdjust(){
-                     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::70 chart 
-                     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     char text1[107] = "";
     char text2[107] = "  This is the initiation of the POS Systems!";
     char text3[107] = "  The program screen size is optimized for 140 x 40 pixel terminal";
@@ -63,22 +61,25 @@ void authInterface () {
     for (int i = 0;i<34;i++)
         bannerBlankBorder();
     bannerFullBorder();
-    bannerUserInput();
 
     char flags[130] = "Welcome Back";
-    char username[130] = "Kumamon"; // Take data from SESSION struct;
+    char username[130] = "Kumamon"; // Copy data to SESSION struct;
+    bannerUserInput();
     scanf("%s",username); // Then save to session struct
 
-    strcpy(flags,username);
-    strcpy(flags,"!");
+    screenClear ();
 
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Sign in to the System");
     bannerFullBorder();
+
+    strcpy(flags,username);
+    strcpy(flags,"!");
     bannerBlankBorderTextCen(flags);
+
     bannerBlankBorder();
     bannerBlankBorderTextCen("Please type in your password");
-    for (int i = 0;i<28;i++)
+    for (int i = 0;i<32;i++)
         bannerBlankBorder();
     bannerFullBorder();
     bannerUserInput();
@@ -90,6 +91,8 @@ void authInterface () {
     // If the username and the password is matched from the database -> Call authInterfaceComplete();
     // If the username and the password is not matched from the database -> Call authInterfaceFail();
     // If these were interrupt -> Call authInterfaceError();
+
+    /* In case of BETA TEST only     Calling ->*/ authInterfaceComplete ();
 
 }
 
@@ -126,6 +129,7 @@ void switchHub() {
 
     char flags;
     scanf(" %c", &flags);
+    screenClear ();
 
     switch (flags) {
         case ('1'): // Sign In / Sign Out
@@ -182,7 +186,7 @@ void switchHub() {
 }
 
 void switchHubManager() {
-    char username[8] = "Default";
+    char username[8] = "Default"; // Pull data from the SESSION struct
     char text1[107] = "Welcome back ";
     strcat (text1, username);
     strcat (text1, "!");
@@ -536,7 +540,8 @@ void authInterfaceComplete(){
     for ( int i = 0; i < 36; i++ ) {
         bannerBlankBorder ();
     }
-
+    bannerFullBorder ();
+    delay (5);
     // If user are admin (0) -> Redirect to switchHub();
     // If user are manager (1) -> Redirect to switchHubManager();
     // If user are sales (2) -> Redirect to switchHubSale();
@@ -598,8 +603,9 @@ void authInterfaceError () {
 
 void delay (int interval) {
     // This function will stop all threads from executing everything. Please be cautious about this...
-        printf ("Please wait for %d seconds to continue", interval);
-        sleep (interval); // Stopping all threads from executing something for x seconds.
+        sleep (interval-1); // Stopping all threads from executing something for x seconds.
+    screenClear ();
+    sleep(1);
     }
 
 int isFileExist(const char *filename){
@@ -958,6 +964,10 @@ void settingFileWrite(){
 
     fprintf(fp, "%s\t%s\t%lf\t%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
     fclose(fp);
+}
+
+void personnelFileWrite(){
+
 }
 
 int personnelSelectById(char *id, char *firstname, char *lastname, int *role, char *username, char *password, char *barcodeToken){
