@@ -371,7 +371,7 @@ int authenticateByToken(char *barcodeToken);                   // For signing in
 void deauthenticate();          // For signing out
 void authInterface();           // For sign in interface
 void authInterfaceComplete();   // For complete sign in interface
-void authInterfaceFailed();     // For non - complete sign in interface (Error from cancel)
+void authInterfaceFail();     // For non - complete sign in interface (Error from cancel)
 void authInterfaceError();      // For non - complete sign in interface (Other type of error)
 
 /*
