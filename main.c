@@ -350,7 +350,75 @@ void inventorySwitchHub () {
 
 void authInterfaceComplete(){
     bannerFullBorder();
-    ban
+    bannerBlankBorderTextCen ("Your login is now complete. We are now proceeding you to the program");
+    bannerFullBorder ();
+
+    for ( int i = 0; i < 36; i++ ) {
+        bannerBlankBorder ();
+    }
+
+    // If user are admin (0) -> Redirect to switchHub();
+    // If user are manager (1) -> Redirect to switchHubManager();
+    // If user are sales (2) -> Redirect to switchHubSale();
+
+    /* During this betq test only (assuming all user are admin) ->*/ switchHub ();
+}
+
+void authInterfaceFail () {
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Your login credentials is incorrect.");
+    bannerFullBorder ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("We are redirecting you try again. If you wish to do that, type anything to continue");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("or type 'N' to exit the program");
+
+    for ( int i = 0; i < 32; i++ )
+        bannerBlankBorder ();
+
+    bannerFullBorder ();
+    bannerUserInput ();
+    char flag = "";
+    scanf ("%c", flag);
+
+    switch ( flag ) {
+
+        case ('N'):
+            terminate ();
+            return;
+
+        case ('n'):
+            terminate ();
+            return;
+
+        default:
+            authInterface ();
+            return;
+    }
+    // If user type anything (except N or n) program will not be terminate + rerouting to login page again
+    // If user type 'N' or 'n' program will be rerouting to terminate(); and they can shut the program down...
+}
+
+void authInterfaceError () {
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Oops!");
+    bannerFullBorder ();
+
+    bannerBlankBorderTextCen ("We are currently into the problem, where your credential are not working properly");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Please try again or contact an administrator if this happens too many times");
+    for ( int i = 0; i < 33; i++ )
+        bannerBlankBorder ();
+    bannerFullBorder ();
+}
+
+void delay (int interval) {
+    // This function will stop all threads from executing everything. Please be cautious about this...
+    for ( interval = interval; interval > 0; interval-- ) {
+        printf ("\rPlease wait for %d seconds to continue", interval);
+        sleep (1); // Stopping all threads from executing something for x seconds.
+        printf ("\r                                                                               ");
+    }
 }
 
 int isFileExist(const char *filename){
@@ -604,10 +672,6 @@ void settingFileRead(){
 
 }
 
-void personnelFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
 void inventoryDatabaseInterface(){
 
     numberOfRecords = RecordCount.personnel;
@@ -1090,7 +1154,7 @@ int customerSelectById(char *id, char *firstname, char *lastname, char *gender, 
 int customerInsert(char *id, char *firstname, char *lastname, char gender){
     int tailIndex = RecordCount.customer;
 
-    // To comfirm that `id` is unique
+    // To confirm that `id` is unique
     for(int i = 0; i < tailIndex; i++){
         if(strcmp(Customer[i].id, id) == 0)
             return 0;   // Error: Customer ID already exists
@@ -1328,6 +1392,7 @@ void deauthenticate(){
     Session.isLogedin = 0;
 }
 
+void inventoryDatabaseInterface () {
     /*ID|Name|Price|Profit|Category|In Stock
       -|-|-|-|-|-
       13 char|62 char|10 double|10 double|25 char|8 int*/
@@ -1419,7 +1484,6 @@ void cashierInterface () {
     char text3[107] = "";
     char text4[107] = "";
     banner (text1,text2,text3,text4);
-
 
 }
 

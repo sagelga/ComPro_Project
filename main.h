@@ -163,6 +163,7 @@ Declare all the gimmicks functions, which will be separate program from the orig
 void terminate();               // For save and stop the program
 void screenAdjust();            // For calculating the screen size to the optimum size
 void screenClear();             // For refreshing the screen to the new one
+void delay (int interval);
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions*/
