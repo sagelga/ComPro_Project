@@ -91,7 +91,7 @@ void authInterface () {
     // If the username and the password is matched from the database -> Call authInterfaceComplete(); --> check_matched = 1
     // If the username and the password is not matched from the database -> Call authInterfaceFail(); --> check_matched = 2
     // If these were interrupt -> Call authInterfaceError(); --> check_matched = 0
-    check_matched = 0;
+    int check_matched = 0;
     for (int user_count = 0; user_count < RecordCount.personnel; ++user_count)
     {
         if (strcmp(username, Personnel[user_count].username) == 0)
