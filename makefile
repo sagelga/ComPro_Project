@@ -1,2 +1,7 @@
-hellomake: main.c
-	gcc -o hellomake main.c -I.
+EXEC = Click-to-run-POS
+
+$(EXEC): main.c main.h
+	gcc -o $(EXEC) main.c -std=c99 -I.
+
+clean:
+	rm -f $(EXEC)

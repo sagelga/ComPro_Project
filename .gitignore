@@ -3,6 +3,9 @@
 
 \.idea/
 
+
+*.out
+
 *.cmake
 
 *.bin
@@ -16,3 +19,7 @@ CMakeLists\.txt
 *.cbp
 
 cmake-build-debug/
+
+CMakeLists\.txt
+
+click_here_to_run
