@@ -359,7 +359,7 @@ void cashierInterface();
 
 /*-----------------------------------------------------------------------------
 Declares all the authentication functions and interface*/
-int authenticateByUsername(char *username, char *password);    // For signing in (Return 1 = Success | 0 = Incorrect Username/Password)
+int authenticateByUsername(char *username, char *password);    // For signing in (Return 1 = Success | 0 = Password Incorrect | -1 = User not found)
 int authenticateByToken(char *barcodeToken);                   // For signing in (Return 1 = Success | 0 = Token Not found)
 void deauthenticate();          // For signing out
 /*

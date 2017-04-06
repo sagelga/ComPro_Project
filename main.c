@@ -1117,13 +1117,13 @@ int authenticateByUsername(char *username, char *password){
                 // Save user's information on the Session
                 Session.user = Personnel[i];
                 Session.isLogedin = 1;
-                return 1;
+                return 1;   // Login success
             }
             else
-                return 0;
+                return 0;   // Password incorrect
         }
     }
-    return 0;
+    return -1;  // User Not found
 }
 
 int authenticateByToken(char *barcodeToken){
@@ -1145,9 +1145,7 @@ void deauthenticate(){
     Session.isLogedin = 0;
 }
 
-int oneDayReport(){
 
-}
 
 
 /*
