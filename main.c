@@ -395,18 +395,18 @@ void terminate(){
 
 
 void screenClear(){
-    // This function will clean the screen, and the other function will reprint the page.
-    system("clear");
+	// This function will clean the screen, and the other function will reprint the page.
+	system("clear");
 }
 
 void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
-    // This function will print out the official banner.
-    printf(":: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf(":: ██╔══██╗██╔═══██╗██╔════╝ :: %-105s ::\n", bannerLine1);
-    printf(":: ██████╔╝██║   ██║███████╗ :: %-105s ::\n", bannerLine2);
-    printf(":: ██╔═══╝ ██║   ██║╚════██║ :: %-105s ::\n", bannerLine3);
-    printf(":: ██║     ╚██████╔╝███████║ :: %-105s ::\n", bannerLine4);
-    printf(":: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+	// This function will print out the official banner.
+	printf(":: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+	printf(":: ██╔══██╗██╔═══██╗██╔════╝ :: %-105s ::\n", bannerLine1);
+	printf(":: ██████╔╝██║   ██║███████╗ :: %-105s ::\n", bannerLine2);
+	printf(":: ██╔═══╝ ██║   ██║╚════██║ :: %-105s ::\n", bannerLine3);
+	printf(":: ██║     ╚██████╔╝███████║ :: %-105s ::\n", bannerLine4);
+	printf(":: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
 void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
@@ -462,17 +462,17 @@ void settingsSwitchHub () {
     bannerBlankBorderTextCen("3. Change store name");
     bannerBlankBorderTextCen("4. Change store address");
 
-    char functionSwitch;
-    scanf("%c", &functionSwitch);
+	char functionSwitch;
+	scanf("%c", &functionSwitch);
 
-    switch(functionSwitch){
+	switch(functionSwitch){
 
-        case ('1'):
-            return;
-        default:
-            return;
+		case ('1'):
+			return;
+		default:
+			return;
 
-    }
+	}
 }
 
 void inventorySwitchHub () {
@@ -609,980 +609,977 @@ void delay (int interval) {
     }
 
 int isFileExist(const char *filename){
-    if( access( filename, F_OK ) != -1 ) {
-        // file exists
-        return 1;
-    } else {
-        // file doesn't exist
-        return 0;
-    }
+	if( access( filename, F_OK ) != -1 ) {
+		// file exists
+		return 1;
+	} else {
+		// file doesn't exist
+		return 0;
+	}
 }
 
 void intToString(char *str, int number){
-    char buffer[200];
-    sprintf(buffer, "%d", number);
-    strcpy(str, buffer);
+	char buffer[200];
+	sprintf(buffer, "%d", number);
+	strcpy(str, buffer);
 }
 
 void initDatabase(){
-    // Database Initial
-    personnelDatabase();
-    inventoryDatabase();
-    categoryDatabase();
-    transactionDatabase();
-    purchaseDatabase();
-    customerDatabase();
-    promotionDatabase();
-    settingDatabase();
+	// Database Initial
+	personnelDatabase();
+	inventoryDatabase();
+	categoryDatabase();
+	transactionDatabase();
+	purchaseDatabase();
+	customerDatabase();
+	promotionDatabase();
+	settingDatabase();
 
-    // Database Seeding
-    personnelFileRead();  
-    inventoryFileRead();  
-    categoryFileRead();   
-    transactionFileRead();
-    purchaseFileRead();   
-    customerFileRead();   
-    promotionFileRead();  
-    settingFileRead();    
+	// Database Seeding
+	personnelFileRead();  
+	inventoryFileRead();  
+	categoryFileRead();   
+	transactionFileRead();
+	purchaseFileRead();   
+	customerFileRead();   
+	promotionFileRead();  
+	settingFileRead();    
 
 }
 
 void personnelDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(personnelDatabaseFile)){
-        fopen(personnelDatabaseFile, "w");
-    }
+	// Check a Database file existance, if it doesn't exist then create the new one.
+	if(!isFileExist(personnelDatabaseFile)){
+		fopen(personnelDatabaseFile, "w");
+	}
 }
 
 void inventoryDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(inventoryDatabaseFile)){
-        fopen(inventoryDatabaseFile, "w");
-    }
+	// Check a Database file existance, if it doesn't exist then create the new one.
+	if(!isFileExist(inventoryDatabaseFile)){
+		fopen(inventoryDatabaseFile, "w");
+	}
 }
 
 void categoryDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(categoryDatabaseFile)){
-        fopen(categoryDatabaseFile, "w");
-    }
+	// Check a Database file existance, if it doesn't exist then create the new one.
+	if(!isFileExist(categoryDatabaseFile)){
+		fopen(categoryDatabaseFile, "w");
+	}
 }
 
 void transactionDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(transactionDatabaseFile)){
-        fopen(transactionDatabaseFile, "w");
-    }
+	// Check a Database file existance, if it doesn't exist then create the new one.
+	if(!isFileExist(transactionDatabaseFile)){
+		fopen(transactionDatabaseFile, "w");
+	}
 }
 
 void purchaseDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(purchaseDatabaseFile)){
-        fopen(purchaseDatabaseFile, "w");
-    }
+	// Check a Database file existance, if it doesn't exist then create the new one.
+	if(!isFileExist(purchaseDatabaseFile)){
+		fopen(purchaseDatabaseFile, "w");
+	}
 }
 
 void customerDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(customerDatabaseFile)){
-        fopen(customerDatabaseFile, "w");
-    }
+	// Check a Database file existance, if it doesn't exist then create the new one.
+	if(!isFileExist(customerDatabaseFile)){
+		fopen(customerDatabaseFile, "w");
+	}
 }
 
 void promotionDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(promotionDatabaseFile)){
-        fopen(promotionDatabaseFile, "w");
-    }
+	// Check a Database file existance, if it doesn't exist then create the new one.
+	if(!isFileExist(promotionDatabaseFile)){
+		fopen(promotionDatabaseFile, "w");
+	}
 }
 
 void settingDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(settingDatabaseFile)){
-        fopen(settingDatabaseFile, "w");
-    }
+	// Check a Database file existance, if it doesn't exist then create the new one.
+	if(!isFileExist(settingDatabaseFile)){
+		fopen(settingDatabaseFile, "w");
+	}
 }
 
 void personnelFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
+	// Fetch records form a Database file to the program memory
+	FILE *fp;                           // File Pointer
 
-    int i = 0;
-    fp = fopen(personnelDatabaseFile, "r");
+	int i = 0;
+	fp = fopen(personnelDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%d\t%[^\t]\t%[^\t]\t%[^\n]", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, &Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken) != EOF){
-        i++;
-    }
+	while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%d\t%[^\t]\t%[^\t]\t%[^\n]", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, &Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken) != EOF){
+		i++;
+	}
 
-    RecordCount.personnel = i;          // Save a number of records to the Record Counter
-    fclose(fp);
+	RecordCount.personnel = i;          // Save a number of records to the Record Counter
+	fclose(fp);
 
-    // For debuging
-    // i--;
-    // printf(">>>> %s-%s-%s-%d-%s-%s-%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken);
+	// For debuging
+	// i--;
+	// printf(">>>> %s-%s-%s-%d-%s-%s-%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken);
 
 }
 
 void inventoryFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
+	// Fetch records form a Database file to the program memory
+	FILE *fp;                           // File Pointer
 
-    int i = 0;
-    fp = fopen(inventoryDatabaseFile, "r");
+	int i = 0;
+	fp = fopen(inventoryDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%[^\t]\t%lf\t%lf\t%s\t%u", Inventory[i].id, Inventory[i].name, &Inventory[i].price, &Inventory[i].profit, Inventory[i].categoryId, &Inventory[i].remain) != EOF){
-        i++;
-    }
+	while(fscanf(fp, "%s\t%[^\t]\t%lf\t%lf\t%u\t%u", Inventory[i].id, Inventory[i].name, &Inventory[i].price, &Inventory[i].profit, &Inventory[i].categoryId, &Inventory[i].remain) != EOF){
+		i++;
+	}
 
-    RecordCount.inventory = i;          // Save a number of records to the Record Counter
-    fclose(fp);
+	RecordCount.inventory = i;          // Save a number of records to the Record Counter
+	fclose(fp);
 
-    // For debuging
-    // i--;
-    // printf(">>>> %s\t%s\t%lf\t%lf\t%s\t%u\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
+	// For debuging
+	// i--;
+	// printf(">>>> %s\t%s\t%lf\t%lf\t%u\t%u\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
 
 }
 
 void categoryFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
+	// Fetch records form a Database file to the program memory
+	FILE *fp;                           // File Pointer
 
-    int i = 0;
-    fp = fopen(categoryDatabaseFile, "r");
+	int i = 0;
+	fp = fopen(categoryDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%[^\n]", Category[i].id, Category[i].name) != EOF){
-        i++;
-    }
+	while(fscanf(fp, "%u\t%[^\n]", &Category[i].id, Category[i].name) != EOF){
+		i++;
+	}
 
-    RecordCount.category = i;          // Save a number of records to the Record Counter
-    fclose(fp);
+	RecordCount.category = i;          // Save a number of records to the Record Counter
+	fclose(fp);
 
-    // For debugging
-    // i--;
-    // printf(">>>> %s\t%s\n", Category[i].id, Category[i].name);
+	// For debuging
+	// i--;
+	// printf(">>>> %u\t%s\n", Category[i].id, Category[i].name);
 
 }
 
 void transactionFileRead(){
 
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
+	// Fetch records form a Database file to the program memory
+	FILE *fp;                           // File Pointer
 
-    int i = 0;
-    fp = fopen(transactionDatabaseFile, "r");
+	int i = 0;
+	fp = fopen(transactionDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%s\t%s", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId) != EOF){
-        i++;
-    }
+	while(fscanf(fp, "%u\t%u\t%s\t%lu", &Transaction[i].id, &Transaction[i].purchaseId, Transaction[i].inventoryId, &Transaction[i].timestamp) != EOF){
+		i++;
+	}
 
-    RecordCount.transaction = i;          // Save a number of records to the Record Counter
-    fclose(fp);
+	RecordCount.transaction = i;          // Save a number of records to the Record Counter
+	fclose(fp);
 
-    // For debugging
-    // i--;
-    // printf(">>>> %s-%s-%s\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId);
+	// For debuging
+	// i--;
+	// printf(">>>> %u-%u-%s-%lu\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId, Transaction[i].timestamp);
 
 }
 
 void purchaseFileRead(){
 
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
+	// Fetch records form a Database file to the program memory
+	FILE *fp;                           // File Pointer
 
-    int i = 0;
-    fp = fopen(purchaseDatabaseFile, "r");
+	int i = 0;
+	fp = fopen(purchaseDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%lf\t%s\t%s\t%lu", Purchase[i].id, &Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, &Purchase[i].datetime) != EOF){
-        i++;
-    }
+	while(fscanf(fp, "%u\t%lf\t%s\t%s\t%lu", &Purchase[i].id, &Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, &Purchase[i].timestamp) != EOF){
+		i++;
+	}
 
-    RecordCount.purchase = i;          // Save a number of records to the Record Counter
-    fclose(fp);
+	RecordCount.purchase = i;          // Save a number of records to the Record Counter
+	fclose(fp);
 
-    // For debugging
-    // i--;
-    // printf(">>>> %s\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].datetime);
+	// For debuging
+	// i--;
+	// printf(">>>> %u\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].timestamp);
 
 }
 
 void customerFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
+	// Fetch records form a Database file to the program memory
+	FILE *fp;                           // File Pointer
 
-    int i = 0;
-    fp = fopen(customerDatabaseFile, "r");
+	int i = 0;
+	fp = fopen(customerDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%c\t%lf\t%lf", Customer[i].id, Customer[i].firstname, Customer[i].lastname, &Customer[i].gender, &Customer[i].point, &Customer[i].totalBuy) != EOF){
-        i++;
-    }
+	while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%c\t%lf\t%lf", Customer[i].id, Customer[i].firstname, Customer[i].lastname, &Customer[i].gender, &Customer[i].point, &Customer[i].totalBuy) != EOF){
+		i++;
+	}
 
-    RecordCount.customer = i;          // Save a number of records to the Record Counter
-    fclose(fp);
+	RecordCount.customer = i;          // Save a number of records to the Record Counter
+	fclose(fp);
 
-    // For debugging
-    // i--;
-    // printf(">>>> %s\t%s\t%s\t%c\t%lf\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point, Customer[i].totalBuy);
+	// For debuging
+	// i--;
+	// printf(">>>> %s\t%s\t%s\t%c\t%lf\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point, Customer[i].totalBuy);
 
 }
 
 void promotionFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
+	// Fetch records form a Database file to the program memory
+	FILE *fp;                           // File Pointer
 
-    int i = 0;
-    fp = fopen(promotionDatabaseFile, "r");
+	int i = 0;
+	fp = fopen(promotionDatabaseFile, "r");
 
-    while(fscanf(fp, "%s\t%lf\t%d", Promotion[i].id, &Promotion[i].price, &Promotion[i].status) != EOF){
-        i++;
-    }
+	while(fscanf(fp, "%s\t%lf\t%d", Promotion[i].id, &Promotion[i].price, &Promotion[i].status) != EOF){
+		i++;
+	}
 
-    RecordCount.promotion = i;          // Save a number of records to the Record Counter
-    fclose(fp);
+	RecordCount.promotion = i;          // Save a number of records to the Record Counter
+	fclose(fp);
 
-    // For debugging
-    // i--;
-    // printf(">>>> %s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
+	// For debuging
+	// i--;
+	// printf(">>>> %s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
 
 }
 
 void settingFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
+	// Fetch records form a Database file to the program memory
+	FILE *fp;                           // File Pointer
 
-    fp = fopen(settingDatabaseFile, "r");
+	fp = fopen(settingDatabaseFile, "r");
 
-    fscanf(fp, "%[^\t]\t%[^\t]\t%lf\t%lf", Setting.storeName, Setting.storeAddress, &Setting.priceToPoint, &Setting.pointToPrice);
-    fclose(fp);
+	fscanf(fp, "%[^\t]\t%[^\t]\t%lf\t%lf", Setting.storeName, Setting.storeAddress, &Setting.priceToPoint, &Setting.pointToPrice);
+	fclose(fp);
 
-    // For debugging
-    // printf(">>>> %s--%s--%lf--%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
+	// For debuging
+	// printf(">>>> %s--%s--%lf--%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
 
-}
-
-/*
-void inventoryDatabaseInterface(){
-
-    numberOfRecords = RecordCount.personnel;
-    fp = fopen(personnelDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%s\t%s\t%d\t%s\t%s\t%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken);
-
-    fclose(fp);
-}
-*/
-
-void inventoryFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
-
-    numberOfRecords = RecordCount.inventory;
-    fp = fopen(inventoryDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%s\t%lf\t%lf\t%s\t%u\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
-
-    fclose(fp);
-}
-
-void categoryFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
-
-    numberOfRecords = RecordCount.category;
-    fp = fopen(categoryDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%s\n", Category[i].id, Category[i].name);
-
-    fclose(fp);
-}
-
-void transactionFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
-
-    numberOfRecords = RecordCount.transaction;
-    fp = fopen(transactionDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%s\t%s\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId);
-
-    fclose(fp);
-}
-
-void purchaseFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
-
-    numberOfRecords = RecordCount.purchase;
-    fp = fopen(purchaseDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].datetime);
-
-    fclose(fp);
-}
-
-void customerFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
-
-    numberOfRecords = RecordCount.customer;
-    fp = fopen(customerDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%s\t%s\t%c\t%lf\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point, Customer[i].totalBuy);
-
-    fclose(fp);
-}
-
-void promotionFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
-
-    numberOfRecords = RecordCount.promotion;
-    fp = fopen(promotionDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
-
-    fclose(fp);
-}
-
-void settingFileWrite(){
-    // Save all of the settings to a database file
-    FILE *fp;               // File Pointer
-
-    fp = fopen(settingDatabaseFile, "w+");
-
-    fprintf(fp, "%s\t%s\t%lf\t%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
-    fclose(fp);
 }
 
 void personnelFileWrite(){
+	// Save all of the records to a database file
+	FILE *fp;                   // File Pointer
+	int numberOfRecords;        // Number of the records in a table
 
+	numberOfRecords = RecordCount.personnel;
+	fp = fopen(personnelDatabaseFile, "w+");
+
+	for(int i = 0; i < numberOfRecords; i++)
+		fprintf(fp, "%s\t%s\t%s\t%d\t%s\t%s\t%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken);
+
+	fclose(fp);
 }
 
+void inventoryFileWrite(){
+	// Save all of the records to a database file
+	FILE *fp;                   // File Pointer
+	int numberOfRecords;        // Number of the records in a table
+
+	numberOfRecords = RecordCount.inventory;
+	fp = fopen(inventoryDatabaseFile, "w+");
+
+	for(int i = 0; i < numberOfRecords; i++)
+		fprintf(fp, "%s\t%s\t%lf\t%lf\t%u\t%u\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
+
+	fclose(fp);
+}
+
+void categoryFileWrite(){
+	// Save all of the records to a database file
+	FILE *fp;                   // File Pointer
+	int numberOfRecords;        // Number of the records in a table
+
+	numberOfRecords = RecordCount.category;
+	fp = fopen(categoryDatabaseFile, "w+");
+
+	for(int i = 0; i < numberOfRecords; i++)
+		fprintf(fp, "%u\t%s\n", Category[i].id, Category[i].name);
+
+	fclose(fp);
+}
+
+void transactionFileWrite(){
+	// Save all of the records to a database file
+	FILE *fp;                   // File Pointer
+	int numberOfRecords;        // Number of the records in a table
+
+	numberOfRecords = RecordCount.transaction;
+	fp = fopen(transactionDatabaseFile, "w+");
+
+	for(int i = 0; i < numberOfRecords; i++)
+		fprintf(fp, "%u\t%u\t%s\t%lu\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId, Transaction[i].timestamp);
+
+	fclose(fp);
+}
+
+void purchaseFileWrite(){
+	// Save all of the records to a database file
+	FILE *fp;                   // File Pointer
+	int numberOfRecords;        // Number of the records in a table
+
+	numberOfRecords = RecordCount.purchase;
+	fp = fopen(purchaseDatabaseFile, "w+");
+
+	for(int i = 0; i < numberOfRecords; i++)
+		fprintf(fp, "%u\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].timestamp);
+
+	fclose(fp);
+}
+
+void customerFileWrite(){
+	// Save all of the records to a database file
+	FILE *fp;                   // File Pointer
+	int numberOfRecords;        // Number of the records in a table
+
+	numberOfRecords = RecordCount.customer;
+	fp = fopen(customerDatabaseFile, "w+");
+
+	for(int i = 0; i < numberOfRecords; i++)
+		fprintf(fp, "%s\t%s\t%s\t%c\t%lf\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point, Customer[i].totalBuy);
+
+	fclose(fp);
+}
+
+void promotionFileWrite(){
+	// Save all of the records to a database file
+	FILE *fp;                   // File Pointer
+	int numberOfRecords;        // Number of the records in a table
+
+	numberOfRecords = RecordCount.promotion;
+	fp = fopen(promotionDatabaseFile, "w+");
+
+	for(int i = 0; i < numberOfRecords; i++)
+		fprintf(fp, "%s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
+
+	fclose(fp);
+}
+
+void settingFileWrite(){
+	// Save all of the settings to a database file
+	FILE *fp;               // File Pointer
+
+	fp = fopen(settingDatabaseFile, "w+");
+
+	fprintf(fp, "%s\t%s\t%lf\t%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
+	fclose(fp);
+}
+
+
 int personnelSelectById(char *id, char *firstname, char *lastname, int *role, char *username, char *password, char *barcodeToken){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.personnel;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Personnel[i].id, id) == 0){
-            // Return all values back by reference
-            strcpy(firstname, Personnel[i].firstname);
-            strcpy(lastname, Personnel[i].lastname);
-            *role = Personnel[i].role;
-            strcpy(username, Personnel[i].username);
-            strcpy(password, Personnel[i].password);
-            strcpy(barcodeToken, Personnel[i].barcodeToken);
-            return 1;   // Found a record
-        }
-    }
-    return 0;           // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.personnel;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Personnel[i].id, id) == 0){
+			// Return all values back by reference
+			strcpy(firstname, Personnel[i].firstname);
+			strcpy(lastname, Personnel[i].lastname);
+			*role = Personnel[i].role;
+			strcpy(username, Personnel[i].username);
+			strcpy(password, Personnel[i].password);
+			strcpy(barcodeToken, Personnel[i].barcodeToken);
+			return 1;   // Found a record
+		}
+	}
+	return 0;           // Not found the given `id` in the records
 }
 
 int personnelInsert(char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcodeToken){
-    int tailIndex = RecordCount.personnel;
+	int tailIndex = RecordCount.personnel;
 
-    // To comfirm that `id`, `username` and `barcodeToken` is unique
-    for(int i = 0; i < tailIndex; i++){
-        if(strcmp(Personnel[i].id, id) == 0 || strcmp(Personnel[i].username, username) == 0 || strcmp(Personnel[i].barcodeToken, barcodeToken) == 0)
-            return 0;   // Error: Some field already exists
-    }
+	// To comfirm that `id`, `username` and `barcodeToken` is unique
+	for(int i = 0; i < tailIndex; i++){
+		if(strcmp(Personnel[i].id, id) == 0 || strcmp(Personnel[i].username, username) == 0 || strcmp(Personnel[i].barcodeToken, barcodeToken) == 0)
+			return 0;   // Error: Some field already exists
+	}
 
-    strcpy(Personnel[tailIndex].id, id);
-    strcpy(Personnel[tailIndex].firstname, firstname);
-    strcpy(Personnel[tailIndex].lastname, lastname);
-    Personnel[tailIndex].role = role;
-    strcpy(Personnel[tailIndex].username, username);
-    strcpy(Personnel[tailIndex].password, password);
-    strcpy(Personnel[tailIndex].barcodeToken, barcodeToken);
+	strcpy(Personnel[tailIndex].id, id);
+	strcpy(Personnel[tailIndex].firstname, firstname);
+	strcpy(Personnel[tailIndex].lastname, lastname);
+	Personnel[tailIndex].role = role;
+	strcpy(Personnel[tailIndex].username, username);
+	strcpy(Personnel[tailIndex].password, password);
+	strcpy(Personnel[tailIndex].barcodeToken, barcodeToken);
 
-    RecordCount.personnel++;    // Update the amount of records
+	RecordCount.personnel++;    // Update the amount of records
 
-    personnelFileWrite();       // Save to a Database file
-    return 1;   // Operation Success
+	personnelFileWrite();       // Save to a Database file
+	return 1;   // Operation Success
 }
 
 int personnelUpdateFirstname(char *id, char *firstname){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.personnel;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Personnel[i].id, id) == 0){
-            strcpy(Personnel[i].firstname, firstname);
-            personnelFileWrite();   // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.personnel;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Personnel[i].id, id) == 0){
+			strcpy(Personnel[i].firstname, firstname);
+			personnelFileWrite();   // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int personnelUpdateLastname(char *id, char *lastname){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.personnel;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Personnel[i].id, id) == 0){
-            strcpy(Personnel[i].lastname, lastname);
-            personnelFileWrite();   // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.personnel;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Personnel[i].id, id) == 0){
+			strcpy(Personnel[i].lastname, lastname);
+			personnelFileWrite();   // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int personnelUpdateRole(char *id, int role){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.personnel;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Personnel[i].id, id) == 0){
-            Personnel[i].role = role;
-            personnelFileWrite();   // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.personnel;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Personnel[i].id, id) == 0){
+			Personnel[i].role = role;
+			personnelFileWrite();   // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int personnelUpdatePassword(char *id, char *password){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.personnel;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Personnel[i].id, id) == 0){
-            strcpy(Personnel[i].password, password);
-            personnelFileWrite();   // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.personnel;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Personnel[i].id, id) == 0){
+			strcpy(Personnel[i].password, password);
+			personnelFileWrite();   // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int personnelDelete(char *id){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.personnel;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Personnel[i].id, id) == 0){
-            while(i < numberOfRecords - 1){
-                Personnel[i] = Personnel[i+1];
-                i++;
-            }
-            RecordCount.personnel--;    // Update the amount of records
-            personnelFileWrite();   // Save to a Database file
-            return 1;               // Record successfully deleted
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.personnel;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Personnel[i].id, id) == 0){
+			while(i < numberOfRecords - 1){
+				Personnel[i] = Personnel[i+1];
+				i++;
+			}
+			RecordCount.personnel--;    // Update the amount of records
+			personnelFileWrite();   // Save to a Database file
+			return 1;               // Record successfully deleted
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
-int inventorySelectById(char *id, char *name, double *price, double *profit, char *categoryId, unsigned int *remain){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.inventory;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Inventory[i].id, id) == 0){
-            // Return all values back by reference
-            strcpy(name, Inventory[i].name);
-            *price = Inventory[i].price;
-            *profit = Inventory[i].profit;
-            strcpy(categoryId, Inventory[i].categoryId);
-            *remain = Inventory[i].remain;
+int inventorySelectById(char *id, char *name, double *price, double *profit, unsigned int *categoryId, unsigned int *remain){
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.inventory;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Inventory[i].id, id) == 0){
+			// Return all values back by reference
+			strcpy(name, Inventory[i].name);
+			*price = Inventory[i].price;
+			*profit = Inventory[i].profit;
+			*categoryId = Inventory[i].categoryId;
+			*remain = Inventory[i].remain;
 
-            return 1;   // Found a record
-        }
-    }
-    return 0;           // Not found the given `id` in the records
+			return 1;   // Found a record
+		}
+	}
+	return 0;           // Not found the given `id` in the records
 }
 
-int inventoryInsert(char *id, char *name, double price, double profit, char *categoryId, unsigned int remain){
-    int tailIndex = RecordCount.inventory;
 
-    // To comfirm that `id` is unique
-    for(int i = 0; i < tailIndex; i++){
-        if(strcmp(Inventory[i].id, id) == 0)
-            return 0;   // Error: Barcode ID already exists
-    }
+int inventoryInsert(char *id, char *name, double price, double profit, unsigned int categoryId, unsigned int remain){
+	int tailIndex = RecordCount.inventory;
 
-    strcpy(Inventory[tailIndex].id, id);
-    strcpy(Inventory[tailIndex].name, name);
-    Inventory[tailIndex].price = price;
-    Inventory[tailIndex].profit = profit;
-    strcpy(Inventory[tailIndex].categoryId, categoryId);
-    Inventory[tailIndex].remain = remain;
+	// To comfirm that `id` is unique
+	for(int i = 0; i < tailIndex; i++){
+		if(strcmp(Inventory[i].id, id) == 0)
+			return 0;   // Error: Barcode ID already exists
+	}
 
-    RecordCount.inventory++;    // Update the amount of records
+	strcpy(Inventory[tailIndex].id, id);
+	strcpy(Inventory[tailIndex].name, name);
+	Inventory[tailIndex].price = price;
+	Inventory[tailIndex].profit = profit;
+	Inventory[tailIndex].categoryId = categoryId;
+	Inventory[tailIndex].remain = remain;
 
-    inventoryFileWrite();       // Save to a Database file
-    return 1;                   // Operation Success
+	RecordCount.inventory++;    // Update the amount of records
+
+	inventoryFileWrite();       // Save to a Database file
+	return 1;                   // Operation Success
 }
 
 int inventoryUpdateName(char *id, char *name){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.inventory;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Inventory[i].id, id) == 0){
-            strcpy(Inventory[i].name, name);
-            inventoryFileWrite();   // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.inventory;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Inventory[i].id, id) == 0){
+			strcpy(Inventory[i].name, name);
+			inventoryFileWrite();   // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int inventoryUpdatePrice(char *id, double price){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.inventory;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Inventory[i].id, id) == 0){
-            Inventory[i].price = price;
-            inventoryFileWrite();   // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.inventory;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Inventory[i].id, id) == 0){
+			Inventory[i].price = price;
+			inventoryFileWrite();   // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int inventoryUpdateProfit(char *id, double profit){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.inventory;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Inventory[i].id, id) == 0){
-            Inventory[i].profit = profit;
-            inventoryFileWrite();   // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.inventory;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Inventory[i].id, id) == 0){
+			Inventory[i].profit = profit;
+			inventoryFileWrite();   // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
-int inventoryUpdateCategory(char *id, char *categoryId){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.inventory;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Inventory[i].id, id) == 0){
-            strcpy(Inventory[i].categoryId, categoryId);
-            inventoryFileWrite();   // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+int inventoryUpdateCategory(char *id, unsigned int categoryId){
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.inventory;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Inventory[i].id, id) == 0){
+			Inventory[i].categoryId = categoryId;
+			inventoryFileWrite();   // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int inventoryUpdateRemain(char *id, unsigned int remain){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.inventory;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Inventory[i].id, id) == 0){
-            Inventory[i].remain = remain;
-            inventoryFileWrite();   // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.inventory;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Inventory[i].id, id) == 0){
+			Inventory[i].remain = remain;
+			inventoryFileWrite();   // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int inventoryDelete(char *id){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.inventory;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Inventory[i].id, id) == 0){
-            while(i < numberOfRecords - 1){
-                Inventory[i] = Inventory[i+1];
-                i++;
-            }
-            RecordCount.inventory--;    // Update the amount of records
-            inventoryFileWrite();   // Save to a Database file
-            return 1;               // Record successfully deleted
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.inventory;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Inventory[i].id, id) == 0){
+			while(i < numberOfRecords - 1){
+				Inventory[i] = Inventory[i+1];
+				i++;
+			}
+			RecordCount.inventory--;    // Update the amount of records
+			inventoryFileWrite();   // Save to a Database file
+			return 1;               // Record successfully deleted
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
-int categorySelectById(char *id, char *name){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.category;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Category[i].id, id) == 0){
-            // Return all values back by reference
-            strcpy(name, Category[i].name);
+int categorySelectById(unsigned int id, char *name){
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.category;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(Category[i].id == id){
+			// Return all values back by reference
+			strcpy(name, Category[i].name);
 
-            return 1;   // Found a record
-        }
-    }
-    return 0;           // Not found the given `id` in the records
+			return 1;   // Found a record
+		}
+	}
+	return 0;           // Not found the given `id` in the records
 }
 
 int categoryInsert(char *name){
-    int tailIndex = RecordCount.category;
+	int tailIndex = RecordCount.category;
 
-    // To comfirm that `name` is unique
-    for(int i = 0; i < tailIndex; i++){
-        if(strcmp(Inventory[i].name, name) == 0)
-            return 0;   // Error: Category name already exists
-    }
+	// To comfirm that `name` is unique
+	for(int i = 0; i < tailIndex; i++){
+		if(strcmp(Inventory[i].name, name) == 0)
+			return 0;   // Error: Category name already exists
+	}
 
-    char id[10];
-    intToString(id, tailIndex + 1);     // Auto-increment (+ 1 to Start at 1)
-    strcpy(Category[tailIndex].id, id);
-    strcpy(Category[tailIndex].name, name);
+	Category[tailIndex].id = tailIndex; // Auto-increment 
+	strcpy(Category[tailIndex].name, name);
 
-    RecordCount.category++;    // Update the amount of records
+	RecordCount.category++;    // Update the amount of records
 
-    categoryFileWrite();       // Save to a Database file
-    return 1;                  // Operation Success
+	categoryFileWrite();       // Save to a Database file
+	return 1;                  // Operation Success
 }
 
-int categoryUpdateName(char *id, char *name){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.category;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Category[i].id, id) == 0){
-            strcpy(Category[i].name, name);
-            categoryFileWrite();    // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+int categoryUpdateName(unsigned int id, char *name){
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.category;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(Category[i].id == id){
+			strcpy(Category[i].name, name);
+			categoryFileWrite();    // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
-int categoryDelete(char *id){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.category;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Category[i].id, id) == 0){
-            while(i < numberOfRecords - 1){
-                Category[i] = Category[i+1];
-                i++;
-            }
-            RecordCount.category--;    // Update the amount of records
-            categoryFileWrite();       // Save to a Database file
-            return 1;                  // Record successfully deleted
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+int categoryDelete(unsigned int id){
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.category;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(Category[i].id == id){
+			while(i < numberOfRecords - 1){
+				Category[i] = Category[i+1];
+				i++;
+			}
+			RecordCount.category--;    // Update the amount of records
+			categoryFileWrite();       // Save to a Database file
+			return 1;                  // Record successfully deleted
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
-int transactionSelectById(char *id, char *purchaseId, char *inventoryId){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.transaction;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Transaction[i].id, id) == 0){
-            // Return all values back by reference
-            strcpy(purchaseId, Transaction[i].purchaseId);
-            strcpy(inventoryId, Transaction[i].inventoryId);
+int transactionSelectById(unsigned int id, unsigned int *purchaseId, char *inventoryId, time_t *timestamp){
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.transaction;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(Transaction[i].id == id){
+			// Return all values back by reference
+			*purchaseId = Transaction[i].purchaseId;
+			strcpy(inventoryId, Transaction[i].inventoryId);
+			*timestamp = Transaction[i].timestamp;
 
-            return 1;   // Found a record
-        }
-    }
-    return 0;           // Not found the given `id` in the records
+			return 1;   // Found a record
+		}
+	}
+	return 0;           // Not found the given `id` in the records
 }
 
-void transactionInsert(char *purchaseId, char *inventoryId){
-    int tailIndex = RecordCount.transaction;
-    char id[10];
-    intToString(id, tailIndex + 1);     // Auto-increment (+ 1 to Start at 1)
-    strcpy(Transaction[tailIndex].id, id);
-    strcpy(Transaction[tailIndex].purchaseId, purchaseId);
-    strcpy(Transaction[tailIndex].inventoryId, inventoryId);
+void transactionInsert(unsigned int purchaseId, char *inventoryId){
+	int tailIndex = RecordCount.transaction;
 
-    RecordCount.transaction++;    // Update the amount of records
+	Transaction[tailIndex].id = tailIndex;  // Auto-increment 
+	Transaction[tailIndex].purchaseId = purchaseId;
+	strcpy(Transaction[tailIndex].inventoryId, inventoryId);
+	Transaction[tailIndex].timestamp = time(NULL);  // Current time as time_t (Epoch format)
 
-    transactionFileWrite();       // Save to a Database file
+	RecordCount.transaction++;    // Update the amount of records
+
+	transactionFileWrite();       // Save to a Database file
 }
 
-int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *datetime){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.purchase;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Purchase[i].id, id) == 0){
-            // Return all values back by reference
-            *totalPrice = Purchase[i].totalPrice;
-            strcpy(customerId, Purchase[i].customerId);
-            strcpy(personnelId, Purchase[i].personnelId);
-            *datetime = Purchase[i].datetime;
+int purchaseSelectById(unsigned int id, double *totalPrice, char *customerId, char *personnelId, time_t *timestamp){
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.purchase;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(Purchase[i].id == id){
+			// Return all values back by reference
+			*totalPrice = Purchase[i].totalPrice;
+			strcpy(customerId, Purchase[i].customerId);
+			strcpy(personnelId, Purchase[i].personnelId);
+			*timestamp = Purchase[i].timestamp;
 
-            return 1;   // Found a record
-        }
-    }
-    return 0;           // Not found the given `id` in the records
+			return 1;   // Found a record
+		}
+	}
+	return 0;           // Not found the given `id` in the records
 }
 
-void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time_t datetime){
-    int tailIndex = RecordCount.purchase;
-    char id[10];
-    intToString(id, tailIndex + 1);     // Auto-increment (+ 1 to Start at 1)
-    strcpy(Purchase[tailIndex].id, id);
-    Purchase[tailIndex].totalPrice = totalPrice;
-    strcpy(Purchase[tailIndex].customerId, customerId);
-    strcpy(Purchase[tailIndex].personnelId, personnelId);
-    Purchase[tailIndex].datetime = datetime;
+void purchaseInsert(double totalPrice, char *customerId, char *personnelId){
+	int tailIndex = RecordCount.purchase;
 
-    RecordCount.purchase++;    // Update the amount of records
+	Purchase[tailIndex].id = tailIndex;    // Auto-increment
+	Purchase[tailIndex].totalPrice = totalPrice;
+	strcpy(Purchase[tailIndex].customerId, customerId);
+	strcpy(Purchase[tailIndex].personnelId, personnelId);
+	Purchase[tailIndex].timestamp = time(NULL);     // Current time as time_t (Epoch format)
 
-    purchaseFileWrite();       // Save to a Database file
+	RecordCount.purchase++;    // Update the amount of records
+
+	purchaseFileWrite();       // Save to a Database file
 }
 
 int customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
-            // Return all values back by reference
-            strcpy(firstname, Customer[i].firstname);
-            strcpy(lastname, Customer[i].lastname);
-            *gender = Customer[i].gender;
-            *point = Customer[i].point;
-            *totalBuy = Customer[i].totalBuy;
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.customer;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Customer[i].id, id) == 0){
+			// Return all values back by reference
+			strcpy(firstname, Customer[i].firstname);
+			strcpy(lastname, Customer[i].lastname);
+			*gender = Customer[i].gender;
+			*point = Customer[i].point;
+			*totalBuy = Customer[i].totalBuy;
 
-            return 1;   // Found a record
-        }
-    }
-    return 0;           // Not found the given `id` in the records
+			return 1;   // Found a record
+		}
+	}
+	return 0;           // Not found the given `id` in the records
 }
 
 int customerInsert(char *id, char *firstname, char *lastname, char gender){
-    int tailIndex = RecordCount.customer;
+	int tailIndex = RecordCount.customer;
 
-    // To confirm that `id` is unique
-    for(int i = 0; i < tailIndex; i++){
-        if(strcmp(Customer[i].id, id) == 0)
-            return 0;   // Error: Customer ID already exists
-    }
+	// To comfirm that `id` is unique
+	for(int i = 0; i < tailIndex; i++){
+		if(strcmp(Customer[i].id, id) == 0)
+			return 0;   // Error: Customer ID already exists
+	}
 
-    strcpy(Customer[tailIndex].id, id);
-    strcpy(Customer[tailIndex].firstname, firstname);
-    strcpy(Customer[tailIndex].lastname, lastname);
-    Customer[tailIndex].gender = gender;
-    Customer[tailIndex].point = 0;          // Initail value
-    Customer[tailIndex].totalBuy = 0;       // Initail value
+	strcpy(Customer[tailIndex].id, id);
+	strcpy(Customer[tailIndex].firstname, firstname);
+	strcpy(Customer[tailIndex].lastname, lastname);
+	Customer[tailIndex].gender = gender;
+	Customer[tailIndex].point = 0;          // Initail value
+	Customer[tailIndex].totalBuy = 0;       // Initail value
 
-    RecordCount.customer++;    // Update the amount of records
+	RecordCount.customer++;    // Update the amount of records
 
-    customerFileWrite();       // Save to a Database file
-    return 1;                  // Operation Success
+	customerFileWrite();       // Save to a Database file
+	return 1;                  // Operation Success
 }
 
 int customerUpdateFirstname(char *id, char *firstname){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
-            strcpy(Customer[i].firstname, firstname);
-            customerFileWrite();    // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.customer;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Customer[i].id, id) == 0){
+			strcpy(Customer[i].firstname, firstname);
+			customerFileWrite();    // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int customerUpdateLastname(char *id, char *lastname){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
-            strcpy(Customer[i].lastname, lastname);
-            customerFileWrite();    // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.customer;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Customer[i].id, id) == 0){
+			strcpy(Customer[i].lastname, lastname);
+			customerFileWrite();    // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int customerUpdateGender(char *id, char gender){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
-            Customer[i].gender = gender;
-            customerFileWrite();    // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.customer;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Customer[i].id, id) == 0){
+			Customer[i].gender = gender;
+			customerFileWrite();    // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int customerUpdatePoint(char *id, double point){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
-            Customer[i].point = point;
-            customerFileWrite();    // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.customer;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Customer[i].id, id) == 0){
+			Customer[i].point = point;
+			customerFileWrite();    // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int customerUpdatetotalBuy(char *id, double totalBuy){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
-            Customer[i].totalBuy = totalBuy;
-            customerFileWrite();    // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.customer;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Customer[i].id, id) == 0){
+			Customer[i].totalBuy = totalBuy;
+			customerFileWrite();    // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int customerDelete(char *id){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
-            while(i < numberOfRecords - 1){
-                Customer[i] = Customer[i+1];
-                i++;
-            }
-            RecordCount.customer--;    // Update the amount of records
-            customerFileWrite();       // Save to a Database file
-            return 1;                  // Record successfully deleted
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.customer;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Customer[i].id, id) == 0){
+			while(i < numberOfRecords - 1){
+				Customer[i] = Customer[i+1];
+				i++;
+			}
+			RecordCount.customer--;    // Update the amount of records
+			customerFileWrite();       // Save to a Database file
+			return 1;                  // Record successfully deleted
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int promotionSelectById(char *id, double *price, int *status){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.promotion;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Promotion[i].id, id) == 0){
-            // Return all values back by reference
-            *price = Promotion[i].price;
-            *status = Promotion[i].status;
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.promotion;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Promotion[i].id, id) == 0){
+			// Return all values back by reference
+			*price = Promotion[i].price;
+			*status = Promotion[i].status;
 
-            return 1;   // Found a record
-        }
-    }
-    return 0;           // Not found the given `id` in the records
+			return 1;   // Found a record
+		}
+	}
+	return 0;           // Not found the given `id` in the records
 }
 
 int promotionInsert(char *id, double price){
-    int tailIndex = RecordCount.promotion;
+	int tailIndex = RecordCount.promotion;
 
-    // To comfirm that `id` is unique
-    for(int i = 0; i < tailIndex; i++){
-        if(strcmp(Promotion[i].id, id) == 0)
-            return 0;   // Error: Barcode ID already exists
-    }
+	// To comfirm that `id` is unique
+	for(int i = 0; i < tailIndex; i++){
+		if(strcmp(Promotion[i].id, id) == 0)
+			return 0;   // Error: Barcode ID already exists
+	}
 
-    strcpy(Promotion[tailIndex].id, id);
-    Promotion[tailIndex].price = price;
-    Promotion[tailIndex].status = 1;        // Initail Value (1 = Active)
+	strcpy(Promotion[tailIndex].id, id);
+	Promotion[tailIndex].price = price;
+	Promotion[tailIndex].status = 1;        // Initail Value (1 = Active)
 
-    RecordCount.promotion++;                // Update the amount of records
+	RecordCount.promotion++;                // Update the amount of records
 
-    promotionFileWrite();                   // Save to a Database file
-    return 1;                   // Operation Success
+	promotionFileWrite();                   // Save to a Database file
+	return 1;                   // Operation Success
 }
 
 int promotionUpdatePrice(char *id, double price){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.promotion;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Promotion[i].id, id) == 0){
-            Promotion[i].price = price;
-            promotionFileWrite();    // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.promotion;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Promotion[i].id, id) == 0){
+			Promotion[i].price = price;
+			promotionFileWrite();    // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int promotionUpdateStatus(char *id, int status){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.promotion;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Promotion[i].id, id) == 0){
-            Promotion[i].status = status;
-            promotionFileWrite();    // Save to a Database file
-            return 1;               // Record successfully updated
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.promotion;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Promotion[i].id, id) == 0){
+			Promotion[i].status = status;
+			promotionFileWrite();    // Save to a Database file
+			return 1;               // Record successfully updated
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 int promotionDelete(char *id){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.promotion;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Promotion[i].id, id) == 0){
-            while(i < numberOfRecords - 1){
-                Promotion[i] = Promotion[i+1];
-                i++;
-            }
-            RecordCount.promotion--;    // Update the amount of records
-            promotionFileWrite();       // Save to a Database file
-            return 1;                  // Record successfully deleted
-        }
-    }
-    return 0;   // Not found the given `id` in the records
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.promotion;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Promotion[i].id, id) == 0){
+			while(i < numberOfRecords - 1){
+				Promotion[i] = Promotion[i+1];
+				i++;
+			}
+			RecordCount.promotion--;    // Update the amount of records
+			promotionFileWrite();       // Save to a Database file
+			return 1;                  // Record successfully deleted
+		}
+	}
+	return 0;   // Not found the given `id` in the records
 }
 
 void settingUpdateStoreName(char *storeName){
 
-    strcpy(Setting.storeName, storeName);
-    settingFileWrite();    // Save to a Database file
+	strcpy(Setting.storeName, storeName);
+	settingFileWrite();    // Save to a Database file
 
 }
 
 void settingUpdateAddress(char *storeAddress){
-    strcpy(Setting.storeAddress, storeAddress);
-    settingFileWrite();    // Save to a Database file
+	strcpy(Setting.storeAddress, storeAddress);
+	settingFileWrite();    // Save to a Database file
 }
 
 void settingUpdatePriceToPoint(double priceToPoint){
-    Setting.priceToPoint = priceToPoint;
-    settingFileWrite();    // Save to a Database file
+	Setting.priceToPoint = priceToPoint;
+	settingFileWrite();    // Save to a Database file
 }
 
 void settingUpdatePointToPrice(double pointToPrice){
-    Setting.pointToPrice = pointToPrice;
-    settingFileWrite();    // Save to a Database file
+	Setting.pointToPrice = pointToPrice;
+	settingFileWrite();    // Save to a Database file
 }
 
 int authenticateByUsername(char *username, char *password){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.personnel;
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.personnel;
 
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Personnel[i].username, username) == 0){
-            if(strcmp(Personnel[i].password, password) == 0){
-                // Save user's information on the Session
-                Session.user = Personnel[i];
-                Session.isLogedin = 1;
-                return 1;
-            }
-            else
-                return 0;
-        }
-    }
-    return 0;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Personnel[i].username, username) == 0){
+			if(strcmp(Personnel[i].password, password) == 0){
+				// Save user's information on the Session
+				Session.user = Personnel[i];
+				Session.isLogedin = 1;
+				return 1;   // Login success
+			}
+			else
+				return 0;   // Password incorrect
+		}
+	}
+	return -1;  // User Not found
 }
 
 int authenticateByToken(char *barcodeToken){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.personnel;
+	int numberOfRecords;    // Number of the records in a table
+	numberOfRecords = RecordCount.personnel;
 
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Personnel[i].barcodeToken, barcodeToken) == 0){
-            // Save user's information on the Session
-            Session.user = Personnel[i];
-            Session.isLogedin = 1;
-            return 1;
-        }
-    }
-    return 0;
+	for(int i = 0; i < numberOfRecords; i++){
+		if(strcmp(Personnel[i].barcodeToken, barcodeToken) == 0){
+			// Save user's information on the Session
+			Session.user = Personnel[i];
+			Session.isLogedin = 1;
+			return 1;
+		}
+	}
+	return 0;
 }
 
 void deauthenticate(){
-    Session.isLogedin = 0;
+	Session.isLogedin = 0;
 }
 
 void inventoryDatabaseInterface () {
@@ -1718,6 +1715,169 @@ void inventoryModifyInterface () {
 void inventoryRemoveInterface () {
 
 }
+time_t toEpochTime(int date, int month, int year, int hour, int minute, int second){
+	struct tm timeinfo = {0};
+	time_t result = 0;
+	timeinfo.tm_sec = second;
+	timeinfo.tm_min = minute;
+	timeinfo.tm_hour = hour;
+	timeinfo.tm_mday = date;
+	timeinfo.tm_mon = month - 1;
+	timeinfo.tm_year = year - 1900;
+
+	result = mktime(&timeinfo);
+	return result;
+}
+
+int isTimeInRange(time_t timestamp, time_t start, time_t end){
+	if(timestamp < start)
+		return -1;	// Starting point is in the future
+	else if(timestamp > end)
+		return 1;	// Endpoint is in the past
+	return 0;	// The time is in this range
+}
+
+void oneDayReport(int date, int month, int year){
+	int numberOfTransactionRecords = RecordCount.transaction;
+	int numberOfCategoryRecords = RecordCount.category;
+
+	time_t startTime = toEpochTime(date, month, year, 0, 0, 0);   // From: dd/mm/yyyy 00:00:00
+	time_t endTime = toEpochTime(date, month, year, 23, 59, 59);  // To:   dd/mm/yyyy 23:59:59
+	
+	int i;
+
+	double price;				// Buffer
+	double profit;				// Buffer
+	unsigned int categoryId;	// Buffer
+
+	char trash[MAX_LNG_TEXT];	// Don't really want
+	unsigned int trash2;		// Don't really want
+
+	for(i = 0; i < numberOfCategoryRecords; i++){
+		// Initail the values
+		strcpy(RevenueByCategory[i].categoryName, Category[i].name);
+		RevenueByCategory[i].totalPrice = 0;
+		RevenueByCategory[i].totalProfit = 0;
+	}
+
+	i = 0;
+	while(i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0){
+
+		if(inventorySelectById(Transaction[i].inventoryId, trash, &price, &profit, &categoryId, &trash2)){
+			// If the record is found
+			RevenueByCategory[categoryId].totalPrice += price;
+			RevenueByCategory[categoryId].totalProfit += profit;
+		}
+		i++;
+	}
+
+}
+
+void multipleDayReport(int fromDate, int fromMonth, int fromYear, int toDate, int toMonth, int toYear){
+	int numberOfTransactionRecords = RecordCount.transaction;
+	int numberOfCategoryRecords = RecordCount.category;
+
+	time_t startTime = toEpochTime(fromDate, fromMonth, fromYear, 0, 0, 0);   // From: dd/mm/yyyy 00:00:00
+	time_t endTime = toEpochTime(toDate, toMonth, toYear, 23, 59, 59);  	  // To:   dd/mm/yyyy 23:59:59
+	
+	int i;
+
+	double price;				// Buffer
+	double profit;				// Buffer
+	unsigned int categoryId;	// Buffer
+
+	char trash[MAX_LNG_TEXT];	// Don't really want
+	unsigned int trash2;		// Don't really want
+
+	for(i = 0; i < numberOfCategoryRecords; i++){
+		// Initail the values
+		strcpy(RevenueByCategory[i].categoryName, Category[i].name);
+		RevenueByCategory[i].totalPrice = 0;
+		RevenueByCategory[i].totalProfit = 0;
+	}
+
+	i = 0;
+	while(i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0){
+
+		if(inventorySelectById(Transaction[i].inventoryId, trash, &price, &profit, &categoryId, &trash2)){
+			// If the record is found
+			RevenueByCategory[categoryId].totalPrice += price;
+			RevenueByCategory[categoryId].totalProfit += profit;
+		}
+		i++;
+	}
+}
+
+void nextnDayReport(int fromDate, int fromMonth, int fromYear, int nDay){
+	int numberOfTransactionRecords = RecordCount.transaction;
+	int numberOfCategoryRecords = RecordCount.category;
+
+	time_t startTime = toEpochTime(fromDate, fromMonth, fromYear, 0, 0, 0);  		 // From: dd/mm/yyyy 00:00:00
+	time_t endTime = toEpochTime(fromDate + nDay, fromMonth, fromYear, 23, 59, 59);  // To:   dd/mm/yyyy 23:59:59
+	
+	int i;
+
+	double price;				// Buffer
+	double profit;				// Buffer
+	unsigned int categoryId;	// Buffer
+
+	char trash[MAX_LNG_TEXT];	// Don't really want
+	unsigned int trash2;		// Don't really want
+
+	for(i = 0; i < numberOfCategoryRecords; i++){
+		// Initail the values
+		strcpy(RevenueByCategory[i].categoryName, Category[i].name);
+		RevenueByCategory[i].totalPrice = 0;
+		RevenueByCategory[i].totalProfit = 0;
+	}
+
+	i = 0;
+	while(i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0){
+
+		if(inventorySelectById(Transaction[i].inventoryId, trash, &price, &profit, &categoryId, &trash2)){
+			// If the record is found
+			RevenueByCategory[categoryId].totalPrice += price;
+			RevenueByCategory[categoryId].totalProfit += profit;
+		}
+		i++;
+	}
+}
+
+void nextnMonthReport(int fromDate, int fromMonth, int fromYear, int nMonth){
+	int numberOfTransactionRecords = RecordCount.transaction;
+	int numberOfCategoryRecords = RecordCount.category;
+
+	time_t startTime = toEpochTime(fromDate, fromMonth, fromYear, 0, 0, 0);  		 	// From: dd/mm/yyyy 00:00:00
+	time_t endTime = toEpochTime(fromDate, fromMonth + nMonth, fromYear, 23, 59, 59);   // To:   dd/mm/yyyy 23:59:59
+	
+	int i;
+
+	double price;				// Buffer
+	double profit;				// Buffer
+	unsigned int categoryId;	// Buffer
+
+	char trash[MAX_LNG_TEXT];	// Don't really want
+	unsigned int trash2;		// Don't really want
+
+	for(i = 0; i < numberOfCategoryRecords; i++){
+		// Initail the values
+		strcpy(RevenueByCategory[i].categoryName, Category[i].name);
+		RevenueByCategory[i].totalPrice = 0;
+		RevenueByCategory[i].totalProfit = 0;
+	}
+
+	i = 0;
+	while(i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0){
+
+		if(inventorySelectById(Transaction[i].inventoryId, trash, &price, &profit, &categoryId, &trash2)){
+			// If the record is found
+			RevenueByCategory[categoryId].totalPrice += price;
+			RevenueByCategory[categoryId].totalProfit += profit;
+		}
+		i++;
+	}
+}
+
 /*
                 May the god be with us...
                            _
