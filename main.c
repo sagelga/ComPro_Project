@@ -123,7 +123,7 @@ void authInterface () {
     }
 
 
-    /* In case of BETA TEST only     Calling ->*/ authInterfaceComplete ();
+    // In case of BETA TEST only     Calling -> authInterfaceComplete ();
 
 }
 
