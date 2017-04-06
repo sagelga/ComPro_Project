@@ -287,7 +287,7 @@ Declare all the Purchase Database can do*/
 */
 int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *personnelId, time_t *timestamp);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time_t timestamp);         // Adding a new record to the database
+void purchaseInsert(double totalPrice, char *customerId, char *personnelId);         // Adding a new record to the database
 
 /*-----------------------------------------------------------------------------
 Declare all the Customer Database can do*/

@@ -851,6 +851,7 @@ void transactionInsert(char *purchaseId, char *inventoryId){
     strcpy(Transaction[tailIndex].id, id);
     strcpy(Transaction[tailIndex].purchaseId, purchaseId);
     strcpy(Transaction[tailIndex].inventoryId, inventoryId);
+    Transaction[tailIndex].timestamp = time(NULL);  // Current time as time_t (Epoch format)
 
     RecordCount.transaction++;    // Update the amount of records
 
@@ -874,7 +875,7 @@ int purchaseSelectById(char *id, double *totalPrice, char *customerId, char *per
     return 0;           // Not found the given `id` in the records
 }
 
-void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time_t timestamp){
+void purchaseInsert(double totalPrice, char *customerId, char *personnelId){
     int tailIndex = RecordCount.purchase;
     char id[10];
     intToString(id, tailIndex + 1);     // Auto-increment (+ 1 to Start at 1)
@@ -882,7 +883,7 @@ void purchaseInsert(double totalPrice, char *customerId, char *personnelId, time
     Purchase[tailIndex].totalPrice = totalPrice;
     strcpy(Purchase[tailIndex].customerId, customerId);
     strcpy(Purchase[tailIndex].personnelId, personnelId);
-    Purchase[tailIndex].timestamp = timestamp;
+    Purchase[tailIndex].timestamp = time(NULL);     // Current time as time_t (Epoch format)
 
     RecordCount.purchase++;    // Update the amount of records
 
