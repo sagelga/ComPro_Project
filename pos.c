@@ -1,3 +1,6 @@
+// Welcome to the program. The declaration of the functions and the library used is in .h file
+#include "main.h"
+
 void cashierInterface () {
     char username[137] = "Kumamon"; // Pull the username from the struct SESSION
     char text1[107] = "<store_name>";
