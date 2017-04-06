@@ -149,7 +149,11 @@ SESSION Session;                                  // Declare the Session Collect
 
 /*-----------------------------------------------------------------------------
 Declare all the Options switching functions*/
-void switchHub();               // For moving to the selection of the functions
+void switchHub();                       // For moving to the selection of the functions
+void switchHubManager();                       // For moving to the selection of the functions
+void switchHubSales();                       // For moving to the selection of the functions
+
+
 void inventorySwitchHub ();               // For moving to the selection of the functions
 void categorySwitchHub ();               // For moving to the selection of the functions
 void transactionSwitchHub ();               // For moving to the selection of the functions
@@ -255,10 +259,10 @@ int inventoryUpdateCategory(char *id, char *categoryId);    // For modifying the
 int inventoryUpdateRemain(char *id, unsigned int remain);   // For modifying the `remain` (Select the record by `id`)
 int inventoryDelete(char *id);                              // Delete the record (Select by `id`)
 
+/* Inventory Database Interface */
+void inventoryDatabaseInterface();
 void inventoryAddInterface ();
-
 void inventoryModifyInterface ();
-
 void inventoryRemoveInterface ();
 
 /*-----------------------------------------------------------------------------
@@ -353,22 +357,22 @@ void forecastPrint();
 */
 
 /*-----------------------------------------------------------------------------
+Define what the sales report can do*/
+void saleDatabaseInterface();
+/*-----------------------------------------------------------------------------
 Decease what the seller can do*/
-/*
+
 void cashierInterface();
-*/
 
 /*-----------------------------------------------------------------------------
 Declares all the authentication functions and interface*/
 int authenticateByUsername(char *username, char *password);    // For signing in (Return 1 = Success | 0 = Incorrect Username/Password)
 int authenticateByToken(char *barcodeToken);                   // For signing in (Return 1 = Success | 0 = Token Not found)
 void deauthenticate();          // For signing out
-/*
 void authInterface();           // For sign in interface
 void authInterfaceComplete();   // For complete sign in interface
 void authInterfaceFailed();     // For non - complete sign in interface (Error from cancel)
 void authInterfaceError();      // For non - complete sign in interface (Other type of error)
-*/
 
 /*
                 May the god be with us...
