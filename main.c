@@ -1476,10 +1476,9 @@ void inventoryRemoveInterface () {
 ===========`-.`___`-.__\ \___  /__.-'_.'_.-'================
                         `=--=-'
                 Program bug best enemy
-          Please. No bug. No crash. No interrupt.         
-*/
+          Please. No bug. No crash. No interrupt.
 
-/* :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+   :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
    :: ██╔══██╗██╔═══██╗██╔════╝ :: Welcome to the POS System program.                                                                        ::
    :: ██████╔╝██║   ██║███████╗ :: Please feel free to look around...                                                                        ::
    :: ██╔═══╝ ██║   ██║╚════██║ :: Created by the 1st year student of Information Technology Ladkrabang.                                     ::
