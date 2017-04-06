@@ -88,32 +88,14 @@ void authInterface () {
     scanf("%s",password);
 
     screenClear();
-    // If the username and the password is matched from the database -> Call authInterfaceComplete(); --> check_matched = 1
-    // If the username and the password is not matched from the database -> Call authInterfaceFail(); --> check_matched = 2
-    // If these were interrupt -> Call authInterfaceError(); --> check_matched = 0
-    int check_matched = 0;
-    for (int user_count = 0; user_count < RecordCount.personnel; ++user_count)
-    {
-        if (strcmp(username, Personnel[user_count].username) == 0)
-        {
-            if (strcmp(password, Personnel[user_count].password) == 0)
-            {
-                check_matched = 1;
-                break;
-            }
-            else
-            {
-                check_matched = 2;
-                break;
-            }
-        }
-    }
-    //Call function depending on check_mathed
-    if (check_matched == 1)
+    // If the username and the password is matched from the database -> Call authInterfaceComplete();
+    // If the username and the password is not matched from the database -> Call authInterfaceFail();
+    // If these were interrupt -> Call authInterfaceError();
+    if (authenticateByUsername(username, password) == 1)
     {
         authInterfaceComplete();
     }
-    else if (check_matched = 2)
+    else if (authenticateByUsername(username, password) == 0)
     {
         authInterfaceFail();
     }
@@ -121,7 +103,6 @@ void authInterface () {
     {
         authInterfaceError();
     }
-
 
     // In case of BETA TEST only     Calling -> authInterfaceComplete ();
 
