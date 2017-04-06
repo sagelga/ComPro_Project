@@ -1181,6 +1181,9 @@ void oneDayReport(int date, int month, int year){
 	double profit;				// Buffer
 	unsigned int categoryId;	// Buffer
 
+	char trash[MAX_LNG_TEXT];	// Don't really want
+	unsigned int trash2;		// Don't really want
+
 	for(i = 0; i < numberOfCategoryRecords; i++){
 		// Initail the values
 		strcpy(RevenueByCategory[i].categoryName, Category[i].name);
@@ -1191,7 +1194,7 @@ void oneDayReport(int date, int month, int year){
 	i = 0;
 	while(i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0){
 
-		if(inventorySelectById(Transaction[i].inventoryId, NULL, &price, &profit, &categoryId, NULL)){
+		if(inventorySelectById(Transaction[i].inventoryId, trash, &price, &profit, &categoryId, &trash2)){
 			// If the record is found
 			RevenueByCategory[categoryId].totalPrice += price;
 			RevenueByCategory[categoryId].totalProfit += profit;

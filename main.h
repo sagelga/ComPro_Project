@@ -146,7 +146,7 @@ typedef struct{
 // Report collect revenue by categery
 struct REPORT {
   char categoryName[MAX_LNG_TEXT];
-  unsigned int totalPrice;
+  double totalPrice;
   double totalProfit;
 
 } RevenueByCategory[MAX_IDX_CATEGORY];
