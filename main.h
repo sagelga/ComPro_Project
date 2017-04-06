@@ -60,7 +60,7 @@ typedef struct
   double profit; // Profit per item
   unsigned int categoryId; // Category ID
   unsigned int remain;
-
+} INVENTORY;
 // 03. CATEGORY
 typedef struct
 {
