@@ -341,11 +341,16 @@ void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `po
 /*-----------------------------------------------------------------------------
 Declare all the the report function can do*/
 
+// Report show by category
 void oneDayReport(int date, int month, int year);  // Total of revenue on one day, result is store in a structure `RevenueByCategory`
-void multipleDayReport();                          // Total of revenue from dd/mm/yyyy to dd/mm/yyyy
+void multipleDayReport(int fromDate, int fromMonth, int fromYear, int toDate, int toMonth, int toYear);    // Total of revenue from dd/mm/yyyy to dd/mm/yyyy, result is store in a structure `RevenueByCategory`
+void nextnDayReport(int fromDate, int fromMonth, int fromYear, int nDay);     // Total of revenue from dd/mm/yyyy to next `N` day(s), result is store in a structure `RevenueByCategory`
+void nextnMonthReport(int fromDate, int fromMonth, int fromYear, int nMonth); // Total of revenue from dd/mm/yyyy to next `N` month(s), result is store in a structure `RevenueByCategory`
+
+/*
 void monthlyReport();                              // Total of revenue in yyyy year (show by monthly)
 void personnelSaleReport();                        // Total of sale by each merchant
-
+*/
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/
