@@ -11,6 +11,7 @@ int main(){
 }
 
 void screenAdjust(){
+    screenClear ();
     char text1[107] = "";
     char text2[107] = "  This is the initiation of the POS Systems!";
     char text3[107] = "  The program screen size is optimized for 140 x 40 pixel terminal";
@@ -47,13 +48,13 @@ void screenAdjust(){
 
         default:
             screenClear();
-            printf("Invalid response. Try again. \n\n");
             screenAdjust();
             return;
     }
 }
 
 void authInterface () {
+    screenClear ();
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Sign in to the System");
     bannerFullBorder();
@@ -62,8 +63,7 @@ void authInterface () {
         bannerBlankBorder();
     bannerFullBorder();
 
-    char flags[130] = "Welcome Back";
-    char username[130] = "Kumamon"; // Copy data to SESSION struct;
+    char username[130]; // Copy data to SESSION struct;
     bannerUserInput();
     scanf("%s",username); // Then save to session struct
 
@@ -73,14 +73,13 @@ void authInterface () {
     bannerBlankBorderTextCen ("Sign in to the System");
     bannerFullBorder();
 
-    strcpy(flags,username);
-    strcpy(flags,"!");
-    bannerBlankBorderTextCen(flags);
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Welcome back");
+    bannerBlankBorderTextCen (username);
 
-    bannerBlankBorder();
-    bannerBlankBorderTextCen("Please type in your password");
-    for (int i = 0;i<32;i++)
+    for (int i = 0;i<31;i++)
         bannerBlankBorder();
+    bannerBlankBorderTextCen("Please type in your password");
     bannerFullBorder();
     bannerUserInput();
 
@@ -109,6 +108,7 @@ void authInterface () {
 }
 
 void switchHub() {
+    screenClear ();
     char username[8] = "Default";
     char text1[107] = "Welcome back ";
     strcat(text1,username);
@@ -135,12 +135,13 @@ void switchHub() {
     for (int i = 0;i<20;i++)
         bannerBlankBorder();
 
-    bannerBlankBorderTextCen("or type 'N' to save and quit");
+    bannerBlankBorderTextCen ("  Type 'N' to quit   |      ALTERNATE RESPONSE      |   Type 'B' to logoff");
     bannerFullBorder();
     bannerUserInput();
 
     char flags;
     scanf(" %c", &flags);
+
     screenClear ();
 
     switch (flags) {
@@ -231,6 +232,7 @@ void switchHubManager() {
     char flags;
     scanf (" %c", &flags);
 
+    screenClear ();
     switch ( flags ) {
         case ('1'): // Sign In / Sign Out
             authInterface ();
@@ -319,6 +321,8 @@ void switchHubSales() {
     char flags;
     scanf (" %c", &flags);
 
+    screenClear ();
+
     switch ( flags ) {
         case ('1'): // Sign In / Sign Out
             authInterface ();
@@ -388,7 +392,6 @@ void terminate(){
     exit(0);
 } 
 
-
 void screenClear(){
     // This function will clean the screen, and the other function will reprint the page.
     system("clear");
@@ -440,31 +443,68 @@ void bannerUserInput(){
 }
 
 void bannerFullBorderSection(){
-    printf(":: %*s ::\n", 134,"-");
+    printf(":: ______________________________________________________________________________________________________________________________________ ::\n");
 }
 
 void settingsSwitchHub () {
+    screenClear ();
     bannerFullBorder();
-    bannerBlankBorderTextCen("Settings");
+    bannerBlankBorderTextCen ("Settings");
     bannerFullBorder();
 
-    bannerBlankBorderTextCen("What do you want to do?");
-    bannerBlankBorderTextCen("1. Change Username");
-    bannerBlankBorderTextCen("2. Change Password");
-    
-    bannerFullBorder();
-    
-    bannerBlankBorderTextCen("3. Change store name");
-    bannerBlankBorderTextCen("4. Change store address");
+    bannerBlankBorderTextCen ("What do you want to do?");
 
-    char functionSwitch;
-    scanf("%c", &functionSwitch);
+    for (int i = 0;i<2;i++)
+        bannerBlankBorder ();
 
-    switch(functionSwitch){
+    bannerBlankBorderTextCen ("Authentication");
+    bannerFullBorderSection ();
+    bannerBlankBorderTextCen ("1. Change Username");
+    bannerBlankBorderTextCen ("2. Change Password");
+
+    for (int i = 0;i<2;i++)
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("Storefront");
+    bannerFullBorderSection ();
+    bannerBlankBorderTextCen ("3. Change store name");
+    bannerBlankBorderTextCen ("4. Change store address");
+
+    for (int i = 0;i<21;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerFullBorder ();
+
+    bannerUserInput ();
+    char flag;
+    scanf(" %c", &flag);
+
+    switch(flag){
 
         case ('1'):
             return;
+
+        case ('2'):
+            return;
+
+        case ('3'):
+            return;
+
+        case ('4'):
+            return;
+
+        case ('b'):
+            switchHub ();
+        case ('B'):
+            switchHub ();
+
+        case ('n'):
+            terminate ();
+        case ('N'):
+            terminate ();
+
         default:
+            settingsSwitchHub ();
             return;
 
     }
@@ -597,11 +637,12 @@ void authInterfaceError () {
     bannerBlankBorderTextCen ("The username that you have type are not in the system...");
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please try again or contact an administrator if this happens too many times");
-    for ( int i = 0; i < 33; i++ )
+    for ( int i = 0; i < 32; i++ )
         bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Redirect to sign in...");
     bannerFullBorder ();
-    
-    delay (10);
+
+    delay (6);
     authInterface ();
 
     // Program will delay for 10 seconds, and will be redirect back to login page...
