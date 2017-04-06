@@ -5,14 +5,12 @@
 int main(){
 // This program will run first. POS Interface configuration will be called, and ready to work.
     screenClear();
-    screenAdjust();
     initDatabase();
+    screenAdjust();
     return 0;
 }
 
 void screenAdjust(){
-                     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::70 chart 
-                     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     char text1[107] = "";
     char text2[107] = "  This is the initiation of the POS Systems!";
     char text3[107] = "  The program screen size is optimized for 140 x 40 pixel terminal";
@@ -63,33 +61,38 @@ void authInterface () {
     for (int i = 0;i<34;i++)
         bannerBlankBorder();
     bannerFullBorder();
-    bannerUserInput();
 
     char flags[130] = "Welcome Back";
-    char username;
+    char username[130] = "Kumamon"; // Copy data to SESSION struct;
+    bannerUserInput();
     scanf("%s",username); // Then save to session struct
 
-    strcpy(flags,username);
-    strcpy(flags,"!");
+    screenClear ();
 
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Sign in to the System");
     bannerFullBorder();
+
+    strcpy(flags,username);
+    strcpy(flags,"!");
     bannerBlankBorderTextCen(flags);
+
     bannerBlankBorder();
     bannerBlankBorderTextCen("Please type in your password");
-    for (int i = 0;i<28;i++)
+    for (int i = 0;i<32;i++)
         bannerBlankBorder();
     bannerFullBorder();
     bannerUserInput();
 
-    char password;
+    char password[130];
     scanf("%s",password);
 
     screenClear();
     // If the username and the password is matched from the database -> Call authInterfaceComplete();
     // If the username and the password is not matched from the database -> Call authInterfaceFail();
     // If these were interrupt -> Call authInterfaceError();
+
+    /* In case of BETA TEST only     Calling ->*/ authInterfaceComplete ();
 
 }
 
@@ -113,7 +116,7 @@ void switchHub() {
     bannerBlankBorderTextCen("4. Check Customer Database");
     bannerBlankBorderTextCen("5. Check Category Database");
     bannerBlankBorderTextCen ("6. Check Promotion Database");
-    bannerBlankBorderTextCen("7. Check Forecast");
+    bannerBlankBorderTextCen("7. Check Sales Report");
     bannerBlankBorderTextCen("8. Settings");
     bannerBlankBorder();
 
@@ -126,6 +129,7 @@ void switchHub() {
 
     char flags;
     scanf(" %c", &flags);
+    screenClear ();
 
     switch (flags) {
         case ('1'): // Sign In / Sign Out
@@ -148,7 +152,7 @@ void switchHub() {
 
         case ('5'):
             initDatabase();
-
+            categorySwitchHub ();
             return;
 
         case ('6'):
@@ -158,7 +162,7 @@ void switchHub() {
 
         case ('7'):
             initDatabase ();
-
+            saleDatabaseInterface();
             return;
 
         case ('8'):
@@ -177,6 +181,182 @@ void switchHub() {
             // The input is invalid. Trying to route back to ask for a valid input
             printf("Your input is invalid. Please try again.\n\n\n");
             switchHub();
+            return;
+    }
+}
+
+void switchHubManager() {
+    char username[8] = "Default"; // Pull data from the SESSION struct
+    char text1[107] = "Welcome back ";
+    strcat (text1, username);
+    strcat (text1, "!");
+    char text2[107] = "";
+    char text3[107] = "You are now connecting to the POS system";
+    char text4[107] = "<user_permission_level_goes_here_in_this_line>";
+    bannerInverse (text1, text2, text3, text4);
+
+    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerBlankBorder ();
+
+    //These choice will be removed, when the program detects the permission level.
+    bannerBlankBorderTextCen ("1. Login / Logout");
+    bannerBlankBorderTextCen ("2. Go to POS System");
+    bannerBlankBorderTextCen ("3. Check Inventory Database");
+    bannerBlankBorderTextCen ("4. Check Customer Database");
+    bannerBlankBorderTextCen ("5. Check Category Database");
+    bannerBlankBorderTextCen ("6. Check Promotion Database");
+    bannerBlankBorderTextCen ("7. Check Sales Report");
+    bannerBlankBorderTextCen ("8. Settings");
+    bannerBlankBorder ();
+
+    for ( int i = 0; i < 20; i++ )
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("or type 'N' to save and quit");
+    bannerFullBorder ();
+    bannerUserInput ();
+
+    char flags;
+    scanf (" %c", &flags);
+
+    switch ( flags ) {
+        case ('1'): // Sign In / Sign Out
+            authInterface ();
+            return;
+
+        case ('2'):// Go to POS Systems Interface (for cashier)
+            initDatabase ();
+            cashierInterface ();
+            return;
+
+        case ('3'):// Go to check Inventory Database
+            initDatabase ();
+            inventorySwitchHub ();
+            return;
+
+        case ('4'):
+            customerSwitchHub ();
+            return;
+
+        case ('5'):
+            initDatabase ();
+            categorySwitchHub ();
+            return;
+
+        case ('6'):
+            initDatabase ();
+            promotionSwitchHub ();
+            return;
+
+        case ('7'):
+            initDatabase ();
+            saleDatabaseInterface ();
+            return;
+
+        case ('8'):
+            settingsSwitchHub ();
+            return;
+
+        case ('n'):
+            terminate ();
+            return;
+
+        case ('N'):
+            terminate ();
+            return;
+
+        default:
+            // The input is invalid. Trying to route back to ask for a valid input
+            printf ("Your input is invalid. Please try again.\n\n\n");
+            switchHub ();
+            return;
+    }
+}
+
+void switchHubSales() {
+    char username[8] = "Default";
+    char text1[107] = "Welcome back ";
+    strcat (text1, username);
+    strcat (text1, "!");
+    char text2[107] = "";
+    char text3[107] = "You are now connecting to the POS system";
+    char text4[107] = "<user_permission_level_goes_here_in_this_line>";
+    bannerInverse (text1, text2, text3, text4);
+
+    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerBlankBorder ();
+
+    //These choice will be removed, when the program detects the permission level.
+    bannerBlankBorderTextCen ("1. Login / Logout");
+    bannerBlankBorderTextCen ("2. Go to POS System");
+    bannerBlankBorderTextCen ("3. Check Inventory Database");
+    bannerBlankBorderTextCen ("4. Check Customer Database");
+    bannerBlankBorderTextCen ("5. Check Category Database");
+    bannerBlankBorderTextCen ("6. Check Promotion Database");
+    bannerBlankBorderTextCen ("7. Check Sales Report");
+    bannerBlankBorderTextCen ("8. Settings");
+    bannerBlankBorder ();
+
+    for ( int i = 0; i < 20; i++ )
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("or type 'N' to save and quit");
+    bannerFullBorder ();
+    bannerUserInput ();
+
+    char flags;
+    scanf (" %c", &flags);
+
+    switch ( flags ) {
+        case ('1'): // Sign In / Sign Out
+            authInterface ();
+            return;
+
+        case ('2'):// Go to POS Systems Interface (for cashier)
+            initDatabase ();
+            cashierInterface ();
+            return;
+
+        case ('3'):// Go to check Inventory Database
+            initDatabase ();
+            inventorySwitchHub ();
+            return;
+
+        case ('4'):
+            customerSwitchHub ();
+            return;
+
+        case ('5'):
+            initDatabase ();
+            categorySwitchHub ();
+            return;
+
+        case ('6'):
+            initDatabase ();
+            promotionSwitchHub ();
+            return;
+
+        case ('7'):
+            initDatabase ();
+            saleDatabaseInterface ();
+            return;
+
+        case ('8'):
+            settingsSwitchHub ();
+            return;
+
+        case ('n'):
+            terminate ();
+            return;
+
+        case ('N'):
+            terminate ();
+            return;
+
+        default:
+            // The input is invalid. Trying to route back to ask for a valid input
+            printf ("Your input is invalid. Please try again.\n\n\n");
+            switchHub ();
             return;
     }
 }
@@ -296,23 +476,27 @@ void settingsSwitchHub () {
 }
 
 void inventorySwitchHub () {
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("Inventory Hub");
-    bannerFullBorder ();
 
     bannerBlankBorderTextCen ("What are you going to do?");
     bannerBlankBorder ();
     bannerBlankBorderText("Inventory");
-    bannerBlankBorderText("Inventory"); 
+    bannerFullBorderSection ();
     bannerBlankBorderTextCen ("1. Check the database");
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("2. Add data to the database");
+    bannerBlankBorderTextCen ("2. Add inventory data to the database");
+    bannerBlankBorderTextCen ("3. Edit inventory data from the database");
+    bannerBlankBorderTextCen ("4. Removing inventory from the database");
+
+    for (int i = 0;i<2;i++)
+        bannerFullBorder ();
+
+    bannerBlankBorderText ("Category");
+    bannerFullBorderSection ();
+    bannerBlankBorderTextCen ("5. Check the category database");
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("3. Edit data from the database");
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("4. Removing data from the database");
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("5. Check Category");
+    bannerBlankBorderTextCen ("6. Add new category to the database");
+    bannerBlankBorderTextCen ("7. Edit category from the database");
+    bannerBlankBorderTextCen ("8. Remove category from the database");
 
     for ( int i = 0; i < 25; i++ ) {
         bannerBlankBorder ();
@@ -350,8 +534,79 @@ void inventorySwitchHub () {
 
 void authInterfaceComplete(){
     bannerFullBorder();
-    ban
+    bannerBlankBorderTextCen ("Your login is now complete. We are now proceeding you to the program");
+    bannerFullBorder ();
+
+    for ( int i = 0; i < 36; i++ ) {
+        bannerBlankBorder ();
+    }
+    bannerFullBorder ();
+    delay (5);
+    // If user are admin (0) -> Redirect to switchHub();
+    // If user are manager (1) -> Redirect to switchHubManager();
+    // If user are sales (2) -> Redirect to switchHubSale();
+
+    /* During this betq test only (assuming all user are admin) ->*/ switchHub ();
 }
+
+void authInterfaceFail () {
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Your login credentials is incorrect.");
+    bannerFullBorder ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("We are redirecting you try again. If you wish to do that, type anything to continue");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("or type 'N' to exit the program");
+
+    for ( int i = 0; i < 32; i++ )
+        bannerBlankBorder ();
+
+    bannerFullBorder ();
+    bannerUserInput ();
+    char flag;
+    scanf (" %c", &flag);
+
+    switch (flag) {
+
+        case ('N'):
+            terminate ();
+            return;
+
+        case ('n'):
+            terminate ();
+            return;
+
+        default:
+            authInterface ();
+            return;
+    }
+    // If user type anything (except N or n) program will not be terminate + rerouting to login page again
+    // If user type 'N' or 'n' program will be rerouting to terminate(); and they can shut the program down...
+}
+
+void authInterfaceError () {
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Oops!");
+    bannerFullBorder ();
+
+    bannerBlankBorderTextCen ("The username that you have type are not in the system...");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Please try again or contact an administrator if this happens too many times");
+    for ( int i = 0; i < 33; i++ )
+        bannerBlankBorder ();
+    bannerFullBorder ();
+    delay (10);
+    authInterface ();
+
+    // Program will delay for 10 seconds, and will be redirect back to login page...
+}
+
+void delay (int interval) {
+    // This function will stop all threads from executing everything. Please be cautious about this...
+        sleep (interval-1); // Stopping all threads from executing something for x seconds.
+    screenClear ();
+    sleep(1);
+    }
 
 int isFileExist(const char *filename){
     if( access( filename, F_OK ) != -1 ) {
@@ -604,10 +859,7 @@ void settingFileRead(){
 
 }
 
-void personnelFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
+/*
 void inventoryDatabaseInterface(){
 
     numberOfRecords = RecordCount.personnel;
@@ -618,6 +870,7 @@ void inventoryDatabaseInterface(){
 
     fclose(fp);
 }
+*/
 
 void inventoryFileWrite(){
     // Save all of the records to a database file
@@ -711,6 +964,10 @@ void settingFileWrite(){
 
     fprintf(fp, "%s\t%s\t%lf\t%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
     fclose(fp);
+}
+
+void personnelFileWrite(){
+
 }
 
 int personnelSelectById(char *id, char *firstname, char *lastname, int *role, char *username, char *password, char *barcodeToken){
@@ -1090,7 +1347,7 @@ int customerSelectById(char *id, char *firstname, char *lastname, char *gender, 
 int customerInsert(char *id, char *firstname, char *lastname, char gender){
     int tailIndex = RecordCount.customer;
 
-    // To comfirm that `id` is unique
+    // To confirm that `id` is unique
     for(int i = 0; i < tailIndex; i++){
         if(strcmp(Customer[i].id, id) == 0)
             return 0;   // Error: Customer ID already exists
@@ -1328,12 +1585,13 @@ void deauthenticate(){
     Session.isLogedin = 0;
 }
 
+void inventoryDatabaseInterface () {
     /*ID|Name|Price|Profit|Category|In Stock
       -|-|-|-|-|-
       13 char|62 char|10 double|10 double|25 char|8 int*/
     bannerFullBorder();
     bannerBlankBorderText(" ID          | Name                                                         | Price    | Profit   | Category                | In Stock");
-
+    bannerFullBorder ();
     /* REMOVE THIS LINE UNTIL IT WAS REDONE
     for (int i = 0;i<36;i--){ // Using 10 data as an example... Maxed with 36 lines...
 
@@ -1412,18 +1670,20 @@ void deauthenticate(){
 
 }
 
+void saleDatabaseInterface(){
+    bannerFullBorder();
+    bannerBlankBorderText(" ID          | Name                                                         | Price    | Profit   | Category                | In Stock");
+    bannerFullBorder ();
+}
+
 void cashierInterface () {
+    char username[137] = "Kumamon"; // Pull the username from the struct SESSION
     char text1[107] = "<store_name>";
     char text2[107] = "Welcome! My name is ";
     strcpy(text2,username);
     char text3[107] = "";
     char text4[107] = "";
     banner (text1,text2,text3,text4);
-
-
-}
-
-void categorySwitchHub () {
 
 }
 
@@ -1440,6 +1700,10 @@ void customerSwitchHub () {
 }
 
 void promotionSwitchHub () {
+
+}
+
+void categorySwitchHub (){
 
 }
 
@@ -1476,10 +1740,9 @@ void inventoryRemoveInterface () {
 ===========`-.`___`-.__\ \___  /__.-'_.'_.-'================
                         `=--=-'
                 Program bug best enemy
-          Please. No bug. No crash. No interrupt.         
-*/
+          Please. No bug. No crash. No interrupt.
 
-/* :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+   :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
    :: ██╔══██╗██╔═══██╗██╔════╝ :: Welcome to the POS System program.                                                                        ::
    :: ██████╔╝██║   ██║███████╗ :: Please feel free to look around...                                                                        ::
    :: ██╔═══╝ ██║   ██║╚════██║ :: Created by the 1st year student of Information Technology Ladkrabang.                                     ::

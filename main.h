@@ -149,7 +149,11 @@ SESSION Session;                                  // Declare the Session Collect
 
 /*-----------------------------------------------------------------------------
 Declare all the Options switching functions*/
-void switchHub();               // For moving to the selection of the functions
+void switchHub();                       // For moving to the selection of the functions
+void switchHubManager();                       // For moving to the selection of the functions
+void switchHubSales();                       // For moving to the selection of the functions
+
+
 void inventorySwitchHub ();               // For moving to the selection of the functions
 void categorySwitchHub ();               // For moving to the selection of the functions
 void transactionSwitchHub ();               // For moving to the selection of the functions
@@ -163,6 +167,7 @@ Declare all the gimmicks functions, which will be separate program from the orig
 void terminate();               // For save and stop the program
 void screenAdjust();            // For calculating the screen size to the optimum size
 void screenClear();             // For refreshing the screen to the new one
+void delay (int interval);
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions*/
@@ -254,10 +259,10 @@ int inventoryUpdateCategory(char *id, char *categoryId);    // For modifying the
 int inventoryUpdateRemain(char *id, unsigned int remain);   // For modifying the `remain` (Select the record by `id`)
 int inventoryDelete(char *id);                              // Delete the record (Select by `id`)
 
+/* Inventory Database Interface */
+void inventoryDatabaseInterface();
 void inventoryAddInterface ();
-
 void inventoryModifyInterface ();
-
 void inventoryRemoveInterface ();
 
 /*-----------------------------------------------------------------------------
@@ -352,22 +357,23 @@ void forecastPrint();
 */
 
 /*-----------------------------------------------------------------------------
+Define what the sales report can do*/
+void saleDatabaseInterface();
+/*-----------------------------------------------------------------------------
 Decease what the seller can do*/
-/*
+
 void cashierInterface();
-*/
 
 /*-----------------------------------------------------------------------------
 Declares all the authentication functions and interface*/
 int authenticateByUsername(char *username, char *password);    // For signing in (Return 1 = Success | 0 = Incorrect Username/Password)
 int authenticateByToken(char *barcodeToken);                   // For signing in (Return 1 = Success | 0 = Token Not found)
 void deauthenticate();          // For signing out
-/*
 void authInterface();           // For sign in interface
 void authInterfaceComplete();   // For complete sign in interface
 void authInterfaceFailed();     // For non - complete sign in interface (Error from cancel)
 void authInterfaceError();      // For non - complete sign in interface (Other type of error)
-*/
+
 /*
                 May the god be with us...
                            _
@@ -391,19 +397,18 @@ void authInterfaceError();      // For non - complete sign in interface (Other t
                         `=--=-'
                 Program bug best enemy
           Please. No bug. No crash. No interrupt.         
-*/
 
-/* :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-   :: ██╔══██╗██╔═══██╗██╔════╝ :: Welcome to the POS System program.									                                     ::
-   :: ██████╔╝██║   ██║███████╗ :: Please feel free to look around...									                                     ::
-   :: ██╔═══╝ ██║   ██║╚════██║ :: Created by the 1st year student of Information Technology Ladkrabang.									 ::
-   :: ██║     ╚██████╔╝███████║ :: Redistribution or copies are not allowed. No commercial use is allowed.									 ::
+   :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+   :: ██╔══██╗██╔═══██╗██╔════╝ :: Welcome to the POS System program.                                                                        ::
+   :: ██████╔╝██║   ██║███████╗ :: Please feel free to look around...                                                                        ::
+   :: ██╔═══╝ ██║   ██║╚════██║ :: Created by the 1st year student of Information Technology Ladkrabang.                                     ::
+   :: ██║     ╚██████╔╝███████║ :: Redistribution or copies are not allowed. No commercial use is allowed.                                   ::
    :: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
       Lists of the team members
-      Kunanon Srisuntiroj      @sagelga    		59070022    UI Team
-      Thanawat Laodkaew        @skydddoogg 		59070071    Background Work Team
-      Noppanut Ploywong        @noppanut15 		59070082    Background Work Team
-      Vasanchai Prakobkij      @59070156   		59070156    Background Work Team
+      Kunanon Srisuntiroj      @sagelga         59070022    UI Team
+      Thanawat Laodkaew        @skydddoogg      59070071    Background Work Team
+      Noppanut Ploywong        @noppanut15      59070082    Background Work Team
+      Vasanchai Prakobkij      @59070156        59070156    Background Work Team
   
  */
