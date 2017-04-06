@@ -400,28 +400,11 @@ void terminate(){
     bannerBlankBorderTextCen("You about to terminate the POS system...");
     bannerFullBorder();
 
-    printf("Are you really sure about this? (Type Y or N) >>");
-
-    char flags;
-    scanf(" %c",&flags);
-    flags = toupper(flags);
-
-    switch(flags){
-        case ('Y'):
-            printf("Shutting the program down.... Please be patient!\n");
-            printf("Have a good luck. Bye Bye!\n");
-            exit(0);
-
-        case ('N'):
-            printf("I'm so happy that you're back! Redirecting.......\n\n");
-            screenClear();
-            return;
-
-        default:
-            printf("Your input is invalid. Please try again.");
-            terminate();
-            return;
-    }
+    printf("Shutting the program down.... Please be patient!\n");
+    printf("Have a good luck. Bye Bye!\n");
+    delay (5);
+    screenClear ();
+    exit(0);
 } 
 
 
@@ -567,10 +550,19 @@ void authInterfaceComplete(){
     bannerFullBorder();
     bannerBlankBorderTextCen ("Your login is now complete. We are now proceeding you to the program");
     bannerFullBorder ();
-
-    for ( int i = 0; i < 36; i++ ) {
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("██████╗  ██████╗ ███████╗");
+    bannerBlankBorderTextCen ("██╔══██╗██╔═══██╗██╔════╝");
+    bannerBlankBorderTextCen ("██████╔╝██║   ██║███████╗");
+    bannerBlankBorderTextCen ("██╔═══╝ ██║   ██║╚════██║");
+    bannerBlankBorderTextCen ("██║     ╚██████╔╝███████║");
+    bannerBlankBorderTextCen ("╚═╝      ╚═════╝ ╚══════╝");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Welcome back! <username>");
+    for ( int i = 0; i < 26; i++ ) {
         bannerBlankBorder ();
     }
+    bannerBlankBorderTextCen ("Redirecting you to POS system in 5 seconds...");
     bannerFullBorder ();
     delay (5);
     // If user are admin (0) -> Redirect to switchHub();
