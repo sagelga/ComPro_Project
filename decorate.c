@@ -59,6 +59,7 @@ void terminate(){
     exit(0);
 } 
 
+
 void screenClear(){
     // This function will clean the screen, and the other function will reprint the page.
     system("clear");
