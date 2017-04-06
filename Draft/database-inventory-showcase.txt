@@ -1,0 +1,40 @@
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: ID            | Name                                               | Price      | Profit     | Category                  | In Stock   ::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+:: 1234567890123 | Green Tea Latte Extra Green Tea                    |     200.00 |     100.00 |                    Drinks |        200 ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                                                                                                       ::
+::                                                     |<<  <  ( Page 2 of 20 ) > >>|                                                    ::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+>>> <user_input>

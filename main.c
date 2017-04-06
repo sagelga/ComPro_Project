@@ -296,14 +296,11 @@ void settingsSwitchHub () {
 }
 
 void inventorySwitchHub () {
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("Inventory Hub");
-    bannerFullBorder ();
 
     bannerBlankBorderTextCen ("What are you going to do?");
     bannerBlankBorder ();
     bannerBlankBorderText("Inventory");
-    bannerBlankBorderText("Inventory"); 
+    bannerFullBorderSection ();
     bannerBlankBorderTextCen ("1. Check the database");
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("2. Add data to the database");
@@ -1484,10 +1481,6 @@ void cashierInterface () {
     char text3[107] = "";
     char text4[107] = "";
     banner (text1,text2,text3,text4);
-
-}
-
-void categorySwitchHub () {
 
 }
 
