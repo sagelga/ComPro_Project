@@ -143,6 +143,14 @@ typedef struct{
 
 } SESSION;
 
+// Report collect revenue by categery
+struct REPORT {
+  char categoryName[MAX_LNG_TEXT];
+  unsigned int totalPrice;
+  double totalProfit;
+
+} RevenueByCategory[MAX_IDX_CATEGORY];
+
 
 PERSONNEL Personnel[MAX_IDX_PERSONNEL];           // Declare the Personnel table
 INVENTORY Inventory[MAX_IDX_INVENTORY];           // Declare the Inventory table
@@ -211,7 +219,8 @@ void settingFileWrite();         // For Setting Database
 /*-----------------------------------------------------------------------------
 Declare all the other database functions*/
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
-void intToString(char *str, int number); // Convert from integer to string (Return the `str` by reference)
+time_t toEpochTime(int date, int month, int year, int hour, int minute, int second);  // Convert time from Human-readable to Epoch Unix time format
+int isTimeInRange(time_t timestamp, time_t start, time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
 
 /*-----------------------------------------------------------------------------
 Declare all the interface functions*/
@@ -332,10 +341,10 @@ void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `po
 /*-----------------------------------------------------------------------------
 Declare all the the report function can do*/
 
-int oneDayReport();                // Total of revenue on one day, return an amount of record & the result by reference
-int multipleDayReport();           // Total of revenue from dd/mm/yyyy to dd/mm/yyyy
-int monthlyReport();               // Total of revenue in yyyy year (show by monthly)
-void personnelSaleReport();         // Total of sale by each merchant
+void oneDayReport(int date, int month, int year);  // Total of revenue on one day, result is store in a structure `RevenueByCategory`
+void multipleDayReport();                          // Total of revenue from dd/mm/yyyy to dd/mm/yyyy
+void monthlyReport();                              // Total of revenue in yyyy year (show by monthly)
+void personnelSaleReport();                        // Total of sale by each merchant
 
 
 /*-----------------------------------------------------------------------------
