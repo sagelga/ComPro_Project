@@ -41,7 +41,6 @@ Define all the constant values here*/
 
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
-
 // Path to Database file
 const char *personnelDatabaseFile = "Database/personnel.db";
 const char *inventoryDatabaseFile = "Database/inventory.db";
@@ -52,132 +51,24 @@ const char *customerDatabaseFile = "Database/customer.db";
 const char *promotionDatabaseFile = "Database/promotion.db";
 const char *settingDatabaseFile = "Database/setting.db";
 
-// Database structure
-// 01. PERSONNEL
-typedef struct
-{
-  char id[MAX_LNG_ID];
-  char firstname[MAX_LNG_TEXT];
-  char lastname[MAX_LNG_TEXT];
-  int role; // 0 = Manager | 1 = Marketing | 2 = Sale
-  char username[MAX_LNG_TEXT];
-  char password[MAX_LNG_TEXT];
-  char barcodeToken[MAX_LNG_TOKEN]; // For use a barcode authentication
-} PERSONNEL;
-// 02. INVENTORY
-typedef struct
-{
-  char id[MAX_LNG_ID];
-  char name[MAX_LNG_SCREEN];
-  double price;
-  double profit; // Profit per item
-  unsigned int categoryId; // Category ID
-  unsigned int remain;
-
-} INVENTORY;
-// 03. CATEGORY
-typedef struct
-{
-  unsigned int id;
-  char name[MAX_LNG_TEXT];
-} CATEGORY;
-// 04. TRANSACTION
-typedef struct
-{
-  unsigned int id;
-  unsigned int purchaseId;
-  char inventoryId[MAX_LNG_ID];
-  time_t timestamp; // Epoch timestamp
-} TRANSACTION;
-// 05. PURCHASE
-typedef struct
-{
-  unsigned int id;
-  double totalPrice;
-  char customerId[MAX_LNG_ID];
-  char personnelId[MAX_LNG_ID]; // Cashier
-  time_t timestamp; // Epoch timestamp
-} PURCHASE;
-// 06. CUSTOMER
-typedef struct
-{
-  char id[MAX_LNG_ID];
-  char firstname[MAX_LNG_TEXT];
-  char lastname[MAX_LNG_TEXT];
-  char gender; // 'F' = Female | 'M' = Male
-  double point;
-  double totalBuy;
-} CUSTOMER;
-// 07. PROMOTION
-typedef struct
-{
-  char id[MAX_LNG_ID];
-  double price;
-  int status; // 1 = active | 0 = used (exprired)
-} PROMOTION;
-// 08. SETTING
-typedef struct
-{
-  char storeName[MAX_LNG_SCREEN];
-  char storeAddress[MAX_LNG_SCREEN];
-  double priceToPoint; // When you pay N Baht, you'll receive `N * priceToPoint` points.
-  double pointToPrice; // `pointToPrice` point is equal to 1 Baht.
-} SETTING;
-
-// Record Counter
-typedef struct{
-  unsigned int personnel;
-  unsigned int inventory;
-  unsigned int category;
-  unsigned int transaction;
-  unsigned int purchase;
-  unsigned int customer;
-  unsigned int promotion;
-
-} RECORDCOUNT;
-
-// SESSION Collector
-typedef struct{
-  int isLogedin;                                  // 1 = Loged-in | 0 = Not-Login (Guest)
-  PERSONNEL user;                             // For store user's information
-
-} SESSION;
-
-// Report collect revenue by categery
-struct REPORT {
-  char categoryName[MAX_LNG_TEXT];
-  double totalPrice;
-  double totalProfit;
-
-} RevenueByCategory[MAX_IDX_CATEGORY];
-
-
-PERSONNEL Personnel[MAX_IDX_PERSONNEL];           // Declare the Personnel table
-INVENTORY Inventory[MAX_IDX_INVENTORY];           // Declare the Inventory table
-CATEGORY Category[MAX_IDX_CATEGORY];              // Declare the Category table
-TRANSACTION Transaction[MAX_IDX_TRANSACTION];     // Declare the Transaction table
-PURCHASE Purchase[MAX_IDX_PURCHASE];              // Declare the Purchase table
-CUSTOMER Customer[MAX_IDX_CUSTOMER];              // Declare the Customer table
-PROMOTION Promotion[MAX_IDX_PROMOTION];           // Declare the Promotion table
-SETTING Setting;                                  // Declare the Setting table
-
-RECORDCOUNT RecordCount;                          // Declare the Record Counter
-SESSION Session;                                  // Declare the Session Collector
+//-------------------------------------------------------------------------------------------------------
+// # - File: AUTHENTICATE.c
+//-------------------------------------------------------------------------------------------------------
 
 /*-----------------------------------------------------------------------------
-Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
-void switchHub();               // For moving to the selection of the functions
-void terminate();               // For save and stop the program
-void screenAdjust();            // For calculating the screen size to the optimum size
-void screenClear();             // For refreshing the screen to the new one
-void settings();                // For setting up the screensize, default login scheme
+Declares all the authentication functions and interface*/
+int authenticateByUsername(char *username, char *password);    // For signing in (Return 1 = Success | 0 = Password Incorrect | -1 = User not found)
+int authenticateByToken(char *barcodeToken);                   // For signing in (Return 1 = Success | 0 = Token Not found)
+void deauthenticate();          // For signing out
 
-/*-----------------------------------------------------------------------------
-Declare all the gimmicks functions*/
-void bannerFullBorder();
-void bannerBlankBorder();
-void bannerBlankBorderText(char *text);
-void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);
+void authInterface();           // For sign in interface
+void authInterfaceComplete();   // For complete sign in interface
+void authInterfaceFailed();     // For non - complete sign in interface (Error from cancel)
+void authInterfaceError();      // For non - complete sign in interface (Other type of error)
+
+//-------------------------------------------------------------------------------------------------------
+// # - File: SYSTEMCALL.c
+//-------------------------------------------------------------------------------------------------------
 
 /*-----------------------------------------------------------------------------
 Declare all the database file !!build!! functions*/
@@ -216,14 +107,22 @@ void customerFileWrite();        // For Customer Database
 void promotionFileWrite();       // For Promotion Database
 void settingFileWrite();         // For Setting Database
 
-/*-----------------------------------------------------------------------------
-Declare all the other database functions*/
-int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
-time_t toEpochTime(int date, int month, int year, int hour, int minute, int second);  // Convert time from Human-readable to Epoch Unix time format
-int isTimeInRange(time_t timestamp, time_t start, time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
+//-------------------------------------------------------------------------------------------------------
+// # - File: PERSONNEL.c
+//-------------------------------------------------------------------------------------------------------
+// Database structure
+typedef struct
+{
+  char id[MAX_LNG_ID];
+  char firstname[MAX_LNG_TEXT];
+  char lastname[MAX_LNG_TEXT];
+  int role; // 0 = Manager | 1 = Marketing | 2 = Sale
+  char username[MAX_LNG_TEXT];
+  char password[MAX_LNG_TEXT];
+  char barcodeToken[MAX_LNG_TOKEN]; // For use a barcode authentication
+} PERSONNEL;
 
-/*-----------------------------------------------------------------------------
-Declare all the interface functions*/
+PERSONNEL Personnel[MAX_IDX_PERSONNEL];           // Declare the Personnel table
 
 /*-----------------------------------------------------------------------------
 Declare all the Personnel Database can do*/
@@ -241,6 +140,23 @@ int personnelUpdateLastname(char *id, char *lastname);      // For modifying the
 int personnelUpdateRole(char *id, int role);                // For modifying the `role` (Select the record by `id`)
 int personnelUpdatePassword(char *id, char *password);      // For modifying the `password` (Select the record by `id`)
 int personnelDelete(char *id);                              // Delete the record (Select by `id`)
+
+//-------------------------------------------------------------------------------------------------------
+// # - File: INVENTORY.c
+//-------------------------------------------------------------------------------------------------------
+// Database structure
+typedef struct
+{
+  char id[MAX_LNG_ID];
+  char name[MAX_LNG_SCREEN];
+  double price;
+  double profit; // Profit per item
+  unsigned int categoryId; // Category ID
+  unsigned int remain;
+
+} INVENTORY;
+
+INVENTORY Inventory[MAX_IDX_INVENTORY];           // Declare the Inventory table
 
 /*-----------------------------------------------------------------------------
 Declare all the Inventory Database can do*/
@@ -260,6 +176,18 @@ int inventoryUpdateCategory(char *id, unsigned int categoryId);    // For modify
 int inventoryUpdateRemain(char *id, unsigned int remain);          // For modifying the `remain` (Select the record by `id`)
 int inventoryDelete(char *id);                                     // Delete the record (Select by `id`)
 
+//-------------------------------------------------------------------------------------------------------
+// # - File: CATEGORY.c
+//-------------------------------------------------------------------------------------------------------
+// Database structure
+typedef struct
+{
+  unsigned int id;
+  char name[MAX_LNG_TEXT];
+} CATEGORY;
+
+CATEGORY Category[MAX_IDX_CATEGORY];              // Declare the Category table
+
 /*-----------------------------------------------------------------------------
 Declare all the Category Database can do*/
 /* 
@@ -274,6 +202,20 @@ int categoryInsert(char *name);                               // Adding a new re
 int categoryUpdateName(unsigned int id, char *name);  // For modifying the `name` (Select the record by `id`)
 int categoryDelete(unsigned int id);                  // Delete the record (Select by `id`)
 
+//-------------------------------------------------------------------------------------------------------
+// # - File: TRANSACTION.c
+//-------------------------------------------------------------------------------------------------------
+// Database structure
+typedef struct
+{
+  unsigned int id;
+  unsigned int purchaseId;
+  char inventoryId[MAX_LNG_ID];
+  time_t timestamp; // Epoch timestamp
+} TRANSACTION;
+
+TRANSACTION Transaction[MAX_IDX_TRANSACTION];     // Declare the Transaction table
+
 /*-----------------------------------------------------------------------------
 Declare all the Transaction Database can do*/
 /* 
@@ -286,6 +228,21 @@ int transactionSelectById(unsigned int id, unsigned int *purchaseId, char *inven
 
 void transactionInsert(unsigned int purchaseId, char *inventoryId);      // Adding a new record to the database
 
+//-------------------------------------------------------------------------------------------------------
+// # - File: PURCHASE.c
+//-------------------------------------------------------------------------------------------------------
+// Database structure
+typedef struct
+{
+  unsigned int id;
+  double totalPrice;
+  char customerId[MAX_LNG_ID];
+  char personnelId[MAX_LNG_ID]; // Cashier
+  time_t timestamp; // Epoch timestamp
+} PURCHASE;
+
+PURCHASE Purchase[MAX_IDX_PURCHASE];              // Declare the Purchase table
+
 /*-----------------------------------------------------------------------------
 Declare all the Purchase Database can do*/
 /* 
@@ -297,6 +254,22 @@ Declare all the Purchase Database can do*/
 int purchaseSelectById(unsigned int id, double *totalPrice, char *customerId, char *personnelId, time_t *timestamp);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
 void purchaseInsert(double totalPrice, char *customerId, char *personnelId);         // Adding a new record to the database
+
+//-------------------------------------------------------------------------------------------------------
+// # - File: CUSTOMER.c
+//-------------------------------------------------------------------------------------------------------
+// Database structure
+typedef struct
+{
+  char id[MAX_LNG_ID];
+  char firstname[MAX_LNG_TEXT];
+  char lastname[MAX_LNG_TEXT];
+  char gender; // 'F' = Female | 'M' = Male
+  double point;
+  double totalBuy;
+} CUSTOMER;
+
+CUSTOMER Customer[MAX_IDX_CUSTOMER];              // Declare the Customer table
 
 /*-----------------------------------------------------------------------------
 Declare all the Customer Database can do*/
@@ -316,6 +289,19 @@ int customerUpdatePoint(char *id, double point);            // For modifying the
 int customerUpdatetotalBuy(char *id, double totalBuy);      // For modifying the `totalBuy` (Select the record by `id`)
 int customerDelete(char *id);                               // Delete the record (Select by `id`)
 
+//-------------------------------------------------------------------------------------------------------
+// # - File: PROMOTION.c
+//-------------------------------------------------------------------------------------------------------
+// Database structure
+typedef struct
+{
+  char id[MAX_LNG_ID];
+  double price;
+  int status; // 1 = active | 0 = used (exprired)
+} PROMOTION;
+
+PROMOTION Promotion[MAX_IDX_PROMOTION];           // Declare the Promotion table
+
 /*-----------------------------------------------------------------------------
 Declare all the Promotion Database can do*/
 /* 
@@ -331,6 +317,20 @@ int promotionUpdatePrice(char *id, double price);                 // For modifyi
 int promotionUpdateStatus(char *id, int status);                  // For modifying the `status` (Select the record by `id`)
 int promotionDelete(char *id);                                    // Delete the record (Select by `id`)
 
+//-------------------------------------------------------------------------------------------------------
+// # - File: SETTING.c
+//-------------------------------------------------------------------------------------------------------
+// Database structure
+typedef struct
+{
+  char storeName[MAX_LNG_SCREEN];
+  char storeAddress[MAX_LNG_SCREEN];
+  double priceToPoint; // When you pay N Baht, you'll receive `N * priceToPoint` points.
+  double pointToPrice; // `pointToPrice` point is equal to 1 Baht.
+} SETTING;
+
+SETTING Setting;                                  // Declare the Setting table
+
 /*-----------------------------------------------------------------------------
 Declare all the Setting Database can do*/
 void settingUpdateStoreName(char *storeName);           // For modifying the `storeName`
@@ -338,23 +338,31 @@ void settingUpdateAddress(char *storeAddress);          // For modifying the `st
 void settingUpdatePriceToPoint(double priceToPoint);    // For modifying the `priceToPoint`
 void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `pointToPrice`
 
+//-------------------------------------------------------------------------------------------------------
+// # - File: REPORT.c
+//-------------------------------------------------------------------------------------------------------
+// Report collect revenue by categery
+struct REPORT {
+  char categoryName[MAX_LNG_TEXT];
+  double totalPrice;
+  double totalProfit;
+
+} RevenueByCategory[MAX_IDX_CATEGORY];
+
 /*-----------------------------------------------------------------------------
 Declare all the the report function can do*/
-
 // Report show by category
 void oneDayReport(int date, int month, int year);  // Total of revenue on one day, result is store in a structure `RevenueByCategory`
 void multipleDayReport(int fromDate, int fromMonth, int fromYear, int toDate, int toMonth, int toYear);    // Total of revenue from dd/mm/yyyy to dd/mm/yyyy, result is store in a structure `RevenueByCategory`
 void nextnDayReport(int fromDate, int fromMonth, int fromYear, int nDay);     // Total of revenue from dd/mm/yyyy to next `N` day(s), result is store in a structure `RevenueByCategory`
 void nextnMonthReport(int fromDate, int fromMonth, int fromYear, int nMonth); // Total of revenue from dd/mm/yyyy to next `N` month(s), result is store in a structure `RevenueByCategory`
 
-/*
 void monthlyReport();                              // Total of revenue in yyyy year (show by monthly)
 void personnelSaleReport();                        // Total of sale by each merchant
-*/
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/
-/*
+
 void monthlyForecast();
 void quarterForecast();
 void annualForecast();
@@ -363,25 +371,65 @@ void forecastResults();
 void forecastProgram();
 
 void forecastPrint();
-*/
+
+//-------------------------------------------------------------------------------------------------------
+// # - File: SUPPORT.c
+//-------------------------------------------------------------------------------------------------------
+
+// Record Counter
+typedef struct{
+  unsigned int personnel;
+  unsigned int inventory;
+  unsigned int category;
+  unsigned int transaction;
+  unsigned int purchase;
+  unsigned int customer;
+  unsigned int promotion;
+
+} RECORDCOUNT;
+
+RECORDCOUNT RecordCount;                          // Declare the Record Counter
+
+// SESSION Collector
+typedef struct{
+  int isLogedin;                                  // 1 = Loged-in | 0 = Not-Login (Guest)
+  PERSONNEL user;                             // For store user's information
+
+} SESSION;
+
+SESSION Session;                                  // Declare the Session Collector
+
+/*-----------------------------------------------------------------------------
+Declare all the other database functions*/
+
+int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
+time_t toEpochTime(int date, int month, int year, int hour, int minute, int second);  // Convert time from Human-readable to Epoch Unix time format
+int isTimeInRange(time_t timestamp, time_t start, time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
+
+//-------------------------------------------------------------------------------------------------------
+// # - File: DECORATE.c
+//-------------------------------------------------------------------------------------------------------
+
+/*-----------------------------------------------------------------------------
+Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
+void switchHub();               // For moving to the selection of the functions
+void terminate();               // For save and stop the program
+void screenAdjust();            // For calculating the screen size to the optimum size
+void screenClear();             // For refreshing the screen to the new one
+void settings();                // For setting up the screensize, default login scheme
+
+/*-----------------------------------------------------------------------------
+Declare all the gimmicks functions*/
+void bannerFullBorder();
+void bannerBlankBorder();
+void bannerBlankBorderText(char *text);
+void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);
 
 /*-----------------------------------------------------------------------------
 Decease what the seller can do*/
-/*
-void cashierInterface();
-*/
 
-/*-----------------------------------------------------------------------------
-Declares all the authentication functions and interface*/
-int authenticateByUsername(char *username, char *password);    // For signing in (Return 1 = Success | 0 = Password Incorrect | -1 = User not found)
-int authenticateByToken(char *barcodeToken);                   // For signing in (Return 1 = Success | 0 = Token Not found)
-void deauthenticate();          // For signing out
-/*
-void authInterface();           // For sign in interface
-void authInterfaceComplete();   // For complete sign in interface
-void authInterfaceFailed();     // For non - complete sign in interface (Error from cancel)
-void authInterfaceError();      // For non - complete sign in interface (Other type of error)
-*/
+void cashierInterface();
+
 /*
 
                 May the god be with us...
