@@ -581,6 +581,7 @@ void authInterfaceFail () {
             return;
 
         default:
+            screenClear();
             authInterface ();
             return;
     }
@@ -599,6 +600,7 @@ void authInterfaceError () {
     for ( int i = 0; i < 33; i++ )
         bannerBlankBorder ();
     bannerFullBorder ();
+    
     delay (10);
     authInterface ();
 
