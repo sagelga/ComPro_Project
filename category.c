@@ -49,23 +49,6 @@ int categoryUpdateName(unsigned int id, char *name){
     return 0;   // Not found the given `id` in the records
 }
 
-int categoryDelete(unsigned int id){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.category;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(Category[i].id == id){
-            while(i < numberOfRecords - 1){
-                Category[i] = Category[i+1];
-                i++;
-            }
-            RecordCount.category--;    // Update the amount of records
-            categoryFileWrite();       // Save to a Database file
-            return 1;                  // Record successfully deleted
-        }
-    }
-    return 0;   // Not found the given `id` in the records
-}
-
 /*
  *                                             All hail the god..
  *  -----------------------------------------------------------------------------------------------------------------------

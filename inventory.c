@@ -8,23 +8,18 @@ void inventorySwitchHub () {
     bannerBlankBorderText("Inventory");
     bannerFullBorderSection ();
     bannerBlankBorderTextCen ("1. Check the database");
-    bannerBlankBorder ();
     bannerBlankBorderTextCen ("2. Add inventory data to the database");
     bannerBlankBorderTextCen ("3. Edit inventory data from the database");
     bannerBlankBorderTextCen ("4. Removing inventory from the database");
 
-    for (int i = 0;i<2;i++)
-        bannerFullBorder ();
-
     bannerBlankBorderText ("Category");
     bannerFullBorderSection ();
     bannerBlankBorderTextCen ("5. Check the category database");
-    bannerBlankBorder ();
     bannerBlankBorderTextCen ("6. Add new category to the database");
     bannerBlankBorderTextCen ("7. Edit category from the database");
     bannerBlankBorderTextCen ("8. Remove category from the database");
 
-    for ( int i = 0; i < 25; i++ ) {
+    for ( int i = 0; i < 24; i++ ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("or type 'N' to return back to the hub");
