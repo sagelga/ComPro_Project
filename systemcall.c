@@ -179,7 +179,7 @@ void purchaseFileRead(){
 	int i = 0;
 	fp = fopen(purchaseDatabaseFile, "r");
 
-	while(fscanf(fp, "%u\t%lf\t%s\t%s\t%lu", &Purchase[i].id, &Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, &Purchase[i].timestamp) != EOF){
+	while(fscanf(fp, "%u\t%lf\t%lf\t%s\t%s\t%lu", &Purchase[i].id, &Purchase[i].totalPrice, &Purchase[i].totalDiscount, Purchase[i].customerId, Purchase[i].personnelId, &Purchase[i].timestamp) != EOF){
 		i++;
 	}
 
@@ -188,7 +188,7 @@ void purchaseFileRead(){
 
 	// For debuging
 	// i--;
-	// printf(">>>> %u\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].timestamp);
+	// printf(">>>> %u\t%lf\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].totalDiscount, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].timestamp);
 
 }
 
@@ -311,7 +311,7 @@ void purchaseFileWrite(){
 	fp = fopen(purchaseDatabaseFile, "w+");
 
 	for(int i = 0; i < numberOfRecords; i++)
-		fprintf(fp, "%u\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].timestamp);
+		fprintf(fp, "%u\t%lf\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].totalDiscount, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].timestamp);
 
 	fclose(fp);
 }

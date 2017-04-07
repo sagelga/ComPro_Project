@@ -229,6 +229,7 @@ typedef struct
 {
   unsigned int id;
   double totalPrice;
+  double totalDiscount;
   char customerId[MAX_LNG_ID];
   char personnelId[MAX_LNG_ID]; // Cashier
   time_t timestamp; // Epoch timestamp
@@ -240,13 +241,13 @@ PURCHASE Purchase[MAX_IDX_PURCHASE];              // Declare the Purchase table
 Declare all the Purchase Database can do*/
 /* 
   Note: To use a function `purchaseSelectById`
-         - Pass the values by reference e.g. purchaseSelectById(id, &totalPrice, customerId, personnelId, &timestamp);
+         - Pass the values by reference e.g. purchaseSelectById(id, &totalPrice, &totalDiscount, customerId, personnelId, &timestamp);
         All of the `int` functions
          - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
-int purchaseSelectById(unsigned int id, double *totalPrice, char *customerId, char *personnelId, time_t *timestamp);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+int purchaseSelectById(unsigned int id, double *totalPrice, double *totalDiscount, char *customerId, char *personnelId, time_t *timestamp);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void purchaseInsert(double totalPrice, char *customerId, char *personnelId);         // Adding a new record to the database
+void purchaseInsert(double totalPrice, double totalDiscount, char *customerId, char *personnelId);         // Adding a new record to the database
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: CUSTOMER.c
