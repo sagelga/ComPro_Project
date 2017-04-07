@@ -66,7 +66,11 @@ void authInterfaceComplete(){
     bannerBlankBorderTextCen ("██║     ╚██████╔╝███████║");
     bannerBlankBorderTextCen ("╚═╝      ╚═════╝ ╚══════╝");
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Welcome back! <username>");
+
+    char text[140];
+    strcpy(text, "Welcome back! ");
+    strcat(text, Session.user.username);
+    bannerBlankBorderTextCen (text);
     for ( int i = 0; i < 26; i++ ) {
         bannerBlankBorder ();
     }
