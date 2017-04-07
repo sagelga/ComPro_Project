@@ -4,46 +4,6 @@
 void categorySwitchHub (){
 }
 
-void categoryDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(categoryDatabaseFile)){
-        fopen(categoryDatabaseFile, "w");
-    }
-}
-
-void categoryFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
-
-    int i = 0;
-    fp = fopen(categoryDatabaseFile, "r");
-
-    while(fscanf(fp, "%u\t%[^\n]", &Category[i].id, Category[i].name) != EOF){
-        i++;
-    }
-
-    RecordCount.category = i;          // Save a number of records to the Record Counter
-    fclose(fp);
-
-    // For debugging
-    // i--;
-    // printf(">>>> %u\t%s\n", Category[i].id, Category[i].name);
-}
-
-void categoryFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
-
-    numberOfRecords = RecordCount.category;
-    fp = fopen(categoryDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%u\t%s\n", Category[i].id, Category[i].name);
-
-    fclose(fp);
-}
-
 int categorySelectById(unsigned int id, char *name){
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.category;

@@ -1,35 +1,6 @@
 // Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
 
-void personnelDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(personnelDatabaseFile)){
-        fopen(personnelDatabaseFile, "w");
-    }
-}
-
-void personnelFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
-
-    int i = 0;
-    fp = fopen(personnelDatabaseFile, "r");
-
-    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%d\t%[^\t]\t%[^\t]\t%[^\n]", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, &Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken) != EOF){
-        i++;
-    }
-
-    RecordCount.personnel = i;          // Save a number of records to the Record Counter
-    fclose(fp);
-
-    // For debuging
-    // i--;
-    // printf(">>>> %s-%s-%s-%d-%s-%s-%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken);
-}
-
-void personnelFileWrite(){
-}
-
 int personnelSelectById(char *id, char *firstname, char *lastname, int *role, char *username, char *password, char *barcodeToken){
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.personnel;
@@ -139,4 +110,3 @@ int personnelDelete(char *id){
     }
     return 0;   // Not found the given `id` in the records
 }
-

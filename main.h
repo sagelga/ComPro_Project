@@ -52,7 +52,7 @@ void deauthenticate();          // For signing out
 
 void authInterface();           // For sign in interface
 void authInterfaceComplete();   // For complete sign in interface
-void authInterfaceFailed();     // For non - complete sign in interface (Error from cancel)
+void authInterfaceFail();     // For non - complete sign in interface (Error from cancel)
 void authInterfaceError();      // For non - complete sign in interface (Other type of error)
 
 //-------------------------------------------------------------------------------------------------------
@@ -62,15 +62,15 @@ void authInterfaceError();      // For non - complete sign in interface (Other t
 /*-----------------------------------------------------------------------------
 Declare all the database file !!fetch!! functions*/
 
-void initDatabase();                              // For Database Initialization
-void personnelDatabase();                         // For Personnel Database
-void inventoryDatabase();                         // For Inventory Database
-void categoryDatabase();                          // For Category Database
-void transactionDatabase();                       // For Transaction Database
-void purchaseDatabase();                          // For Purchase Database
-void customerDatabase();                          // For Customer Database
-void promotionDatabase();                         // For Promotion Database
-void settingDatabase();                           // For Setting Database
+void initDatabase();            // For Database Initialization
+void personnelDatabase();       // For Personnel Database
+void inventoryDatabase();       // For Inventory Database
+void categoryDatabase();        // For Category Database
+void transactionDatabase();     // For Transaction Database
+void purchaseDatabase();        // For Purchase Database
+void customerDatabase();        // For Customer Database
+void promotionDatabase();       // For Promotion Database
+void settingDatabase();         // For Setting Database
 
 /*-----------------------------------------------------------------------------
 Declare all the database file >>Read>> functions*/
@@ -176,12 +176,6 @@ typedef struct
 } CATEGORY;
 
 CATEGORY Category[MAX_IDX_CATEGORY];              // Declare the Category table
-
-/* Inventory Database Interface */
-void inventoryDatabaseInterface();
-void inventoryAddInterface ();
-void inventoryModifyInterface ();
-void inventoryRemoveInterface ();
 
 /*-----------------------------------------------------------------------------
 Declare all the Category Database can do*/
@@ -432,7 +426,7 @@ Declare all the gimmicks functions*/
 void bannerFullBorder();                      // Prints a full 140 character full of :
 void bannerBlankBorder();                     // Prints a :: + 136 charaacter space + ::
 void bannerBlankBorderTextCen(char *text);                // Prints a :: + + 134 character space + + :: (Center Align)
-void bannerBlankBorderTextCen(char *text);                // Prints a :: + + 134 character space + + :: (Left Align)
+void bannerBlankBorderText(char *text);                // Prints a :: + + 134 character space + + :: (Left Align)
 void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);  // Prints banner with configurable character
 void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4); // Prints banner (with POS logo in the right) with configurable character
 void bannerUserInput();                       // Asks for input from user

@@ -58,55 +58,14 @@ void inventorySwitchHub () {
     }
 }
 
-void inventoryDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(inventoryDatabaseFile)){
-        fopen(inventoryDatabaseFile, "w");
-    }
+void inventoryAddInterface () {
+    bannerBlankBorderTextCen ("Inventory in mode 'ADD'");
 }
 
-void inventoryFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
-
-    int i = 0;
-    fp = fopen(inventoryDatabaseFile, "r");
-
-    while(fscanf(fp, "%s\t%[^\t]\t%lf\t%lf\t%u\t%u", Inventory[i].id, Inventory[i].name, &Inventory[i].price, &Inventory[i].profit, &Inventory[i].categoryId, &Inventory[i].remain) != EOF){
-        i++;
-    }
-
-    RecordCount.inventory = i;          // Save a number of records to the Record Counter
-    fclose(fp);
-
-    // For debuging
-    // i--;
-    // printf(">>>> %s\t%s\t%lf\t%lf\t%u\t%u\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
+void inventoryModifyInterface () {
 }
 
-void inventoryFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
-
-    numberOfRecords = RecordCount.inventory;
-    fp = fopen(inventoryDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%s\t%lf\t%lf\t%u\t%u\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
-
-    fclose(fp);
-}
-
-void inventoryDatabaseInterface(){
-
-    numberOfRecords = RecordCount.personnel;
-    fp = fopen(personnelDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%s\t%s\t%d\t%s\t%s\t%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken);
-
-    fclose(fp);
+void inventoryRemoveInterface () {
 }
 
 int inventorySelectById(char *id, char *name, double *price, double *profit, unsigned int *categoryId, unsigned int *remain){
@@ -126,6 +85,7 @@ int inventorySelectById(char *id, char *name, double *price, double *profit, uns
     }
     return 0;           // Not found the given `id` in the records
 }
+
 
 int inventoryInsert(char *id, char *name, double price, double profit, unsigned int categoryId, unsigned int remain){
     int tailIndex = RecordCount.inventory;
@@ -229,14 +189,4 @@ int inventoryDelete(char *id){
         }
     }
     return 0;   // Not found the given `id` in the records
-}
-
-void inventoryAddInterface () {
-    bannerBlankBorderTextCen ("Inventory in mode 'ADD'");
-}
-
-void inventoryModifyInterface () {
-}
-
-void inventoryRemoveInterface () {
 }

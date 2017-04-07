@@ -65,40 +65,11 @@ void settingsSwitchHub () {
     }
 }
 
-void settingDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(settingDatabaseFile)){
-        fopen(settingDatabaseFile, "w");
-    }
-}
-
-void settingFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
-
-    fp = fopen(settingDatabaseFile, "r");
-
-    fscanf(fp, "%[^\t]\t%[^\t]\t%lf\t%lf", Setting.storeName, Setting.storeAddress, &Setting.priceToPoint, &Setting.pointToPrice);
-    fclose(fp);
-
-    // For debugging
-    // printf(">>>> %s--%s--%lf--%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
-}
-
-void settingFileWrite(){
-    // Save all of the settings to a database file
-    FILE *fp;               // File Pointer
-
-    fp = fopen(settingDatabaseFile, "w+");
-
-    fprintf(fp, "%s\t%s\t%lf\t%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
-    fclose(fp);
-}
-
 void settingUpdateStoreName(char *storeName){
 
     strcpy(Setting.storeName, storeName);
     settingFileWrite();    // Save to a Database file
+
 }
 
 void settingUpdateAddress(char *storeAddress){

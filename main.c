@@ -278,25 +278,3 @@ void switchHubSales() {
             return;
     }
 }
-
-void initDatabase(){
-    // Database Initial
-    personnelDatabase();
-    inventoryDatabase();
-    categoryDatabase();
-    transactionDatabase();
-    purchaseDatabase();
-    customerDatabase();
-    promotionDatabase();
-    settingDatabase();
-
-    // Database Seeding
-    personnelFileRead();  
-    inventoryFileRead();  
-    categoryFileRead();   
-    transactionFileRead();
-    purchaseFileRead();   
-    customerFileRead();   
-    promotionFileRead();  
-    settingFileRead();    
-}

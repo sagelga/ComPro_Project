@@ -4,46 +4,6 @@
 void customerSwitchHub () {
 }
 
-void customerDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(customerDatabaseFile)){
-        fopen(customerDatabaseFile, "w");
-    }
-}
-
-void customerFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
-
-    int i = 0;
-    fp = fopen(customerDatabaseFile, "r");
-
-    while(fscanf(fp, "%s\t%[^\t]\t%[^\t]\t%c\t%lf\t%lf", Customer[i].id, Customer[i].firstname, Customer[i].lastname, &Customer[i].gender, &Customer[i].point, &Customer[i].totalBuy) != EOF){
-        i++;
-    }
-
-    RecordCount.customer = i;          // Save a number of records to the Record Counter
-    fclose(fp);
-
-    // For debugging
-    // i--;
-    // printf(">>>> %s\t%s\t%s\t%c\t%lf\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point, Customer[i].totalBuy);
-}
-
-void customerFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
-
-    numberOfRecords = RecordCount.customer;
-    fp = fopen(customerDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%s\t%s\t%c\t%lf\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point, Customer[i].totalBuy);
-
-    fclose(fp);
-}
-
 int customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy){
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.customer;
@@ -65,7 +25,7 @@ int customerSelectById(char *id, char *firstname, char *lastname, char *gender, 
 int customerInsert(char *id, char *firstname, char *lastname, char gender){
     int tailIndex = RecordCount.customer;
 
-    // To confirm that `id` is unique
+    // To comfirm that `id` is unique
     for(int i = 0; i < tailIndex; i++){
         if(strcmp(Customer[i].id, id) == 0)
             return 0;   // Error: Customer ID already exists
@@ -165,4 +125,3 @@ int customerDelete(char *id){
     }
     return 0;   // Not found the given `id` in the records
 }
-

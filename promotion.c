@@ -4,46 +4,6 @@
 void promotionSwitchHub () {
 }
 
-void promotionDatabase(){
-    // Check a Database file existance, if it doesn't exist then create the new one.
-    if(!isFileExist(promotionDatabaseFile)){
-        fopen(promotionDatabaseFile, "w");
-    }
-}
-
-void promotionFileRead(){
-    // Fetch records form a Database file to the program memory
-    FILE *fp;                           // File Pointer
-
-    int i = 0;
-    fp = fopen(promotionDatabaseFile, "r");
-
-    while(fscanf(fp, "%s\t%lf\t%d", Promotion[i].id, &Promotion[i].price, &Promotion[i].status) != EOF){
-        i++;
-    }
-
-    RecordCount.promotion = i;          // Save a number of records to the Record Counter
-    fclose(fp);
-
-    // For debugging
-    // i--;
-    // printf(">>>> %s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
-}
-
-void promotionFileWrite(){
-    // Save all of the records to a database file
-    FILE *fp;                   // File Pointer
-    int numberOfRecords;        // Number of the records in a table
-
-    numberOfRecords = RecordCount.promotion;
-    fp = fopen(promotionDatabaseFile, "w+");
-
-    for(int i = 0; i < numberOfRecords; i++)
-        fprintf(fp, "%s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
-
-    fclose(fp);
-}
-
 int promotionSelectById(char *id, double *price, int *status){
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.promotion;
