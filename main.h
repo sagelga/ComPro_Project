@@ -189,7 +189,6 @@ int categorySelectById(unsigned int id, char *name);  // Retrieve the record by 
 
 int categoryInsert(char *name);                               // Adding a new record to the database
 int categoryUpdateName(unsigned int id, char *name);  // For modifying the `name` (Select the record by `id`)
-int categoryDelete(unsigned int id);                  // Delete the record (Select by `id`)
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: TRANSACTION.c
@@ -200,7 +199,12 @@ typedef struct
   unsigned int id;
   unsigned int purchaseId;
   char inventoryId[MAX_LNG_ID];
+  char inventoryName[MAX_LNG_SCREEN];
+  double inventoryPrice;
+  double inventoryProfit; // Profit per item
+  unsigned int inventoryCategoryId; // Category ID
   time_t timestamp; // Epoch timestamp
+
 } TRANSACTION;
 
 TRANSACTION Transaction[MAX_IDX_TRANSACTION];     // Declare the Transaction table
@@ -209,11 +213,11 @@ TRANSACTION Transaction[MAX_IDX_TRANSACTION];     // Declare the Transaction tab
 Declare all the Transaction Database can do*/
 /* 
   Note: To use a function `transactionSelectById`
-         - Pass the values by reference e.g. transactionSelectById(id, &purchaseId, inventoryId, &timestamp);
+         - Pass the values by reference e.g. transactionSelectById(id, &purchaseId, &inventoryPrice, &inventoryProfit, &inventoryCategoryId, &timestamp);
         All of the `int` functions
          - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
-int transactionSelectById(unsigned int id, unsigned int *purchaseId, char *inventoryId, time_t *timestamp);   // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+int transactionSelectById(unsigned int id, unsigned int *purchaseId, double *inventoryPrice, double *inventoryProfit, unsigned int *inventoryCategoryId, time_t *timestamp);   // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
 void transactionInsert(unsigned int purchaseId, char *inventoryId);      // Adding a new record to the database
 
