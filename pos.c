@@ -2,7 +2,12 @@
 #include "main.h"
 
 void cashierInterface () {
-    banner ("Welcome! My name is",Session.user,"","");
+    banner ("","","","");
+
+    bannerBlankBorder ();
+    banner ("Welcome! My name is",&Session.user,"","");
+    bannerBlankBorder ();
+
 }
 
 /*
