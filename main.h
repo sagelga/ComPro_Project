@@ -2,6 +2,9 @@
  *      https://www.youtube.com/watch?v=oguvSPdtHQ8
  */
 
+#ifndef MAIN_H_
+#define MAIN_H_
+
 /*-----------------------------------------------------------------------------
 Declare all the libraries that we are going to use in this project*/
 #include <stdio.h>              // Pretty much the basic things
@@ -30,15 +33,6 @@ Define all the constant values here*/
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
 
-// Path to Database file
-const char *personnelDatabaseFile = "Database/personnel.db";
-const char *inventoryDatabaseFile = "Database/inventory.db";
-const char *categoryDatabaseFile = "Database/category.db";
-const char *transactionDatabaseFile = "Database/transaction.db";
-const char *purchaseDatabaseFile = "Database/purchase.db";
-const char *customerDatabaseFile = "Database/customer.db";
-const char *promotionDatabaseFile = "Database/promotion.db";
-const char *settingDatabaseFile = "Database/setting.db";
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: AUTHENTICATE.c
@@ -485,3 +479,5 @@ void cashierInterface();
       Vasanchai Prakobkij      @59070156        59070156    Background Work Team
   
  */
+
+ #endif

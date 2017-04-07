@@ -1,6 +1,16 @@
 // Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
 
+// Path to Database file
+const char *personnelDatabaseFile = "Database/personnel.db";
+const char *inventoryDatabaseFile = "Database/inventory.db";
+const char *categoryDatabaseFile = "Database/category.db";
+const char *transactionDatabaseFile = "Database/transaction.db";
+const char *purchaseDatabaseFile = "Database/purchase.db";
+const char *customerDatabaseFile = "Database/customer.db";
+const char *promotionDatabaseFile = "Database/promotion.db";
+const char *settingDatabaseFile = "Database/setting.db";
+
 void initDatabase(){
 	// Database Initial
 	personnelDatabase();
