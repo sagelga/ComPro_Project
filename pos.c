@@ -8,7 +8,7 @@ void cashierInterface () {//Interface that will ask for customer ID
 
     bannerBlankBorder ();
 
-    char text;
+    char text[140];
     strcpy(text, "Welcome! My name is ");
     strcat(text, Session.user.firstname);
     strcat(text, " ");
