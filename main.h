@@ -424,12 +424,19 @@ void delay (int interval);
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions*/
 void bannerFullBorder();                      // Prints a full 140 character full of :
+
 void bannerBlankBorder();                     // Prints a :: + 136 charaacter space + ::
 void bannerBlankBorderTextCen(char *text);                // Prints a :: + + 134 character space + + :: (Center Align)
 void bannerBlankBorderText(char *text);                // Prints a :: + + 134 character space + + :: (Left Align)
+
 void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);  // Prints banner with configurable character
 void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4); // Prints banner (with POS logo in the right) with configurable character
+void bannerCen();
+void bannerCenBorder(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);
+void bannerCenStrikethrough(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);
+
 void bannerUserInput();                       // Asks for input from user
+
 void bannerFullBorderSection ();
 
 /*-----------------------------------------------------------------------------
@@ -439,6 +446,10 @@ void saleDatabaseInterface();
 Decease what the seller can do*/
 
 void cashierInterface();
+void cashierInterfaceInventory();
+void cashierInterfaceDiscount();// Interface that will ask for discount (voucher and points)
+void cashierInterfaceResult();// Interface that will show the total (just like the receipt)
+
 
 
 /*
