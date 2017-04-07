@@ -11,10 +11,10 @@ int main(){ // This program will run first. POS Interface configuration will be 
 
 void switchHub() {
     screenClear ();
-    char text1 = "";
-    strcpy (text1,"Welcome back ");
-    strcpy (text1,Session.user.username);
-    strcpy (text1,"!");
+    char text1[140];
+    strcpy (text1, "Welcome back ");
+    strcpy (text1, Session.user.username);
+    strcpy (text1, "!");
     char text3[107] = "You are now connected to the POS system";
 
     bannerInverse(text1, "", text3, "");
