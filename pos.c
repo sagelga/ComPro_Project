@@ -1,13 +1,42 @@
 // Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
 
-void cashierInterface () {
-    banner ("","","","");
+void cashierInterface () {//Interface that will ask for customer ID
+    screenClear ();
+
+    banner ("Signing in as",Session.user,"","");
 
     bannerBlankBorder ();
-    banner ("Welcome! My name is",&Session.user,"","");
+
+    char text;
+    strcpy(text,"Welcome! My name is");
+    strcpy(text,&Session.user.username);
+    bannerBlankBorderTextCen (text);
+
     bannerBlankBorder ();
 
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Please type in your member ID");
+
+    for (int i = 28;i>0;i--)
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("  Type 'N' to quit  |  Press ENTER to skip  |  Type 'B' to back  ");
+    bannerFullBorder ();
+    bannerUserInput ();
+
+    // Recieves input + let user type in the member ID or type N or type ENTER or type B
+
+    /* Call this if the input is not N or B -> */ cashierInterfaceInventory ();
+}
+
+void cashierInterfaceInventory(){// Interface that will remove the item from the database
+}
+
+void cashierInterfaceDiscount(){// Interface that will ask for discount (voucher and points)
+}
+
+void cashierInterfaceResult(){// Interface that will show the total (just like the receipt)
 }
 
 /*
