@@ -49,19 +49,20 @@ int categoryUpdateName(unsigned int id, char *name){
     return 0;   // Not found the given `id` in the records
 }
 
-int categoryDelete(unsigned int id){
-    int numberOfRecords;    // Number of the records in a table
-    numberOfRecords = RecordCount.category;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(Category[i].id == id){
-            while(i < numberOfRecords - 1){
-                Category[i] = Category[i+1];
-                i++;
-            }
-            RecordCount.category--;    // Update the amount of records
-            categoryFileWrite();       // Save to a Database file
-            return 1;                  // Record successfully deleted
-        }
-    }
-    return 0;   // Not found the given `id` in the records
-}
+/*
+ *                                             All hail the god..
+ *  -----------------------------------------------------------------------------------------------------------------------
+ *  |      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      |
+ *  |    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    |
+ *  |    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    |
+ *  |    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    |
+ *  |  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  |
+ *  | (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) |
+ *  |---------------||---------------||---------------||---------------||---------------||---------------||---------------|
+ *  |     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     |
+ *  |     Monday    ||    Tuesday    ||   Wednesday   ||    Thursday   ||     Friday    ||    Saturday   ||     Sunday    |
+ *  -----------------------------------------------------------------------------------------------------------------------
+ *                                         Program bug best enemy
+ *                                 Please. No bug. No crash. No interrupt.
+ *  -----------------------------------------------------------------------------------------------------------------------
+ */

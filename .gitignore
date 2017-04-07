@@ -10,16 +10,17 @@
 
 *.bin
 
-*.out
-
 cmake-build-debug/CMakeFiles/
 
 CMakeLists\.txt
 
 *.cbp
 
+*.o
+
 cmake-build-debug/
 
 CMakeLists\.txt
 
-click_here_to_run
+
+Click-to-run-POS

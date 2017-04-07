@@ -11,28 +11,28 @@ int main(){ // This program will run first. POS Interface configuration will be 
 
 void switchHub() {
     screenClear ();
-    char username[8] = "Default";
-    char text1[107] = "Welcome back ";
-    strcat(text1,username);
-    strcat(text1,"!");
-    char text2[107] = "";
-    char text3[107] = "You are now connecting to the POS system";
-    char text4[107] = "<user_permission_level_goes_here_in_this_line>";
-    bannerInverse(text1, text2, text3, text4);
+    char text1[140];
+    strcpy (text1, "Welcome back ");
+    strcpy (text1, Session.user.username);
+    strcpy (text1, "!");
+    char text3[107] = "You are now connected to the POS system";
+
+    bannerInverse(text1, "", text3, "");
 
     bannerBlankBorderTextCen("What do you want to do?");
     bannerBlankBorder();
 
     //These choice will be removed, when the program detects the permission level.
-    bannerBlankBorderTextCen("1. Login / Logout");
-    bannerBlankBorderTextCen ("2. Go to POS System");
-    bannerBlankBorderTextCen("3. Check Inventory Database");
-    bannerBlankBorderTextCen("4. Check Customer Database");
-    bannerBlankBorderTextCen("5. Check Category Database");
-    bannerBlankBorderTextCen ("6. Check Promotion Database");
-    bannerBlankBorderTextCen("7. Check Sales Report");
-    bannerBlankBorderTextCen("8. Settings");
-    bannerBlankBorder();
+    bannerBlankBorderTextCen ("1. Go to POS System");
+    bannerBlankBorderTextCen ("2. Check Inventory Database");
+    bannerBlankBorderTextCen ("3. Check Customer Database");
+    bannerBlankBorderTextCen ("4. Check Category Database");
+    bannerBlankBorderTextCen ("5. Check Promotion Database");
+    bannerBlankBorderTextCen ("6. Check Purchase Database");
+    bannerBlankBorderTextCen ("7. Check Transaction Database");
+    bannerBlankBorderTextCen ("8. Check Report");
+    bannerBlankBorderTextCen ("9. Settings");
+    bannerBlankBorder ();
 
     for (int i = 0;i<20;i++)
         bannerBlankBorder();
@@ -48,36 +48,31 @@ void switchHub() {
 
     switch (flags) {
         case ('1'): // Sign In / Sign Out
-            authInterface ();
-            return;
-
-        case ('2'):// Go to POS Systems Interface (for cashier)
-            initDatabase();
             cashierInterface ();
             return;
 
-        case ('3'):// Go to check Inventory Database
-            initDatabase();
+        case ('2'):// Go to POS Systems Interface (for cashier)
             inventorySwitchHub ();
             return;
 
-        case ('4'):
+        case ('3'):// Go to check Inventory Database
             customerSwitchHub ();
             return;
 
-        case ('5'):
-            initDatabase();
+        case ('4'):
             categorySwitchHub ();
             return;
 
-        case ('6'):
-            initDatabase ();
+        case ('5'):
             promotionSwitchHub ();
             return;
 
+        case ('6'):
+            purchaseDatabase ();
+            return;
+
         case ('7'):
-            initDatabase ();
-            saleDatabaseInterface();
+            transactionSwitchHub ();
             return;
 
         case ('8'):
@@ -91,7 +86,15 @@ void switchHub() {
         case ('N'):
             terminate();
             return;
-        
+
+        case ('b'):
+            deauthenticate ();
+            return;
+
+        case ('B'):
+            deauthenticate ();
+            return;
+
         default:
             // The input is invalid. Trying to route back to ask for a valid input
             printf("Your input is invalid. Please try again.\n\n\n");

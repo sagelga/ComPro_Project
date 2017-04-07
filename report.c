@@ -10,13 +10,6 @@ void oneDayReport(int date, int month, int year){
 	
 	int i;
 
-	double price;				// Buffer
-	double profit;				// Buffer
-	unsigned int categoryId;	// Buffer
-
-	char trash[MAX_LNG_TEXT];	// Don't really want
-	unsigned int trash2;		// Don't really want
-
 	for(i = 0; i < numberOfCategoryRecords; i++){
 		// Initail the values
 		strcpy(RevenueByCategory[i].categoryName, Category[i].name);
@@ -24,15 +17,12 @@ void oneDayReport(int date, int month, int year){
 		RevenueByCategory[i].totalProfit = 0;
 	}
 
-	i = 0;
-	while(i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0){
-
-		if(inventorySelectById(Transaction[i].inventoryId, trash, &price, &profit, &categoryId, &trash2)){
-			// If the record is found
-			RevenueByCategory[categoryId].totalPrice += price;
-			RevenueByCategory[categoryId].totalProfit += profit;
+	for(i = 0; i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0; i++){
+		if(isTimeInRange(Transaction[i].timestamp, startTime, endTime) == 0){
+			// If the record is in the time range
+			RevenueByCategory[Transaction[i].inventoryCategoryId].totalPrice += Transaction[i].inventoryPrice;
+			RevenueByCategory[Transaction[i].inventoryCategoryId].totalProfit += Transaction[i].inventoryProfit;
 		}
-		i++;
 	}
 
 }
@@ -42,16 +32,9 @@ void multipleDayReport(int fromDate, int fromMonth, int fromYear, int toDate, in
 	int numberOfCategoryRecords = RecordCount.category;
 
 	time_t startTime = toEpochTime(fromDate, fromMonth, fromYear, 0, 0, 0);   // From: dd/mm/yyyy 00:00:00
-	time_t endTime = toEpochTime(toDate, toMonth, toYear, 23, 59, 59);  	  // To:   dd/mm/yyyy 23:59:59
+	time_t endTime = toEpochTime(toDate, toMonth, toYear, 23, 59, 59);  // To:   dd/mm/yyyy 23:59:59
 	
 	int i;
-
-	double price;				// Buffer
-	double profit;				// Buffer
-	unsigned int categoryId;	// Buffer
-
-	char trash[MAX_LNG_TEXT];	// Don't really want
-	unsigned int trash2;		// Don't really want
 
 	for(i = 0; i < numberOfCategoryRecords; i++){
 		// Initail the values
@@ -60,15 +43,12 @@ void multipleDayReport(int fromDate, int fromMonth, int fromYear, int toDate, in
 		RevenueByCategory[i].totalProfit = 0;
 	}
 
-	i = 0;
-	while(i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0){
-
-		if(inventorySelectById(Transaction[i].inventoryId, trash, &price, &profit, &categoryId, &trash2)){
-			// If the record is found
-			RevenueByCategory[categoryId].totalPrice += price;
-			RevenueByCategory[categoryId].totalProfit += profit;
+	for(i = 0; i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0; i++){
+		if(isTimeInRange(Transaction[i].timestamp, startTime, endTime) == 0){
+			// If the record is in the time range
+			RevenueByCategory[Transaction[i].inventoryCategoryId].totalPrice += Transaction[i].inventoryPrice;
+			RevenueByCategory[Transaction[i].inventoryCategoryId].totalProfit += Transaction[i].inventoryProfit;
 		}
-		i++;
 	}
 }
 
@@ -81,13 +61,6 @@ void nextnDayReport(int fromDate, int fromMonth, int fromYear, int nDay){
 	
 	int i;
 
-	double price;				// Buffer
-	double profit;				// Buffer
-	unsigned int categoryId;	// Buffer
-
-	char trash[MAX_LNG_TEXT];	// Don't really want
-	unsigned int trash2;		// Don't really want
-
 	for(i = 0; i < numberOfCategoryRecords; i++){
 		// Initail the values
 		strcpy(RevenueByCategory[i].categoryName, Category[i].name);
@@ -95,15 +68,12 @@ void nextnDayReport(int fromDate, int fromMonth, int fromYear, int nDay){
 		RevenueByCategory[i].totalProfit = 0;
 	}
 
-	i = 0;
-	while(i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0){
-
-		if(inventorySelectById(Transaction[i].inventoryId, trash, &price, &profit, &categoryId, &trash2)){
-			// If the record is found
-			RevenueByCategory[categoryId].totalPrice += price;
-			RevenueByCategory[categoryId].totalProfit += profit;
+	for(i = 0; i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0; i++){
+		if(isTimeInRange(Transaction[i].timestamp, startTime, endTime) == 0){
+			// If the record is in the time range
+			RevenueByCategory[Transaction[i].inventoryCategoryId].totalPrice += Transaction[i].inventoryPrice;
+			RevenueByCategory[Transaction[i].inventoryCategoryId].totalProfit += Transaction[i].inventoryProfit;
 		}
-		i++;
 	}
 }
 
@@ -116,13 +86,6 @@ void nextnMonthReport(int fromDate, int fromMonth, int fromYear, int nMonth){
 	
 	int i;
 
-	double price;				// Buffer
-	double profit;				// Buffer
-	unsigned int categoryId;	// Buffer
-
-	char trash[MAX_LNG_TEXT];	// Don't really want
-	unsigned int trash2;		// Don't really want
-
 	for(i = 0; i < numberOfCategoryRecords; i++){
 		// Initail the values
 		strcpy(RevenueByCategory[i].categoryName, Category[i].name);
@@ -130,15 +93,12 @@ void nextnMonthReport(int fromDate, int fromMonth, int fromYear, int nMonth){
 		RevenueByCategory[i].totalProfit = 0;
 	}
 
-	i = 0;
-	while(i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0){
-
-		if(inventorySelectById(Transaction[i].inventoryId, trash, &price, &profit, &categoryId, &trash2)){
-			// If the record is found
-			RevenueByCategory[categoryId].totalPrice += price;
-			RevenueByCategory[categoryId].totalProfit += profit;
+	for(i = 0; i < numberOfTransactionRecords && isTimeInRange(Transaction[i].timestamp, startTime, endTime) <= 0; i++){
+		if(isTimeInRange(Transaction[i].timestamp, startTime, endTime) == 0){
+			// If the record is in the time range
+			RevenueByCategory[Transaction[i].inventoryCategoryId].totalPrice += Transaction[i].inventoryPrice;
+			RevenueByCategory[Transaction[i].inventoryCategoryId].totalProfit += Transaction[i].inventoryProfit;
 		}
-		i++;
 	}
 }
 
@@ -166,3 +126,21 @@ void annualForecast(){
 
 
 */
+
+/*
+ *                                             All hail the god..
+ *  -----------------------------------------------------------------------------------------------------------------------
+ *  |      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      |
+ *  |    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    |
+ *  |    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    |
+ *  |    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    |
+ *  |  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  |
+ *  | (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) |
+ *  |---------------||---------------||---------------||---------------||---------------||---------------||---------------|
+ *  |     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     |
+ *  |     Monday    ||    Tuesday    ||   Wednesday   ||    Thursday   ||     Friday    ||    Saturday   ||     Sunday    |
+ *  -----------------------------------------------------------------------------------------------------------------------
+ *                                         Program bug best enemy
+ *                                 Please. No bug. No crash. No interrupt.
+ *  -----------------------------------------------------------------------------------------------------------------------
+ */
