@@ -59,7 +59,6 @@ void inventorySwitchHub () {
 }
 
 void inventoryAddInterface () {
-    bannerBlankBorderTextCen ("Inventory in mode 'ADD'");
 }
 
 void inventoryModifyInterface () {
@@ -189,4 +188,8 @@ int inventoryDelete(char *id){
         }
     }
     return 0;   // Not found the given `id` in the records
+}
+
+void inventoryDatabaseInterface(){
+    
 }

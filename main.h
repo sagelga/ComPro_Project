@@ -165,6 +165,12 @@ int inventoryUpdateCategory(char *id, unsigned int categoryId);    // For modify
 int inventoryUpdateRemain(char *id, unsigned int remain);          // For modifying the `remain` (Select the record by `id`)
 int inventoryDelete(char *id);                                     // Delete the record (Select by `id`)
 
+void inventoryAddInterface ();
+void inventoryModifyInterface ();
+void inventoryRemoveInterface ();
+void inventoryDatabaseInterface ();
+
+
 //-------------------------------------------------------------------------------------------------------
 // # - File: CATEGORY.c
 //-------------------------------------------------------------------------------------------------------
@@ -430,6 +436,7 @@ void bannerBlankBorderText(char *text);                // Prints a :: + + 134 ch
 void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);  // Prints banner with configurable character
 void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4); // Prints banner (with POS logo in the right) with configurable character
 void bannerUserInput();                       // Asks for input from user
+void bannerFullBorderSection ();
 
 /*-----------------------------------------------------------------------------
 Define what the sales report can do*/
