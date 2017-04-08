@@ -33,7 +33,6 @@ Define all the constant values here*/
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
 
-
 //-------------------------------------------------------------------------------------------------------
 // # - File: AUTHENTICATE.c
 //-------------------------------------------------------------------------------------------------------
@@ -337,12 +336,19 @@ void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `po
 // # - File: REPORT.c
 //-------------------------------------------------------------------------------------------------------
 // Report collect revenue by categery
-struct REPORT {
+struct REPORT1 {
   char categoryName[MAX_LNG_TEXT];
   double totalPrice;
   double totalProfit;
 
 } RevenueByCategory[MAX_IDX_CATEGORY];
+
+struct REPORT2 {
+  char monthName[10];
+  double totalPrice;
+  double totalProfit;
+
+} RevenueByMonth[12];
 
 /*-----------------------------------------------------------------------------
 Declare all the the report function can do*/
