@@ -53,20 +53,19 @@ void displayCategory(int page){
     screenClear ();
     int allPage = (int)ceil(RecordCount.category/34)+1;
     bannerFullBorder();
-    printf(":: ID             | Name                                               | Price      | Profit     | Category                  | In Stock   ::\n");
+    printf("::          ID           | Category Name                                                                                                  ::\n");
     bannerFullBorder();
 
     if (page == allPage)
     {
         for (int i = (page-1)*34; i < RecordCount.category; ++i)
         {
-            printf(":: %u | %s ::\n", Category[i].id, Category[i].name);
-            //bannerBlankBorder();
+            printf("::           %u           | %-110s ::\n", Category[i].id, Category[i].name);
         }
         //display remaining line as bannerBlankBorder()
         for (int i = 0; i < 34-(RecordCount.category%34); ++i)
         {
-            bannerBlankBorder();
+            printf("::                       |                                                                                                                ::\n");
         }
     }
     else
@@ -74,21 +73,20 @@ void displayCategory(int page){
         for (int i = (page-1)*34; i < page*34/*(34*page)*/; ++i)
         {
             printf(":: %u | %s ::\n", Category[i].id, Category[i].name);
-            //bannerBlankBorder();
         }
     }
 
     bannerBlankBorderTextCen("Enter Page/Enter 'B' to back to Inventory Menu");
-    printf("::                                                      |<<  <  ( Page %d of %d ) > >>|                                                     ::\n", page, allPage);
+    printf("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n", page, allPage);
     bannerFullBorder();
 
 }
 
-void categoryDatabase(){
+void categoryDatabaseInterface(){
     char handling;
     int pageIn;
     displayCategory(1);
-    /*for (int i = 0; i >= 0; ++i)
+    for (int i = 0; i >= 0; ++i)
     {
         scanf(" %c", &handling);
         if ((handling == 'B') || (handling == 'b'))
@@ -101,7 +99,7 @@ void categoryDatabase(){
             pageIn = (int)handling - 48;
             displayCategory(pageIn);
         }
-    }*/
+    }
 }
 /*
  *                                             All hail the god..
