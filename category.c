@@ -76,7 +76,7 @@ void displayCategory(int page){
         }
     }
 
-    bannerBlankBorderTextCen("Enter Page/Enter 'B' to back to Inventory Menu");
+    bannerBlankBorderTextCen("Enter Page/Enter 'B' to back to Inventory&Category Menu");
     printf("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n", page, allPage);
     bannerFullBorder();
 
@@ -98,6 +98,163 @@ void categoryDatabaseInterface(){
         {
             pageIn = (int)handling - 48;
             displayCategory(pageIn);
+        }
+    }
+}
+
+void categoryAdd(){
+
+    char nameIN[MAX_LNG_TEXT];
+
+    char handling;
+
+    bannerFullBorder();
+    bannerBlankBorderTextCen("Insert Category");
+    bannerFullBorder();
+    for (int i = 0; i < 36; ++i)
+    {
+        bannerBlankBorder();
+    }
+    bannerFullBorder();
+    //Input
+    printf("Enter the Category name to add: ");
+    scanf(" %[^\n]", nameIN);
+
+    if (categoryInsert(nameIN))
+    {
+        screenClear();
+        bannerFullBorder();
+        bannerBlankBorderTextCen("Insert Category");
+        bannerFullBorder();
+        for (int i = 0; i < 16; ++i)
+        {
+            bannerBlankBorder();
+        }
+        bannerBlankBorderTextCen("Successful!!! The category has been inserted.");
+        bannerBlankBorderTextCen("<-- Enter A/b to add more category -->");
+        bannerBlankBorderTextCen("<-- Enter B/b to back to Inventory&Category Menu -->");
+        for (int i = 0; i < 17; ++i)
+        {
+            bannerBlankBorder();
+        }
+        bannerFullBorder();
+        scanf(" %c", &handling);
+        if ((handling == 'A') || (handling == 'a'))
+        {
+            categoryAdd();
+        }
+        else if ((handling == 'B') || (handling == 'b'))
+        {
+            screenClear();
+            inventorySwitchHub();
+        }
+        else
+        {
+            screenClear();
+            bannerFullBorder();
+            for (int i = 0; i < 17; ++i)
+            {
+                bannerBlankBorder();
+            }
+            bannerBlankBorderTextCen("Input Error!!!");
+            bannerBlankBorderTextCen("|| Enter A/b to add more category ||");
+            bannerBlankBorderTextCen("|| Enter B/b to back to Inventory&Category Menu ||");
+            for (int i = 0; i < 18; ++i)
+            {
+                bannerBlankBorder();
+            }
+            bannerFullBorder();
+            for (int i = 0; i >= 0; ++i)
+            {
+                scanf(" %c", &handling);
+                if ((handling == 'b') || (handling == 'B'))
+                {
+                    screenClear();
+                    inventorySwitchHub();
+                }
+                else if ((handling == 'A') || (handling == 'a'))
+                {
+                    categoryAdd();
+                }
+                else
+                {
+                    screenClear();
+                    bannerFullBorder();
+                    for (int i = 0; i < 17; ++i)
+                    {
+                        bannerBlankBorder();
+                    }
+                    bannerBlankBorderTextCen("Input Error!!!");
+                    bannerBlankBorderTextCen("|| Enter A/b to add more Category ||");
+                    bannerBlankBorderTextCen("|| Enter B/b to back to Inventory&Category Menu ||");
+                    for (int i = 0; i < 18; ++i)
+                    {
+                        bannerBlankBorder();
+                    }
+                    bannerFullBorder();
+                }
+            }
+        }
+    }
+    else
+    {
+        screenClear();
+        bannerFullBorder();
+        for (int i = 0; i < 18; ++i)
+        {
+            bannerBlankBorder();
+        }
+        bannerBlankBorderTextCen("Error!!! Category name already exists");
+        bannerBlankBorderTextCen("Please enter B/b to back to Insert Category.");
+        for (int i = 0; i < 18; ++i)
+        {
+            bannerBlankBorder();
+        }
+        bannerFullBorder();
+        scanf(" %c", &handling);
+        if ((handling == 'b') || (handling == 'B'))
+        {
+            categoryAdd();
+        }
+        else
+        {
+            screenClear();
+            bannerFullBorder();
+            for (int i = 0; i < 18; ++i)
+            {
+                bannerBlankBorder();
+            }
+            bannerBlankBorderTextCen("Input Error!!!");
+            bannerBlankBorderTextCen("Please enter B/b to back to Insert Category.");
+            for (int i = 0; i < 18; ++i)
+            {
+                bannerBlankBorder();
+            }
+            bannerFullBorder();
+            for (int i = 0; i >= 0; ++i)
+            {
+                scanf(" %c", &handling);
+                if ((handling == 'b') || (handling == 'B'))
+                {
+                    categoryAdd();
+                }
+                else
+                {
+                    screenClear();
+                    bannerFullBorder();
+                    for (int i = 0; i < 18; ++i)
+                    {
+                        bannerBlankBorder();
+                    }
+                    bannerBlankBorderTextCen("Input Error!!!");
+                    bannerBlankBorderTextCen("Please enter B/b to back to Insert Category.");
+                    for (int i = 0; i < 18; ++i)
+                    {
+                        bannerBlankBorder();
+                    }
+                    bannerFullBorder();
+                }
+            }
         }
     }
 }
