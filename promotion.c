@@ -2,6 +2,307 @@
 #include "main.h"
 
 void promotionSwitchHub () {
+    screenClear ();
+    bannerFullBorder();
+    bannerBlankBorderTextCen ("Customer Database");
+    bannerFullBorder();
+
+    bannerBlankBorderTextCen ("What do you want to do?");
+
+    for (int i = 0;i<2;i++)
+        bannerBlankBorder ();
+    bannerFullBorderSection ();
+    bannerBlankBorder ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("1. Insert");
+    bannerBlankBorderTextCen ("2. Select");
+    bannerBlankBorderTextCen ("3. Delete");
+    bannerBlankBorderTextCen ("4. Update");
+
+    for (int i = 0;i<23;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerFullBorder ();
+
+    bannerUserInput ();
+    char flag;
+    scanf(" %c", &flag);
+
+    switch(flag){
+
+        case ('1'):
+            promotionInsertInterface();
+            break;
+
+        case ('2'):
+            promotionSelectInterface();
+            break;
+
+        case ('3'):
+            promotionDeleteInterface();
+            break;
+
+        case ('4'):
+            promotionUpdateInterface();
+            break;
+
+        case ('b'):
+            switchHub ();
+        case ('B'):
+            switchHub ();
+
+        case ('n'):
+            terminate ();
+        case ('N'):
+            terminate ();
+
+        default:
+            promotionSwitchHub ();
+            return;
+
+    }
+}
+
+void promotionInsertInterface(){
+    screenClear ();
+    bannerFullBorder();
+    bannerBlankBorderTextCen ("Promotion Database");
+    bannerFullBorder();
+
+    bannerBlankBorderTextCen ("Insert Promotion");
+
+    for (int i = 0;i<2;i++)
+        bannerBlankBorder ();
+    bannerFullBorderSection ();
+    bannerBlankBorder ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Insert in form");
+    bannerBlankBorderTextCen ("Form: ID");
+    bannerBlankBorderTextCen ("Price");
+    bannerBlankBorderTextCen (" ");
+    bannerBlankBorderTextCen ("Ex: 1234567891012");
+    bannerBlankBorderTextCen ("100");
+
+    for (int i = 0;i<21;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerFullBorder ();
+
+    bannerUserInput ();
+    char id[MAX_LNG_ID];
+    double price;
+    int genderCheck;
+    while (1){
+        scanf("%s", id);
+        if (strcmp(id, "B") == 0 || strcmp(id, "b") == 0 ){
+            customerSwitchHub();
+            break;
+        }
+        else if (strcmp(id, "N") == 0 || strcmp(id, "n") == 0 ){
+            terminate();
+            break;
+        }
+        else{
+            //------------------After Input--------------------
+            //---------------------ID--------------------------
+            screenClear ();
+            bannerFullBorder();
+            bannerBlankBorderTextCen ("Promotion Database");
+            bannerFullBorder();
+    
+            bannerBlankBorderTextCen ("Insert Promotion");
+    
+            for (int i = 0;i<2;i++)
+                bannerBlankBorder ();
+            bannerFullBorderSection ();
+            bannerBlankBorder ();
+            bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Promotion ID");
+            bannerBlankBorderTextCen (id);
+            bannerBlankBorderTextCen ("_____________________");
+    
+            for (int i = 0;i<24;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+            bannerFullBorder ();
+
+            bannerUserInput ();
+    
+            //---------------------FirstName--------------------------
+            scanf("%s", name);
+            screenClear ();
+            bannerFullBorder();
+            bannerBlankBorderTextCen ("Promotion Database");
+            bannerFullBorder();
+
+            bannerBlankBorderTextCen ("Insert Promotion");
+
+            for (int i = 0;i<2;i++)
+                bannerBlankBorder ();
+            bannerFullBorderSection ();
+            bannerBlankBorder ();
+            bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Promotion ID");
+            bannerBlankBorderTextCen (id);
+            bannerBlankBorderTextCen ("_____________________");
+            bannerBlankBorderTextCen ("Promotion Firstname");
+            bannerBlankBorderTextCen (name);
+            bannerBlankBorderTextCen ("_____________________");
+    
+            for (int i = 0;i<21;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+            bannerFullBorder ();
+    
+            bannerUserInput ();
+
+            //---------------------LastName--------------------------
+            scanf("%s", lastname);
+            screenClear ();
+            bannerFullBorder();
+            bannerBlankBorderTextCen ("Promotion Database");
+            bannerFullBorder();
+
+            bannerBlankBorderTextCen ("Insert Promotion");
+
+            for (int i = 0;i<2;i++)
+                bannerBlankBorder ();
+            bannerFullBorderSection ();
+            bannerBlankBorder ();
+            bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Customer ID");
+            bannerBlankBorderTextCen (id);
+            bannerBlankBorderTextCen ("_____________________");
+            bannerBlankBorderTextCen ("Customer Firstname");
+            bannerBlankBorderTextCen (name);
+            bannerBlankBorderTextCen ("_____________________");
+            bannerBlankBorderTextCen ("Customer Lastname");
+            bannerBlankBorderTextCen (lastname);
+            bannerBlankBorderTextCen ("_____________________");
+    
+            for (int i = 0;i<18;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+            bannerFullBorder ();
+    
+            bannerUserInput ();
+
+            //---------------------Gender--------------------------
+            scanf(" %c", &gender);
+            screenClear ();
+            bannerFullBorder();
+            bannerBlankBorderTextCen ("Customer Database");
+            bannerFullBorder();
+
+            bannerBlankBorderTextCen ("Insert Customer");
+
+            for (int i = 0;i<2;i++)
+                bannerBlankBorder ();
+            bannerFullBorderSection ();
+            bannerBlankBorder ();
+            bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Customer ID");
+            bannerBlankBorderTextCen (id);
+            bannerBlankBorderTextCen ("_____________________");
+            bannerBlankBorderTextCen ("Customer Firstname");
+            bannerBlankBorderTextCen (name);
+            bannerBlankBorderTextCen ("_____________________");
+            bannerBlankBorderTextCen ("Customer Lastname");
+            bannerBlankBorderTextCen (lastname);
+            bannerBlankBorderTextCen ("_____________________");
+            bannerBlankBorderTextCen ("Customer Gender");
+            if (gender == 'F' || gender == 'f'){
+                bannerBlankBorderTextCen ("F");
+                genderCheck == 0;
+            }
+            if (gender == 'M' || gender == 'm'){
+                bannerBlankBorderTextCen ("M");
+                genderCheck == 1;
+            }
+    
+            for (int i = 0;i<16;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+            bannerFullBorder ();
+
+            bannerUserInput ();
+
+            //
+            if (customerInsert(id, name, lastname, gender)){
+                screenClear ();
+                bannerFullBorder();
+                bannerBlankBorderTextCen ("Customer Database");
+                bannerFullBorder();
+    
+                bannerBlankBorderTextCen ("Insert Customer");
+    
+                for (int i = 0;i<2;i++)
+                    bannerBlankBorder ();
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Insert Success");
+                bannerBlankBorderTextCen (id);
+                bannerBlankBorderTextCen (name);
+                bannerBlankBorderTextCen (lastname);
+                if (genderCheck){
+                    bannerBlankBorderTextCen ("Male");
+                }
+                else{
+                    bannerBlankBorderTextCen ("Female");
+                }
+                bannerBlankBorderTextCen ("_____________________");
+                bannerBlankBorderTextCen ("Insert Next Customer Or Type 'B' to Back");
+    
+                for (int i = 0;i<20;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+            }
+            else{
+                screenClear ();
+                bannerFullBorder();
+                bannerBlankBorderTextCen ("Customer Database");
+                bannerFullBorder();
+    
+                bannerBlankBorderTextCen ("Insert Customer");
+    
+                for (int i = 0;i<2;i++)
+                    bannerBlankBorder ();
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Insert not Successful");
+                bannerBlankBorderTextCen ("Please check your customer ID");
+                bannerBlankBorderTextCen (id);
+                bannerBlankBorderTextCen ("was repeatedly");
+                bannerBlankBorderTextCen ("_____________________");
+                bannerBlankBorderTextCen ("Insert Next Customer Or Type 'B' to Back");
+    
+                for (int i = 0;i<21;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+
+            }
+        }
+    }
+}
+
+void promotionSelectInterface(){
+
+}
+
+void promotionDeleteInterface(){
+
+}
+
+void promotionUpdateInterface(){
+
 }
 
 int promotionSelectById(char *id, double *price, int *status){
