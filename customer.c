@@ -465,7 +465,7 @@ void customerUpdateInterface(){
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
-    char id[MAX_LNG_ID], name[MAX_LNG_TEXT], lastname[MAX_LNG_TEXT], gender, buffer[140], flag[MAX_LNG_TEXT], genderChanged;
+    char id[MAX_LNG_ID], name[MAX_LNG_TEXT], lastname[MAX_LNG_TEXT], gender, buffer[140], flag[MAX_LNG_TEXT], genderChanged[2];
     double point, totalbuy;
     while (1){
         scanf("%s", id);
@@ -483,7 +483,7 @@ void customerUpdateInterface(){
                 bannerBlankBorderTextCen ("Customer Database");
                 bannerFullBorder();
 
-                bannerBlankBorderTextCen ("Update Customer");
+                bannerBlankBorderTextCen ("Kuyguy Customer");
 
                 for (int i = 0;i<2;i++)
                     bannerBlankBorder ();
@@ -502,17 +502,15 @@ void customerUpdateInterface(){
                 bannerFullBorder ();
 
                 printf("%s >>> ", name);
-                scanf("%s", flag);
-                if (strcmp(flag, "") != 0)
+                if (superscanf(flag) != 0)
                     customerUpdateFirstname(id, flag);
                 printf("%s >>> ", lastname);
-                scanf("%s", flag);
-                if (strcmp(flag, "") != 0)
+                if (superscanf(flag) != 0)
                     customerUpdateLastname(id, flag);
                 printf("%c >>> ", gender);
-                scanf(" %c", &genderChanged);
-                if (genderChanged != '\0')
-                    customerUpdateGender(id, toupper(genderChanged));
+                if (superscanf(genderChanged) != 0)
+                    customerUpdateGender(id, toupper(genderChanged[0]));
+                scanf("%s", flag);
 
                 screenClear ();
                 bannerFullBorder();

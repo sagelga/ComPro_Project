@@ -2,7 +2,7 @@
 #include "main.h"
 
 void promotionSwitchHub () {
-    screenClear ();
+    /*screenClear ();
     bannerFullBorder();
     bannerBlankBorderTextCen ("Customer Database");
     bannerFullBorder();
@@ -290,10 +290,10 @@ void promotionInsertInterface(){
 
             }
         }
-    }
+    }*/
 }
 
-void promotionSelectInterface(){
+/*void promotionSelectInterface(){
 
 }
 
@@ -303,7 +303,7 @@ void promotionDeleteInterface(){
 
 void promotionUpdateInterface(){
 
-}
+}*/
 
 int promotionSelectById(char *id, double *price, int *status){
     int numberOfRecords;    // Number of the records in a table
