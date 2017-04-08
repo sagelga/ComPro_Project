@@ -4,7 +4,7 @@
 void promotionSwitchHub () {
     screenClear ();
     bannerFullBorder();
-    bannerBlankBorderTextCen ("Customer Database");
+    bannerBlankBorderTextCen ("Promotion Database");
     bannerFullBorder();
 
     bannerBlankBorderTextCen ("What do you want to do?");
