@@ -4,13 +4,15 @@
 void cashierInterface () {//Interface that will ask for customer ID
     screenClear ();
 
-    banner ("Signing in as",Session.user,"","");
+    banner ("Signing in as", Session.user.username, "", "");
 
     bannerBlankBorder ();
 
-    char text;
-    strcpy(text,"Welcome! My name is");
-    strcpy(text,&Session.user.username);
+    char text[140];
+    strcpy(text, "Welcome! My name is ");
+    strcat(text, Session.user.firstname);
+    strcat(text, " ");
+    strcat(text, Session.user.lastname);
     bannerBlankBorderTextCen (text);
 
     bannerBlankBorder ();
