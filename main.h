@@ -191,7 +191,7 @@ int categoryUpdateName(unsigned int id, char *name);  // For modifying the `name
 
 void categoryDatabase();
 void categoryAdd();
-
+void displayCategory(int page);
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: TRANSACTION.c

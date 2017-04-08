@@ -42,7 +42,8 @@ void inventorySwitchHub () {
             inventoryRemove();
             return;
         case ('5'):
-            categoryDatabase();
+            printf("To 5\n");
+            //categoryDatabase();
             return;
         case ('6'):
             categoryAdd();
