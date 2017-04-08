@@ -2,7 +2,7 @@
 #include "main.h"
 
 void promotionSwitchHub () {
-    /*screenClear ();
+    screenClear ();
     bannerFullBorder();
     bannerBlankBorderTextCen ("Customer Database");
     bannerFullBorder();
@@ -89,9 +89,8 @@ void promotionInsertInterface(){
     bannerFullBorder ();
 
     bannerUserInput ();
-    char id[MAX_LNG_ID];
+    char id[MAX_LNG_ID], buffer[140];
     double price;
-    int genderCheck;
     while (1){
         scanf("%s", id);
         if (strcmp(id, "B") == 0 || strcmp(id, "b") == 0 ){
@@ -128,8 +127,9 @@ void promotionInsertInterface(){
 
             bannerUserInput ();
     
-            //---------------------FirstName--------------------------
-            scanf("%s", name);
+            //---------------------Price--------------------------
+            scanf("%lf", &price);
+            sprintf(buffer, "%lf", price);
             screenClear ();
             bannerFullBorder();
             bannerBlankBorderTextCen ("Promotion Database");
@@ -145,8 +145,8 @@ void promotionInsertInterface(){
             bannerBlankBorderTextCen ("Promotion ID");
             bannerBlankBorderTextCen (id);
             bannerBlankBorderTextCen ("_____________________");
-            bannerBlankBorderTextCen ("Promotion Firstname");
-            bannerBlankBorderTextCen (name);
+            bannerBlankBorderTextCen ("Price");
+            bannerBlankBorderTextCen (buffer);
             bannerBlankBorderTextCen ("_____________________");
     
             for (int i = 0;i<21;i++)
@@ -156,144 +156,12 @@ void promotionInsertInterface(){
     
             bannerUserInput ();
 
-            //---------------------LastName--------------------------
-            scanf("%s", lastname);
-            screenClear ();
-            bannerFullBorder();
-            bannerBlankBorderTextCen ("Promotion Database");
-            bannerFullBorder();
-
-            bannerBlankBorderTextCen ("Insert Promotion");
-
-            for (int i = 0;i<2;i++)
-                bannerBlankBorder ();
-            bannerFullBorderSection ();
-            bannerBlankBorder ();
-            bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Customer ID");
-            bannerBlankBorderTextCen (id);
-            bannerBlankBorderTextCen ("_____________________");
-            bannerBlankBorderTextCen ("Customer Firstname");
-            bannerBlankBorderTextCen (name);
-            bannerBlankBorderTextCen ("_____________________");
-            bannerBlankBorderTextCen ("Customer Lastname");
-            bannerBlankBorderTextCen (lastname);
-            bannerBlankBorderTextCen ("_____________________");
-    
-            for (int i = 0;i<18;i++)
-                bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
-            bannerFullBorder ();
-    
-            bannerUserInput ();
-
-            //---------------------Gender--------------------------
-            scanf(" %c", &gender);
-            screenClear ();
-            bannerFullBorder();
-            bannerBlankBorderTextCen ("Customer Database");
-            bannerFullBorder();
-
-            bannerBlankBorderTextCen ("Insert Customer");
-
-            for (int i = 0;i<2;i++)
-                bannerBlankBorder ();
-            bannerFullBorderSection ();
-            bannerBlankBorder ();
-            bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Customer ID");
-            bannerBlankBorderTextCen (id);
-            bannerBlankBorderTextCen ("_____________________");
-            bannerBlankBorderTextCen ("Customer Firstname");
-            bannerBlankBorderTextCen (name);
-            bannerBlankBorderTextCen ("_____________________");
-            bannerBlankBorderTextCen ("Customer Lastname");
-            bannerBlankBorderTextCen (lastname);
-            bannerBlankBorderTextCen ("_____________________");
-            bannerBlankBorderTextCen ("Customer Gender");
-            if (gender == 'F' || gender == 'f'){
-                bannerBlankBorderTextCen ("F");
-                genderCheck == 0;
-            }
-            if (gender == 'M' || gender == 'm'){
-                bannerBlankBorderTextCen ("M");
-                genderCheck == 1;
-            }
-    
-            for (int i = 0;i<16;i++)
-                bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
-            bannerFullBorder ();
-
-            bannerUserInput ();
-
-            //
-            if (customerInsert(id, name, lastname, gender)){
-                screenClear ();
-                bannerFullBorder();
-                bannerBlankBorderTextCen ("Customer Database");
-                bannerFullBorder();
-    
-                bannerBlankBorderTextCen ("Insert Customer");
-    
-                for (int i = 0;i<2;i++)
-                    bannerBlankBorder ();
-                bannerFullBorderSection ();
-                bannerBlankBorder ();
-                bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Insert Success");
-                bannerBlankBorderTextCen (id);
-                bannerBlankBorderTextCen (name);
-                bannerBlankBorderTextCen (lastname);
-                if (genderCheck){
-                    bannerBlankBorderTextCen ("Male");
-                }
-                else{
-                    bannerBlankBorderTextCen ("Female");
-                }
-                bannerBlankBorderTextCen ("_____________________");
-                bannerBlankBorderTextCen ("Insert Next Customer Or Type 'B' to Back");
-    
-                for (int i = 0;i<20;i++)
-                    bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
-                bannerFullBorder ();
-
-                bannerUserInput ();
-            }
-            else{
-                screenClear ();
-                bannerFullBorder();
-                bannerBlankBorderTextCen ("Customer Database");
-                bannerFullBorder();
-    
-                bannerBlankBorderTextCen ("Insert Customer");
-    
-                for (int i = 0;i<2;i++)
-                    bannerBlankBorder ();
-                bannerFullBorderSection ();
-                bannerBlankBorder ();
-                bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Insert not Successful");
-                bannerBlankBorderTextCen ("Please check your customer ID");
-                bannerBlankBorderTextCen (id);
-                bannerBlankBorderTextCen ("was repeatedly");
-                bannerBlankBorderTextCen ("_____________________");
-                bannerBlankBorderTextCen ("Insert Next Customer Or Type 'B' to Back");
-    
-                for (int i = 0;i<21;i++)
-                    bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
-                bannerFullBorder ();
-
-                bannerUserInput ();
-
-            }
+            
         }
-    }*/
+    }
 }
 
-/*void promotionSelectInterface(){
+void promotionSelectInterface(){
 
 }
 
@@ -303,7 +171,7 @@ void promotionDeleteInterface(){
 
 void promotionUpdateInterface(){
 
-}*/
+}
 
 int promotionSelectById(char *id, double *price, int *status){
     int numberOfRecords;    // Number of the records in a table

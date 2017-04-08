@@ -322,6 +322,11 @@ int promotionUpdatePrice(char *id, double price);                 // For modifyi
 int promotionUpdateStatus(char *id, int status);                  // For modifying the `status` (Select the record by `id`)
 int promotionDelete(char *id);                                    // Delete the record (Select by `id`)
 
+void promotionInsertInterface();
+void promotionSelectInterface();
+void promotionDeleteInterface();
+void promotionUpdateInterface();
+
 //-------------------------------------------------------------------------------------------------------
 // # - File: SETTING.c
 //-------------------------------------------------------------------------------------------------------
