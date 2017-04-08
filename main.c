@@ -25,7 +25,7 @@ void switchHub() {
 
     //These choice will be removed, when the program detects the permission level.
     bannerBlankBorderTextCen ("1. Go to POS System");
-    bannerBlankBorderTextCen ("2. Check Inventory Database");
+    bannerBlankBorderTextCen ("2. Check Inventory/Category Database");
     bannerBlankBorderTextCen ("3. Check Customer Database");
     bannerBlankBorderTextCen ("4. Check Category Database");
     bannerBlankBorderTextCen ("5. Check Promotion Database");
@@ -120,7 +120,7 @@ void switchHubManager() {
     //These choice will be removed, when the program detects the permission level.
     bannerBlankBorderTextCen ("1. Login / Logout");
     bannerBlankBorderTextCen ("2. Go to POS System");
-    bannerBlankBorderTextCen ("3. Check Inventory Database");
+    bannerBlankBorderTextCen ("3. Check Inventory/Category Database");
     bannerBlankBorderTextCen ("4. Check Customer Database");
     bannerBlankBorderTextCen ("5. Check Category Database");
     bannerBlankBorderTextCen ("6. Check Promotion Database");

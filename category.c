@@ -103,7 +103,7 @@ void categoryDatabaseInterface(){
 }
 
 void categoryAdd(){
-
+    screenClear();
     char nameIN[MAX_LNG_TEXT];
 
     char handling;
