@@ -218,11 +218,9 @@ void customerInsertInterface(){
             bannerBlankBorderTextCen ("Customer Gender");
             if (gender == 'F' || gender == 'f'){
                 bannerBlankBorderTextCen ("F");
-                genderCheck == 0;
             }
             if (gender == 'M' || gender == 'm'){
                 bannerBlankBorderTextCen ("M");
-                genderCheck == 1;
             }
     
             for (int i = 0;i<16;i++)
@@ -250,11 +248,11 @@ void customerInsertInterface(){
                 bannerBlankBorderTextCen (id);
                 bannerBlankBorderTextCen (name);
                 bannerBlankBorderTextCen (lastname);
-                if (genderCheck){
-                    bannerBlankBorderTextCen ("Male");
-                }
-                else{
+                if (gender == 'F' || gender == 'f'){
                     bannerBlankBorderTextCen ("Female");
+                }
+                if (gender == 'M' || gender == 'm'){
+                    bannerBlankBorderTextCen ("Male");
                 }
                 bannerBlankBorderTextCen ("_____________________");
                 bannerBlankBorderTextCen ("Insert Next Customer Or Type 'B' to Back");
@@ -380,8 +378,10 @@ void customerDeleteInterface(){
                 bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Are you sure to delete ?");
                 bannerBlankBorderTextCen (buffer);
+                bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'Y' to comfirm || Type 'N' to Discard");
 
-                for (int i = 0;i<25;i++)
+                for (int i = 0;i<23;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
