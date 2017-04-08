@@ -17,7 +17,6 @@ void inventorySwitchHub () {
     bannerBlankBorderTextCen ("5. Check the category database");
     bannerBlankBorderTextCen ("6. Add new category to the database");
     bannerBlankBorderTextCen ("7. Edit category from the database");
-    bannerBlankBorderTextCen ("8. Remove category from the database");
 
     for ( int i = 0; i < 24; i++ ) {
         bannerBlankBorder ();
@@ -34,17 +33,22 @@ void inventorySwitchHub () {
             inventoryDatabaseInterface ();
             return;
         case ('2'):
-            inventoryAddInterface ();
+            inventoryAdd();
             return;
         case ('3'):
+            //inventoryEdit();
             return;
         case ('4'):
-            inventoryModifyInterface ();
+            inventoryRemove();
             return;
         case ('5'):
+            categoryDatabase();
             return;
         case ('6'):
-            inventoryRemoveInterface ();
+            categoryAdd();
+            return;
+        case ('7'):
+            //categoryEdit();
             return;
         default:
             printf ("Your input is invalid. Please try again...");
