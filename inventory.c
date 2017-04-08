@@ -8,23 +8,17 @@ void inventorySwitchHub () {
     bannerBlankBorderText("Inventory");
     bannerFullBorderSection ();
     bannerBlankBorderTextCen ("1. Check the database");
-    bannerBlankBorder ();
     bannerBlankBorderTextCen ("2. Add inventory data to the database");
     bannerBlankBorderTextCen ("3. Edit inventory data from the database");
     bannerBlankBorderTextCen ("4. Removing inventory from the database");
 
-    for (int i = 0;i<2;i++)
-        bannerFullBorder ();
-
     bannerBlankBorderText ("Category");
     bannerFullBorderSection ();
     bannerBlankBorderTextCen ("5. Check the category database");
-    bannerBlankBorder ();
     bannerBlankBorderTextCen ("6. Add new category to the database");
     bannerBlankBorderTextCen ("7. Edit category from the database");
-    bannerBlankBorderTextCen ("8. Remove category from the database");
 
-    for ( int i = 0; i < 25; i++ ) {
+    for ( int i = 0; i < 24; i++ ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("or type 'N' to return back to the hub");
@@ -39,17 +33,22 @@ void inventorySwitchHub () {
             inventoryDatabaseInterface ();
             return;
         case ('2'):
-            inventoryAddInterface ();
+            //inventoryAdd();
             return;
         case ('3'):
+            //inventoryEdit();
             return;
         case ('4'):
-            inventoryModifyInterface ();
+            //inventoryRemove();
             return;
         case ('5'):
+            categoryDatabaseInterface();
             return;
         case ('6'):
-            inventoryRemoveInterface ();
+            //categoryAdd();
+            return;
+        case ('7'):
+            //categoryEdit();
             return;
         default:
             printf ("Your input is invalid. Please try again...");
@@ -190,8 +189,59 @@ int inventoryDelete(char *id){
     return 0;   // Not found the given `id` in the records
 }
 
-void inventoryDatabaseInterface(){
+void displayInventory(int page){
+    screenClear ();
+    int allPage = (int)ceil(RecordCount.inventory/34)+1;
+    bannerFullBorder();
+    printf(":: ID             | Name                                               | Price      | Profit     | Category                  | In Stock   ::\n");
+    bannerFullBorder();
 
+    if (page == allPage)
+    {
+        for (int i = (page-1)*34; i < RecordCount.inventory; ++i)
+        {
+            printf(":: %-14s | %-50s | %10.2lf | %10.2lf | %25s | %10u ::\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Category[Inventory[i].categoryId].name, Inventory[i].remain);
+            //bannerBlankBorder();
+        }
+        //display remaining line as bannerBlankBorder()
+        for (int i = 0; i < 34-(RecordCount.inventory%34); ++i)
+        {
+            printf("::                |                                                    |            |            |                           |            ::\n");
+        }
+    }
+    else
+    {
+        for (int i = (page-1)*34; i < page*34/*(34*page)*/; ++i)
+        {
+            printf(":: %-14s | %-50s | %10.2lf | %10.2lf | %25s | %10u ::\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Category[Inventory[i].categoryId].name, Inventory[i].remain);
+            //bannerBlankBorder();
+        }
+    }
+
+    bannerBlankBorderTextCen("Enter Page/Enter 'B' to back to Inventory Menu");
+    printf("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n", page, allPage);
+    bannerFullBorder();
+
+}
+
+void inventoryDatabaseInterface(){
+    char handling;
+    int pageIn;
+    displayInventory(1);
+    for (int i = 0; i >= 0; ++i)
+    {
+        scanf(" %c", &handling);
+        if ((handling == 'B') || (handling == 'b'))
+        {
+            screenClear ();
+            inventorySwitchHub ();
+        }
+        else
+        {
+            pageIn = (int)handling - 48;
+            displayInventory(pageIn);
+        }
+    }
 }
 
 /*

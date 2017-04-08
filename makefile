@@ -59,6 +59,9 @@ transaction.o: transaction.c main.h
 clean:
 	-rm $(EXEC) *.o
 
+clear:
+	-rm $(EXEC) *.o
+
 run:
 	./$(EXEC)
 
