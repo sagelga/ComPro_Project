@@ -484,7 +484,7 @@ void customerUpdateInterface(){
                 bannerBlankBorderTextCen ("Customer Database");
                 bannerFullBorder();
 
-                bannerBlankBorderTextCen ("Kuyguy Customer");
+                bannerBlankBorderTextCen ("Update Customer");
 
                 for (int i = 0;i<2;i++)
                     bannerBlankBorder ();
@@ -511,8 +511,8 @@ void customerUpdateInterface(){
                 printf("(%c) >>> ", gender);
                 if (superscanf(genderChanged) != 0)
                     customerUpdateGender(id, toupper(genderChanged[0]));
-                scanf("(%s)", flag);
-
+                scanf("(%s)", flag); 
+                
                 screenClear ();
                 bannerFullBorder();
                 bannerBlankBorderTextCen ("Customer Database");
