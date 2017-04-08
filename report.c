@@ -142,11 +142,27 @@ void monthlyReport(unsigned int year){
 }   
 
 /*
-void personnelSaleReport(){
-	
-}   
+void personnelSaleReport(unsigned int year){
+	int numberOfPersonnelRecords = RecordCount.personnel;
+	int numberOfPurchaseRecords = RecordCount.purchase;
 
+	time_t startTime = toEpochTime(1, 1, year, 0, 0, 0);  		 	// From: 01/01/yyyy 00:00:00
+	time_t endTime = toEpochTime(31, 12, year, 23, 59, 59);   // To:   31/12/yyyy 23:59:59
 
+	int i, j;
+
+	for(i = 0; i < numberOfPersonnelRecords; i++){
+		// Initializing
+		strcpy(RevenueByPersonnel[i].id, Personnel[i].id);
+		for(j = 0; j < numberOfPurchaseRecords && isTimeInRange(Purchase[j].timestamp, startTime, endTime) <= 0; j++){
+			if(strcmp(Personnel[i].id, Purchase[j].personnelId) == 0 && isTimeInRange(Purchase[j].timestamp, startTime, endTime) == 0){
+
+			}
+		}
+	}
+} */  
+
+/*
 void monthlyForecast(){
 	
 }

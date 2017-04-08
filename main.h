@@ -354,6 +354,15 @@ struct REPORT2 {
 
 } RevenueByMonth[12];
 
+struct REPORT3 {
+  char id[MAX_LNG_ID];
+  char firstname[MAX_LNG_TEXT];
+  char lastname[MAX_LNG_TEXT];
+  double totalPrice;
+  double totalProfit;
+
+} RevenueByPersonnel[MAX_IDX_PERSONNEL];
+
 /*-----------------------------------------------------------------------------
 Declare all the the report function can do*/
 // Report show by category
@@ -410,6 +419,7 @@ Declare all the other database functions*/
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
 time_t toEpochTime(int date, int month, int year, int hour, int minute, int second);  // Convert time from Human-readable to Epoch Unix time format
 int isTimeInRange(time_t timestamp, time_t start, time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
+int superscanf(char *input); // Addition form scanf() to detect Blankline; (Return 0 = Empty line | 1 = Has a input)
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: DECORATE.c
