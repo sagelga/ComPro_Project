@@ -200,7 +200,7 @@ void displayInventory(int page){
     {
         for (int i = (page-1)*34; i < RecordCount.inventory; ++i)
         {
-            printf(":: %-14s | %-50s | %10.2lf | %10.2lf | %25s | %10u ::\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Category[Inventory[i].categoryId].name, Inventory[i].remain);
+            printf(":: %-14s | %-50s | %10.2lf | %10.2lf | %-25s | %10u ::\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Category[Inventory[i].categoryId].name, Inventory[i].remain);
             //bannerBlankBorder();
         }
         //display remaining line as bannerBlankBorder()
@@ -213,7 +213,7 @@ void displayInventory(int page){
     {
         for (int i = (page-1)*34; i < page*34/*(34*page)*/; ++i)
         {
-            printf(":: %-14s | %-50s | %10.2lf | %10.2lf | %25s | %10u ::\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Category[Inventory[i].categoryId].name, Inventory[i].remain);
+            printf(":: %-14s | %-50s | %10.2lf | %10.2lf | %-25s | %10u ::\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Category[Inventory[i].categoryId].name, Inventory[i].remain);
             //bannerBlankBorder();
         }
     }
