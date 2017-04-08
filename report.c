@@ -102,10 +102,11 @@ void nextnMonthReport(int fromDate, int fromMonth, int fromYear, int nMonth){
 	}
 }
 
-/* 
-void monthlyReport(){
+/*
+void monthlyReport(unsigned int year){
 	
 }   
+
 
 void personnelSaleReport(){
 	
