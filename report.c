@@ -5,7 +5,6 @@
 Declare all the global variables here*/
 const char *monthName[12] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 
-
 void oneDayReport(int date, int month, int year){
 	int numberOfTransactionRecords = RecordCount.transaction;
 	int numberOfCategoryRecords = RecordCount.category;
@@ -212,18 +211,22 @@ void reportSwitchHub(){
 	scanf(" %c", &UserIn);
 	switch (UserIn){
 		case ('1'):
-			//OneDayReportInterface();
+			checkErrorIn = 0;
+			OneDayReportInputProcess();
 			break;
 
 		case ('2'):
+			checkErrorIn = 0;
 			//MonthlyReportInterface();
 			break;
 
 		case ('3'):
+			checkErrorIn = 0;
 			//PersonnelSaleReportInterface();
 			break;
 
 		case ('4'):
+			checkErrorIn = 0;
 			//MultipleDayReportInterface();
 			break;
 
@@ -236,10 +239,12 @@ void reportSwitchHub(){
 			break;
 
 		case ('B'):
+			checkErrorIn = 0;
 			switchHub();
 			break;
 
 		case ('b'):
+			checkErrorIn = 0;
 			switchHub();
 			break;
 
@@ -248,6 +253,101 @@ void reportSwitchHub(){
 			reportSwitchHub();
 	}
 
+}
+
+void OneDayReportInputProcess(){
+	/*-----Initial interface-----*/
+	screenClear();
+	bannerFullBorder();
+	bannerBlankBorderTextCen("One Day Report");
+	bannerFullBorder();
+	for (int i = 0; i < 17; ++i)
+	{
+		bannerBlankBorder();
+	}
+	bannerBlankBorderTextCen("Please enter date...");
+	bannerBlankBorderTextCen("Example --> 07/03/2017");
+	for (int i = 0; i < 17; ++i)
+	{
+		bannerBlankBorder();
+	}
+	bannerFullBorder();
+	/*--------------------------*/
+	int dateIN, monthIN, yearIN;
+	//Input
+	printf(">>> ");
+	scanf(" %d/%d/%d", &dateIN, &monthIN, &yearIN);
+	//Process
+	oneDayReport(dateIN, monthIN, yearIN);
+	OneDayReportInterface();
+}
+
+void displayOneDayReport(int page){
+	screenClear();
+	int allPage = (int)ceil(RecordCount.category/34)+1;
+	bannerFullBorder();
+	printf(":: %-68s |             Revenue            |              Profit            ::\n", "Category Name");
+	bannerFullBorder();
+
+	if (page == allPage)
+	{
+		for (int i = (page-1)*34; i < RecordCount.category; ++i)
+		{
+			printf(":: %-68s | %30.2lf | %30.2lf ::\n", RevenueByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit);
+		}
+		for (int i = 0; i < 34-(RecordCount.category%34); ++i)
+		{
+			printf("::                                                                      |                                |                                ::\n");
+		}
+	}
+	else
+	{
+		for (int i = (page-1)*34; i < page*34/*(34*page)*/; ++i)
+		{
+			printf(":: %-68s | %30.2lf | %30.2lf ::\n", RevenueByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit);
+		}
+	}
+	bannerBlankBorderTextCen("'N' to enter new date | Enter Page(e.g. 1, 2, 3) | 'B' to Check Report Menu |");
+	printf("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n", page, allPage);
+	bannerFullBorder();
+}
+
+void OneDayReportInterface(){
+	char handling;
+	int pageIn = 1, CheckPage;
+	displayOneDayReport(1);
+	for (int i = 0; i >= 0; ++i)
+	{
+		printf(">>> ");
+		scanf(" %c", &handling);
+		if ((handling == 'B') || (handling == 'b'))
+		{
+			reportSwitchHub();
+		}
+		else if ((handling == 'N') || (handling == 'n'))
+		{
+			OneDayReportInputProcess();
+		}
+		else if (isdigit(handling))
+		{
+			CheckPage = (int)handling - 48;
+			if ((CheckPage <= ((int)ceil(RecordCount.category/34)+1)) && (CheckPage >= 1))
+			{
+				pageIn = (int)handling - 48;
+				displayOneDayReport(pageIn);
+			}
+			else
+			{
+				displayOneDayReport(pageIn);
+				printf("Oops! Page not found, Please enter correct page: ");
+			}
+		}
+		else
+		{
+			displayOneDayReport(pageIn);
+			printf("Oops! Input is valided, Please enter correctly: ");
+		}
+	}
 }
 /*
 void monthlyForecast(){

@@ -386,7 +386,11 @@ void nextnMonthReport(int fromDate, int fromMonth, int fromYear, int nMonth); //
 void monthlyReport();                              // Total of revenue in yyyy year (show by monthly)
 void personnelSaleReport();                        // Total of sale by each merchant
 void reportSwitchHub();
-//void OneDayReportInterface();
+
+void OneDayReportInterface();
+void OneDayReportInputProcess();
+void displayOneDayReport(int page);
+
 //void MonthlyReportInterface();
 //void PersonnelSaleReportInterface();
 //void MultipleDayReportInterface();
