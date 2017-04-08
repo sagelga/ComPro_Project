@@ -287,6 +287,13 @@ int customerUpdatePoint(char *id, double point);            // For modifying the
 int customerUpdatetotalBuy(char *id, double totalBuy);      // For modifying the `totalBuy` (Select the record by `id`)
 int customerDelete(char *id);                               // Delete the record (Select by `id`)
 
+//Update Selection
+void customerInsertInterface();
+void customerSelectInterface();
+void customerDeleteInterface();
+
+void customerUpdateInterface();
+
 //-------------------------------------------------------------------------------------------------------
 // # - File: PROMOTION.c
 //-------------------------------------------------------------------------------------------------------
@@ -314,6 +321,11 @@ int promotionInsert(char *id, double price);                      // Adding a ne
 int promotionUpdatePrice(char *id, double price);                 // For modifying the `price` (Select the record by `id`)
 int promotionUpdateStatus(char *id, int status);                  // For modifying the `status` (Select the record by `id`)
 int promotionDelete(char *id);                                    // Delete the record (Select by `id`)
+
+void promotionInsertInterface();
+void promotionSelectInterface();
+void promotionDeleteInterface();
+void promotionUpdateInterface();
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: SETTING.c

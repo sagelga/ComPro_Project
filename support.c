@@ -34,12 +34,25 @@ int isTimeInRange(time_t timestamp, time_t start, time_t end){
 }
 
 int superscanf(char *input){
-    if(scanf (" %[^\n]", input) < 1){ 
-        int c; while ((c = getchar()) != '\n' && c != EOF); 
+
+    char temp[MAX_LNG_SCREEN];
+    int i, len;
+    fseek(stdin,0,SEEK_END);
+    fgets (temp, sizeof(temp), stdin);
+    if(temp[0] == '\n'){
         return 0;
     }
-    else
+    else{
+        i = 0;
+        while(temp[i] != '\n'){
+            input[i] = temp[i];
+            i++;
+        }
+        input[i] = '\0';
         return 1;
+    }
+
+
 }
 
 /*
