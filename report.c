@@ -141,7 +141,7 @@ void monthlyReport(unsigned int year){
 	}
 }   
 
-/*
+
 void personnelSaleReport(unsigned int year){
 	int numberOfPersonnelRecords = RecordCount.personnel;
 	int numberOfPurchaseRecords = RecordCount.purchase;
@@ -152,15 +152,21 @@ void personnelSaleReport(unsigned int year){
 	int i, j;
 
 	for(i = 0; i < numberOfPersonnelRecords; i++){
-		// Initializing
+		// Initializing the information of each record
 		strcpy(RevenueByPersonnel[i].id, Personnel[i].id);
+		strcpy(RevenueByPersonnel[i].firstname, Personnel[i].firstname);
+		strcpy(RevenueByPersonnel[i].lastname, Personnel[i].lastname);
+		RevenueByPersonnel[i].totalPrice = 0;
+		RevenueByPersonnel[i].totalProfit = 0;
+
 		for(j = 0; j < numberOfPurchaseRecords && isTimeInRange(Purchase[j].timestamp, startTime, endTime) <= 0; j++){
 			if(strcmp(Personnel[i].id, Purchase[j].personnelId) == 0 && isTimeInRange(Purchase[j].timestamp, startTime, endTime) == 0){
-
+				RevenueByPersonnel[i].totalPrice += Purchase[j].totalPrice;
+				RevenueByPersonnel[i].totalProfit += Purchase[j].totalProfit;
 			}
 		}
 	}
-} */  
+} 
 
 /*
 void monthlyForecast(){

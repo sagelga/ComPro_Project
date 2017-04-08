@@ -1,10 +1,10 @@
 CC = gcc
-CFLAGS = -std=c99
+CFLAGS = -std=c99 -lm
 OBJECTS = authenticate.o category.o customer.o decorate.o inventory.o main.o personnel.o pos.o promotion.o purchase.o report.o sales.o settings.o support.o systemcall.o transaction.o
 EXEC = Click-to-run-POS
 
 $(EXEC): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(EXEC)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(EXEC) -lm
 
 authenticate.o: authenticate.c main.h
 	$(CC) $(CFLAGS) -c authenticate.c
