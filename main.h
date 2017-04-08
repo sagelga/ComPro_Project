@@ -385,6 +385,11 @@ void nextnMonthReport(int fromDate, int fromMonth, int fromYear, int nMonth); //
 
 void monthlyReport();                              // Total of revenue in yyyy year (show by monthly)
 void personnelSaleReport();                        // Total of sale by each merchant
+void reportSwitchHub();
+//void OneDayReportInterface();
+//void MonthlyReportInterface();
+//void PersonnelSaleReportInterface();
+//void MultipleDayReportInterface();
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/

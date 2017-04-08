@@ -31,8 +31,8 @@ void switchHub() {
     bannerBlankBorderTextCen ("5. Check Promotion Database");
     bannerBlankBorderTextCen ("6. Check Purchase Database");
     bannerBlankBorderTextCen ("7. Check Transaction Database");
-    bannerBlankBorderTextCen ("8. Check Report");
-    bannerBlankBorderTextCen ("9. Settings");
+    bannerBlankBorderTextCen ("8. Settings");
+    bannerBlankBorderTextCen ("9. Check Report");
     bannerBlankBorder ();
 
     for (int i = 0;i<20;i++)
@@ -79,7 +79,11 @@ void switchHub() {
         case ('8'):
             settingsSwitchHub ();
             return;
-        
+
+        case ('9'):
+            reportSwitchHub();
+            return;
+
         case ('n'):
             terminate();
             return;

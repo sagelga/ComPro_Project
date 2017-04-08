@@ -168,6 +168,87 @@ void personnelSaleReport(unsigned int year){
 	}
 } 
 
+int checkErrorIn = 0; //State for Error.
+void reportSwitchHub(){
+	screenClear();
+	bannerFullBorder();
+	bannerBlankBorderTextCen("Check Report");
+	bannerFullBorder();
+	if (checkErrorIn)
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			bannerBlankBorder();
+		}
+		bannerBlankBorderTextCen("Invalid input. Please try again !!!!");
+		for (int i = 0; i < 10; ++i)
+		{
+			bannerBlankBorder();
+		}
+	}
+	else
+	{
+		for (int i = 0; i < 14; ++i)
+		{
+			bannerBlankBorder();
+		}
+	}
+	bannerBlankBorderTextCen("Choose a report");
+	bannerBlankBorder();
+	bannerBlankBorderTextCen("1. One day report");
+	bannerBlankBorderTextCen("2. Monthly report");
+	bannerBlankBorderTextCen("3. Personnel sale report");
+	bannerBlankBorderTextCen("4. Multiple day report");
+	for (int i = 0; i < 14; ++i)
+	{
+		bannerBlankBorder();
+	}
+	bannerBlankBorderTextCen ("  Enter 'N' to quit   |      ALTERNATE RESPONSE      |   Enter 'B' to back to main menu");
+	bannerFullBorder();
+
+	/*-----User input------*/
+	char UserIn;
+	printf(">>> ");
+	scanf(" %c", &UserIn);
+	switch (UserIn){
+		case ('1'):
+			//OneDayReportInterface();
+			break;
+
+		case ('2'):
+			//MonthlyReportInterface();
+			break;
+
+		case ('3'):
+			//PersonnelSaleReportInterface();
+			break;
+
+		case ('4'):
+			//MultipleDayReportInterface();
+			break;
+
+		case ('N'):
+			terminate();
+			break;
+
+		case ('n'):
+			terminate();
+			break;
+
+		case ('B'):
+			switchHub();
+			break;
+
+		case ('b'):
+			switchHub();
+			break;
+
+		default:
+			checkErrorIn = 1;
+			reportSwitchHub();
+	}
+
+}
 /*
 void monthlyForecast(){
 	
