@@ -185,8 +185,59 @@ int inventoryDelete(char *id){
     return 0;   // Not found the given `id` in the records
 }
 
-void inventoryDatabaseInterface(){
+void displayInventory(int page){
+    screenClear ();
+    int allPage = (int)ceil(RecordCount.inventory/34)+1;
+    bannerFullBorder();
+    printf(":: ID             | Name                                               | Price      | Profit     | Category                  | In Stock   ::\n");
+    bannerFullBorder();
 
+    if (page == allPage)
+    {
+        for (int i = (page-1)*34; i < RecordCount.inventory; ++i)
+        {
+            printf(":: %-14s | %-50s | %10.2lf | %10.2lf | %25u | %10u ::\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
+            //bannerBlankBorder();
+        }
+        //display remaining line as bannerBlankBorder()
+        for (int i = 0; i < 34-(RecordCount.inventory%34); ++i)
+        {
+            bannerBlankBorder();
+        }
+    }
+    else
+    {
+        for (int i = (page-1)*34; i < page*34/*(34*page)*/; ++i)
+        {
+            printf(":: %-14s | %-50s | %10.2lf | %10.2lf | %25u | %10u ::\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
+            //bannerBlankBorder();
+        }
+    }
+
+    bannerBlankBorderTextCen("Enter Page/Enter 'B' to back to Inventory Menu");
+    printf("::                                                      |<<  <  ( Page %d of %d ) > >>|                                                     ::\n", page, allPage);
+    bannerFullBorder();
+
+}
+
+void inventoryDatabaseInterface(){
+    char handling;
+    int pageIn;
+    displayInventory(1);
+    for (int i = 0; i >= 0; ++i)
+    {
+        scanf(" %c", &handling);
+        if ((handling == 'B') || (handling == 'b'))
+        {
+            screenClear ();
+            inventorySwitchHub ();
+        }
+        else
+        {
+            pageIn = (int)handling - 48;
+            displayInventory(pageIn);
+        }
+    }
 }
 
 /*

@@ -162,6 +162,7 @@ void inventoryAddInterface ();
 void inventoryModifyInterface ();
 void inventoryRemoveInterface ();
 void inventoryDatabaseInterface ();
+void displayInventory(int page);
 
 
 //-------------------------------------------------------------------------------------------------------
