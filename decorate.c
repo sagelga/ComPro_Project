@@ -3,18 +3,15 @@
 
 void screenAdjust(){
     screenClear ();
-    char text1[107] = "";
-    char text2[107] = "  This is the initiation of the POS Systems!";
-    char text3[107] = "  The program screen size is optimized for 140 x 40 pixel terminal";
-    char text4[107] = "";
-    banner(text1, text2, text3, text4);
-    
+
+    bannerCenBorder ("", "", "", "POS Version : 1.0");
+
     for (int i = 0;i<3;i++)
         bannerBlankBorder();
     
     bannerBlankBorderTextCen("Please configure the terminal screen to optimum size.");
-    
-    for (int i = 0;i<27;i++)
+    bannerBlankBorderTextCen ("Optimal screen size : 140 x 40 character");
+    for (int i = 0;i<26;i++)
         bannerBlankBorder();
     
     bannerBlankBorderTextCen("Type 'Y' to continue...");
@@ -97,12 +94,12 @@ void bannerCen(){
 
 void bannerCenBorder(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
     // This function will print out the official banner.
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf("::%.55s ██╔══██╗██╔═══██╗██╔════╝ %55s::\n");
-    printf("::                                                        ██████╔╝██║   ██║███████╗                                                        ::\n");
-    printf("::                                                        ██╔═══╝ ██║   ██║╚════██║                                                        ::\n");
-    printf("::%.55s ██║     ╚██████╔╝███████║ %55s ::\n");
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf(":: %54s ██╔══██╗██╔═══██╗██╔════╝ %53s ::\n",bannerLine1,bannerLine2);
+    printf("::                                                        ██████╔╝██║   ██║███████╗                                                       ::\n");
+    printf("::                                                        ██╔═══╝ ██║   ██║╚════██║                                                       ::\n");
+    printf(":: %54s ██║     ╚██████╔╝███████║ %53s ::\n",bannerLine3,bannerLine4);
+    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ╚═╝      ╚═════╝ ╚══════╝ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
 void bannerCenStrikethrough(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
