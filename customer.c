@@ -501,16 +501,16 @@ void customerUpdateInterface(){
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
-                printf("%s >>> ", name);
+                printf("(%s) >>> ", name);
                 if (superscanf(flag) != 0)
                     customerUpdateFirstname(id, flag);
-                printf("%s >>> ", lastname);
+                printf("(%s) >>> ", lastname);
                 if (superscanf(flag) != 0)
                     customerUpdateLastname(id, flag);
-                printf("%c >>> ", gender);
+                printf("(%c) >>> ", gender);
                 if (superscanf(genderChanged) != 0)
                     customerUpdateGender(id, toupper(genderChanged[0]));
-                scanf("%s", flag);
+                scanf("(%s)", flag);
 
                 screenClear ();
                 bannerFullBorder();
