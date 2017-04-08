@@ -34,7 +34,7 @@ int isTimeInRange(time_t timestamp, time_t start, time_t end){
 }
 
 int superscanf(char *input){
-    if(scanf ("%[^\n]", input) < 1){
+    if(scanf (" %[^\n]", input) < 1){
         int c; while ((c = getchar()) != '\n' && c != EOF);
         return 0;
     }
