@@ -33,6 +33,13 @@ int isTimeInRange(time_t timestamp, time_t start, time_t end){
     return 0;   // The time is in this range
 }
 
+int superscanf(char *input){
+    if(scanf ("%[^\n]", input) < 1)
+        return 0;
+    else
+        return 1;
+}
+
 /*
  *                                             All hail the god..
  *  -----------------------------------------------------------------------------------------------------------------------

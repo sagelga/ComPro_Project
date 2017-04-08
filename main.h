@@ -33,7 +33,6 @@ Define all the constant values here*/
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
 
-
 //-------------------------------------------------------------------------------------------------------
 // # - File: AUTHENTICATE.c
 //-------------------------------------------------------------------------------------------------------
@@ -159,10 +158,10 @@ int inventoryUpdateCategory(char *id, unsigned int categoryId);    // For modify
 int inventoryUpdateRemain(char *id, unsigned int remain);          // For modifying the `remain` (Select the record by `id`)
 int inventoryDelete(char *id);                                     // Delete the record (Select by `id`)
 
-void inventoryAddInterface ();
-void inventoryModifyInterface ();
-void inventoryRemoveInterface ();
+//void inventoryAdd();
+//void inventoryRemove();
 void inventoryDatabaseInterface ();
+void displayInventory(int page);
 
 
 //-------------------------------------------------------------------------------------------------------
@@ -189,6 +188,10 @@ int categorySelectById(unsigned int id, char *name);  // Retrieve the record by 
 
 int categoryInsert(char *name);                               // Adding a new record to the database
 int categoryUpdateName(unsigned int id, char *name);  // For modifying the `name` (Select the record by `id`)
+
+void categoryDatabaseInterface();
+//void categoryAdd();
+void displayCategory(int page);
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: TRANSACTION.c
@@ -230,6 +233,7 @@ typedef struct
   unsigned int id;
   double totalPrice;
   double totalDiscount;
+  double totalProfit;
   char customerId[MAX_LNG_ID];
   char personnelId[MAX_LNG_ID]; // Cashier
   time_t timestamp; // Epoch timestamp
@@ -245,9 +249,9 @@ Declare all the Purchase Database can do*/
         All of the `int` functions
          - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
-int purchaseSelectById(unsigned int id, double *totalPrice, double *totalDiscount, char *customerId, char *personnelId, time_t *timestamp);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
+int purchaseSelectById(unsigned int id, double *totalPrice, double *totalDiscount, double *totalProfit, char *customerId, char *personnelId, time_t *timestamp);    // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-void purchaseInsert(double totalPrice, double totalDiscount, char *customerId, char *personnelId);         // Adding a new record to the database
+void purchaseInsert(double totalPrice, double totalDiscount, double totalProfit, char *customerId, char *personnelId);         // Adding a new record to the database
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: CUSTOMER.c
@@ -336,12 +340,28 @@ void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `po
 // # - File: REPORT.c
 //-------------------------------------------------------------------------------------------------------
 // Report collect revenue by categery
-struct REPORT {
+struct REPORT1 {
   char categoryName[MAX_LNG_TEXT];
   double totalPrice;
   double totalProfit;
 
 } RevenueByCategory[MAX_IDX_CATEGORY];
+
+struct REPORT2 {
+  char monthName[10];
+  double totalPrice;
+  double totalProfit;
+
+} RevenueByMonth[12];
+
+struct REPORT3 {
+  char id[MAX_LNG_ID];
+  char firstname[MAX_LNG_TEXT];
+  char lastname[MAX_LNG_TEXT];
+  double totalPrice;
+  double totalProfit;
+
+} RevenueByPersonnel[MAX_IDX_PERSONNEL];
 
 /*-----------------------------------------------------------------------------
 Declare all the the report function can do*/
@@ -399,6 +419,7 @@ Declare all the other database functions*/
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
 time_t toEpochTime(int date, int month, int year, int hour, int minute, int second);  // Convert time from Human-readable to Epoch Unix time format
 int isTimeInRange(time_t timestamp, time_t start, time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
+int superscanf(char *input); // Addition form scanf() to detect Blankline; (Return 0 = Empty line | 1 = Has a input)
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: DECORATE.c
