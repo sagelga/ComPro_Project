@@ -73,10 +73,9 @@ void cashierInterfaceDiscount(){// Interface that will ask for discount (voucher
     bannerBlankBorderTextCen ("Do you have a voucher or discount?");
     bannerBlankBorder ();
 
-    /* Remove this please */ int point;
-    char text;
-    strcpy(text,"You have ");
-    strcat(text,point);
+    /* Remove this please */ double point;
+    char text[140];
+    sprintf(text, "You have %.2lf points", point);
     bannerBlankBorderTextCen (text);
 
     for (int i = 32; i>0;i--)
@@ -94,13 +93,12 @@ void cashierInterfaceDiscount(){// Interface that will ask for discount (voucher
 void cashierInterfaceResult(){// Interface that will show the total (just like the receipt)
     screenClear ();
 
-    char text1;
-    strcpy(text1,"Welcome ");
-    strcat(text1,Session.user);
+    char text1[140];
+    sprintf(text1, "Welcome %s", Session.user.username);
 
-    char text2;
-    strcpy(text2,"Member ID : ");
-    strcat(text2,"<customer ID>");
+    char text2[140];
+    sprintf(text2, "Member ID : %s", "<customer ID>");
+
     banner (Setting.storeName,Setting.storeAddress,text1,text2);
 
     bannerBlankBorderTextCen ("Item name                                  | Count | Price                |"); // Try to merge item (if possible)
