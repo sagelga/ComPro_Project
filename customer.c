@@ -511,7 +511,6 @@ void customerUpdateInterface(){
                 printf("(%c) >>> ", gender);
                 if (superscanf(genderChanged) != 0)
                     customerUpdateGender(id, toupper(genderChanged[0]));
-                scanf("(%s)", flag); 
                 
                 screenClear ();
                 bannerFullBorder();
