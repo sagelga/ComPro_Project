@@ -3,11 +3,14 @@
 
 void authInterface () {
     screenClear ();
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("Sign in to the System");
-    bannerFullBorder();
+
+    bannerCenBorder ("", "", "", "POS Version : 1.0");
+
+    for (int i = 3;i>0;i--)
+    bannerBlankBorder ();
+
     bannerBlankBorderTextCen ("Please type in your username");
-    for (int i = 0;i<34;i++)
+    for (int i = 0;i<28;i++)
         bannerBlankBorder();
     bannerFullBorder();
 
@@ -15,18 +18,24 @@ void authInterface () {
     bannerUserInput();
     scanf("%s",username); // Then save to session struct
 
+
+
     screenClear ();
 
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("Sign in to the System");
-    bannerFullBorder();
+    bannerCenBorder ("", "", "", "POS Version : 1.0");
 
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Welcome back");
-    bannerBlankBorderTextCen (username);
+    for (int i = 3;i>0;i--)
+        bannerBlankBorder ();
 
-    for (int i = 0;i<31;i++)
+    char text[137];
+    strcpy(text,"Welcome back ");
+    strcat(text,username);
+    strcat(text,"!");
+    bannerBlankBorderTextCen (text);
+
+    for (int i = 0;i<27;i++)
         bannerBlankBorder();
+
     bannerBlankBorderTextCen("Please type in your password");
     bannerFullBorder();
     bannerUserInput();
@@ -34,7 +43,6 @@ void authInterface () {
     char password[130];
     scanf("%s",password);
 
-    screenClear();
     // If the username and the password is matched from the database -> Call authInterfaceComplete();
     // If the username and the password is not matched from the database -> Call authInterfaceFail();
     // If these were interrupt -> Call authInterfaceError();
@@ -55,28 +63,32 @@ void authInterface () {
 }
 
 void authInterfaceComplete(){
-    bannerFullBorder();
-    bannerBlankBorderTextCen ("Your login is now complete. We are now proceeding you to the program");
-    bannerFullBorder ();
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("██████╗  ██████╗ ███████╗");
-    bannerBlankBorderTextCen ("██╔══██╗██╔═══██╗██╔════╝");
-    bannerBlankBorderTextCen ("██████╔╝██║   ██║███████╗");
-    bannerBlankBorderTextCen ("██╔═══╝ ██║   ██║╚════██║");
-    bannerBlankBorderTextCen ("██║     ╚██████╔╝███████║");
-    bannerBlankBorderTextCen ("╚═╝      ╚═════╝ ╚══════╝");
-    bannerBlankBorder ();
+    screenClear ();
+
+    bannerCenBorder ("", "", "", "POS Version : 1.0");
+
+    for (int i = 3;i>0;i--)
+        bannerBlankBorder ();
 
     char text[140];
     strcpy(text, "Welcome back! ");
-    strcat(text, Session.user.username);
+    strcat(text, Session.user.firstname);
+    strcat(text, " ");
+    strcat(text,Session.user.lastname);
     bannerBlankBorderTextCen (text);
-    for ( int i = 0; i < 26; i++ ) {
+    bannerBlankBorder();
+
+    char text2[140];
+    strcpy(text2,"Signing in as : ");
+    strcat(text2,Session.user.username);
+    bannerBlankBorderTextCen (text2);
+
+    for ( int i = 0; i < 25; i++ ) {
         bannerBlankBorder ();
     }
-    bannerBlankBorderTextCen ("Redirecting you to POS system in 5 seconds...");
+    bannerBlankBorderTextCen ("Redirecting you to POS system...");
     bannerFullBorder ();
-    delay (5);
+    delay (3);
     // If user are admin (0) -> Redirect to switchHub();
     // If user are manager (1) -> Redirect to switchHubManager();
     // If user are sales (2) -> Redirect to switchHubSale();
@@ -85,6 +97,10 @@ void authInterfaceComplete(){
 }
 
 void authInterfaceFail () {
+    screenClear ();
+
+        bannerCenBorder ("", "", "", "POS Version : 1.0");
+
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Your login credentials is incorrect.");
     bannerFullBorder ();
@@ -133,10 +149,10 @@ void authInterfaceError () {
     bannerBlankBorderTextCen ("Redirect to sign in...");
     bannerFullBorder ();
 
-    delay (6);
+    delay (4);
     authInterface ();
 
-    // Program will delay for 10 seconds, and will be redirect back to login page...
+    // Program will delay for 4 seconds, and will be redirect back to login page...
 }
 
 int authenticateByUsername(char *username, char *password){
@@ -175,6 +191,24 @@ int authenticateByToken(char *barcodeToken){
 
 void deauthenticate(){
 	Session.isLogedin = 0;
+
+    screenClear ();
+    bannerFullBorder ();
+
+    char text[137];
+    strcpy(text,"User ");
+    strcat(text,Session.user.username);
+    strcat(text," account has successfully logout.");
+    bannerBlankBorderTextCen (text);
+
+    for (int i = 34;i>0;i--)
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("Returning you back to login...");
+    bannerFullBorder ();
+
+    delay (3);
+    screenAdjust ();
 }
 
 /*
