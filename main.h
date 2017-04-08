@@ -158,8 +158,8 @@ int inventoryUpdateCategory(char *id, unsigned int categoryId);    // For modify
 int inventoryUpdateRemain(char *id, unsigned int remain);          // For modifying the `remain` (Select the record by `id`)
 int inventoryDelete(char *id);                                     // Delete the record (Select by `id`)
 
-void inventoryAdd();
-void inventoryRemove();
+//void inventoryAdd();
+//void inventoryRemove();
 void inventoryDatabaseInterface ();
 void displayInventory(int page);
 
@@ -189,9 +189,9 @@ int categorySelectById(unsigned int id, char *name);  // Retrieve the record by 
 int categoryInsert(char *name);                               // Adding a new record to the database
 int categoryUpdateName(unsigned int id, char *name);  // For modifying the `name` (Select the record by `id`)
 
-void categoryDatabase();
-void categoryAdd();
-
+void categoryDatabaseInterface();
+//void categoryAdd();
+void displayCategory(int page);
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: TRANSACTION.c
