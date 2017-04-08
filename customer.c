@@ -297,6 +297,7 @@ void customerInsertInterface(){
 }
 
 void customerSelectInterface(){
+    //sky create
     screenClear ();
     bannerFullBorder();
     bannerBlankBorderTextCen ("Customer Database");
