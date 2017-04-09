@@ -2,46 +2,51 @@
 #include "main.h"
 
 /*---------------------------------------------------------------------------*/
-int main(){ // This program will run first. POS Interface configuration will be called, and ready to work.
-    screenClear();
-    initDatabase();
+int main () { // This program will run first. POS Interface configuration will be called, and ready to work.
+    screenClear ();
+    initDatabase ();
     //screenAdjust();
     switchHub ();
     return 0;
 }
 
-void switchHub() {
+void switchHub () {
 
-    /* Please remove these area if you have completed the beta testing
-
-    if (Session.user.role == 0){
-        screenClear ();
-    }
-    else if (Session.user.role == 1){
-        switchHubManager ();
-     } else if (Session.user.role == 2){
-        switchHubSales ();
-    }
-    else{
+    /*
+    if ( Session.user.role == 1 ) {
+        //switchHubManager ();
+    } else if ( Session.user.role == 2 ) {
+        //switchHubSales ();
+    } else {
         bannerFullBorder ();
-        bannerBlankBorderTextCen ("We cannot checked your credential. Please and log in again....");
+        bannerBlankBorderTextCen ("We cannot verified your credential. Logging you in again....");
         bannerFullBorder ();
 
-        delay (5);
+        delay (3);
 
         deauthenticate ();
     }
 */
+    screenClear ();
 
+    char text[140];
     char text1[140];
-    strcpy (text1, "Welcome back ");
-    strcat (text1, Session.user.username);
-    strcat (text1, "!");
 
-    bannerInverse(text1, "", "", "You are now connected to the POS system");
+    if ( Session.user.role == 0 ) {
+        strcpy (text1, "admin");
+    } else if ( Session.user.role == 1 ) {
+        strcpy (text1, "manager");
+    } else if ( Session.user.role == 2 ) {
+        strcpy (text1, "sale");
+    }
 
-    bannerBlankBorderTextCen("What do you want to do?");
-    bannerBlankBorder();
+
+    sprintf (text, "Welcome back %s @ %s!", Session.user.firstname,text1);
+
+    bannerInverse (text, "", "", Setting.storeName);
+
+    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerBlankBorder ();
 
     //These choice will be removed, when the program detects the permission level.
     bannerBlankBorderTextCen ("1. Go to POS System");
@@ -53,19 +58,19 @@ void switchHub() {
     bannerBlankBorderTextCen ("7. Settings");
     bannerBlankBorder ();
 
-    for (int i = 21;i>0;i--)
-        bannerBlankBorder();
+    for ( int i = 21; i > 0; i-- )
+        bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("  Type 'N' to quit  |  Type in your response  |  Type 'B' to logoff");
-    bannerFullBorder();
-    bannerUserInput();
+    bannerFullBorder ();
+    bannerUserInput ();
 
     char flags;
-    scanf(" %c", &flags);
+    scanf (" %c", &flags);
 
     screenClear ();
 
-    switch (toupper(flags)) {
+    switch ( toupper (flags)) {
         case ('1'): // Sign In / Sign Out
             cashierInterface ();
             break;
@@ -83,7 +88,7 @@ void switchHub() {
             break;
 
         case ('5'):
-            reportSwitchHub();
+            reportSwitchHub ();
             break;
 
         case ('6'):
@@ -94,7 +99,7 @@ void switchHub() {
             break;
 
         case ('N'):
-            terminate();
+            terminate ();
             break;
 
         case ('B'):
@@ -103,15 +108,15 @@ void switchHub() {
 
         default:
             // The input is invalid. Trying to route back to ask for a valid input
-            printf("Your input is invalid. Please try again.\n\n\n");
-            switchHub();
+            printf ("Your input is invalid. Please try again.\n\n\n");
+            switchHub ();
     }
 }
 
-void switchHubManager() { // Copies the item from the switchHub()
+void switchHubManager () { // Copies the item from the switchHub()
 }
 
-void switchHubSales() { // Copies the item from the switchHub()
+void switchHubSales () { // Copies the item from the switchHub()
 }
 
 /*

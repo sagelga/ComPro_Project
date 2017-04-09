@@ -1,8 +1,8 @@
 // Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
 
-int isFileExist(const char *filename){
-    if( access( filename, F_OK ) != -1 ) {
+int isFileExist (const char *filename) {
+    if ( access (filename, F_OK) != -1 ) {
         // file exists
         return 1;
     } else {
@@ -11,7 +11,7 @@ int isFileExist(const char *filename){
     }
 }
 
-time_t toEpochTime(int date, int month, int year, int hour, int minute, int second){
+time_t toEpochTime (int date, int month, int year, int hour, int minute, int second) {
     struct tm timeinfo = {0};
     time_t result = 0;
     timeinfo.tm_sec = second;
@@ -21,30 +21,29 @@ time_t toEpochTime(int date, int month, int year, int hour, int minute, int seco
     timeinfo.tm_mon = month - 1;
     timeinfo.tm_year = year - 1900;
 
-    result = mktime(&timeinfo);
+    result = mktime (&timeinfo);
     return result;
 }
 
-int isTimeInRange(time_t timestamp, time_t start, time_t end){
-    if(timestamp < start)
+int isTimeInRange (time_t timestamp, time_t start, time_t end) {
+    if ( timestamp < start )
         return -1;  // Starting point is in the future
-    else if(timestamp > end)
+    else if ( timestamp > end )
         return 1;   // Endpoint is in the past
     return 0;   // The time is in this range
 }
 
-int superscanf(char *input){
+int superscanf (char *input) {
 
     char temp[MAX_LNG_SCREEN];
     int i, len;
-    fseek(stdin,0,SEEK_END);
-    fgets (temp, sizeof(temp), stdin);
-    if(temp[0] == '\n'){
+    fseek (stdin, 0, SEEK_END);
+    fgets (temp, sizeof (temp), stdin);
+    if ( temp[0] == '\n' ) {
         return 0;
-    }
-    else{
+    } else {
         i = 0;
-        while(temp[i] != '\n'){
+        while ( temp[i] != '\n' ) {
             input[i] = temp[i];
             i++;
         }

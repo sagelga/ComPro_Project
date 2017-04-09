@@ -108,9 +108,9 @@ PERSONNEL Personnel[MAX_IDX_PERSONNEL];           // Declare the Personnel table
 
 /*-----------------------------------------------------------------------------
 Declare all the Personnel Database can do*/
-/* 
+/*
   Note: To use a function `personnelSelectById`
-         - Pass the values by reference e.g. personnelSelectById(id, firstname, lastname, &role, username, password, barcodeToken); 
+         - Pass the values by reference e.g. personnelSelectById(id, firstname, lastname, &role, username, password, barcodeToken);
         All of the `int` functions
          - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
@@ -142,7 +142,7 @@ INVENTORY Inventory[MAX_IDX_INVENTORY];           // Declare the Inventory table
 
 /*-----------------------------------------------------------------------------
 Declare all the Inventory Database can do*/
-/* 
+/*
   Note: To use a function `inventorySelectById`
          - Pass the values by reference e.g. inventorySelectById(id, name, &price, &profit, &categoryId, &remain);
         All of the `int` functions
@@ -178,7 +178,7 @@ CATEGORY Category[MAX_IDX_CATEGORY];              // Declare the Category table
 
 /*-----------------------------------------------------------------------------
 Declare all the Category Database can do*/
-/* 
+/*
   Note: To use a function `categorySelectById`
          - Pass the values by reference e.g. categorySelectById(id, name);
         All of the `int` functions
@@ -214,7 +214,7 @@ TRANSACTION Transaction[MAX_IDX_TRANSACTION];     // Declare the Transaction tab
 
 /*-----------------------------------------------------------------------------
 Declare all the Transaction Database can do*/
-/* 
+/*
   Note: To use a function `transactionSelectById`
          - Pass the values by reference e.g. transactionSelectById(id, &purchaseId, &inventoryPrice, &inventoryProfit, &inventoryCategoryId, &timestamp);
         All of the `int` functions
@@ -243,7 +243,7 @@ PURCHASE Purchase[MAX_IDX_PURCHASE];              // Declare the Purchase table
 
 /*-----------------------------------------------------------------------------
 Declare all the Purchase Database can do*/
-/* 
+/*
   Note: To use a function `purchaseSelectById`
          - Pass the values by reference e.g. purchaseSelectById(id, &totalPrice, &totalDiscount, customerId, personnelId, &timestamp);
         All of the `int` functions
@@ -271,7 +271,7 @@ CUSTOMER Customer[MAX_IDX_CUSTOMER];              // Declare the Customer table
 
 /*-----------------------------------------------------------------------------
 Declare all the Customer Database can do*/
-/* 
+/*
   Note: To use a function `customerSelectById`
          - Pass the values by reference e.g. customerSelectById(id, firstname, lastname, &gender, &point, &totalBuy);
         All of the `int` functions
@@ -309,7 +309,7 @@ PROMOTION Promotion[MAX_IDX_PROMOTION];           // Declare the Promotion table
 
 /*-----------------------------------------------------------------------------
 Declare all the Promotion Database can do*/
-/* 
+/*
   Note: To use a function `promotionSelectById`
          - Pass the values by reference e.g. promotionSelectById(id, &price, &status);
         All of the `int` functions
@@ -347,6 +347,13 @@ void settingUpdateStoreName(char *storeName);           // For modifying the `st
 void settingUpdateAddress(char *storeAddress);          // For modifying the `storeAddress`
 void settingUpdatePriceToPoint(double priceToPoint);    // For modifying the `priceToPoint`
 void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `pointToPrice`
+void settingUpdateUsernameInterface();
+
+void settingUpdatePasswordInterface();
+void settingUpdateStoreNameInterface();
+void settingUpdateStoreAddressInterface();
+void settingContributorList();
+void settingCat();
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: REPORT.c
@@ -458,7 +465,6 @@ void switchHubSales();                       // For moving to the selection of t
 
 
 void inventorySwitchHub ();               // For moving to the selection of the functions
-void categorySwitchHub ();               // For moving to the selection of the functions
 void customerSwitchHub ();               // For moving to the selection of the functions
 void promotionSwitchHub ();               // For moving to the selection of the functions
 void settingsSwitchHub ();               // For moving to the selection of the functions
@@ -476,7 +482,8 @@ void bannerFullBorder();                      // Prints a full 140 character ful
 
 void bannerBlankBorder();                     // Prints a :: + 136 charaacter space + ::
 void bannerBlankBorderTextCen(char *text);                // Prints a :: + + 134 character space + + :: (Center Align)
-void bannerBlankBorderText(char *text);                // Prints a :: + + 134 character space + + :: (Left Align)
+void bannerBlankBorderText(char *text);                // Prints a :: + + 134 character space + + :: (Right Align)
+void bannerBlankBorderTextLeft (char *text);
 
 void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);  // Prints banner with configurable character
 void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4); // Prints banner (with POS logo in the right) with configurable character
@@ -523,7 +530,7 @@ void cashierInterfaceResult();// Interface that will show the total (just like t
 ===========`-.`___`-.__\ \___  /__.-'_.'_.-'================
                         `=--=-'
                 Program bug best enemy
-          Please. No bug. No crash. No interrupt.         
+          Please. No bug. No crash. No interrupt.
 
    :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
    :: ██╔══██╗██╔═══██╗██╔════╝ :: Welcome to the POS System program.                                                                        ::
@@ -533,11 +540,12 @@ void cashierInterfaceResult();// Interface that will show the total (just like t
    :: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
       Lists of the team members
-      Kunanon Srisuntiroj      @sagelga         59070022    UI Team
-      Thanawat Laodkaew        @skydddoogg      59070071    Background Work Team
-      Noppanut Ploywong        @noppanut15      59070082    Background Work Team
-      Vasanchai Prakobkij      @59070156        59070156    Background Work Team
-  
+      Kunanon Srisuntiroj      @sagelga         59070022
+      Thanawat Laodkaew        @skydddoogg      59070071
+      Noppanut Ploywong        @noppanut15      59070082
+      Vasanchai Prakobkij      @59070156        59070156
+      Weerakorn Pongpum                         59070163
+
  */
 
  #endif
