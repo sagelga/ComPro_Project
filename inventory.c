@@ -6,14 +6,15 @@ void inventorySwitchHub () {
     bannerFullBorder();
     bannerBlankBorderTextCen ("What are you going to do?");
     bannerBlankBorder ();
-    bannerBlankBorderText("Inventory");
+    bannerBlankBorderTextCen("Inventory");
     bannerFullBorderSection ();
     bannerBlankBorderTextCen ("1. Check the database");
     bannerBlankBorderTextCen ("2. Add inventory data to the database");
     bannerBlankBorderTextCen ("3. Edit inventory data from the database");
     bannerBlankBorderTextCen ("4. Removing inventory from the database");
 
-    bannerBlankBorderText ("Category");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Category");
     bannerFullBorderSection ();
     bannerBlankBorderTextCen ("5. Check the category database");
     bannerBlankBorderTextCen ("6. Add new category to the database");

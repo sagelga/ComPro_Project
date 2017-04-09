@@ -217,7 +217,7 @@ void reportSwitchHub(){
 
 		case ('2'):
 			checkErrorIn = 0;
-			//MonthlyReportInterface();
+			MonthlyReportInterface();
 			break;
 
 		case ('3'):
@@ -347,6 +347,27 @@ void OneDayReportInterface(){
 			displayOneDayReport(pageIn);
 			printf("Oops! Input is valided, Please enter correctly: ");
 		}
+	}
+}
+
+void displayMonthlyReport();
+void displayMonthlyReport(){
+	screenClear();
+	for (int i = 0; i < 12; ++i)
+	{
+		printf(":: %s | %lf | %lf ::\n", RevenueByMonth[i].monthName, RevenueByMonth[i].totalPrice, RevenueByMonth[i].totalProfit);
+	}
+}
+
+void MonthlyReportInterface(){
+	screenClear();
+	unsigned int year;
+	for (int i = 0; i >= 0; ++i)
+	{
+		printf(">>> ");
+		scanf("%u", &year);
+		monthlyReport(year);
+		displayMonthlyReport();
 	}
 }
 /*
