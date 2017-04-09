@@ -123,6 +123,8 @@ int personnelUpdateRole(char *id, int role);                // For modifying the
 int personnelUpdatePassword(char *id, char *password);      // For modifying the `password` (Select the record by `id`)
 int personnelDelete(char *id);                              // Delete the record (Select by `id`)
 
+void personnelSwitchHub();
+
 //-------------------------------------------------------------------------------------------------------
 // # - File: INVENTORY.c
 //-------------------------------------------------------------------------------------------------------

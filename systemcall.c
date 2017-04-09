@@ -35,56 +35,56 @@ void initDatabase () {
 }
 
 void personnelDatabase () {
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if ( !isFileExist (personnelDatabaseFile)) {
         fopen (personnelDatabaseFile, "w");
     }
 }
 
 void inventoryDatabase () {
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if ( !isFileExist (inventoryDatabaseFile)) {
         fopen (inventoryDatabaseFile, "w");
     }
 }
 
 void categoryDatabase () {
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if ( !isFileExist (categoryDatabaseFile)) {
         fopen (categoryDatabaseFile, "w");
     }
 }
 
 void transactionDatabase () {
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if ( !isFileExist (transactionDatabaseFile)) {
         fopen (transactionDatabaseFile, "w");
     }
 }
 
 void purchaseDatabase () {
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if ( !isFileExist (purchaseDatabaseFile)) {
         fopen (purchaseDatabaseFile, "w");
     }
 }
 
 void customerDatabase () {
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if ( !isFileExist (customerDatabaseFile)) {
         fopen (customerDatabaseFile, "w");
     }
 }
 
 void promotionDatabase () {
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if ( !isFileExist (promotionDatabaseFile)) {
         fopen (promotionDatabaseFile, "w");
     }
 }
 
 void settingDatabase () {
-    // Check a Database file existance, if it doesn't exist then create the new one.
+    // Check a Database file existence, if it doesn't exist then create the new one.
     if ( !isFileExist (settingDatabaseFile)) {
         fopen (settingDatabaseFile, "w");
     }
@@ -106,7 +106,7 @@ void personnelFileRead () {
     RecordCount.personnel = i;          // Save a number of records to the Record Counter
     fclose (fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %s-%s-%s-%d-%s-%s-%s\n", Personnel[i].id, Personnel[i].firstname, Personnel[i].lastname, Personnel[i].role, Personnel[i].username, Personnel[i].password, Personnel[i].barcodeToken);
 
@@ -127,7 +127,7 @@ void inventoryFileRead () {
     RecordCount.inventory = i;          // Save a number of records to the Record Counter
     fclose (fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %s\t%s\t%lf\t%lf\t%u\t%u\n", Inventory[i].id, Inventory[i].name, Inventory[i].price, Inventory[i].profit, Inventory[i].categoryId, Inventory[i].remain);
 
@@ -147,7 +147,7 @@ void categoryFileRead () {
     RecordCount.category = i;          // Save a number of records to the Record Counter
     fclose (fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %u\t%s\n", Category[i].id, Category[i].name);
 
@@ -171,7 +171,7 @@ void transactionFileRead () {
     RecordCount.transaction = i;          // Save a number of records to the Record Counter
     fclose (fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %u\t%u\t%s\t%s\t%lf\t%lf\t%u\t%lu\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId, Transaction[i].inventoryName, Transaction[i].inventoryPrice, Transaction[i].inventoryProfit, Transaction[i].inventoryCategoryId, Transaction[i].timestamp);
 
@@ -194,7 +194,7 @@ void purchaseFileRead () {
     RecordCount.purchase = i;          // Save a number of records to the Record Counter
     fclose (fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %u\t%lf\t%lf\t%lf\t%s\t%s\t%lu\n", Purchase[i].id, Purchase[i].totalPrice, Purchase[i].totalDiscount, Purchase[i].totalProfit, Purchase[i].customerId, Purchase[i].personnelId, Purchase[i].timestamp);
 
@@ -215,7 +215,7 @@ void customerFileRead () {
     RecordCount.customer = i;          // Save a number of records to the Record Counter
     fclose (fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %s\t%s\t%s\t%c\t%lf\t%lf\n", Customer[i].id, Customer[i].firstname, Customer[i].lastname, Customer[i].gender, Customer[i].point, Customer[i].totalBuy);
 
@@ -235,7 +235,7 @@ void promotionFileRead () {
     RecordCount.promotion = i;          // Save a number of records to the Record Counter
     fclose (fp);
 
-    // For debuging
+    // For debugging
     // i--;
     // printf(">>>> %s\t%lf\t%d\n", Promotion[i].id, Promotion[i].price, Promotion[i].status);
 
@@ -251,7 +251,7 @@ void settingFileRead () {
             &Setting.pointToPrice);
     fclose (fp);
 
-    // For debuging
+    // For debugging
     // printf(">>>> %s--%s--%lf--%lf\n", Setting.storeName, Setting.storeAddress, Setting.priceToPoint, Setting.pointToPrice);
 
 }

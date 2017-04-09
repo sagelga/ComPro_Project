@@ -3,35 +3,37 @@
 
 void promotionSwitchHub () {
     screenClear ();
+
     bannerFullBorder ();
-    bannerBlankBorderTextCen ("Promotion Database");
+    bannerBlankBorderTextCen ("Promotion Hub");
+    bannerBlankBorderTextCen ("-----------------------");
+    bannerBlankBorderTextCen ("What do you want to do?");
     bannerFullBorder ();
 
-    bannerBlankBorderTextCen ("What do you want to do?");
-    bannerFullBorderSection ();
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("1. Create a new promotion");
-    bannerBlankBorderTextCen ("2. View all promotion in database");
+    bannerBlankBorderTextCen ("1. Preview promotion in database");
+    bannerBlankBorderTextCen ("2. Create a new promotion");
     bannerBlankBorderTextCen ("3. Delete promotion from database");
     bannerBlankBorderTextCen ("4. Update promotion metadata");
 
     for (int i = 0;i<28;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
     char flag;
     scanf (" %c", &flag);
 
-    switch ( flag ) {
+    switch ( toupper(flag) ) {
 
         case ('1'):
-            promotionInsertInterface ();
+            promotionSelectInterface ();
+
             break;
 
         case ('2'):
-            promotionSelectInterface ();
+            promotionInsertInterface ();
             break;
 
         case ('3'):
@@ -42,14 +44,10 @@ void promotionSwitchHub () {
             promotionUpdateInterface ();
             break;
 
-        case ('b'):
-            switchHub ();
         case ('B'):
             switchHub ();
 
-        case ('n'):
-            terminate ();
-        case ('N'):
+        case ('Q'):
             terminate ();
 
         default:

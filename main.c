@@ -74,7 +74,7 @@ void switchHub () {
             break;
 
         case ('5'):
-           // personnelSwitchHub ();
+           personnelSwitchHub ();
             break;
 
         case ('6'):

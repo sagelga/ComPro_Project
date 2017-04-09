@@ -77,13 +77,13 @@ void authInterfaceComplete () {
     for (int i = 2;i>0;i--)
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("..██████..");
-    bannerBlankBorderTextCen (".██....██.");
-    bannerBlankBorderTextCen ("██......██");
-    bannerBlankBorderTextCen ("██████████");
-    bannerBlankBorderTextCen ("████..████");
-    bannerBlankBorderTextCen ("████..████");
-    bannerBlankBorderTextCen ("██████████");
+    printf ("::                                                                 ██████                                                                 ::\n");
+    printf ("::                                                                ██    ██                                                                ::\n");
+    printf ("::                                                               ██      ██                                                               ::\n");
+    printf ("::                                                               ██████████                                                               ::\n");
+    printf ("::                                                               ████  ████                                                               ::\n");
+    printf ("::                                                               ████  ████                                                               ::\n");
+    printf ("::                                                               ██████████                                                               ::\n");
 
     for (int i = 2;i>0;i--)
         bannerBlankBorder ();
@@ -112,13 +112,13 @@ void authInterfaceComplete () {
     for (int i = 2;i>0;i--)
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("..██████..");
-    bannerBlankBorderTextCen (".██....██.");
-    bannerBlankBorderTextCen ("........██");
-    bannerBlankBorderTextCen ("██████████");
-    bannerBlankBorderTextCen ("████  ████");
-    bannerBlankBorderTextCen ("████  ████");
-    bannerBlankBorderTextCen ("██████████");
+    printf ("::                                                                 ██████                                                                 ::\n");
+    printf ("::                                                                ██    ██                                                                ::\n");
+    printf ("::                                                                       ██                                                               ::\n");
+    printf ("::                                                               ██████████                                                               ::\n");
+    printf ("::                                                               ████  ████                                                               ::\n");
+    printf ("::                                                               ████  ████                                                               ::\n");
+    printf ("::                                                               ██████████                                                               ::\n");
 
     for (int i = 2;i>0;i--)
         bannerBlankBorder ();
@@ -157,13 +157,9 @@ void authInterfaceFail () {
     char flag;
     scanf (" %c", &flag);
 
-    switch ( flag ) {
+    switch (toupper(flag)) {
 
         case ('N'):
-            terminate ();
-            return;
-
-        case ('n'):
             terminate ();
             return;
 

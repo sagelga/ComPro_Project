@@ -68,7 +68,7 @@ void displayCategory (int page) {
         }
     }
 
-    bannerBlankBorderTextCen ("Enter Page/Enter 'B' to back to Inventory&Category Menu");
+    bannerBlankBorderTextCen ("Enter Page Number | Type 'B' to back");
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
     bannerFullBorder ();
@@ -117,8 +117,8 @@ void categoryAdd () {
             bannerBlankBorder ();
         }
         bannerBlankBorderTextCen ("Successful!!! The category has been inserted.");
-        bannerBlankBorderTextCen ("<-- Enter A/b to add more category -->");
-        bannerBlankBorderTextCen ("<-- Enter B/b to back to Inventory&Category Menu -->");
+        bannerBlankBorderTextCen ("Type 'A' to add more");
+        bannerBlankBorderTextCen ("Type 'B' to back");
         for ( int i = 0; i < 17; ++i ) {
             bannerBlankBorder ();
         }
@@ -136,8 +136,8 @@ void categoryAdd () {
                 bannerBlankBorder ();
             }
             bannerBlankBorderTextCen ("Input Error!!!");
-            bannerBlankBorderTextCen ("|| Enter A/b to add more category ||");
-            bannerBlankBorderTextCen ("|| Enter B/b to back to Inventory&Category Menu ||");
+            bannerBlankBorderTextCen ("Type 'A' to add more");
+        bannerBlankBorderTextCen ("Type 'B' to back");
             for ( int i = 0; i < 18; ++i ) {
                 bannerBlankBorder ();
             }
@@ -156,8 +156,8 @@ void categoryAdd () {
                         bannerBlankBorder ();
                     }
                     bannerBlankBorderTextCen ("Input Error!!!");
-                    bannerBlankBorderTextCen ("|| Enter A/b to add more Category ||");
-                    bannerBlankBorderTextCen ("|| Enter B/b to back to Inventory&Category Menu ||");
+                    bannerBlankBorderTextCen ("Type 'A' to add more");
+        bannerBlankBorderTextCen ("Type 'B' to back");
                     for ( int i = 0; i < 18; ++i ) {
                         bannerBlankBorder ();
                     }
@@ -172,7 +172,7 @@ void categoryAdd () {
             bannerBlankBorder ();
         }
         bannerBlankBorderTextCen ("Error!!! Category name already exists");
-        bannerBlankBorderTextCen ("Please enter B/b to back to Insert Category.");
+        bannerBlankBorderTextCen ("Type 'B' to back");
         for ( int i = 0; i < 18; ++i ) {
             bannerBlankBorder ();
         }
@@ -187,7 +187,7 @@ void categoryAdd () {
                 bannerBlankBorder ();
             }
             bannerBlankBorderTextCen ("Input Error!!!");
-            bannerBlankBorderTextCen ("Please enter B/b to back to Insert Category.");
+        bannerBlankBorderTextCen ("Type 'B' to back");
             for ( int i = 0; i < 18; ++i ) {
                 bannerBlankBorder ();
             }
@@ -203,7 +203,7 @@ void categoryAdd () {
                         bannerBlankBorder ();
                     }
                     bannerBlankBorderTextCen ("Input Error!!!");
-                    bannerBlankBorderTextCen ("Please enter B/b to back to Insert Category.");
+        bannerBlankBorderTextCen ("Type 'B' to back");
                     for ( int i = 0; i < 18; ++i ) {
                         bannerBlankBorder ();
                     }
