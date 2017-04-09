@@ -3,9 +3,9 @@
 
 void promotionSwitchHub () {
     screenClear ();
-    bannerFullBorder();
+    bannerFullBorder ();
     bannerBlankBorderTextCen ("Promotion Database");
-    bannerFullBorder();
+    bannerFullBorder ();
 
     bannerBlankBorderTextCen ("What do you want to do?");
     bannerFullBorderSection ();
@@ -22,24 +22,24 @@ void promotionSwitchHub () {
 
     bannerUserInput ();
     char flag;
-    scanf(" %c", &flag);
+    scanf (" %c", &flag);
 
-    switch(flag){
+    switch ( flag ) {
 
         case ('1'):
-            promotionInsertInterface();
+            promotionInsertInterface ();
             break;
 
         case ('2'):
-            promotionSelectInterface();
+            promotionSelectInterface ();
             break;
 
         case ('3'):
-            promotionDeleteInterface();
+            promotionDeleteInterface ();
             break;
 
         case ('4'):
-            promotionUpdateInterface();
+            promotionUpdateInterface ();
             break;
 
         case ('b'):
@@ -63,9 +63,9 @@ void promotionInsertInterface(){
     char bufferHead[140];
     sprintf(bufferHead, "%-100s|%-20s|%s", "ID", "Price", "Status");
     screenClear ();
-    bannerFullBorder();
+    bannerFullBorder ();
     bannerBlankBorderTextCen ("Promotion Database");
-    bannerFullBorder();
+    bannerFullBorder ();
 
     bannerBlankBorderTextCen ("Insert Promotion");
 
@@ -87,22 +87,20 @@ void promotionInsertInterface(){
     bannerUserInput ();
     char id[MAX_LNG_ID], buffer[140], flag;
     double price;
-    while (1){
-        scanf("%s", id);
-        if (strcmp(id, "B") == 0 || strcmp(id, "b") == 0 ){
-            promotionSwitchHub();
+    while ( 1 ) {
+        scanf ("%s", id);
+        if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
+            promotionSwitchHub ();
             break;
-        }
-        else if (strcmp(id, "N") == 0 || strcmp(id, "n") == 0 ){
-            terminate();
+        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+            terminate ();
             break;
-        }
-        else{
+        } else {
             //------------------After Input--------------------
             //---------------------ID--------------------------
             sprintf(buffer, "%-100s", id);
             screenClear ();
-            bannerFullBorder();
+            bannerFullBorder ();
             bannerBlankBorderTextCen ("Promotion Database");
             bannerFullBorder();
             bannerBlankBorder ();
@@ -119,12 +117,12 @@ void promotionInsertInterface(){
             bannerFullBorder ();
 
             bannerUserInput ();
-    
+
             //---------------------Price--------------------------
             scanf("%lf", &price);
             sprintf(buffer, "%-100s %-20.2lf %s", id, price, "Active");
             screenClear ();
-            bannerFullBorder();
+            bannerFullBorder ();
             bannerBlankBorderTextCen ("Promotion Database");
             bannerFullBorder();
             bannerBlankBorder ();
@@ -144,7 +142,7 @@ void promotionInsertInterface(){
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
-    
+
             bannerUserInput ();
             scanf (" %c", &flag);
             if (flag == 'Y' || flag == 'y'){
@@ -211,7 +209,7 @@ void promotionInsertInterface(){
     }
 }
 
-void promotionSelectInterface(){
+void promotionSelectInterface () {
 
 }
 
@@ -219,7 +217,7 @@ void promotionDeleteInterface(){
     char bufferHead[140];
     sprintf(bufferHead, "%-100s|%-20s|%s", "ID", "Price", "Status");
     screenClear ();
-    bannerFullBorder();
+    bannerFullBorder ();
     bannerBlankBorderTextCen ("Promotion Database");
     bannerFullBorder();
     bannerBlankBorder ();
@@ -242,19 +240,17 @@ void promotionDeleteInterface(){
     char id[MAX_LNG_ID], buffer[140], flag, statusShow[MAX_LNG_ID];
     double price;
     int status;
-    while (1){
-        scanf("%s", id);
-        if (strcmp(id, "B") == 0 || strcmp(id, "b") == 0 ){
-            promotionSwitchHub();
-        }
-        else if (strcmp(id, "N") == 0 || strcmp(id, "n") == 0 ){
-            terminate();
-        }
-        else{
-            if (promotionSelectById(id, &price, &status)){
+    while ( 1 ) {
+        scanf ("%s", id);
+        if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
+            promotionSwitchHub ();
+        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+            terminate ();
+        } else {
+            if ( promotionSelectById (id, &price, &status)) {
                 screenClear ();
-                if (status == 1)
-                    strcpy(statusShow, "Active");
+                if ( status == 1 )
+                    strcpy (statusShow, "Active");
                 else
                     strcpy(statusShow, "Used");
                 sprintf(buffer, "%-100s %-20.2lf %s", id, price, statusShow);
@@ -279,11 +275,11 @@ void promotionDeleteInterface(){
                 bannerFullBorder ();
 
                 bannerUserInput ();
-                scanf(" %c", &flag);
-                if (flag == 'Y' || flag == 'y'){
-                    promotionDelete(id);
+                scanf (" %c", &flag);
+                if ( flag == 'Y' || flag == 'y' ) {
+                    promotionDelete (id);
                     screenClear ();
-                    bannerFullBorder();
+                    bannerFullBorder ();
                     bannerBlankBorderTextCen ("Promotion Database");
                     bannerFullBorder();
                     bannerBlankBorder ();
@@ -304,15 +300,13 @@ void promotionDeleteInterface(){
                     bannerFullBorder ();
 
                     bannerUserInput ();
-                }
-                else{
+                } else {
                     screenClear ();
-                    promotionDeleteInterface();
+                    promotionDeleteInterface ();
                 }
-            }
-            else{
+            } else {
                 screenClear ();
-                bannerFullBorder();
+                bannerFullBorder ();
                 bannerBlankBorderTextCen ("Promotion Database");
                 bannerFullBorder();
                 bannerBlankBorder ();
@@ -334,7 +328,7 @@ void promotionDeleteInterface(){
 
                 bannerUserInput ();
             }
-            
+
         }
     }
 }
@@ -343,7 +337,7 @@ void promotionUpdateInterface(){
     char bufferHead[140];
     sprintf(bufferHead, "%-100s|%-20s|%s", "ID", "Price", "Status");
     screenClear ();
-    bannerFullBorder();
+    bannerFullBorder ();
     bannerBlankBorderTextCen ("Promotion Database");
     bannerFullBorder();
     bannerBlankBorder ();
@@ -365,19 +359,17 @@ void promotionUpdateInterface(){
     char id[MAX_LNG_ID], buffer[140], flag[100], statusShow[MAX_LNG_ID];
     double price;
     int status;
-    while (1){
-        scanf("%s", id);
-        if (strcmp(id, "B") == 0 || strcmp(id, "b") == 0 ){
-            promotionSwitchHub();
-        }
-        else if (strcmp(id, "N") == 0 || strcmp(id, "n") == 0 ){
-            terminate();
-        }
-        else{
-            if (promotionSelectById(id, &price, &status)){
+    while ( 1 ) {
+        scanf ("%s", id);
+        if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
+            promotionSwitchHub ();
+        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+            terminate ();
+        } else {
+            if ( promotionSelectById (id, &price, &status)) {
                 screenClear ();
-                if (status == 1)
-                    strcpy(statusShow, "Active");
+                if ( status == 1 )
+                    strcpy (statusShow, "Active");
                 else
                     strcpy(statusShow, "Used");
                 sprintf(buffer, "%-100s ->%-20.2lf %s", id, price, statusShow);
@@ -404,7 +396,7 @@ void promotionUpdateInterface(){
                     promotionUpdatePrice(id, atof(flag));
 
                 screenClear ();
-                bannerFullBorder();
+                bannerFullBorder ();
                 bannerBlankBorderTextCen ("Promotion Database");
                 bannerFullBorder();
                 bannerBlankBorder ();
@@ -428,11 +420,10 @@ void promotionUpdateInterface(){
                 bannerFullBorder ();
 
                 bannerUserInput ();
-            
-            }
-            else{
+
+            } else {
                 screenClear ();
-                bannerFullBorder();
+                bannerFullBorder ();
                 bannerBlankBorderTextCen ("Promotion Database");
                 bannerFullBorder();
                 bannerBlankBorder ();
@@ -454,16 +445,16 @@ void promotionUpdateInterface(){
 
                 bannerUserInput ();
             }
-            
+
         }
     }
 }
 
-int promotionSelectById(char *id, double *price, int *status){
+int promotionSelectById (char *id, double *price, int *status) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.promotion;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Promotion[i].id, id) == 0){
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Promotion[i].id, id) == 0 ) {
             // Return all values back by reference
             *price = Promotion[i].price;
             *status = Promotion[i].status;
@@ -474,62 +465,62 @@ int promotionSelectById(char *id, double *price, int *status){
     return 0;           // Not found the given `id` in the records
 }
 
-int promotionInsert(char *id, double price){
+int promotionInsert (char *id, double price) {
     int tailIndex = RecordCount.promotion;
 
     // To comfirm that `id` is unique
-    for(int i = 0; i < tailIndex; i++){
-        if(strcmp(Promotion[i].id, id) == 0)
+    for ( int i = 0; i < tailIndex; i++ ) {
+        if ( strcmp (Promotion[i].id, id) == 0 )
             return 0;   // Error: Barcode ID already exists
     }
 
-    strcpy(Promotion[tailIndex].id, id);
+    strcpy (Promotion[tailIndex].id, id);
     Promotion[tailIndex].price = price;
     Promotion[tailIndex].status = 1;        // Initail Value (1 = Active)
 
     RecordCount.promotion++;                // Update the amount of records
 
-    promotionFileWrite();                   // Save to a Database file
+    promotionFileWrite ();                   // Save to a Database file
     return 1;                   // Operation Success
 }
 
-int promotionUpdatePrice(char *id, double price){
+int promotionUpdatePrice (char *id, double price) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.promotion;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Promotion[i].id, id) == 0){
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Promotion[i].id, id) == 0 ) {
             Promotion[i].price = price;
-            promotionFileWrite();    // Save to a Database file
+            promotionFileWrite ();    // Save to a Database file
             return 1;               // Record successfully updated
         }
     }
     return 0;   // Not found the given `id` in the records
 }
 
-int promotionUpdateStatus(char *id, int status){
+int promotionUpdateStatus (char *id, int status) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.promotion;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Promotion[i].id, id) == 0){
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Promotion[i].id, id) == 0 ) {
             Promotion[i].status = status;
-            promotionFileWrite();    // Save to a Database file
+            promotionFileWrite ();    // Save to a Database file
             return 1;               // Record successfully updated
         }
     }
     return 0;   // Not found the given `id` in the records
 }
 
-int promotionDelete(char *id){
+int promotionDelete (char *id) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.promotion;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Promotion[i].id, id) == 0){
-            while(i < numberOfRecords - 1){
-                Promotion[i] = Promotion[i+1];
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Promotion[i].id, id) == 0 ) {
+            while ( i < numberOfRecords - 1 ) {
+                Promotion[i] = Promotion[i + 1];
                 i++;
             }
             RecordCount.promotion--;    // Update the amount of records
-            promotionFileWrite();       // Save to a Database file
+            promotionFileWrite ();       // Save to a Database file
             return 1;                  // Record successfully deleted
         }
     }

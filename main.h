@@ -108,9 +108,9 @@ PERSONNEL Personnel[MAX_IDX_PERSONNEL];           // Declare the Personnel table
 
 /*-----------------------------------------------------------------------------
 Declare all the Personnel Database can do*/
-/* 
+/*
   Note: To use a function `personnelSelectById`
-         - Pass the values by reference e.g. personnelSelectById(id, firstname, lastname, &role, username, password, barcodeToken); 
+         - Pass the values by reference e.g. personnelSelectById(id, firstname, lastname, &role, username, password, barcodeToken);
         All of the `int` functions
          - If the function has an error (not found / duplicate) then return 0. So, if it success then return 1
 */
@@ -142,7 +142,7 @@ INVENTORY Inventory[MAX_IDX_INVENTORY];           // Declare the Inventory table
 
 /*-----------------------------------------------------------------------------
 Declare all the Inventory Database can do*/
-/* 
+/*
   Note: To use a function `inventorySelectById`
          - Pass the values by reference e.g. inventorySelectById(id, name, &price, &profit, &categoryId, &remain);
         All of the `int` functions
@@ -178,7 +178,7 @@ CATEGORY Category[MAX_IDX_CATEGORY];              // Declare the Category table
 
 /*-----------------------------------------------------------------------------
 Declare all the Category Database can do*/
-/* 
+/*
   Note: To use a function `categorySelectById`
          - Pass the values by reference e.g. categorySelectById(id, name);
         All of the `int` functions
@@ -214,7 +214,7 @@ TRANSACTION Transaction[MAX_IDX_TRANSACTION];     // Declare the Transaction tab
 
 /*-----------------------------------------------------------------------------
 Declare all the Transaction Database can do*/
-/* 
+/*
   Note: To use a function `transactionSelectById`
          - Pass the values by reference e.g. transactionSelectById(id, &purchaseId, &inventoryPrice, &inventoryProfit, &inventoryCategoryId, &timestamp);
         All of the `int` functions
@@ -243,7 +243,7 @@ PURCHASE Purchase[MAX_IDX_PURCHASE];              // Declare the Purchase table
 
 /*-----------------------------------------------------------------------------
 Declare all the Purchase Database can do*/
-/* 
+/*
   Note: To use a function `purchaseSelectById`
          - Pass the values by reference e.g. purchaseSelectById(id, &totalPrice, &totalDiscount, customerId, personnelId, &timestamp);
         All of the `int` functions
@@ -271,7 +271,7 @@ CUSTOMER Customer[MAX_IDX_CUSTOMER];              // Declare the Customer table
 
 /*-----------------------------------------------------------------------------
 Declare all the Customer Database can do*/
-/* 
+/*
   Note: To use a function `customerSelectById`
          - Pass the values by reference e.g. customerSelectById(id, firstname, lastname, &gender, &point, &totalBuy);
         All of the `int` functions
@@ -309,7 +309,7 @@ PROMOTION Promotion[MAX_IDX_PROMOTION];           // Declare the Promotion table
 
 /*-----------------------------------------------------------------------------
 Declare all the Promotion Database can do*/
-/* 
+/*
   Note: To use a function `promotionSelectById`
          - Pass the values by reference e.g. promotionSelectById(id, &price, &status);
         All of the `int` functions
@@ -347,6 +347,13 @@ void settingUpdateStoreName(char *storeName);           // For modifying the `st
 void settingUpdateAddress(char *storeAddress);          // For modifying the `storeAddress`
 void settingUpdatePriceToPoint(double priceToPoint);    // For modifying the `priceToPoint`
 void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `pointToPrice`
+void settingUpdateUsernameInterface();
+
+void settingUpdatePasswordInterface();
+void settingUpdateStoreNameInterface();
+void settingUpdateStoreAddressInterface();
+void settingContributorList();
+void settingCat();
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: REPORT.c
@@ -375,6 +382,20 @@ struct REPORT3 {
 
 } RevenueByPersonnel[MAX_IDX_PERSONNEL];
 
+struct FORECAST1 {
+  char categoryName[MAX_LNG_TEXT];
+  double totalPrice;
+  double totalProfit;
+
+} SaleForecastByCategory[MAX_IDX_CATEGORY], SaleForecastByCategoryTemp;
+
+struct FORECAST2 {
+  char monthName[10];
+  double totalPrice;
+  double totalProfit;
+
+} SaleForecastByMonth, SaleForecastByMonthTemp;
+
 /*-----------------------------------------------------------------------------
 Declare all the the report function can do*/
 // Report show by category
@@ -392,15 +413,18 @@ void OneDayReportInputProcess();
 void displayOneDayReport(int page);
 
 void MonthlyReportInterface();
-//void PersonnelSaleReportInterface();
+
+void PersonnelSaleReportInterface();
+void PersonnelSaleReportInputProcess();
+void displayPersonnelSaleReport(int page);
+
 //void MultipleDayReportInterface();
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/
 
-void monthlyForecast();
-void quarterForecast();
-void annualForecast();
+void tomorrowSaleForecast();
+void nextMonthSaleForecast();
 
 void forecastResults();
 void forecastProgram();
@@ -439,6 +463,9 @@ Declare all the other database functions*/
 
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
 time_t toEpochTime(int date, int month, int year, int hour, int minute, int second);  // Convert time from Human-readable to Epoch Unix time format
+void toDateMonthYear(time_t epochTime, int *date, int *month, int *year);  // Convert time from Epoch Unix time format to Human-readable
+time_t nDayRollbackToDateMonthYear(int date, int month, int year, int nDayRollback); // This function will help to rollback for n-days from the dd/mm/yyyy that you given
+time_t nMonthRollbackToDateMonthYear(int date, int month, int year, int nMonthRollback); // This function will help to rollback for n-months from the dd/mm/yyyy that you given
 int isTimeInRange(time_t timestamp, time_t start, time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
 int superscanf(char *input); // Addition form scanf() to detect Blankline; (Return 0 = Empty line | 1 = Has a input)
 
@@ -454,7 +481,6 @@ void switchHubSales();                       // For moving to the selection of t
 
 
 void inventorySwitchHub ();               // For moving to the selection of the functions
-void categorySwitchHub ();               // For moving to the selection of the functions
 void customerSwitchHub ();               // For moving to the selection of the functions
 void promotionSwitchHub ();               // For moving to the selection of the functions
 void settingsSwitchHub ();               // For moving to the selection of the functions
@@ -520,7 +546,7 @@ void cashierInterfaceResult();// Interface that will show the total (just like t
 ===========`-.`___`-.__\ \___  /__.-'_.'_.-'================
                         `=--=-'
                 Program bug best enemy
-          Please. No bug. No crash. No interrupt.         
+          Please. No bug. No crash. No interrupt.
 
    :: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
    :: ██╔══██╗██╔═══██╗██╔════╝ :: Welcome to the POS System program.                                                                        ::
@@ -530,11 +556,12 @@ void cashierInterfaceResult();// Interface that will show the total (just like t
    :: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
       Lists of the team members
-      Kunanon Srisuntiroj      @sagelga         59070022    UI Team
-      Thanawat Laodkaew        @skydddoogg      59070071    Background Work Team
-      Noppanut Ploywong        @noppanut15      59070082    Background Work Team
-      Vasanchai Prakobkij      @59070156        59070156    Background Work Team
-  
+      Kunanon Srisuntiroj      @sagelga         59070022
+      Thanawat Laodkaew        @skydddoogg      59070071
+      Noppanut Ploywong        @noppanut15      59070082
+      Vasanchai Prakobkij      @59070156        59070156
+      Weerakorn Pongpum                         59070163
+
  */
 
  #endif
