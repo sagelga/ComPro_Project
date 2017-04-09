@@ -1,9 +1,6 @@
 // Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
 
-void purchaseSwitchHub () {
-}
-
 int purchaseSelectById(unsigned int id, double *totalPrice, double *totalDiscount, double *totalProfit, char *customerId, char *personnelId, time_t *timestamp){
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.purchase;
