@@ -331,6 +331,8 @@ void promotionSelectInterface();
 void promotionDeleteInterface();
 void promotionUpdateInterface();
 
+void displayPromotion(int page);
+
 //-------------------------------------------------------------------------------------------------------
 // # - File: SETTING.c
 //-------------------------------------------------------------------------------------------------------
@@ -422,7 +424,9 @@ void PersonnelSaleReportInterface();
 void PersonnelSaleReportInputProcess();
 void displayPersonnelSaleReport(int page);
 
-//void MultipleDayReportInterface();
+void MultipleDayReportInterface();
+void MultipleDayReportInputProcess();
+void displayMultipleDayReport(int page);
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/
