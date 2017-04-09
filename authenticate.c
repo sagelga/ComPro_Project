@@ -85,9 +85,6 @@ void authInterfaceComplete(){
     bannerBlankBorderTextCen ("Redirecting you to POS system...");
     bannerFullBorder ();
     delay (3);
-    // If user are admin (0) -> Redirect to switchHub();
-    // If user are manager (1) -> Redirect to switchHubManager();
-    // If user are sales (2) -> Redirect to switchHubSale();
 
     /* During this betq test only (assuming all user are admin) ->*/ switchHub ();
 }
@@ -101,7 +98,7 @@ void authInterfaceFail () {
     bannerBlankBorderTextCen ("Your login credentials is incorrect.");
     bannerFullBorder ();
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("We are redirecting you try again. If you wish to do that, type anything to continue");
+    bannerBlankBorderTextCen ("We are redirecting you try again. If you wish to do that, type any key to continue");
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("or type 'N' to exit the program");
 
@@ -139,7 +136,7 @@ void authInterfaceError () {
 
     bannerBlankBorderTextCen ("The username that you have type are not in the system...");
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Please try again or contact an administrator if this happens too many times");
+    bannerBlankBorderTextCen ("Please try again or contact an administrator if this occur too many times");
     for ( int i = 0; i < 32; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Redirect to sign in...");
