@@ -411,18 +411,18 @@ void reportSwitchHub(){
 	bannerBlankBorderTextCen("2. Monthly report");
 	bannerBlankBorderTextCen("3. Personnel sale report");
 	bannerBlankBorderTextCen("4. Multiple day report");
-	for (int i = 0; i < 14; ++i)
+	for (int i = 0; i < 14; i++)
 	{
 		bannerBlankBorder();
 	}
-	bannerBlankBorderTextCen ("  Enter 'N' to quit   |      ALTERNATE RESPONSE      |   Enter 'B' to back to main menu");
+    bannerBlankBorderTextCen ("  Type 'Q' to quit  |  Type in your response  |  Type 'B' to logoff");
 	bannerFullBorder();
 
 	/*-----User input------*/
 	char UserIn;
-	printf(">>> ");
+	bannerUserInput ();
 	scanf(" %c", &UserIn);
-	switch (UserIn){
+	switch (toupper(UserIn)){
 		case ('1'):
 			checkErrorIn = 0;
 			OneDayReportInputProcess();
@@ -447,16 +447,7 @@ void reportSwitchHub(){
 			terminate();
 			break;
 
-		case ('n'):
-			terminate();
-			break;
-
 		case ('B'):
-			checkErrorIn = 0;
-			switchHub();
-			break;
-
-		case ('b'):
 			checkErrorIn = 0;
 			switchHub();
 			break;

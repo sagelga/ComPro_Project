@@ -10,7 +10,7 @@ void authInterface () {
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Please type in your username");
-    for ( int i = 0; i < 28; i++ )
+    for ( int i = 0; i < 29; i++ )
         bannerBlankBorder ();
     bannerFullBorder ();
 
@@ -33,7 +33,7 @@ void authInterface () {
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("And your password is?");
 
-    for ( int i = 0; i < 25; i++ )
+    for ( int i = 0; i < 26; i++ )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Please type in your password");
@@ -74,7 +74,59 @@ void authInterfaceComplete () {
     sprintf (text2, "Signing in as : %s", Session.user.username);
     bannerBlankBorderTextCen (text2);
 
-    for ( int i = 0; i < 27; i++ ) {
+    for (int i = 2;i>0;i--)
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("..██████..");
+    bannerBlankBorderTextCen (".██....██.");
+    bannerBlankBorderTextCen ("██......██");
+    bannerBlankBorderTextCen ("██████████");
+    bannerBlankBorderTextCen ("████..████");
+    bannerBlankBorderTextCen ("████..████");
+    bannerBlankBorderTextCen ("██████████");
+
+    for (int i = 2;i>0;i--)
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("POS system is now LOCK");
+
+    for ( int i = 0; i < 17; i++ ) {
+        bannerBlankBorder ();
+    }
+    bannerFullBorder ();
+
+    delay (2);
+
+    screenClear ();
+
+    bannerCenBorder ("", "", "", "POS Version : 1.0");
+
+    for ( int i = 3; i > 0; i-- )
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen (text);
+    bannerBlankBorder ();
+
+    bannerBlankBorderTextCen (text2);
+
+    for (int i = 2;i>0;i--)
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("..██████..");
+    bannerBlankBorderTextCen (".██....██.");
+    bannerBlankBorderTextCen ("........██");
+    bannerBlankBorderTextCen ("██████████");
+    bannerBlankBorderTextCen ("████  ████");
+    bannerBlankBorderTextCen ("████  ████");
+    bannerBlankBorderTextCen ("██████████");
+
+    for (int i = 2;i>0;i--)
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("POS system is now UNLOCK");
+
+
+    for ( int i = 0; i < 16; i++ ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("Redirecting you to POS system...");
@@ -97,7 +149,7 @@ void authInterfaceFail () {
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("or type 'N' to exit the program");
 
-    for ( int i = 0; i < 32; i++ )
+    for ( int i = 0; i < 31; i++ )
         bannerBlankBorder ();
 
     bannerFullBorder ();

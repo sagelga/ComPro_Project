@@ -23,7 +23,7 @@ void inventorySwitchHub () {
     for ( int i = 0; i < 23; i++ ) {
         bannerBlankBorder ();
     }
-    bannerBlankBorderTextCen ("or type 'B' to return back to the hub");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to logoff");
     bannerFullBorder ();
     bannerUserInput ();
 
@@ -55,6 +55,8 @@ void inventorySwitchHub () {
         case ('B'):
             switchHub ();
             break;
+        case ('Q'):
+            terminate ();
         default:
             printf ("Your input is invalid. Please try again...");
             inventorySwitchHub ();
