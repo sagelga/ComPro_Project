@@ -158,7 +158,7 @@ void transactionFileRead(){
 	int i = 0;
 	fp = fopen(transactionDatabaseFile, "r");
 
-	while(fscanf(fp, "%u\t%u\t%s\t%lu", &Transaction[i].id, &Transaction[i].purchaseId, Transaction[i].inventoryId, &Transaction[i].timestamp) != EOF){
+	while(fscanf(fp, "%u\t%u\t%s\t%[^\t]\t%lf\t%lf\t%u\t%lu", &Transaction[i].id, &Transaction[i].purchaseId, Transaction[i].inventoryId, Transaction[i].inventoryName, &Transaction[i].inventoryPrice, &Transaction[i].inventoryProfit, &Transaction[i].inventoryCategoryId, &Transaction[i].timestamp) != EOF){
 		i++;
 	}
 
@@ -167,7 +167,7 @@ void transactionFileRead(){
 
 	// For debuging
 	// i--;
-	// printf(">>>> %u-%u-%s-%lu\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId, Transaction[i].timestamp);
+	// printf(">>>> %u\t%u\t%s\t%s\t%lf\t%lf\t%u\t%lu\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId, Transaction[i].inventoryName, Transaction[i].inventoryPrice, Transaction[i].inventoryProfit, Transaction[i].inventoryCategoryId, Transaction[i].timestamp);
 
 }
 
@@ -297,7 +297,7 @@ void transactionFileWrite(){
 	fp = fopen(transactionDatabaseFile, "w+");
 
 	for(int i = 0; i < numberOfRecords; i++)
-		fprintf(fp, "%u\t%u\t%s\t%lu\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId, Transaction[i].timestamp);
+		fprintf(fp, "%u\t%u\t%s\t%s\t%lf\t%lf\t%u\t%lu\n", Transaction[i].id, Transaction[i].purchaseId, Transaction[i].inventoryId, Transaction[i].inventoryName, Transaction[i].inventoryPrice, Transaction[i].inventoryProfit, Transaction[i].inventoryCategoryId, Transaction[i].timestamp);
 
 	fclose(fp);
 }

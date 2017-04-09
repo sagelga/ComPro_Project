@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c99 -lm
+CFLAGS = -std=c99
 OBJECTS = authenticate.o category.o customer.o decorate.o inventory.o main.o personnel.o pos.o promotion.o purchase.o report.o sales.o settings.o support.o systemcall.o transaction.o
 EXEC = Click-to-run-POS
 

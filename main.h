@@ -455,8 +455,6 @@ void switchHubSales();                       // For moving to the selection of t
 
 void inventorySwitchHub ();               // For moving to the selection of the functions
 void categorySwitchHub ();               // For moving to the selection of the functions
-void transactionSwitchHub ();               // For moving to the selection of the functions
-void purchaseSwitchHub ();               // For moving to the selection of the functions
 void customerSwitchHub ();               // For moving to the selection of the functions
 void promotionSwitchHub ();               // For moving to the selection of the functions
 void settingsSwitchHub ();               // For moving to the selection of the functions
