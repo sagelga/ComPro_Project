@@ -75,7 +75,7 @@ void customerInsertInterface () {
     bannerBlankBorderTextCen ("Firstname");
     bannerBlankBorderTextCen ("Lastname");
     bannerBlankBorderTextCen ("Gender(M/F)");
-    bannerBlankBorderTextCen (" ");
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Ex: 1234567891012");
     bannerBlankBorderTextCen ("Prayut");
     bannerBlankBorderTextCen ("Chun-O-Char");
@@ -252,7 +252,7 @@ void customerInsertInterface () {
                     bannerBlankBorder ();
                     bannerBlankBorderTextCen (buffer);
                     bannerBlankBorder ();
-                    bannerBlankBorderTextCen ("was repeatedly");
+                    bannerBlankBorderTextCen ("was a duplicate");
                     bannerBlankBorderTextCen ("_____________________");
                     bannerBlankBorder ();
                     bannerBlankBorder ();
