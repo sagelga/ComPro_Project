@@ -352,10 +352,6 @@ void nextYearSaleForecast(){
 
 */
 
-void personnelSaleReport(unsigned int year){
-	int numberOfPersonnelRecords = RecordCount.personnel;
-	int numberOfPurchaseRecords = RecordCount.purchase;
-
 void personnelSaleReport (unsigned int year) {
     int numberOfPersonnelRecords = RecordCount.personnel;
     int numberOfPurchaseRecords = RecordCount.purchase;
