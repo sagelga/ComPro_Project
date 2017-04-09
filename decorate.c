@@ -129,6 +129,10 @@ void bannerBlankBorderText(char *text){
     printf(":: %134s ::\n", text);
 }
 
+void bannerBlankBorderTextLeft (char *text){
+    printf(":: %-134s ::\n", text);
+}
+
 void bannerBlankBorder(){
     printf(":: %134s ::\n", "");
 }
