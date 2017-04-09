@@ -29,7 +29,7 @@ void customerSwitchHub () {
     char flag;
     scanf(" %c", &flag);
 
-    switch(toupper(flags)){
+    switch(toupper(flag)){
 
         case ('1'):
             customerInsertInterface();
