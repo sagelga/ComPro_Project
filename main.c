@@ -24,10 +24,10 @@ void switchHub() {
     }
     else{
         bannerFullBorder ();
-        bannerBlankBorderTextCen ("We cannot checked your credential. Please and log in again....");
+        bannerBlankBorderTextCen ("We cannot verified your credential. Logging you in again....");
         bannerFullBorder ();
 
-        delay (5);
+        delay (3);
 
         deauthenticate ();
     }
