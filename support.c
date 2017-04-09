@@ -25,8 +25,48 @@ time_t toEpochTime (int date, int month, int year, int hour, int minute, int sec
     return result;
 }
 
-int isTimeInRange (time_t timestamp, time_t start, time_t end) {
-    if ( timestamp < start )
+void toDateMonthYear(time_t epochTime, int *date, int *month, int *year){
+
+    struct tm * timeinfo;
+    timeinfo = localtime (&epochTime);
+
+    *date = timeinfo->tm_mday;
+    *month = timeinfo->tm_mon + 1;
+    *year = timeinfo->tm_year + 1900;
+}
+
+time_t nDayRollbackToDateMonthYear(int date, int month, int year, int nDayRollback){
+
+    struct tm timeinfo = {0};
+    time_t result = 0;
+    timeinfo.tm_sec = 59;
+    timeinfo.tm_min = 59;
+    timeinfo.tm_hour = 23;
+    timeinfo.tm_mday = date - nDayRollback;
+    timeinfo.tm_mon = month - 1;
+    timeinfo.tm_year = year - 1900;
+
+    result = mktime(&timeinfo);
+    return result;
+}
+
+time_t nMonthRollbackToDateMonthYear(int date, int month, int year, int nMonthRollback){
+
+    struct tm timeinfo = {0};
+    time_t result = 0;
+    timeinfo.tm_sec = 59;
+    timeinfo.tm_min = 59;
+    timeinfo.tm_hour = 23;
+    timeinfo.tm_mday = date;
+    timeinfo.tm_mon = month - 1 - nMonthRollback;
+    timeinfo.tm_year = year - 1900;
+
+    result = mktime(&timeinfo);
+    return result;
+}
+
+int isTimeInRange(time_t timestamp, time_t start, time_t end){
+    if(timestamp < start)
         return -1;  // Starting point is in the future
     else if ( timestamp > end )
         return 1;   // Endpoint is in the past
