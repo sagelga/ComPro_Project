@@ -271,8 +271,64 @@ void customerInsertInterface () {
     }
 }
 
+void displayCustomer(int page);
+void displayCustomer(int page) {
+    screenClear ();
+    int allPage = (int) ceil (RecordCount.customer / 34) + 1;
+    bannerFullBorder ();
+    printf (":: %-20s | %-36s | %-36s | Gender | %10s | %11s ::\n", "Customer ID", "Firstname", "Lastname", "Point", "Total Buy");
+    bannerFullBorder ();
+
+    if ( page == allPage ) {
+        for ( int i = (page - 1) * 34; i < RecordCount.customer; ++i ) {
+            printf (":: %-20s | %-36s | %-36s |    %c   | %10.2lf | %11.2lf ::\n", Customer[i].id, Customer[i].firstname,
+                    Customer[i].lastname, Customer[i].gender, Customer[i].point,
+                    Customer[i].totalBuy);
+            //bannerBlankBorder();
+        }
+        //display remaining line as bannerBlankBorder()
+        for ( int i = 0; i < 34 - (RecordCount.customer % 34); ++i ) {
+            printf (":: %-20s | %-36s | %-36s |        | %10s | %11s ::\n", "", "", "", "", "");
+        }
+    } else {
+        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
+            printf (":: %-20s | %-36s | %-36s |    %c   | %10.2lf | %11.2lf ::\n", Customer[i].id, Customer[i].firstname,
+                    Customer[i].lastname, Customer[i].gender, Customer[i].point,
+                    Customer[i].totalBuy);
+            //bannerBlankBorder();
+        }
+    }
+
+    bannerBlankBorderTextCen ("Enter Page/Enter 'B' to back to Customer Menu");
+    printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
+            page, allPage);
+    bannerFullBorder ();
+
+}
+
 void customerSelectInterface () {
-    
+    char handling;
+    int pageIn = 1, CheckPage;
+    displayCustomer(1);
+    for ( int i = 0; i >= 0; ++i ) {
+        scanf (" %c", &handling);
+        if ((handling == 'B') || (handling == 'b')) {
+            screenClear ();
+            customerSwitchHub();
+        } else if ( isdigit (handling)) {
+            CheckPage = (int) handling - 48;
+            if ((CheckPage <= ((int) ceil (RecordCount.customer / 34) + 1)) && (CheckPage >= 1)) {
+                pageIn = (int) handling - 48;
+                displayCustomer(pageIn);
+            } else {
+                displayCustomer(pageIn);
+                printf ("Oops! Page not found, Please enter correct page: ");
+            }
+        } else {
+            displayCustomer(pageIn);
+            printf ("Oops! Input Error, Please enter correctly: ");
+        }
+    }
 }
 
 void customerDeleteInterface(){
