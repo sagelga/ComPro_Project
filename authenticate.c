@@ -201,7 +201,11 @@ void deauthenticate(){
     strcat(text," account has successfully logout.");
     bannerBlankBorderTextCen (text);
 
-    for (int i = 34;i>0;i--)
+    for (int i = 3;i>0;i--)
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("(,, ･A･)ﾉ゛");
+    
+    for (int i = 30;i>0;i--)
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Returning you back to login...");

@@ -9,21 +9,20 @@ void customerSwitchHub () {
     bannerBlankBorderTextCen ("Customer Database");
     bannerFullBorder();
 
-    bannerBlankBorderTextCen ("What do you want to do?");
-
     for (int i = 0;i<2;i++)
         bannerBlankBorder ();
-    bannerFullBorderSection ();
-    bannerBlankBorder ();
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("1. Insert");
-    bannerBlankBorderTextCen ("2. Select");
-    bannerBlankBorderTextCen ("3. Delete");
-    bannerBlankBorderTextCen ("4. Update");
+    bannerBlankBorderTextCen ("What do you want to do?");
 
-    for (int i = 0;i<23;i++)
+    bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("1. Create new customer ID");
+    bannerBlankBorderTextCen ("2. Preview customer database");
+    bannerBlankBorderTextCen ("3. Delete customer metadata from the database");
+    bannerBlankBorderTextCen ("4. Update existed customer");
+
+    for (int i = 0;i<24;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("ALTERNATE RESPONSE  |  Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -53,11 +52,6 @@ void customerSwitchHub () {
         case ('B'):
             switchHub ();
 
-        case ('n'):
-            terminate ();
-        case ('N'):
-            terminate ();
-
         default:
             customerSwitchHub ();
             return;
@@ -71,7 +65,7 @@ void customerInsertInterface(){
     bannerBlankBorderTextCen ("Customer Database");
     bannerFullBorder();
 
-    bannerBlankBorderTextCen ("Insert Customer");
+    bannerBlankBorderTextCen ("Create new Customer ID");
 
     for (int i = 0;i<2;i++)
         bannerBlankBorder ();
