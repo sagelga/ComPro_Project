@@ -8,18 +8,14 @@ void promotionSwitchHub () {
     bannerFullBorder();
 
     bannerBlankBorderTextCen ("What do you want to do?");
-
-    for (int i = 0;i<2;i++)
-        bannerBlankBorder ();
     bannerFullBorderSection ();
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("1. Create a new promotion");
-    bannerBlankBorder ();
     bannerBlankBorderTextCen ("2. View all promotion in database");
     bannerBlankBorderTextCen ("3. Delete promotion from database");
     bannerBlankBorderTextCen ("4. Update promotion metadata");
 
-    for (int i = 0;i<23;i++)
+    for (int i = 0;i<27;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -64,6 +60,8 @@ void promotionSwitchHub () {
 }
 
 void promotionInsertInterface(){
+    char bufferHead[140];
+    sprintf(bufferHead, "%-100s|%-20s|%s", "ID", "Price", "Status");
     screenClear ();
     bannerFullBorder();
     bannerBlankBorderTextCen ("Promotion Database");
@@ -71,8 +69,6 @@ void promotionInsertInterface(){
 
     bannerBlankBorderTextCen ("Insert Promotion");
 
-    for (int i = 0;i<2;i++)
-        bannerBlankBorder ();
     bannerFullBorderSection ();
     bannerBlankBorder ();
     bannerBlankBorder ();
@@ -83,13 +79,13 @@ void promotionInsertInterface(){
     bannerBlankBorderTextCen ("Ex: 1234567891012");
     bannerBlankBorderTextCen ("100");
 
-    for (int i = 0;i<21;i++)
+    for (int i = 0;i<24;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
-    char id[MAX_LNG_ID], buffer[140];
+    char id[MAX_LNG_ID], buffer[140], flag;
     double price;
     while (1){
         scanf("%s", id);
@@ -104,23 +100,20 @@ void promotionInsertInterface(){
         else{
             //------------------After Input--------------------
             //---------------------ID--------------------------
+            sprintf(buffer, "%-100s", id);
             screenClear ();
             bannerFullBorder();
             bannerBlankBorderTextCen ("Promotion Database");
             bannerFullBorder();
+            bannerBlankBorder ();
+
+            bannerBlankBorderTextLeft (bufferHead);
     
-            bannerBlankBorderTextCen ("Insert Promotion");
-    
-            for (int i = 0;i<2;i++)
-                bannerBlankBorder ();
             bannerFullBorderSection ();
             bannerBlankBorder ();
-            bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Promotion ID");
-            bannerBlankBorderTextCen (id);
-            bannerBlankBorderTextCen ("_____________________");
+            bannerBlankBorderTextLeft (buffer);
     
-            for (int i = 0;i<24;i++)
+            for (int i = 0;i<29;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
@@ -129,89 +122,89 @@ void promotionInsertInterface(){
     
             //---------------------Price--------------------------
             scanf("%lf", &price);
-            sprintf(buffer, "%lf", price);
+            sprintf(buffer, "%-100s %-20.2lf %s", id, price, "Active");
             screenClear ();
             bannerFullBorder();
             bannerBlankBorderTextCen ("Promotion Database");
             bannerFullBorder();
+            bannerBlankBorder ();
 
-            bannerBlankBorderTextCen ("Insert Promotion");
+            bannerBlankBorderTextLeft (bufferHead);
 
-            for (int i = 0;i<2;i++)
-                bannerBlankBorder ();
             bannerFullBorderSection ();
             bannerBlankBorder ();
+            bannerBlankBorderTextLeft (buffer);
+            for (int i = 0;i<10;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Are you sure to insert this promotion ?");
             bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Promotion ID");
-            bannerBlankBorderTextCen (id);
-            bannerBlankBorderTextCen ("_____________________");
-            bannerBlankBorderTextCen ("Price");
-            bannerBlankBorderTextCen (buffer);
-            bannerBlankBorderTextCen ("_____________________");
+            bannerBlankBorderTextCen ("Type 'Y' to comfirm || Type 'N' to Discard");
     
-            for (int i = 0;i<21;i++)
+            for (int i = 0;i<16;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
     
             bannerUserInput ();
-            if (promotionInsert(id, price)){
-                screenClear ();
-                bannerFullBorder();
-                bannerBlankBorderTextCen ("Promotion Database");
-                bannerFullBorder();
-
-                bannerBlankBorderTextCen ("Insert Promotion");
-
-                for (int i = 0;i<2;i++)
+            scanf (" %c", &flag);
+            if (flag == 'Y' || flag == 'y'){
+                if (promotionInsert(id, price)){
+                    screenClear ();
+                    bannerFullBorder();
+                    bannerBlankBorderTextCen ("Promotion Database");
+                    bannerFullBorder();
                     bannerBlankBorder ();
-                bannerFullBorderSection ();
-                bannerBlankBorder ();
-                bannerBlankBorder ();
-                sprintf(buffer, "ID: %s Price: %lf", id, price);
-                bannerBlankBorderTextCen ("Insert Promotion Success");
-                bannerBlankBorderTextCen ("_____________________");
-                bannerBlankBorder ();
-                bannerBlankBorderTextCen (buffer);
-                bannerBlankBorderTextCen ("_____________________");
-                bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Insert Next PromotionID or Type 'B' to Back");
-        
-                for (int i = 0;i<20;i++)
+
+                    bannerBlankBorderTextLeft (bufferHead);
+
+                    bannerFullBorderSection ();
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
-                bannerFullBorder ();
-        
-                bannerUserInput ();
+                    bannerBlankBorderTextLeft ("->");
+                    for (int i = 0;i<10;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("Insert Success");
+                    bannerBlankBorderTextCen ("Insert Next PromotionID or Type 'B' to Back");
+            
+                    for (int i = 0;i<17;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerFullBorder ();
+            
+                    bannerUserInput ();
+                }
+                else{
+                    screenClear ();
+                    bannerFullBorder();
+                    bannerBlankBorderTextCen ("Promotion Database");
+                    bannerFullBorder();
+                    bannerBlankBorder ();
+
+                    bannerBlankBorderTextLeft (bufferHead);
+
+                    bannerFullBorderSection ();
+                    bannerBlankBorder ();
+                    bannerBlankBorderTextLeft (buffer);
+                    bannerBlankBorder ();
+                    bannerBlankBorderTextLeft ("->");
+                    for(int i = 0;i<10;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("Can't Insert Promotion");
+                    bannerBlankBorderTextCen ("_____________________");
+                    bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("This PromotionID was duplicated");
+                    bannerBlankBorderTextCen ("Insert Next PromotionID or Type 'B' to Back");
+            
+                    for (int i = 0;i<12;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerFullBorder ();
+            
+                    bannerUserInput ();
+                }
             }
             else{
                 screenClear ();
-                bannerFullBorder();
-                bannerBlankBorderTextCen ("Promotion Database");
-                bannerFullBorder();
-
-                bannerBlankBorderTextCen ("Insert Promotion");
-
-                for (int i = 0;i<2;i++)
-                    bannerBlankBorder ();
-                bannerFullBorderSection ();
-                bannerBlankBorder ();
-                bannerBlankBorder ();
-                sprintf(buffer, "ID: %s", id);
-                bannerBlankBorderTextCen ("Can't Insert Promotion");
-                bannerBlankBorderTextCen ("_____________________");
-                bannerBlankBorder ();
-                bannerBlankBorderTextCen (buffer);
-                bannerBlankBorder ();
-                bannerBlankBorderTextCen ("This PromotionID was duplicated");
-                bannerBlankBorderTextCen ("Insert Next PromotionID or Type 'B' to Back");
-        
-                for (int i = 0;i<20;i++)
-                    bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
-                bannerFullBorder ();
-        
-                bannerUserInput ();
+                promotionInsertInterface();
             }
             
         }
@@ -223,21 +216,24 @@ void promotionSelectInterface(){
 }
 
 void promotionDeleteInterface(){
+    char bufferHead[140];
+    sprintf(bufferHead, "%-100s|%-20s|%s", "ID", "Price", "Status");
     screenClear ();
     bannerFullBorder();
     bannerBlankBorderTextCen ("Promotion Database");
     bannerFullBorder();
+    bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("Delete Promotion");
+        bannerBlankBorderTextLeft (bufferHead);
 
-    for (int i = 0;i<2;i++)
-        bannerBlankBorder ();
     bannerFullBorderSection ();
     bannerBlankBorder ();
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type Promotion ID");
+    bannerBlankBorderTextLeft ("->");
+    for (int i = 0;i<10;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Please type PromotionID");
 
-    for (int i = 0;i<26;i++)
+    for (int i = 0;i<18;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -261,28 +257,23 @@ void promotionDeleteInterface(){
                     strcpy(statusShow, "Active");
                 else
                     strcpy(statusShow, "Used");
+                sprintf(buffer, "%-100s %-20.2lf %s", id, price, statusShow);
                 bannerFullBorder();
                 bannerBlankBorderTextCen ("Promotion Database");
                 bannerFullBorder();
+                bannerBlankBorder ();
 
-                bannerBlankBorderTextCen ("Delete Promotion");
+                    bannerBlankBorderTextLeft (bufferHead);
 
-                for (int i = 0;i<2;i++)
-                    bannerBlankBorder ();
                 bannerFullBorderSection ();
                 bannerBlankBorder ();
-                bannerBlankBorder ();
+                bannerBlankBorderTextLeft (buffer);
+                for (int i = 0;i<10;i++)
+                    bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Are you sure to delete ?");
-                sprintf(buffer, "ID: %s", id);
-                bannerBlankBorderTextCen (buffer);
-                sprintf(buffer, "Price: %lf", price);
-                bannerBlankBorderTextCen (buffer);
-                sprintf(buffer, "Status: %s", statusShow);
-                bannerBlankBorderTextCen (buffer);
-                bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'Y' to comfirm || Type 'N' to Discard");
 
-                for (int i = 0;i<20;i++)
+                for (int i = 0;i<17;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -295,18 +286,19 @@ void promotionDeleteInterface(){
                     bannerFullBorder();
                     bannerBlankBorderTextCen ("Promotion Database");
                     bannerFullBorder();
+                    bannerBlankBorder ();
+
+                    bannerBlankBorderTextLeft (bufferHead);
             
-                    bannerBlankBorderTextCen ("Delete Promotion");
-            
-                    for (int i = 0;i<2;i++)
-                        bannerBlankBorder ();
                     bannerFullBorderSection ();
                     bannerBlankBorder ();
-                    bannerBlankBorder ();
+                    bannerBlankBorderTextLeft ("->");
+                    for (int i = 0;i<10;i++)
+                        bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Delete Success");
                     bannerBlankBorderTextCen ("Type Next PromotionID Or Type 'B' to Back");
             
-                    for (int i = 0;i<25;i++)
+                    for (int i = 0;i<17;i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
@@ -323,18 +315,19 @@ void promotionDeleteInterface(){
                 bannerFullBorder();
                 bannerBlankBorderTextCen ("Promotion Database");
                 bannerFullBorder();
+                bannerBlankBorder ();
+
+                    bannerBlankBorderTextLeft (bufferHead);
             
-                bannerBlankBorderTextCen ("Delete Promotion");
-            
-                for (int i = 0;i<2;i++)
-                    bannerBlankBorder ();
                 bannerFullBorderSection ();
                 bannerBlankBorder ();
-                bannerBlankBorder ();
+                bannerBlankBorderTextLeft ("->");
+                for (int i = 0;i<10;i++)
+                    bannerBlankBorder ();
                 bannerBlankBorderTextCen ("PromotionID dosen't exist.");
                 bannerBlankBorderTextCen ("Type Next PromotionID Or Type 'B' to Back");
             
-                for (int i = 0;i<25;i++)
+                for (int i = 0;i<17;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -347,21 +340,24 @@ void promotionDeleteInterface(){
 }
 
 void promotionUpdateInterface(){
+    char bufferHead[140];
+    sprintf(bufferHead, "%-100s|%-20s|%s", "ID", "Price", "Status");
     screenClear ();
     bannerFullBorder();
     bannerBlankBorderTextCen ("Promotion Database");
     bannerFullBorder();
+    bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("Update Promotion");
+        bannerBlankBorderTextLeft (bufferHead);
 
-    for (int i = 0;i<2;i++)
-        bannerBlankBorder ();
     bannerFullBorderSection ();
     bannerBlankBorder ();
-    bannerBlankBorder ();
+    bannerBlankBorderTextLeft ("->");
+    for (int i = 0;i<10;i++)
+        bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type PromotionID");
 
-    for (int i = 0;i<25;i++)
+    for (int i = 0;i<18;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -384,25 +380,19 @@ void promotionUpdateInterface(){
                     strcpy(statusShow, "Active");
                 else
                     strcpy(statusShow, "Used");
+                sprintf(buffer, "%-100s ->%-20.2lf %s", id, price, statusShow);
                 bannerFullBorder();
                 bannerBlankBorderTextCen ("Promotion Database");
                 bannerFullBorder();
+                bannerBlankBorder ();
 
-                bannerBlankBorderTextCen ("Update Promotion");
+                    bannerBlankBorderTextLeft (bufferHead);
 
-                for (int i = 0;i<2;i++)
-                    bannerBlankBorder ();
                 bannerFullBorderSection ();
                 bannerBlankBorder ();
-                bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Promotion");
-                sprintf(buffer, "ID: %s", id);
-                bannerBlankBorderTextCen (buffer);
-                sprintf(buffer, "Price: %lf", price);
-                bannerBlankBorderTextCen (buffer);
-                sprintf(buffer, "Status: %s", statusShow);
-                bannerBlankBorderTextCen (buffer);
-                bannerBlankBorderTextCen (" ");
+                bannerBlankBorderTextLeft (buffer);
+                for (int i = 0;i<10;i++)
+                    bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type newprice || Press Enter to set by default");
 
                 for (int i = 0;i<21;i++)
@@ -418,22 +408,22 @@ void promotionUpdateInterface(){
                 bannerFullBorder();
                 bannerBlankBorderTextCen ("Promotion Database");
                 bannerFullBorder();
+                bannerBlankBorder ();
+
+                    bannerBlankBorderTextLeft (bufferHead);
             
-                bannerBlankBorderTextCen ("Update Promotion");
-            
-                for (int i = 0;i<2;i++)
-                    bannerBlankBorder ();
                 bannerFullBorderSection ();
                 bannerBlankBorder ();
-                bannerBlankBorder ();
                 promotionSelectById(id, &price, &status);
-                sprintf(buffer, "%s %lf %s", id, price, statusShow);
+                sprintf(buffer, "%-100s %-20.2lf %s", id, price, statusShow);
+                bannerBlankBorderTextLeft (buffer);
+                bannerBlankBorderTextLeft ("->");
+                for (int i = 0;i<10;i++)
+                    bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Promotion has been updated");
-                bannerBlankBorderTextCen (buffer);
-                bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type Next PromotionID to Update Or Type 'B' to Back");
             
-                for (int i = 0;i<23;i++)
+                for (int i = 0;i<16;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -446,18 +436,19 @@ void promotionUpdateInterface(){
                 bannerFullBorder();
                 bannerBlankBorderTextCen ("Promotion Database");
                 bannerFullBorder();
-            
-                bannerBlankBorderTextCen ("Update Promotion");
-            
-                for (int i = 0;i<2;i++)
-                    bannerBlankBorder ();
+                bannerBlankBorder ();
+
+                    bannerBlankBorderTextLeft (bufferHead);
+
                 bannerFullBorderSection ();
                 bannerBlankBorder ();
-                bannerBlankBorder ();
+                bannerBlankBorderTextLeft ("->");
+                for (int i = 0;i<10;i++)
+                    bannerBlankBorder (); 
                 bannerBlankBorderTextCen ("PromotionID dosen't exist.");
                 bannerBlankBorderTextCen ("Type Next PromotionID Or Type 'B' to Back");
             
-                for (int i = 0;i<25;i++)
+                for (int i = 0;i<17;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
