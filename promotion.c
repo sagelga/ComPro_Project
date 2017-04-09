@@ -393,14 +393,13 @@ void promotionUpdateInterface(){
                 bannerBlankBorderTextLeft (buffer);
                 for (int i = 0;i<10;i++)
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type newprice || Press Enter to set by default");
 
-                for (int i = 0;i<21;i++)
+                for (int i = 0;i<22;i++)
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type new price || Press Enter to set by default");
                 bannerFullBorder ();
 
-                printf("(%lf) >>> ", price);
+                printf("Default Price: (%lf) >>> ", price);
                 if (superscanf(flag) != 0)
                     promotionUpdatePrice(id, atof(flag));
 

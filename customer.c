@@ -484,13 +484,13 @@ void customerUpdateInterface(){
                 bannerFullBorder ();
                 bannerUserInput ();
 
-                printf("(%s) >>> ", name);
+                printf("Default Firstname: (%s) >>> ", name);
                 if (superscanf(flag) != 0)
                     customerUpdateFirstname(id, flag);
-                printf("(%s) >>> ", lastname);
+                printf("Default Lastname: (%s) >>> ", lastname);
                 if (superscanf(flag) != 0)
                     customerUpdateLastname(id, flag);
-                printf("(%c) >>> ", gender);
+                printf("Default Gender: (%c) >>> ", gender);
                 if (superscanf(genderChanged) != 0)
                     customerUpdateGender(id, toupper(genderChanged[0]));
                 
