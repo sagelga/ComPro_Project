@@ -158,8 +158,8 @@ int inventoryUpdateCategory(char *id, unsigned int categoryId);    // For modify
 int inventoryUpdateRemain(char *id, unsigned int remain);          // For modifying the `remain` (Select the record by `id`)
 int inventoryDelete(char *id);                                     // Delete the record (Select by `id`)
 
-//void inventoryAdd();
-//void inventoryRemove();
+void inventoryAdd();
+void inventoryRemove();
 void inventoryDatabaseInterface ();
 void displayInventory(int page);
 
@@ -190,7 +190,7 @@ int categoryInsert(char *name);                               // Adding a new re
 int categoryUpdateName(unsigned int id, char *name);  // For modifying the `name` (Select the record by `id`)
 
 void categoryDatabaseInterface();
-//void categoryAdd();
+void categoryAdd();
 void displayCategory(int page);
 
 //-------------------------------------------------------------------------------------------------------
@@ -385,6 +385,15 @@ void nextnMonthReport(int fromDate, int fromMonth, int fromYear, int nMonth); //
 
 void monthlyReport();                              // Total of revenue in yyyy year (show by monthly)
 void personnelSaleReport();                        // Total of sale by each merchant
+void reportSwitchHub();
+
+void OneDayReportInterface();
+void OneDayReportInputProcess();
+void displayOneDayReport(int page);
+
+//void MonthlyReportInterface();
+//void PersonnelSaleReportInterface();
+//void MultipleDayReportInterface();
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/
