@@ -261,6 +261,18 @@ void inventoryDatabaseInterface () {
     }
 }
 
+void displaySomething();
+void displaySomething(){
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Insert Inventory");
+    bannerFullBorder ();
+    for ( int i = 0; i < 36; ++i ) {
+        bannerBlankBorder ();
+    }
+    bannerFullBorder ();
+}
+
 void inventoryAdd () {
     screenClear ();
 
@@ -283,14 +295,19 @@ void inventoryAdd () {
     //Input
     printf ("Enter the inventory ID: ");
     scanf ("%s", idIN);
+    displaySomething();
     printf ("Enter the inventory name: ");
     scanf (" %[^\n]", nameIN);
+    displaySomething();
     printf ("Enter Price: ");
     scanf (" %lf", &priceIN);
+    displaySomething();
     printf ("Enter Profit: ");
     scanf (" %lf", &profitIN);
+    displaySomething();
     printf ("Enter Category ID: ");
     scanf (" %u", &categoryIdIN);
+    displaySomething();
     printf ("Enter number of this inventory: ");
     scanf (" %u", &remainIN);
     if ( inventoryInsert (idIN, nameIN, priceIN, profitIN, categoryIdIN, remainIN)) {

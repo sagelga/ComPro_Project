@@ -419,6 +419,8 @@ void OneDayReportInputProcess();
 void displayOneDayReport(int page);
 
 void MonthlyReportInterface();
+void MonthlyReportInputProcess ();
+void displayMonthlyReport ();
 
 void PersonnelSaleReportInterface();
 void PersonnelSaleReportInputProcess();
