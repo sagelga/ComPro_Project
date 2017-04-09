@@ -329,6 +329,8 @@ void promotionSelectInterface();
 void promotionDeleteInterface();
 void promotionUpdateInterface();
 
+void displayPromotion(int page);
+
 //-------------------------------------------------------------------------------------------------------
 // # - File: SETTING.c
 //-------------------------------------------------------------------------------------------------------
