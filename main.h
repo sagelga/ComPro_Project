@@ -375,6 +375,20 @@ struct REPORT3 {
 
 } RevenueByPersonnel[MAX_IDX_PERSONNEL];
 
+struct FORECAST1 {
+  char categoryName[MAX_LNG_TEXT];
+  double totalPrice;
+  double totalProfit;
+
+} SaleForecastByCategory[MAX_IDX_CATEGORY], SaleForecastByCategoryTemp;
+
+struct FORECAST2 {
+  char monthName[10];
+  double totalPrice;
+  double totalProfit;
+
+} SaleForecastByMonth, SaleForecastByMonthTemp;
+
 /*-----------------------------------------------------------------------------
 Declare all the the report function can do*/
 // Report show by category
@@ -398,9 +412,8 @@ void displayOneDayReport(int page);
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/
 
-void monthlyForecast();
-void quarterForecast();
-void annualForecast();
+void tomorrowSaleForecast();
+void nextMonthSaleForecast();
 
 void forecastResults();
 void forecastProgram();
@@ -439,6 +452,9 @@ Declare all the other database functions*/
 
 int isFileExist(const char *filename);  // For check a file exist. If the file is exist then return 1 otherwise return 0
 time_t toEpochTime(int date, int month, int year, int hour, int minute, int second);  // Convert time from Human-readable to Epoch Unix time format
+void toDateMonthYear(time_t epochTime, int *date, int *month, int *year);  // Convert time from Epoch Unix time format to Human-readable
+time_t nDayRollbackToDateMonthYear(int date, int month, int year, int nDayRollback); // This function will help to rollback for n-days from the dd/mm/yyyy that you given
+time_t nMonthRollbackToDateMonthYear(int date, int month, int year, int nMonthRollback); // This function will help to rollback for n-months from the dd/mm/yyyy that you given
 int isTimeInRange(time_t timestamp, time_t start, time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
 int superscanf(char *input); // Addition form scanf() to detect Blankline; (Return 0 = Empty line | 1 = Has a input)
 
