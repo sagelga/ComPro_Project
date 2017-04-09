@@ -31,7 +31,7 @@ void switchHub() {
 
         deauthenticate ();
     }
-*/
+*/ screenClear ();
 
     char text1[140];
     strcpy (text1, "Welcome back ");
