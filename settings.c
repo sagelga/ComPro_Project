@@ -340,13 +340,14 @@ void settingContributorList () {
     bannerBlankBorderTextCen ("Over 5000 lines of pure C language has been neatly crafted with love and passion <3");
     bannerBlankBorderTextCen ("See our GitHub Repository : https://github.com/sagelga/ComPro_Project");
 
-    for ( int i = 19; i > 0; i-- )
+    for ( int i = 18; i > 0; i-- )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Redirecting you back in 10 seconds...");
     bannerFullBorder ();
 
     delay (10);
+    settingsSwitchHub();
 
     // Show picture of us in ASCII ;)
 }
