@@ -272,36 +272,7 @@ void customerInsertInterface () {
 }
 
 void customerSelectInterface () {
-    //sky create
-    screenClear ();
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("Customer Database");
-    bannerFullBorder ();
-
-    bannerBlankBorderTextCen ("Select Customer");
-
-    for ( int i = 0; i < 2; i++ )
-        bannerBlankBorder ();
-    bannerFullBorderSection ();
-    bannerBlankBorder ();
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type Customer ID:");
-
-    for ( int i = 0; i < 26; i++ )
-        bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
-    bannerFullBorder ();
-
-    bannerUserInput ();
-    char id[MAX_LNG_ID];
-    scanf ("%s", id);
-    if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
-        customerSwitchHub ();
-    } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
-        terminate ();
-    } else {
-        // customerSelectById(id);
-    }
+    
 }
 
 void customerDeleteInterface(){
