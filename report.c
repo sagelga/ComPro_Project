@@ -16,7 +16,7 @@ void oneDayReport (int date, int month, int year) {
     int i;
 
     for ( i = 0; i < numberOfCategoryRecords; i++ ) {
-        // Initail the values
+        // Initial the values
         strcpy (RevenueByCategory[i].categoryName, Category[i].name);
         RevenueByCategory[i].totalPrice = 0;
         RevenueByCategory[i].totalProfit = 0;
