@@ -182,19 +182,18 @@ void customerInsertInterface(){
             bannerFullBorderSection ();
             bannerBlankBorder ();
             bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Form");
             if (gender == 'F' || gender == 'f'){
-                sprintf(buffer, "%s %s %s Female", id, name, lastname);
+                sprintf(buffer, "ID: %s | Firstname: %s | Lastname: %s | Gender: Female", id, name, lastname);
             }
             if (gender == 'M' || gender == 'm'){
-                sprintf(buffer, "%s %s %s Male", id, name, lastname);
+                sprintf(buffer, "ID: %s | Firstname: %s | Lastname: %s | Gender: Male", id, name, lastname);
             }
             bannerBlankBorderTextCen (buffer);
             bannerBlankBorder ();
             bannerBlankBorderTextCen ("Are you sure to Insert this customer ?");
             bannerBlankBorderTextCen ("Type 'Y' to Yes || 'N' to No");
     
-            for (int i = 0;i<25;i++)
+            for (int i = 0;i<26;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
