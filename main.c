@@ -5,28 +5,13 @@
 int main () { // This program will run first. POS Interface configuration will be called, and ready to work.
     screenClear ();
     initDatabase ();
-    //screenAdjust();
+    screenAdjust();
     switchHub ();
     return 0;
 }
 
 void switchHub () {
 
-    /*
-    if ( Session.user.role == 1 ) {
-        //switchHubManager ();
-    } else if ( Session.user.role == 2 ) {
-        //switchHubSales ();
-    } else {
-        bannerFullBorder ();
-        bannerBlankBorderTextCen ("We cannot verified your credential. Logging you in again....");
-        bannerFullBorder ();
-
-        delay (3);
-
-        deauthenticate ();
-    }
-*/
     screenClear ();
 
     char text[140];
@@ -41,7 +26,7 @@ void switchHub () {
     }
 
 
-    sprintf (text, "Welcome back %s @ %s!", Session.user.firstname,text1);
+    sprintf (text, "Welcome back %s as %s!", Session.user.firstname,text1);
 
     bannerInverse (text, "", "", Setting.storeName);
 
@@ -50,12 +35,13 @@ void switchHub () {
 
     //These choice will be removed, when the program detects the permission level.
     bannerBlankBorderTextCen ("1. Go to POS System");
-    bannerBlankBorderTextCen ("2. Check Inventory Database");
-    bannerBlankBorderTextCen ("3. Check Customer Database");
-    bannerBlankBorderTextCen ("4. Check Promotion Database");
-    bannerBlankBorderTextCen ("5. Check Report");
-    bannerBlankBorderTextCen ("6. Sales Forecasting");
-    bannerBlankBorderTextCen ("7. Settings");
+    bannerBlankBorderTextCen ("2. Check Inventory");
+    bannerBlankBorderTextCen ("3. Check Customer");
+    bannerBlankBorderTextCen ("4. Check Promotion");
+    bannerBlankBorderTextCen ("5. Check Personnel");
+    bannerBlankBorderTextCen ("6. Check Report");
+    bannerBlankBorderTextCen ("7. Sales Forecasting");
+    bannerBlankBorderTextCen ("8. Settings");
     bannerBlankBorder ();
 
     for ( int i = 21; i > 0; i-- )
@@ -73,30 +59,27 @@ void switchHub () {
     switch ( toupper (flags)) {
         case ('1'): // Sign In / Sign Out
             cashierInterface ();
-            break;
 
         case ('2'):// Go to POS Systems Interface (for cashier)
             inventorySwitchHub ();
-            break;
 
         case ('3'):// Go to check Inventory Database
             customerSwitchHub ();
-            break;
 
         case ('4'):
             promotionSwitchHub ();
-            break;
 
         case ('5'):
-            reportSwitchHub ();
-            break;
+           // personnelSwitchHub ();
 
         case ('6'):
-            break;
+            reportSwitchHub ();
 
         case ('7'):
+           // forecastSwitchHub ();
+
+        case ('8'):
             settingsSwitchHub ();
-            break;
 
         case ('N'):
             terminate ();

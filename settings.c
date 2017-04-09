@@ -35,7 +35,8 @@ void settingsSwitchHub () {
 
     for ( int i = 0; i < 15; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -65,7 +66,7 @@ void settingsSwitchHub () {
         case ('B'):
             switchHub ();
 
-        case ('N'):
+        case ('Q'):
             terminate ();
 
         default:
@@ -126,7 +127,7 @@ void settingCat () {
     int i = 0;
     char text1[300] = "", text2[300] = "", text3[300] = "", text4[300] = "";
 
-    for ( int i = 0; i < 89; i++ ) {
+    for ( int i = 0; i < 88; i++ ) {
         screenClear ();
 
         strcpy(text1," ");
@@ -162,7 +163,7 @@ void settingCat () {
         i++;
         delay (1);
     }
-    settingFileWrite ();
+settingCat ();
 }
 
 void settingUpdateStoreName (char *storeName) {
