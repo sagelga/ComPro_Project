@@ -29,7 +29,7 @@ void customerSwitchHub () {
     char flag;
     scanf(" %c", &flag);
 
-    switch(toupper(flags)){
+    switch(toupper(flag)){
 
         case ('1'):
             customerInsertInterface();
@@ -414,7 +414,7 @@ void customerDeleteInterface(){
                 bannerBlankBorderTextCen ("CustomerID dosen't exist.");
                 bannerBlankBorderTextCen ("Type Next CustomerID Or Type 'B' to Back");
             
-                for (int i = 0;i<15;i++)
+                for (int i = 0;i<16;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -439,8 +439,11 @@ void customerUpdateInterface(){
     bannerFullBorderSection ();
     bannerBlankBorder ();
     bannerBlankBorderTextLeft ("->");
+    for (int i = 0;i<10;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type CustomerID");
 
-    for (int i = 0;i<29;i++)
+    for (int i = 0;i<18;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
