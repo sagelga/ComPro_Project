@@ -59,7 +59,7 @@ void switchHub () {
     bannerBlankBorderTextCen ("8. Settings");
     bannerBlankBorder ();
 
-    for ( int i = 21; i > 0; i-- )
+    for ( int i = 20; i > 0; i-- )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("  Type 'N' to quit  |  Type in your response  |  Type 'B' to logoff");

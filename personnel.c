@@ -376,7 +376,122 @@ void personnelSelectInterface(){
 }
 
 void personnelDeleteInterface(){
+    char bufferHead[140];
+    sprintf(bufferHead, "%-20s|%-50s|%-50s|%s", "ID", "Firstname", "Lastname", "Role");
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Personnel Database");
+    bannerFullBorder();
+    bannerBlankBorder ();
 
+    bannerBlankBorderTextLeft (bufferHead);
+    bannerFullBorderSection ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextLeft ("->");
+    bannerBlankBorder ();
+    bannerBlankBorder ();
+
+    for (int i = 0;i<27;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type 'N' to stop   |      Please Type PersonnelID...     |   Type 'B' to back");
+    bannerFullBorder ();
+
+    bannerUserInput ();
+    char id[MAX_LNG_ID], firstname[MAX_LNG_TEXT], lastname[MAX_LNG_TEXT], username[MAX_LNG_TEXT], password[MAX_LNG_TEXT], barcodeToken[MAX_LNG_TOKEN];
+    char buffer[140], flag;
+    int role;
+    while ( 1 ) {
+        scanf ("%s", id);
+        if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
+            personnelSwitchHub ();
+        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+            terminate ();
+        } else {
+            if (personnelSelectById (id, firstname, lastname, &role, username, password, barcodeToken)) {
+                screenClear ();
+                if (role == 0){
+                    sprintf(buffer, "%-20s %-50s %-50s %s", id, firstname, lastname, "Manager");
+                }
+                if (role == 1){
+                    sprintf(buffer, "%-20s %-50s %-50s %s", id, firstname, lastname, "Marketing");
+                }
+                if (role == 2){
+                    sprintf(buffer, "%-20s %-50s %-50s %s", id, firstname, lastname, "Sale");
+                }
+                bannerFullBorder();
+                bannerBlankBorderTextCen ("Personnel Database");
+                bannerFullBorder();
+                bannerBlankBorder ();
+
+                bannerBlankBorderTextLeft (bufferHead);
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextLeft (buffer);
+                for (int i = 0;i<10;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Are you sure to delete ?");
+                bannerBlankBorderTextCen ("Type 'Y' to comfirm || Type 'N' to Discard");
+
+                for (int i = 0;i<17;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+                scanf (" %c", &flag);
+                if ( flag == 'Y' || flag == 'y' ) {
+                    personnelDelete (id);
+                    screenClear ();
+                    bannerFullBorder ();
+                    bannerBlankBorderTextCen ("Personnel Database");
+                    bannerFullBorder();
+                    bannerBlankBorder ();
+
+                    bannerBlankBorderTextLeft (bufferHead);
+                    bannerFullBorderSection ();
+                    bannerBlankBorder ();
+                    bannerBlankBorderTextLeft ("->");
+                    for (int i = 0;i<10;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("Delete Success");
+                    bannerBlankBorderTextCen ("Type Next PersonnelID Or Type 'B' to Back");
+            
+                    for (int i = 0;i<17;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerFullBorder ();
+
+                    bannerUserInput ();
+                } else {
+                    screenClear ();
+                    personnelDeleteInterface ();
+                }
+            } else {
+                screenClear ();
+                bannerFullBorder ();
+                bannerBlankBorderTextCen ("Personnel Database");
+                bannerFullBorder();
+                bannerBlankBorder ();
+
+                bannerBlankBorderTextLeft (bufferHead);
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextLeft ("->");
+                for (int i = 0;i<11;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("PersonnelID dosen't exist.");
+                bannerBlankBorderTextCen ("Type Next PersonnelID Or Type 'B' to Back");
+            
+                for (int i = 0;i<16;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+            }
+
+        }
+    }
 }
 
 void personnelUpdateInterface(){
