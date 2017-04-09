@@ -1,8 +1,6 @@
 // Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
 
-void categorySwitchHub () {
-}
 
 int categorySelectById (unsigned int id, char *name) {
     int numberOfRecords;    // Number of the records in a table

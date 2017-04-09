@@ -42,7 +42,7 @@ void settingsSwitchHub () {
     char flag;
     scanf (" %c", &flag);
 
-    switch ( toupper(flag) ) {
+    switch ( toupper (flag)) {
 
         case ('1'):
             return;
@@ -58,6 +58,10 @@ void settingsSwitchHub () {
 
         case ('5'):
             settingContributorList ();
+
+        case ('6'):
+            settingCat ();
+
         case ('B'):
             switchHub ();
 
@@ -71,25 +75,26 @@ void settingsSwitchHub () {
     }
 }
 
-void settingUpdateUsernameInterface(){
+void settingUpdateUsernameInterface () {
 
 }
 
-void settingUpdatePasswordInterface(){
+void settingUpdatePasswordInterface () {
 
 }
 
 
-void settingUpdateStoreNameInterface(){
+void settingUpdateStoreNameInterface () {
 }
 
-void settingUpdateStoreAddressInterface(){
+void settingUpdateStoreAddressInterface () {
 }
 
-void settingContributorList(){
+void settingContributorList () {
     screenClear ();
 
-    bannerCenBorder ("Educational purpose only","Redistribution of project is not allowed","Created by the 1st year student IT KMITL 14","POS Version 1.0");
+    bannerCenBorder ("Educational purpose only", "Redistribution of project is not allowed",
+                     "Created by the 1st year student IT KMITL 14", "POS Version 1.0");
     bannerBlankBorder ();
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Lists of team members");
@@ -100,13 +105,13 @@ void settingContributorList(){
     bannerBlankBorderTextCen ("Vasanchai Prakobkij     @59070156     59070156");
     bannerBlankBorderTextCen ("Weerakorn Pongpum                     59070163");
 
-    for (int i = 2;i>0;i--)
+    for ( int i = 2; i > 0; i-- )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Over 5000 lines of pure C language has been neatly crafted with love and passion <3");
     bannerBlankBorderTextCen ("See our GitHub Repository : https://github.com/sagelga/ComPro_Project");
 
-    for (int i = 19;i>0;i--)
+    for ( int i = 19; i > 0; i-- )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Redirecting you back in 10 seconds...");
@@ -117,9 +122,49 @@ void settingContributorList(){
     // Show picture of us in ASCII ;)
 }
 
-void settingCat(){
+void settingCat () {
+    int i = 0;
+    char text1[300] = "", text2[300] = "", text3[300] = "", text4[300] = "";
 
+    for ( int i = 0; i < 90; i++ ) {
+        screenClear ();
+
+        strcpy(text1," ");
+        strcpy(text2," ");
+        strcpy(text3," ");
+        strcpy(text4," ");
+
+        for ( int j = i; j > 0; j-- ) {
+            strcat (text1, "_");
+        }
+        strcat (text1, "━━━━___━*━___━━___━___*___━_*___┓╭━━━━━━━━━━━━╮");
+        bannerBlankBorderTextLeft (text1);
+
+        for ( int j = i; j > 0; j-- ) {
+            strcat (text2, "_");
+        }
+        strcat (text2, "___━━__*_━━___━━___━━*____━━___┗┓|::::::^----^|");
+        bannerBlankBorderTextLeft (text2);
+
+        for ( int j = i; j > 0; j-- ) {
+            strcat (text3, "_");
+        }
+        strcat (text3, "___━━___━━___━*━___━━____━━*___━┗|:::::|｡◕‿‿◕｡|");
+        bannerBlankBorderTextLeft (text3);
+
+        for ( int j = i; j > 0; j-- ) {
+            strcat (text4, "_");
+        }
+        strcat (text4, "___━━___*━__━━_*___━━___*━━___*━━╰O--O---O--O ╯");
+        bannerBlankBorderTextLeft (text4);
+
+        bannerBlankBorderTextCen ("Nyan Nyan Nyan");
+        i++;
+        delay (1);
+    }
+    settingFileWrite ();
 }
+
 void settingUpdateStoreName (char *storeName) {
     strcpy (Setting.storeName, storeName);
     settingFileWrite ();    // Save to a Database file
