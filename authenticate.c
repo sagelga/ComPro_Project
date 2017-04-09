@@ -10,7 +10,7 @@ void authInterface () {
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Please type in your username");
-    for ( int i = 0; i < 28; i++ )
+    for ( int i = 0; i < 29; i++ )
         bannerBlankBorder ();
     bannerFullBorder ();
 
@@ -33,7 +33,7 @@ void authInterface () {
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("And your password is?");
 
-    for ( int i = 0; i < 25; i++ )
+    for ( int i = 0; i < 26; i++ )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Please type in your password");
@@ -90,7 +90,7 @@ void authInterfaceComplete () {
 
     bannerBlankBorderTextCen ("POS system is now LOCK");
 
-    for ( int i = 0; i < 16; i++ ) {
+    for ( int i = 0; i < 17; i++ ) {
         bannerBlankBorder ();
     }
     bannerFullBorder ();
@@ -126,7 +126,7 @@ void authInterfaceComplete () {
     bannerBlankBorderTextCen ("POS system is now UNLOCK");
 
 
-    for ( int i = 0; i < 15; i++ ) {
+    for ( int i = 0; i < 16; i++ ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("Redirecting you to POS system...");
@@ -149,7 +149,7 @@ void authInterfaceFail () {
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("or type 'N' to exit the program");
 
-    for ( int i = 0; i < 32; i++ )
+    for ( int i = 0; i < 31; i++ )
         bannerBlankBorder ();
 
     bannerFullBorder ();

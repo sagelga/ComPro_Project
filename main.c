@@ -5,7 +5,7 @@
 int main () { // This program will run first. POS Interface configuration will be called, and ready to work.
     screenClear ();
     initDatabase ();
-    screenAdjust();
+    //screenAdjust();
     switchHub ();
     return 0;
 }
@@ -47,7 +47,7 @@ void switchHub () {
     for ( int i = 21; i > 0; i-- )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("  Type 'N' to quit  |  Type in your response  |  Type 'B' to logoff");
+    bannerBlankBorderTextCen ("  Type 'Q' to quit  |  Type in your response  |  Type 'B' to logoff");
     bannerFullBorder ();
     bannerUserInput ();
 
@@ -59,29 +59,37 @@ void switchHub () {
     switch ( toupper (flags)) {
         case ('1'): // Sign In / Sign Out
             cashierInterface ();
+            break;
 
         case ('2'):// Go to POS Systems Interface (for cashier)
             inventorySwitchHub ();
+            break;
 
         case ('3'):// Go to check Inventory Database
             customerSwitchHub ();
+            break;
 
         case ('4'):
             promotionSwitchHub ();
+            break;
 
         case ('5'):
            // personnelSwitchHub ();
+            break;
 
         case ('6'):
             reportSwitchHub ();
+            break;
 
         case ('7'):
            // forecastSwitchHub ();
+            break;
 
         case ('8'):
             settingsSwitchHub ();
+            break;
 
-        case ('N'):
+        case ('Q'):
             terminate ();
             break;
 
@@ -91,7 +99,6 @@ void switchHub () {
 
         default:
             // The input is invalid. Trying to route back to ask for a valid input
-            printf ("Your input is invalid. Please try again.\n\n\n");
             switchHub ();
     }
 }

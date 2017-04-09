@@ -20,7 +20,7 @@ void customerSwitchHub () {
     bannerBlankBorderTextCen ("3. Delete customer metadata from the database");
     bannerBlankBorderTextCen ("4. Update existed customer");
 
-    for (int i = 0;i<26;i++)
+    for (int i = 0;i<27;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("ALTERNATE RESPONSE  |  Type 'B' to back");
     bannerFullBorder ();

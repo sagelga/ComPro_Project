@@ -11,7 +11,7 @@ void screenAdjust () {
 
     bannerBlankBorderTextCen ("Please configure the terminal screen to optimum size.");
     bannerBlankBorderTextCen ("Optimal screen size : 140 x 40 character");
-    for ( int i = 0; i < 26; i++ )
+    for ( int i = 0; i < 27; i++ )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Type 'Y' to continue...");
@@ -48,8 +48,17 @@ void terminate () {
     bannerBlankBorderTextCen ("You about to terminate the POS system...");
     bannerFullBorder ();
 
-    printf ("Shutting the program down.... Please be patient!\n");
-    printf ("Have a good luck. Bye Bye!\n");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Shutting the program down....");
+    bannerBlankBorderTextCen ("Saving Context");
+
+    for (int i = 34;i>0;i--)
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("Have a good luck. Bye Bye!");
+    bannerFullBorder ();
+
+
     delay (3);
     screenClear ();
     exit (0);
