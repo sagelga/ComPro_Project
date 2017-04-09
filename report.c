@@ -405,30 +405,30 @@ void displayPersonnelSaleReport(int page){
 	screenClear();
 	int allPage = (int)ceil(RecordCount.personnel/34)+1;
 	bannerFullBorder();
-	//printf(":: %-68s |             Revenue            |              Profit            ::\n", "Month");
+	printf(":: %-14s | %-35s | %-35s | %19s | %19s ::\n", "Personnel ID", "Firstname", "Lastname", "Revenue", "Profit");
 	bannerFullBorder();
 	if (page == allPage)
 	{
 		for (int i = (page-1)*34; i < RecordCount.personnel; ++i)
 		{
-			printf(":: %s | %s | %s | %lf | %lf ::\n", RevenueByPersonnel[i].id, RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice, RevenueByPersonnel[i].totalProfit);
+			printf(":: %-14s | %-35s | %-35s | %19.2lf | %19.2lf ::\n", RevenueByPersonnel[i].id, RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice, RevenueByPersonnel[i].totalProfit);
 			//bannerBlankBorder();
 		}
 		//display remaining line as bannerBlankBorder()
 		for (int i = 0; i < 34-(RecordCount.personnel%34); ++i)
 		{
-			printf("::                                                                                                                                        ::\n");
+			printf(":: %-14s | %-35s | %-35s | %19s | %19s ::\n", "", "", "", "", "");
 		}
 	}
 	else
 	{
 		for (int i = (page-1)*34; i < page*34/*(34*page)*/; ++i)
 		{
-			printf(":: %s | %s | %s | %lf | %lf ::\n", RevenueByPersonnel[i].id, RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice, RevenueByPersonnel[i].totalProfit);
+			printf(":: %-14s | %-35s | %-35s | %19.2lf | %19.2lf ::\n", RevenueByPersonnel[i].id, RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice, RevenueByPersonnel[i].totalProfit);
 			//bannerBlankBorder();
 		}
 	}
-	bannerBlankBorderTextCen("'N' to enter new year | Enter Page | 'B' to back to Check Reoport Menu");
+	bannerBlankBorderTextCen("'N' to enter new year | Enter Page | 'B' to back to Check Report Menu");
 	printf("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n", page, allPage);
 	bannerFullBorder();
 }
@@ -467,7 +467,7 @@ void PersonnelSaleReportInterface(){
 		else
 		{
 			displayPersonnelSaleReport(pageIn);
-			printf("Oops! Input is valided, Please enter correctly: ");
+			printf("Oops! Input is valid, Please enter correctly: ");
 		}
 	}
 }
