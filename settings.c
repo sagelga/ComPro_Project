@@ -14,32 +14,30 @@ void settingsSwitchHub () {
     for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("--------------------");
-    bannerBlankBorderTextCen ("|  Authentication  |");
-    bannerBlankBorderTextCen ("--------------------");
-    bannerBlankBorderTextCen ("1.Change Password");
+    bannerBlankBorderTextCen ("Authentication");
+    bannerBlankBorderTextCen ("_________________________");
+    bannerBlankBorderTextCen ("1. Change Password");
 
     for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("----------------");
-    bannerBlankBorderTextCen ("|  Storefront  |");
-    bannerBlankBorderTextCen ("----------------");
+    bannerBlankBorderTextCen ("Storefront");
+    bannerBlankBorderTextCen ("____________________");
     bannerBlankBorderTextCen ("2. Change store name");
     bannerBlankBorderTextCen ("3. Change store address");
 
     for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("-------------");
-    bannerBlankBorderTextCen ("|  Credits  |");
-    bannerBlankBorderTextCen ("-------------");
+    bannerBlankBorderTextCen ("Others");
+    bannerBlankBorderTextCen ("_________________");
     bannerBlankBorderTextCen ("4. List of contributors");
-    bannerBlankBorderTextCen ("5. Cat dance");
+    bannerBlankBorderTextCen ("5. cat.gif");
 
-    for ( int i = 0; i < 8; i++ )
+    for ( int i = 0; i < 17; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -53,16 +51,16 @@ void settingsSwitchHub () {
             break;
 
         case ('2'):
-            settingUpdateStoreNameInterface ();
-            break;
+            settingUpdatePasswordInterface ();
+            return;
 
         case ('3'):
-            settingUpdateStoreAddressInterface ();
-            break;
+            settingUpdateStoreNameInterface();
+            return;
 
         case ('4'):
-            settingContributorList ();
-            break;
+            settingUpdateStoreAddressInterface ();
+            return;
 
         case ('5'):
             settingCat ();
@@ -72,7 +70,7 @@ void settingsSwitchHub () {
             switchHub ();
             break;
 
-        case ('N'):
+        case ('Q'):
             terminate ();
             break;
 
@@ -347,52 +345,54 @@ void settingContributorList () {
     bannerFullBorder ();
 
     delay (10);
-    settingsSwitchHub();
-
-    // Show picture of us in ASCII ;)
 }
 
 void settingCat () {
     int i = 0;
     char text1[300] = "", text2[300] = "", text3[300] = "", text4[300] = "";
 
-    for ( int i = 0; i < 89; i++ ) {
+    for ( int i = 0; i < 88; i++ ) {
         screenClear ();
 
-        strcpy(text1," ");
-        strcpy(text2," ");
-        strcpy(text3," ");
-        strcpy(text4," ");
+        bannerFullBorder ();
 
-        for ( int j = i; j > 0; j-- ) {
-            strcat (text1, "_");
+        for (int k = 8;k>0;k--) {
+            strcpy (text1, " ");
+            strcpy (text2, " ");
+            strcpy (text3, " ");
+            strcpy (text4, " ");
+
+            for ( int j = i; j > 0; j-- ) {
+                strcat (text1, "_");
+            }
+            strcat (text1, "━━━━___━*━___━━___━___*___━_*___┓╭━━━━━━━━━━━━╮");
+            bannerBlankBorderTextLeft (text1);
+
+            for ( int j = i; j > 0; j-- ) {
+                strcat (text2, "_");
+            }
+            strcat (text2, "___━━__*_━━___━━___━━*____━━___┗┓|::::::^----^|");
+            bannerBlankBorderTextLeft (text2);
+
+            for ( int j = i; j > 0; j-- ) {
+                strcat (text3, "_");
+            }
+            strcat (text3, "___━━___━━___━*━___━━____━━*___━┗|:::::|｡◕‿‿◕｡|");
+            bannerBlankBorderTextLeft (text3);
+
+            for ( int j = i; j > 0; j-- ) {
+                strcat (text4, "_");
+            }
+            strcat (text4, "___━━___*━__━━_*___━━___*━━___*━━╰O--O---O--O ╯");
+            bannerBlankBorderTextLeft (text4);
+
+            bannerBlankBorder ();
         }
-        strcat (text1, "━━━━___━*━___━━___━___*___━_*___┓╭━━━━━━━━━━━━╮");
-        bannerBlankBorderTextLeft (text1);
 
-        for ( int j = i; j > 0; j-- ) {
-            strcat (text2, "_");
-        }
-        strcat (text2, "___━━__*_━━___━━___━━*____━━___┗┓|::::::^----^|");
-        bannerBlankBorderTextLeft (text2);
-
-        for ( int j = i; j > 0; j-- ) {
-            strcat (text3, "_");
-        }
-        strcat (text3, "___━━___━━___━*━___━━____━━*___━┗|:::::|｡◕‿‿◕｡|");
-        bannerBlankBorderTextLeft (text3);
-
-        for ( int j = i; j > 0; j-- ) {
-            strcat (text4, "_");
-        }
-        strcat (text4, "___━━___*━__━━_*___━━___*━━___*━━╰O--O---O--O ╯");
-        bannerBlankBorderTextLeft (text4);
-
-        bannerBlankBorderTextCen ("Nyan Nyan Nyan");
+        bannerFullBorder ();
         i++;
         delay (1);
     }
-    settingFileWrite ();
 }
 
 void settingUpdateStoreName (char *storeName) {
