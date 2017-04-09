@@ -5,8 +5,8 @@
 int main () { // This program will run first. POS Interface configuration will be called, and ready to work.
     screenClear ();
     initDatabase ();
-    screenAdjust();
-    //switchHub ();
+    //screenAdjust();
+    switchHub ();
     return 0;
 }
 
@@ -52,10 +52,11 @@ void switchHub () {
     bannerBlankBorderTextCen ("1. Go to POS System");
     bannerBlankBorderTextCen ("2. Check Inventory Database");
     bannerBlankBorderTextCen ("3. Check Customer Database");
-    bannerBlankBorderTextCen ("4. Check Promotion Database");
-    bannerBlankBorderTextCen ("5. Check Report");
-    bannerBlankBorderTextCen ("6. Sales Forecasting");
-    bannerBlankBorderTextCen ("7. Settings");
+    bannerBlankBorderTextCen ("4. Check Personnel Database");
+    bannerBlankBorderTextCen ("5. Check Promotion Database");
+    bannerBlankBorderTextCen ("6. Check Report");
+    bannerBlankBorderTextCen ("7. Sales Forecasting");
+    bannerBlankBorderTextCen ("8. Settings");
     bannerBlankBorder ();
 
     for ( int i = 21; i > 0; i-- )
@@ -84,17 +85,21 @@ void switchHub () {
             break;
 
         case ('4'):
-            promotionSwitchHub ();
+            personnelSwitchHub ();
             break;
 
         case ('5'):
-            reportSwitchHub ();
+            promotionSwitchHub ();
             break;
 
         case ('6'):
+            reportSwitchHub ();
             break;
 
         case ('7'):
+            break;
+
+        case ('8'):
             settingsSwitchHub ();
             break;
 

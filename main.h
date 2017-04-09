@@ -123,6 +123,11 @@ int personnelUpdateRole(char *id, int role);                // For modifying the
 int personnelUpdatePassword(char *id, char *password);      // For modifying the `password` (Select the record by `id`)
 int personnelDelete(char *id);                              // Delete the record (Select by `id`)
 
+void personnelInsertInterface();
+void personnelSelectInterface();
+void personnelDeleteInterface();
+void personnelUpdateInterface();
+
 //-------------------------------------------------------------------------------------------------------
 // # - File: INVENTORY.c
 //-------------------------------------------------------------------------------------------------------
@@ -484,6 +489,7 @@ void inventorySwitchHub ();               // For moving to the selection of the 
 void customerSwitchHub ();               // For moving to the selection of the functions
 void promotionSwitchHub ();               // For moving to the selection of the functions
 void settingsSwitchHub ();               // For moving to the selection of the functions
+void personnelSwitchHub ();
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
