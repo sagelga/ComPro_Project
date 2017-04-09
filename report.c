@@ -222,7 +222,7 @@ void reportSwitchHub(){
 
 		case ('3'):
 			checkErrorIn = 0;
-			//PersonnelSaleReportInterface();
+			PersonnelSaleReportInputProcess();
 			break;
 
 		case ('4'):
@@ -350,13 +350,24 @@ void OneDayReportInterface(){
 	}
 }
 
+/*---------------------------------------------------------------Monthly Report----------------------------------------------------------------------*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void displayMonthlyReport();
 void displayMonthlyReport(){
 	screenClear();
+	bannerFullBorder();
+	printf(":: %-68s |             Revenue            |              Profit            ::\n", "Month");
+	bannerFullBorder();
 	for (int i = 0; i < 12; ++i)
 	{
-		printf(":: %s | %lf | %lf ::\n", RevenueByMonth[i].monthName, RevenueByMonth[i].totalPrice, RevenueByMonth[i].totalProfit);
+		printf(":: %-68s | %30.2lf | %30.2lf ::\n", RevenueByMonth[i].monthName, RevenueByMonth[i].totalPrice, RevenueByMonth[i].totalProfit);
 	}
+	for (int i = 0; i < 23; ++i)
+	{
+		printf("::                                                                      |                                |                                ::\n");
+	}
+	bannerBlankBorderTextCen("'B' to Check Report Menu ");
+	bannerFullBorder();
 }
 
 void MonthlyReportInterface(){
@@ -364,10 +375,110 @@ void MonthlyReportInterface(){
 	unsigned int year;
 	for (int i = 0; i >= 0; ++i)
 	{
-		printf(">>> ");
+		printf("Enter year: ");
 		scanf("%u", &year);
 		monthlyReport(year);
 		displayMonthlyReport();
+	}
+}
+
+/*---------------------------------------------------------------Personnel Report----------------------------------------------------------------------*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void PersonnelSaleReportInputProcess(){
+	/*-----Initial interface-----*/
+	screenClear();
+	bannerFullBorder();
+	bannerBlankBorderTextCen("Personeel Sale Report");
+	bannerFullBorder();
+	for (int i = 0; i < 17; ++i)
+	{
+		bannerBlankBorder();
+	}
+	bannerBlankBorderTextCen("Please enter year...");
+	bannerBlankBorderTextCen("Example --> 2017");
+	for (int i = 0; i < 17; ++i)
+	{
+		bannerBlankBorder();
+	}
+	bannerFullBorder();
+	/*--------------------------*/
+	unsigned int year;
+	//Input
+	printf(">>> ");
+	scanf("%u", &year);
+	//Process
+	personnelSaleReport(year);
+	PersonnelSaleReportInterface();
+}
+
+void displayPersonnelSaleReport(int page){
+	screenClear();
+	int allPage = (int)ceil(RecordCount.personnel/34)+1;
+	bannerFullBorder();
+	//printf(":: %-68s |             Revenue            |              Profit            ::\n", "Month");
+	bannerFullBorder();
+	if (page == allPage)
+	{
+		for (int i = (page-1)*34; i < RecordCount.personnel; ++i)
+		{
+			printf(":: %s | %s | %s | %lf | %lf ::\n", RevenueByPersonnel[i].id, RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice, RevenueByPersonnel[i].totalProfit);
+			//bannerBlankBorder();
+		}
+		//display remaining line as bannerBlankBorder()
+		for (int i = 0; i < 34-(RecordCount.personnel%34); ++i)
+		{
+			printf("::                                                                                                                                        ::\n");
+		}
+	}
+	else
+	{
+		for (int i = (page-1)*34; i < page*34/*(34*page)*/; ++i)
+		{
+			printf(":: %s | %s | %s | %lf | %lf ::\n", RevenueByPersonnel[i].id, RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice, RevenueByPersonnel[i].totalProfit);
+			//bannerBlankBorder();
+		}
+	}
+	bannerBlankBorderTextCen("'N' to enter new year | Enter Page | 'B' to back to Check Reoport Menu");
+	printf("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n", page, allPage);
+	bannerFullBorder();
+}
+
+void PersonnelSaleReportInterface(){
+	screenClear();
+	char handling;
+	int pageIn = 1, CheckPage;
+	displayPersonnelSaleReport(1);
+	for (int i = 0; i >= 0; ++i)
+	{
+		printf(">>> ");
+		scanf(" %c", &handling);
+		if ((handling == 'B') || (handling == 'b'))
+		{
+			reportSwitchHub();
+		}
+		else if ((handling == 'N') || (handling == 'n'))
+		{
+			PersonnelSaleReportInputProcess();
+		}
+		else if (isdigit(handling))
+		{
+			CheckPage = (int)handling - 48;
+			if ((CheckPage <= ((int)ceil(RecordCount.category/34)+1)) && (CheckPage >= 1))
+			{
+				pageIn = (int)handling - 48;
+				displayPersonnelSaleReport(pageIn);
+			}
+			else
+			{
+				displayPersonnelSaleReport(pageIn);
+				printf("Oops! Page not found, Please enter correct page: ");
+			}
+		}
+		else
+		{
+			displayPersonnelSaleReport(pageIn);
+			printf("Oops! Input is valided, Please enter correctly: ");
+		}
 	}
 }
 /*

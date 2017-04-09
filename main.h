@@ -392,7 +392,11 @@ void OneDayReportInputProcess();
 void displayOneDayReport(int page);
 
 void MonthlyReportInterface();
-//void PersonnelSaleReportInterface();
+
+void PersonnelSaleReportInterface();
+void PersonnelSaleReportInputProcess();
+void displayPersonnelSaleReport(int page);
+
 //void MultipleDayReportInterface();
 
 /*-----------------------------------------------------------------------------
