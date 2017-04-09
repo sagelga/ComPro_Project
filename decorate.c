@@ -20,9 +20,8 @@ void screenAdjust(){
     bannerUserInput();
     char flags;
     scanf(" %c",&flags);
-    flags = toupper(flags);
 
-    switch (flags){
+    switch (toupper(flags)){
 
         case('Y'):
             screenClear();
@@ -51,7 +50,7 @@ void terminate(){
 
     printf("Shutting the program down.... Please be patient!\n");
     printf("Have a good luck. Bye Bye!\n");
-    delay (5);
+    delay (3);
     screenClear ();
     exit(0);
 } 
@@ -147,7 +146,7 @@ void bannerFullBorderSection(){
 
 void delay (int interval) {
     // This function will stop all threads from executing everything. Please be cautious about this...
-    if (interval < 30) {
+    if (interval < 30) {// Avoiding excessive delay time.
         sleep(interval);
     }
 }
