@@ -9,10 +9,7 @@ void cashierInterface () {//Interface that will ask for customer ID
     bannerBlankBorder ();
 
     char text[140];
-    strcpy(text, "Welcome! My name is ");
-    strcat(text, Session.user.firstname);
-    strcat(text, " ");
-    strcat(text, Session.user.lastname);
+    sprintf(text,"My name is %s %.1s. and I am your cashier",Session.user.firstname,Session.user.lastname);
     bannerBlankBorderTextCen (text);
 
     bannerBlankBorder ();
@@ -29,29 +26,37 @@ void cashierInterface () {//Interface that will ask for customer ID
 
     // Receives input + let user type in the member ID or type N or type ENTER or type B
 
-    /* Call this if the input is not N or B -> */ cashierInterfaceInventory ();
+    /* Call this if the input is not N or B -> */ delay (5); cashierInterfaceInventory ();
 }
 
 void cashierInterfaceInventory(){// Interface that will remove the item from the database
     screenClear ();
 
-    banner (Session.user.username,"is serving you today","Welcome!","<customer_username");
+    banner (Session.user.firstname,"is serving you today","Welcome!","<customer_username>");
 
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Item name                                  | Count | Price                |"); // Keep these on forever
 
     // Following by LAST 25 items that have been scanned....
 
-    int subTotal;
-    int tax;
-    int total;
-    int pointEarn;
+    double subTotal = 0,tax = 0,total = 0,pointEarn = 0;
 
-    bannerBlankBorderText("Sub Total %.40f"); // Total Price - 7% (Shows only 2 significant point!!)
-    bannerBlankBorderText ("Tax %.40f"); // VAT calculated from total price
-    bannerBlankBorderText ("Total %.40f"); // Total Price
+    char text[140];
+    sprintf(text,"Sub Total %.2f",subTotal);
+    bannerBlankBorderText(text); // Total Price - 7% (Shows only 2 significant point!!)
+
+    char text2[140];
+    sprintf(text,"Tax %.2f",tax);
+    bannerBlankBorderText (text2); // VAT calculated from total price
+
+    char text3[140];
+    sprintf(text3,"Total %.2f",total);
+    bannerBlankBorderText (text3); // Total Price
+
     bannerBlankBorder ();
-    bannerBlankBorderText ("Points you will earned %.40f");
+    char text4[140];
+    sprintf(text4,"Points you will earned %.2f",pointEarn);
+    bannerBlankBorderText (text4);
 
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Press ENTER to finish  |  Type 'V' to void");
@@ -61,7 +66,7 @@ void cashierInterfaceInventory(){// Interface that will remove the item from the
     // Receives item ID -> Query on database -> Find a match (if stock = 0 means no match) -> Show a match -> Add price to the total -> Remove stock from DB of 1
 
 
-    /* If done everything -> */ cashierInterfaceDiscount ();
+    /* If done everything -> */ delay (5); cashierInterfaceDiscount ();
 
 }
 
@@ -78,7 +83,7 @@ void cashierInterfaceDiscount(){// Interface that will ask for discount (voucher
     sprintf(text, "You have %.2lf points", point);
     bannerBlankBorderTextCen (text);
 
-    for (int i = 32; i>0;i--)
+    for (int i = 30; i>0;i--)
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type 'V' to void  |  Press ENTER to skip  |  Type '1' to use point  |  Type '2' to add more item");
@@ -87,32 +92,52 @@ void cashierInterfaceDiscount(){// Interface that will ask for discount (voucher
     bannerUserInput ();
 
 
-    /* If done everything -> */ cashierInterfaceResult ();
+    /* If done everything -> */ delay (5); cashierInterfaceResult ();
 }
 
 void cashierInterfaceResult(){// Interface that will show the total (just like the receipt)
     screenClear ();
 
-    char text1[140];
-    sprintf(text1, "Welcome %s", Session.user.username);
+    char text[140];
+    sprintf(text, "Member ID : %s", "<customer ID>");
 
-    char text2[140];
-    sprintf(text2, "Member ID : %s", "<customer ID>");
+    banner (Setting.storeName,Setting.storeAddress,"",text);
 
-    banner (Setting.storeName,Setting.storeAddress,text1,text2);
+    double pointHave = 0,pointEarn = 0,pointTotal = 0;
+    double subtotal = 0,vat = 0,priceTotal = 0;
 
     bannerBlankBorderTextCen ("Item name                                  | Count | Price                |"); // Try to merge item (if possible)
     // Shows a total of 25 item at a time. Press ENTER to go to the next page
+
+    bannerFullBorder ();
+    bannerBlankBorderText ("|----------Membership----------| |----------Purchase---------|");
+
+    strcpy(text,"");
+    sprintf(text,"| Points you have   : %.0f | | Sub Total   : %.2f |",pointHave,subtotal);
+    bannerBlankBorderText (text);
+
+    strcpy(text,"");
+    sprintf(text,"| Points you earn   : %.0f | | VAT         : %.2f |",pointEarn,vat);
+    bannerBlankBorderText (text);
+
+    bannerBlankBorderText ("|______________________________| |____________________________________|");
+
+    strcpy(text,"");
+    sprintf(text,"| Total Points      : %.0f | | Total       : %.2f |",pointTotal,priceTotal);
+    bannerBlankBorderText (text);
+
     bannerBlankBorderTextCen ("_______________________________________________________________");
-    bannerBlankBorderText ("|----------Membership----------| |-----------Price-----------------");
-    bannerBlankBorderText ("| Points you have : %f          | | Sub Total   : %f");
-    bannerBlankBorderText ("| Points you earn : %f          | | VAT         : %f");
-    bannerBlankBorderText ("|_______________________________| |___________________");
-    bannerBlankBorderText ("| Total Points    : %f          | | Total       : %f");
-    bannerBlankBorderTextCen ("_______________________________________________________________");
-    bannerBlankBorderTextCen ("THANK YOU FOR SHOPPING AT < store_name >");
+
+    strcpy(text,"");
+    sprintf(text,"THANK YOU FOR SHOPPING AT %s",Setting.storeName);
+    bannerBlankBorderTextCen (text);
+
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Press ENTER to continue  |  Type 'V' to skip");
+    bannerFullBorder ();
+    bannerUserInput ();
+
+    /* If done everything -> */ delay (5); cashierInterface ();
 
 }
 

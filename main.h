@@ -391,7 +391,7 @@ void OneDayReportInterface();
 void OneDayReportInputProcess();
 void displayOneDayReport(int page);
 
-//void MonthlyReportInterface();
+void MonthlyReportInterface();
 //void PersonnelSaleReportInterface();
 //void MultipleDayReportInterface();
 
@@ -472,7 +472,8 @@ void bannerFullBorder();                      // Prints a full 140 character ful
 
 void bannerBlankBorder();                     // Prints a :: + 136 charaacter space + ::
 void bannerBlankBorderTextCen(char *text);                // Prints a :: + + 134 character space + + :: (Center Align)
-void bannerBlankBorderText(char *text);                // Prints a :: + + 134 character space + + :: (Left Align)
+void bannerBlankBorderText(char *text);                // Prints a :: + + 134 character space + + :: (Right Align)
+void bannerBlankBorderTextLeft (char *text);
 
 void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4);  // Prints banner with configurable character
 void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4); // Prints banner (with POS logo in the right) with configurable character

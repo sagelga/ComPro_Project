@@ -129,6 +129,10 @@ void bannerBlankBorderText(char *text){
     printf(":: %134s ::\n", text);
 }
 
+void bannerBlankBorderTextLeft (char *text){
+    printf(":: %-134s ::\n", text);
+}
+
 void bannerBlankBorder(){
     printf(":: %134s ::\n", "");
 }
@@ -144,9 +148,7 @@ void bannerFullBorderSection(){
 void delay (int interval) {
     // This function will stop all threads from executing everything. Please be cautious about this...
     if (interval < 30) {
-        sleep (interval - 1); // Stopping all threads from executing something for x seconds.
-        screenClear ();
-        sleep (1);
+        sleep(interval);
     }
 }
 

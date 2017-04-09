@@ -13,11 +13,11 @@ void promotionSwitchHub () {
         bannerBlankBorder ();
     bannerFullBorderSection ();
     bannerBlankBorder ();
+    bannerBlankBorderTextCen ("1. Create a new promotion");
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("1. Insert");
-    bannerBlankBorderTextCen ("2. Select");
-    bannerBlankBorderTextCen ("3. Delete");
-    bannerBlankBorderTextCen ("4. Update");
+    bannerBlankBorderTextCen ("2. View all promotion in database");
+    bannerBlankBorderTextCen ("3. Delete promotion from database");
+    bannerBlankBorderTextCen ("4. Update promotion metadata");
 
     for (int i = 0;i<23;i++)
         bannerBlankBorder ();

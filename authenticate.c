@@ -28,12 +28,12 @@ void authInterface () {
         bannerBlankBorder ();
 
     char text[137];
-    strcpy(text,"Welcome back ");
-    strcat(text,username);
-    strcat(text,"!");
+    sprintf(text,"Welcome back %s!",username);
     bannerBlankBorderTextCen (text);
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("And your password is?");
 
-    for (int i = 0;i<27;i++)
+    for (int i = 0;i<25;i++)
         bannerBlankBorder();
 
     bannerBlankBorderTextCen("Please type in your password");
@@ -71,19 +71,15 @@ void authInterfaceComplete(){
         bannerBlankBorder ();
 
     char text[140];
-    strcpy(text, "Welcome back! ");
-    strcat(text, Session.user.firstname);
-    strcat(text, " ");
-    strcat(text,Session.user.lastname);
+    sprintf(text,"Welcome back %s %s!",Session.user.firstname,Session.user.lastname);
     bannerBlankBorderTextCen (text);
     bannerBlankBorder();
 
     char text2[140];
-    strcpy(text2,"Signing in as : ");
-    strcat(text2,Session.user.username);
+    sprintf(text2,"Signing in as : %s",Session.user.username);
     bannerBlankBorderTextCen (text2);
 
-    for ( int i = 0; i < 25; i++ ) {
+    for ( int i = 0; i < 27; i++ ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("Redirecting you to POS system...");
@@ -201,7 +197,11 @@ void deauthenticate(){
     strcat(text," account has successfully logout.");
     bannerBlankBorderTextCen (text);
 
-    for (int i = 34;i>0;i--)
+    for (int i = 3;i>0;i--)
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("(,, ･A･)ﾉ゛");
+
+    for (int i = 30;i>0;i--)
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Returning you back to login...");
