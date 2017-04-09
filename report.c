@@ -440,7 +440,7 @@ void reportSwitchHub(){
 
 		case ('4'):
 			checkErrorIn = 0;
-			//MultipleDayReportInterface();
+			MultipleDayReportInputProcess();
 			break;
 
 		case ('N'):
@@ -668,6 +668,91 @@ void PersonnelSaleReportInterface(){
 		}
 	}
 }
+
+/*---------------------------------------------------------------Multiple Day Report----------------------------------------------------------------------*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MultipleDayReportInputProcess () {
+    /*-----Initial interface-----*/
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Multiple Day Report");
+    bannerFullBorder ();
+    for ( int i = 0; i < 15; ++i ) {
+        bannerBlankBorder ();
+    }
+    bannerBlankBorderTextCen ("Please enter date...(dd/mm/yyyy)");
+    bannerBlankBorderTextCen ("Example: From >>> 07/03/2017");
+    bannerBlankBorderTextCen ("           To >>> 14/03/2017");
+    for ( int i = 0; i < 16; ++i ) {
+        bannerBlankBorder ();
+    }
+    bannerFullBorder ();
+    /*--------------------------*/
+    int FdateIN, FmonthIN, FyearIN, TdateIN, TmonthIN, TyearIN;
+    //Input
+    printf("From >>> ");
+    scanf (" %d/%d/%d", &FdateIN, &FmonthIN, &FyearIN);
+    printf("To >>> ");
+    scanf (" %d/%d/%d", &TdateIN, &TmonthIN, &TyearIN);
+    //Process
+    multipleDayReport (FdateIN, FmonthIN, FyearIN, TdateIN, TmonthIN, TyearIN);
+    MultipleDayReportInterface ();
+}
+
+void displayMultipleDayReport (int page) {
+    screenClear ();
+    int allPage = (int) ceil (RecordCount.category / 34) + 1;
+    bannerFullBorder ();
+    printf (":: %-68s |             Revenue            |              Profit            ::\n", "Category Name");
+    bannerFullBorder ();
+
+    if ( page == allPage ) {
+        for ( int i = (page - 1) * 34; i < RecordCount.category; ++i ) {
+            printf (":: %-68s | %30.2lf | %30.2lf ::\n", RevenueByCategory[i].categoryName,
+                    RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit);
+        }
+        for ( int i = 0; i < 34 - (RecordCount.category % 34); ++i ) {
+            printf ("::                                                                      |                                |                                ::\n");
+        }
+    } else {
+        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
+            printf (":: %-68s | %30.2lf | %30.2lf ::\n", RevenueByCategory[i].categoryName,
+                    RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit);
+        }
+    }
+    bannerBlankBorderTextCen ("'N' to enter new date | Enter Page(e.g. 1, 2, 3) | 'B' to Check Report Menu |");
+    printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
+            page, allPage);
+    bannerFullBorder ();
+}
+
+void MultipleDayReportInterface() {
+    char handling;
+    int pageIn = 1, CheckPage;
+    displayMultipleDayReport (1);
+    for ( int i = 0; i >= 0; ++i ) {
+        printf (">>> ");
+        scanf (" %c", &handling);
+        if ((handling == 'B') || (handling == 'b')) {
+            reportSwitchHub ();
+        } else if ((handling == 'N') || (handling == 'n')) {
+            MultipleDayReportInputProcess ();
+        } else if ( isdigit (handling)) {
+            CheckPage = (int) handling - 48;
+            if ((CheckPage <= ((int) ceil (RecordCount.category / 34) + 1)) && (CheckPage >= 1)) {
+                pageIn = (int) handling - 48;
+                displayMultipleDayReport (pageIn);
+            } else {
+                displayMultipleDayReport (pageIn);
+                printf ("Oops! Page not found, Please enter correct page: ");
+            }
+        } else {
+            displayMultipleDayReport (pageIn);
+            printf ("Oops! Input is valided, Please enter correctly: ");
+        }
+    }
+}
+
 
 /*
  *                                             All hail the god..
