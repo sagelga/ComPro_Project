@@ -5,24 +5,23 @@
 
 void customerSwitchHub () {
     screenClear ();
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("Customer Database");
-    bannerFullBorder ();
 
-    for ( int i = 0; i < 2; i++ )
-        bannerBlankBorder ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Customer Hub");
+    bannerBlankBorderTextCen ("----------------------");
     bannerBlankBorderTextCen ("What do you want to do?");
+    bannerFullBorder ();
 
     bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("1. Create new customer ID");
-    bannerBlankBorderTextCen ("2. Preview customer database");
+    bannerBlankBorderTextCen ("1. Preview customer database");
+    bannerBlankBorderTextCen ("2. Create new customer ID");
     bannerBlankBorderTextCen ("3. Delete customer metadata from the database");
     bannerBlankBorderTextCen ("4. Update existed customer");
 
-    for (int i = 0;i<27;i++)
+    for (int i = 0;i<28;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("ALTERNATE RESPONSE  |  Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -32,11 +31,11 @@ void customerSwitchHub () {
     switch(toupper(flag)){
 
         case ('1'):
-            customerInsertInterface ();
+            customerSelectInterface ();
             break;
 
         case ('2'):
-            customerSelectInterface ();
+            customerInsertInterface ();
             break;
 
         case ('3'):
@@ -49,6 +48,9 @@ void customerSwitchHub () {
 
         case ('B'):
             switchHub ();
+
+        case ('Q'):
+            terminate ();
 
         default:
             customerSwitchHub ();

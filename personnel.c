@@ -114,6 +114,70 @@ int personnelDelete (char *id) {
     return 0;   // Not found the given `id` in the records
 }
 
+void personnelSwitchHub(){
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Personnel Hub");
+    bannerBlankBorderTextCen ("-----------------------");
+    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerFullBorder ();
+
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("1. Preview personnel database");
+    bannerBlankBorderTextCen ("2. Add personnel to database");
+    bannerBlankBorderTextCen ("3. Edit personnel in the database");
+    bannerBlankBorderTextCen ("4. Remove personnel from the database");
+
+    for ( int i = 0; i < 28; i++ ) {
+        bannerBlankBorder ();
+    }
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
+    bannerFullBorder ();
+    bannerUserInput ();
+
+    char userInput;
+    scanf (" %c", &userInput);
+
+    switch ( toupper (userInput)) {
+        case ('1'):
+            inventoryDatabaseInterface ();
+            break;
+
+        case ('2'):
+            inventoryAdd ();
+            break;
+
+        case ('3'):
+            //inventoryEdit();
+            break;
+
+        case ('4'):
+            inventoryRemove ();
+            break;
+
+        case ('5'):
+            categoryDatabaseInterface ();
+            break;
+
+        case ('6'):
+            categoryAdd ();
+            break;
+
+        case ('7'):
+            //categoryEdit();
+            break;
+
+        case ('B'):
+            switchHub ();
+            break;
+
+        case ('Q'):
+            terminate ();
+
+        default:
+            printf ("Your input is invalid. Please try again...");
+            inventorySwitchHub ();
+    }
+}
 /*
  *                                             All hail the god..
  *  -----------------------------------------------------------------------------------------------------------------------

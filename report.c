@@ -144,81 +144,85 @@ void monthlyReport (unsigned int year) {
         }
     }
 }
+
 // Auto alpha adjusting by choosing Least Sum Square Error
-void tomorrowSaleForecast(){
-	// Setting
-	int nDayRollback = 7;	// Number of day that will be sampling
-	double alpha;	// A weight of forcasting
+void tomorrowSaleForecast () {
+    // Setting
+    int nDayRollback = 7;    // Number of day that will be sampling
+    double alpha;    // A weight of forcasting
 
-	// Getting time now & convert to the format of dd/mm/yyyy
-	int dateToday, monthToday, yearToday;
-	time_t epochTimeNow = time(NULL);
-	toDateMonthYear(epochTimeNow, &dateToday, &monthToday, &yearToday);
+    // Getting time now & convert to the format of dd/mm/yyyy
+    int dateToday, monthToday, yearToday;
+    time_t epochTimeNow = time (NULL);
+    toDateMonthYear (epochTimeNow, &dateToday, &monthToday, &yearToday);
 
-	int dateRollbacked, monthRollbacked, yearRollbacked;
-	time_t timeRollbacked = nDayRollbackToDateMonthYear(dateToday, monthToday, yearToday, nDayRollback);
-	toDateMonthYear(timeRollbacked, &dateRollbacked, &monthRollbacked, &yearRollbacked);
+    int dateRollbacked, monthRollbacked, yearRollbacked;
+    time_t timeRollbacked = nDayRollbackToDateMonthYear (dateToday, monthToday, yearToday, nDayRollback);
+    toDateMonthYear (timeRollbacked, &dateRollbacked, &monthRollbacked, &yearRollbacked);
 
 
-	int numberOfCategoryRecords = RecordCount.category;
-	int i, j, datePassed;
-	long double pastTotalPrice, pastTotalProfit, pastForecastTotalPrice, pastForecastTotalProfit;
+    int numberOfCategoryRecords = RecordCount.category;
+    int i, j, datePassed;
+    long double pastTotalPrice, pastTotalProfit, pastForecastTotalPrice, pastForecastTotalProfit;
 
-	long double sumSquareError, minSumSquareError;
-	// Initialing
+    long double sumSquareError, minSumSquareError;
+    // Initialing
 
-	for(i = 0; i < numberOfCategoryRecords; i++){
-		strcpy(SaleForecastByCategory[i].categoryName, Category[i].name);
-	}
+    for ( i = 0; i < numberOfCategoryRecords; i++ ) {
+        strcpy (SaleForecastByCategory[i].categoryName, Category[i].name);
+    }
 
-	for(i = 0; i < numberOfCategoryRecords; i++){ // For each category
+    for ( i = 0; i < numberOfCategoryRecords; i++ ) { // For each category
 
-		datePassed = 0;
-		sumSquareError = 0;
-		minSumSquareError = 3.402823e+38;
+        datePassed = 0;
+        sumSquareError = 0;
+        minSumSquareError = 3.402823e+38;
 
-		for(int iter = 1; iter <= 100; iter++){
-			alpha = iter / 100.0;
-			while(datePassed < nDayRollback + 1 + 1){	// + 1 means `today also be used as sampling` & + 1 means `tomorrow` (forcasting)
-				
-				oneDayReport(dateRollbacked + datePassed, monthRollbacked, yearRollbacked);
+        for ( int iter = 1; iter <= 100; iter++ ) {
+            alpha = iter / 100.0;
+            while ( datePassed < nDayRollback + 1 +
+                                 1 ) {    // + 1 means `today also be used as sampling` & + 1 means `tomorrow` (forcasting)
 
-				if(datePassed == 0){ 	// First time, assign the initial values
-					SaleForecastByCategory[i].totalPrice = RevenueByCategory[i].totalPrice;
-					SaleForecastByCategory[i].totalProfit = RevenueByCategory[i].totalProfit;
-				}
-				else{
-					// Revenue Forecasting
-					SaleForecastByCategory[i].totalPrice = pastForecastTotalPrice + (alpha * (pastTotalPrice - pastForecastTotalPrice));
-					// Profit Forecasting
-					SaleForecastByCategory[i].totalProfit = pastForecastTotalProfit + (alpha * (pastTotalProfit - pastForecastTotalProfit));
-				}
+                oneDayReport (dateRollbacked + datePassed, monthRollbacked, yearRollbacked);
 
-				// Find Sum of Squared Error (From `start date` to `today`)
-				if(datePassed <= nDayRollback){
-					sumSquareError += pow(SaleForecastByCategory[i].totalPrice - RevenueByCategory[i].totalPrice , 2);
-					sumSquareError += pow(SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit , 2);
-				}
-				// Store past value to use in the next loop
-				pastTotalPrice = RevenueByCategory[i].totalPrice;
-				pastTotalProfit = RevenueByCategory[i].totalProfit;
-				pastForecastTotalPrice = SaleForecastByCategory[i].totalPrice;
-				pastForecastTotalProfit = SaleForecastByCategory[i].totalProfit;
+                if ( datePassed == 0 ) {    // First time, assign the initial values
+                    SaleForecastByCategory[i].totalPrice = RevenueByCategory[i].totalPrice;
+                    SaleForecastByCategory[i].totalProfit = RevenueByCategory[i].totalProfit;
+                } else {
+                    // Revenue Forecasting
+                    SaleForecastByCategory[i].totalPrice =
+                            pastForecastTotalPrice + (alpha * (pastTotalPrice - pastForecastTotalPrice));
+                    // Profit Forecasting
+                    SaleForecastByCategory[i].totalProfit =
+                            pastForecastTotalProfit + (alpha * (pastTotalProfit - pastForecastTotalProfit));
+                }
 
-				// Next day
-				datePassed++;
-		
-			}
-			if(sumSquareError < minSumSquareError){
-				minSumSquareError = sumSquareError;
-				SaleForecastByCategoryTemp = SaleForecastByCategory[i];
-			}
+                // Find Sum of Squared Error (From `start date` to `today`)
+                if ( datePassed <= nDayRollback ) {
+                    sumSquareError += pow (SaleForecastByCategory[i].totalPrice - RevenueByCategory[i].totalPrice, 2);
+                    sumSquareError += pow (SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit, 2);
+                }
+                // Store past value to use in the next loop
+                pastTotalPrice = RevenueByCategory[i].totalPrice;
+                pastTotalProfit = RevenueByCategory[i].totalProfit;
+                pastForecastTotalPrice = SaleForecastByCategory[i].totalPrice;
+                pastForecastTotalProfit = SaleForecastByCategory[i].totalProfit;
 
-		}
-		SaleForecastByCategory[i] = SaleForecastByCategoryTemp;
-	}
+                // Next day
+                datePassed++;
+
+            }
+            if ( sumSquareError < minSumSquareError ) {
+                minSumSquareError = sumSquareError;
+                SaleForecastByCategoryTemp = SaleForecastByCategory[i];
+            }
+
+        }
+        SaleForecastByCategory[i] = SaleForecastByCategoryTemp;
+    }
 
 }
+
 /*
 // Mannual alpha adjusting
 
@@ -279,67 +283,69 @@ void tomorrowSaleForecast(){
 */
 
 
-void nextMonthSaleForecast(){
-	// Setting
-	double alpha;	// A weight of forcasting
+void nextMonthSaleForecast () {
+    // Setting
+    double alpha;    // A weight of forcasting
 
-	// Getting time now & convert to the format of dd/mm/yyyy
-	int dateToday, monthToday, yearToday;
-	time_t epochTimeNow = time(NULL);
-	toDateMonthYear(epochTimeNow, &dateToday, &monthToday, &yearToday);
-
-
-	int numberOfMonths = 12;
-	int i, j, monthPassed;
-	double pastTotalPrice, pastTotalProfit, pastForecastTotalPrice, pastForecastTotalProfit;
-
-	long double sumSquareError, minSumSquareError;
-	// Initialing
+    // Getting time now & convert to the format of dd/mm/yyyy
+    int dateToday, monthToday, yearToday;
+    time_t epochTimeNow = time (NULL);
+    toDateMonthYear (epochTimeNow, &dateToday, &monthToday, &yearToday);
 
 
-	strcpy(SaleForecastByMonth.monthName, monthName[monthToday]);
+    int numberOfMonths = 12;
+    int i, j, monthPassed;
+    double pastTotalPrice, pastTotalProfit, pastForecastTotalPrice, pastForecastTotalProfit;
 
-	monthlyReport(yearToday);
+    long double sumSquareError, minSumSquareError;
+    // Initialing
 
-	for(i = 0; i < monthToday + 1; i++){ // means `this month also be used as sampling` & + 1 means `next month` (forcasting)
-		sumSquareError = 0;
-		minSumSquareError = 3.402823e+38;
-		for(int iter = 50; iter <= 50; iter++){ 
 
-			alpha = iter / 100.0;	
-			if(i == 0){ 	// First time, assign the initial values
-				SaleForecastByMonth.totalPrice = RevenueByMonth[i].totalPrice;
-				SaleForecastByMonth.totalProfit = RevenueByMonth[i].totalProfit;
-			}
-			else{
-				// Revenue Forecasting
-				SaleForecastByMonth.totalPrice = pastForecastTotalPrice + (alpha * (pastTotalPrice - pastForecastTotalPrice));
-				// Profit Forecasting
-				SaleForecastByMonth.totalProfit = pastForecastTotalProfit + (alpha * (pastTotalProfit - pastForecastTotalProfit));
-			}
+    strcpy (SaleForecastByMonth.monthName, monthName[monthToday]);
 
-			// Find Sum of Squared Error (From `January` to `Current month`)
-			if(i <= monthToday - 1){
-				sumSquareError += pow(SaleForecastByMonth.totalPrice - RevenueByMonth[i].totalPrice , 2);
-				sumSquareError += pow(SaleForecastByMonth.totalProfit - RevenueByMonth[i].totalProfit , 2);
-			}
+    monthlyReport (yearToday);
 
-			// Store past value to use in the next loop
-			pastTotalPrice = RevenueByMonth[i].totalPrice;
-			pastTotalProfit = RevenueByMonth[i].totalProfit;
-			pastForecastTotalPrice = SaleForecastByMonth.totalPrice;
-			pastForecastTotalProfit = SaleForecastByMonth.totalProfit;
+    for ( i = 0; i < monthToday +
+                     1; i++ ) { // means `this month also be used as sampling` & + 1 means `next month` (forcasting)
+        sumSquareError = 0;
+        minSumSquareError = 3.402823e+38;
+        for ( int iter = 50; iter <= 50; iter++ ) {
 
-			// Next month
-			monthPassed++;
+            alpha = iter / 100.0;
+            if ( i == 0 ) {    // First time, assign the initial values
+                SaleForecastByMonth.totalPrice = RevenueByMonth[i].totalPrice;
+                SaleForecastByMonth.totalProfit = RevenueByMonth[i].totalProfit;
+            } else {
+                // Revenue Forecasting
+                SaleForecastByMonth.totalPrice =
+                        pastForecastTotalPrice + (alpha * (pastTotalPrice - pastForecastTotalPrice));
+                // Profit Forecasting
+                SaleForecastByMonth.totalProfit =
+                        pastForecastTotalProfit + (alpha * (pastTotalProfit - pastForecastTotalProfit));
+            }
 
-		}
-		if(sumSquareError < minSumSquareError){
-			minSumSquareError = sumSquareError;
-			SaleForecastByMonthTemp = SaleForecastByMonth;
-		}
-	}
-	SaleForecastByMonth = SaleForecastByMonthTemp;
+            // Find Sum of Squared Error (From `January` to `Current month`)
+            if ( i <= monthToday - 1 ) {
+                sumSquareError += pow (SaleForecastByMonth.totalPrice - RevenueByMonth[i].totalPrice, 2);
+                sumSquareError += pow (SaleForecastByMonth.totalProfit - RevenueByMonth[i].totalProfit, 2);
+            }
+
+            // Store past value to use in the next loop
+            pastTotalPrice = RevenueByMonth[i].totalPrice;
+            pastTotalProfit = RevenueByMonth[i].totalProfit;
+            pastForecastTotalPrice = SaleForecastByMonth.totalPrice;
+            pastForecastTotalProfit = SaleForecastByMonth.totalProfit;
+
+            // Next month
+            monthPassed++;
+
+        }
+        if ( sumSquareError < minSumSquareError ) {
+            minSumSquareError = sumSquareError;
+            SaleForecastByMonthTemp = SaleForecastByMonth;
+        }
+    }
+    SaleForecastByMonth = SaleForecastByMonthTemp;
 
 }
 
@@ -381,81 +387,156 @@ void personnelSaleReport (unsigned int year) {
 }
 
 int checkErrorIn = 0; //State for Error.
-void reportSwitchHub(){
-	screenClear();
-	bannerFullBorder();
-	bannerBlankBorderTextCen("Check Report");
-	bannerFullBorder();
-	if (checkErrorIn)
-	{
-		for (int i = 0; i < 3; ++i)
-		{
-			bannerBlankBorder();
-		}
-		bannerBlankBorderTextCen("Invalid input. Please try again !!!!");
-		for (int i = 0; i < 10; ++i)
-		{
-			bannerBlankBorder();
-		}
-	}
-	else
-	{
-		for (int i = 0; i < 14; ++i)
-		{
-			bannerBlankBorder();
-		}
-	}
-	bannerBlankBorderTextCen("Choose a report");
-	bannerBlankBorder();
-	bannerBlankBorderTextCen("1. One day report");
-	bannerBlankBorderTextCen("2. Monthly report");
-	bannerBlankBorderTextCen("3. Personnel sale report");
-	bannerBlankBorderTextCen("4. Multiple day report");
-	for (int i = 0; i < 14; i++)
-	{
-		bannerBlankBorder();
-	}
-    bannerBlankBorderTextCen ("  Type 'Q' to quit  |  Type in your response  |  Type 'B' to logoff");
-	bannerFullBorder();
+void reportSwitchHub () {
+    screenClear ();
 
-	/*-----User input------*/
-	char UserIn;
-	bannerUserInput ();
-	scanf(" %c", &UserIn);
-	switch (toupper(UserIn)){
-		case ('1'):
-			checkErrorIn = 0;
-			OneDayReportInputProcess();
-			break;
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Report Hub");
+    bannerBlankBorderTextCen ("--------------------");
+    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerFullBorder ();
 
-		case ('2'):
-			checkErrorIn = 0;
-			MonthlyReportInterface();
-			break;
+    bannerBlankBorderTextCen ("Choose a report");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("1. One day report");
+    bannerBlankBorderTextCen ("2. Monthly report");
+    bannerBlankBorderTextCen ("3. Personnel sale report");
+    bannerBlankBorderTextCen ("4. Multiple day report");
 
-		case ('3'):
-			checkErrorIn = 0;
-			PersonnelSaleReportInputProcess();
-			break;
+    if ( checkErrorIn ) {
+        for ( int i = 0; i < 3; ++i ) {
+            bannerBlankBorder ();
+        }
+        bannerBlankBorderTextCen ("Invalid input. Please try again !!!!");
+        for ( int i = 0; i < 10; ++i ) {
+            bannerBlankBorder ();
+        }
+    } else {
+        for ( int i = 0; i < 14; ++i ) {
+            bannerBlankBorder ();
+        }
+    }
 
-		case ('4'):
-			checkErrorIn = 0;
-			//MultipleDayReportInterface();
-			break;
+    for ( int i = 0; i < 13; i++ ) {
+        bannerBlankBorder ();
+    }
 
-		case ('N'):
-			terminate();
-			break;
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
+    bannerFullBorder ();
 
-		case ('B'):
-			checkErrorIn = 0;
-			switchHub();
-			break;
+    /*-----User input------*/
 
-		default:
-			checkErrorIn = 1;
-			reportSwitchHub();
-	}
+    bannerUserInput ();
+    char UserIn;
+    scanf (" %c", &UserIn);
+
+    switch ( toupper (UserIn)) {
+
+        case ('1'):
+            checkErrorIn = 0;
+            OneDayReportInputProcess ();
+            break;
+
+        case ('2'):
+            checkErrorIn = 0;
+            MonthlyReportInterface ();
+            break;
+
+        case ('3'):
+            checkErrorIn = 0;
+            PersonnelSaleReportInputProcess ();
+            break;
+
+        case ('4'):
+            checkErrorIn = 0;
+            //MultipleDayReportInterface();
+            break;
+
+        case ('B'):
+            switchHub ();
+
+        case ('Q'):
+            terminate ();
+
+        default:
+            checkErrorIn = 1;
+            reportSwitchHub ();
+    }
+}
+
+void forecastSwitchHub () {
+    screenClear ();
+
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Forecast Hub");
+    bannerBlankBorderTextCen ("--------------------");
+    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerFullBorder ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("1. One day report");
+    bannerBlankBorderTextCen ("2. Monthly report");
+    bannerBlankBorderTextCen ("3. Personnel sale report");
+    bannerBlankBorderTextCen ("4. Multiple day report");
+
+    if ( checkErrorIn ) {
+        for ( int i = 0; i < 3; ++i ) {
+            bannerBlankBorder ();
+        }
+        bannerBlankBorderTextCen ("Invalid input. Please try again !!!!");
+        for ( int i = 0; i < 10; ++i ) {
+            bannerBlankBorder ();
+        }
+    } else {
+        for ( int i = 0; i < 14; ++i ) {
+            bannerBlankBorder ();
+        }
+    }
+
+    for ( int i = 0; i < 13; i++ ) {
+        bannerBlankBorder ();
+    }
+
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
+    bannerFullBorder ();
+
+    /*-----User input------*/
+
+    bannerUserInput ();
+    char UserIn;
+    scanf (" %c", &UserIn);
+
+    switch ( toupper (UserIn)) {
+
+        case ('1'):
+            checkErrorIn = 0;
+            OneDayReportInputProcess ();
+            break;
+
+        case ('2'):
+            checkErrorIn = 0;
+            MonthlyReportInterface ();
+            break;
+
+        case ('3'):
+            checkErrorIn = 0;
+            PersonnelSaleReportInputProcess ();
+            break;
+
+        case ('4'):
+            checkErrorIn = 0;
+            //MultipleDayReportInterface();
+            break;
+
+        case ('B'):
+            switchHub ();
+
+        case ('Q'):
+            terminate ();
+
+        default:
+            checkErrorIn = 1;
+            reportSwitchHub ();
+    }
 }
 
 void OneDayReportInputProcess () {
@@ -539,134 +620,120 @@ void OneDayReportInterface () {
 
 /*---------------------------------------------------------------Monthly Report----------------------------------------------------------------------*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void displayMonthlyReport();
-void displayMonthlyReport(){
-	screenClear();
-	bannerFullBorder();
-	printf(":: %-68s |             Revenue            |              Profit            ::\n", "Month");
-	bannerFullBorder();
-	for (int i = 0; i < 12; ++i)
-	{
-		printf(":: %-68s | %30.2lf | %30.2lf ::\n", RevenueByMonth[i].monthName, RevenueByMonth[i].totalPrice, RevenueByMonth[i].totalProfit);
-	}
-	for (int i = 0; i < 23; ++i)
-	{
-		printf("::                                                                      |                                |                                ::\n");
-	}
-	bannerBlankBorderTextCen("'B' to Check Report Menu ");
-	bannerFullBorder();
+void displayMonthlyReport ();
+
+void displayMonthlyReport () {
+    screenClear ();
+    bannerFullBorder ();
+    printf (":: %-68s |             Revenue            |              Profit            ::\n", "Month");
+    bannerFullBorder ();
+    for ( int i = 0; i < 12; ++i ) {
+        printf (":: %-68s | %30.2lf | %30.2lf ::\n", RevenueByMonth[i].monthName, RevenueByMonth[i].totalPrice,
+                RevenueByMonth[i].totalProfit);
+    }
+    for ( int i = 0; i < 23; ++i ) {
+        printf ("::                                                                      |                                |                                ::\n");
+    }
+    bannerBlankBorderTextCen ("'B' to Check Report Menu ");
+    bannerFullBorder ();
 }
 
-void MonthlyReportInterface(){
-	screenClear();
-	unsigned int year;
-	for (int i = 0; i >= 0; ++i)
-	{
-		printf("Enter year: ");
-		scanf("%u", &year);
-		monthlyReport(year);
-		displayMonthlyReport();
-	}
+void MonthlyReportInterface () {
+    screenClear ();
+    unsigned int year;
+    for ( int i = 0; i >= 0; ++i ) {
+        printf ("Enter year: ");
+        scanf ("%u", &year);
+        monthlyReport (year);
+        displayMonthlyReport ();
+    }
 }
 
 /*---------------------------------------------------------------Personnel Report----------------------------------------------------------------------*/
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void PersonnelSaleReportInputProcess(){
-	/*-----Initial interface-----*/
-	screenClear();
-	bannerFullBorder();
-	bannerBlankBorderTextCen("Personeel Sale Report");
-	bannerFullBorder();
-	for (int i = 0; i < 17; ++i)
-	{
-		bannerBlankBorder();
-	}
-	bannerBlankBorderTextCen("Please enter year...");
-	bannerBlankBorderTextCen("Example --> 2017");
-	for (int i = 0; i < 17; ++i)
-	{
-		bannerBlankBorder();
-	}
-	bannerFullBorder();
-	/*--------------------------*/
-	unsigned int year;
-	//Input
-	printf(">>> ");
-	scanf("%u", &year);
-	//Process
-	personnelSaleReport(year);
-	PersonnelSaleReportInterface();
+void PersonnelSaleReportInputProcess () {
+    /*-----Initial interface-----*/
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Personeel Sale Report");
+    bannerFullBorder ();
+    for ( int i = 0; i < 17; ++i ) {
+        bannerBlankBorder ();
+    }
+    bannerBlankBorderTextCen ("Please enter year...");
+    bannerBlankBorderTextCen ("Example --> 2017");
+    for ( int i = 0; i < 17; ++i ) {
+        bannerBlankBorder ();
+    }
+    bannerFullBorder ();
+    /*--------------------------*/
+    unsigned int year;
+    //Input
+    printf (">>> ");
+    scanf ("%u", &year);
+    //Process
+    personnelSaleReport (year);
+    PersonnelSaleReportInterface ();
 }
 
-void displayPersonnelSaleReport(int page){
-	screenClear();
-	int allPage = (int)ceil(RecordCount.personnel/34)+1;
-	bannerFullBorder();
-	printf(":: %-14s | %-35s | %-35s | %19s | %19s ::\n", "Personnel ID", "Firstname", "Lastname", "Revenue", "Profit");
-	bannerFullBorder();
-	if (page == allPage)
-	{
-		for (int i = (page-1)*34; i < RecordCount.personnel; ++i)
-		{
-			printf(":: %-14s | %-35s | %-35s | %19.2lf | %19.2lf ::\n", RevenueByPersonnel[i].id, RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice, RevenueByPersonnel[i].totalProfit);
-			//bannerBlankBorder();
-		}
-		//display remaining line as bannerBlankBorder()
-		for (int i = 0; i < 34-(RecordCount.personnel%34); ++i)
-		{
-			printf(":: %-14s | %-35s | %-35s | %19s | %19s ::\n", "", "", "", "", "");
-		}
-	}
-	else
-	{
-		for (int i = (page-1)*34; i < page*34/*(34*page)*/; ++i)
-		{
-			printf(":: %-14s | %-35s | %-35s | %19.2lf | %19.2lf ::\n", RevenueByPersonnel[i].id, RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice, RevenueByPersonnel[i].totalProfit);
-			//bannerBlankBorder();
-		}
-	}
-	bannerBlankBorderTextCen("'N' to enter new year | Enter Page | 'B' to back to Check Report Menu");
-	printf("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n", page, allPage);
-	bannerFullBorder();
+void displayPersonnelSaleReport (int page) {
+    screenClear ();
+    int allPage = (int) ceil (RecordCount.personnel / 34) + 1;
+    bannerFullBorder ();
+    printf (":: %-14s | %-35s | %-35s | %19s | %19s ::\n", "Personnel ID", "Firstname", "Lastname", "Revenue",
+            "Profit");
+    bannerFullBorder ();
+    if ( page == allPage ) {
+        for ( int i = (page - 1) * 34; i < RecordCount.personnel; ++i ) {
+            printf (":: %-14s | %-35s | %-35s | %19.2lf | %19.2lf ::\n", RevenueByPersonnel[i].id,
+                    RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice,
+                    RevenueByPersonnel[i].totalProfit);
+            //bannerBlankBorder();
+        }
+        //display remaining line as bannerBlankBorder()
+        for ( int i = 0; i < 34 - (RecordCount.personnel % 34); ++i ) {
+            printf (":: %-14s | %-35s | %-35s | %19s | %19s ::\n", "", "", "", "", "");
+        }
+    } else {
+        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
+            printf (":: %-14s | %-35s | %-35s | %19.2lf | %19.2lf ::\n", RevenueByPersonnel[i].id,
+                    RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice,
+                    RevenueByPersonnel[i].totalProfit);
+            //bannerBlankBorder();
+        }
+    }
+    bannerBlankBorderTextCen ("'N' to enter new year | Enter Page | 'B' to back to Check Report Menu");
+    printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
+            page, allPage);
+    bannerFullBorder ();
 }
 
-void PersonnelSaleReportInterface(){
-	screenClear();
-	char handling;
-	int pageIn = 1, CheckPage;
-	displayPersonnelSaleReport(1);
-	for (int i = 0; i >= 0; ++i)
-	{
-		printf(">>> ");
-		scanf(" %c", &handling);
-		if ((handling == 'B') || (handling == 'b'))
-		{
-			reportSwitchHub();
-		}
-		else if ((handling == 'N') || (handling == 'n'))
-		{
-			PersonnelSaleReportInputProcess();
-		}
-		else if (isdigit(handling))
-		{
-			CheckPage = (int)handling - 48;
-			if ((CheckPage <= ((int)ceil(RecordCount.category/34)+1)) && (CheckPage >= 1))
-			{
-				pageIn = (int)handling - 48;
-				displayPersonnelSaleReport(pageIn);
-			}
-			else
-			{
-				displayPersonnelSaleReport(pageIn);
-				printf("Oops! Page not found, Please enter correct page: ");
-			}
-		}
-		else
-		{
-			displayPersonnelSaleReport(pageIn);
-			printf("Oops! Input is valid, Please enter correctly: ");
-		}
-	}
+void PersonnelSaleReportInterface () {
+    screenClear ();
+    char handling;
+    int pageIn = 1, CheckPage;
+    displayPersonnelSaleReport (1);
+    for ( int i = 0; i >= 0; ++i ) {
+        printf (">>> ");
+        scanf (" %c", &handling);
+        if ((handling == 'B') || (handling == 'b')) {
+            reportSwitchHub ();
+        } else if ((handling == 'N') || (handling == 'n')) {
+            PersonnelSaleReportInputProcess ();
+        } else if ( isdigit (handling)) {
+            CheckPage = (int) handling - 48;
+            if ((CheckPage <= ((int) ceil (RecordCount.category / 34) + 1)) && (CheckPage >= 1)) {
+                pageIn = (int) handling - 48;
+                displayPersonnelSaleReport (pageIn);
+            } else {
+                displayPersonnelSaleReport (pageIn);
+                printf ("Oops! Page not found, Please enter correct page: ");
+            }
+        } else {
+            displayPersonnelSaleReport (pageIn);
+            printf ("Oops! Input is valid, Please enter correctly: ");
+        }
+    }
 }
 
 /*
