@@ -391,7 +391,7 @@ void OneDayReportInterface();
 void OneDayReportInputProcess();
 void displayOneDayReport(int page);
 
-//void MonthlyReportInterface();
+void MonthlyReportInterface();
 //void PersonnelSaleReportInterface();
 //void MultipleDayReportInterface();
 
