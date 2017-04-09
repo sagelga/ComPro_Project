@@ -437,6 +437,13 @@ void forecastProgram();
 
 void forecastPrint();
 
+void forecastSwitchHub ();
+void ShowTomorrowForecasting();
+void ShowNextMonthForecasting();
+void displayNextMonthForecasting();
+void displayTomorrowForecasting(int page);
+//
+
 //-------------------------------------------------------------------------------------------------------
 // # - File: SUPPORT.c
 //-------------------------------------------------------------------------------------------------------

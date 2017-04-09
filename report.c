@@ -753,7 +753,203 @@ void MultipleDayReportInterface() {
     }
 }
 
+/*---------------------------------------------------------------Forcasting----------------------------------------------------------------------*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+int ErrorINput = 0;
+void forecastSwitchHub (){
+    screenClear();
+    bannerFullBorder();
+    bannerBlankBorderTextCen("Sale Forecasting");
+    bannerFullBorder();
+    if (ErrorINput)
+    {
+        for (int i = 0; i < 3; ++i)
+        {
+            bannerBlankBorder();
+        }
+        bannerBlankBorderTextCen("Invalid input. Please try again !!!!");
+        for (int i = 0; i < 10; ++i)
+        {
+            bannerBlankBorder();
+        }
+    }
+    else
+    {
+        for (int i = 0; i < 14; ++i)
+        {
+            bannerBlankBorder();
+        }
+    }
+    bannerBlankBorderTextCen("Choose a forecasting");
+    bannerBlankBorder();
+    bannerBlankBorderTextCen("1. Tomorrow forecasting");
+    bannerBlankBorderTextCen("2. Next month forecasting");
+    for (int i = 0; i < 14; i++)
+    {
+        bannerBlankBorder();
+    }
+    bannerBlankBorderTextCen ("  Type 'N' to quit  |  Type in your response  |  Type 'B' to logoff");
+    bannerFullBorder();
+
+    /*-----User input------*/
+    char UserIn;
+    bannerUserInput ();
+    scanf(" %c", &UserIn);
+    switch (toupper(UserIn)){
+        case ('1'):
+            ErrorINput = 0;
+            ShowTomorrowForecasting();
+            break;
+
+        case ('2'):
+            ErrorINput = 0;
+            ShowNextMonthForecasting();
+            break;
+
+        case ('N'):
+            terminate();
+            break;
+
+        case ('B'):
+            ErrorINput = 0;
+            switchHub();
+            break;
+
+        default:
+            ErrorINput = 1;
+            forecastSwitchHub();
+    } 
+}
+
+/*---------------------------------------------------------------Tomorrow Forcasting----------------------------------------------------------------------*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void displayTomorrowForecasting(int page) {
+    screenClear ();
+    int allPage = (int) ceil (RecordCount.category / 34) + 1;
+    double different;
+    char sign;
+    bannerFullBorder ();
+    printf(":: %39s |                   %-21s |                 %-23s | %8s ::\n", "", "TODAY", "TOMORROW", "");
+    printf("::                 %-23s |       %-12s |        %-11s |       %-12s |        %-11s |     %-4s ::\n", "Category", "Revenue", "Profit", "Revenue", "Profit", "%");
+    //printf (":: %-68s |             Revenue            |              Profit            ::\n", "Category Name");
+    bannerFullBorder ();
+
+    if ( page == allPage ) {
+        for ( int i = (page - 1) * 34; i < RecordCount.category; ++i ) {
+            if (RevenueByCategory[i].totalProfit > SaleForecastByCategory[i].totalProfit)
+            {
+                sign = '-';
+            }
+            else
+            {
+                sign = '+';
+            }
+            different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
+            printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, different);
+        }
+        for ( int i = 0; i < 34 - (RecordCount.category % 34); ++i ) {
+            printf(":: %-39s | %18s | %18s | %18s | %18s | %8s ::\n", "", "", "", "", "", "");
+        }
+    } else {
+        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
+            if (RevenueByCategory[i].totalProfit > SaleForecastByCategory[i].totalProfit)
+            {
+                sign = '-';
+            }
+            else
+            {
+                sign = '+';
+            }
+            different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
+            printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, different);
+        }
+    }
+    bannerBlankBorderTextCen ("Enter Page(e.g. 1, 2, 3) | 'B' to Forecasting Menu");
+    printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
+            page, allPage);
+    bannerFullBorder ();
+}
+
+void ShowTomorrowForecasting(){
+    time_t today = time(NULL);
+    int date, month, year;
+    toDateMonthYear(today, &date, &month, &year);
+    oneDayReport(date, month, year);
+    tomorrowSaleForecast();//Execute Forecast processing.
+
+    char handling;
+    int pageIn = 1, CheckPage;
+    displayTomorrowForecasting (1);
+    for ( int i = 0; i >= 0; ++i ) {
+        printf (">>> ");
+        scanf (" %c", &handling);
+        if ((handling == 'B') || (handling == 'b')) {
+            forecastSwitchHub();
+        } else if ( isdigit (handling)) {
+            CheckPage = (int) handling - 48;
+            if ((CheckPage <= ((int) ceil (RecordCount.category / 34) + 1)) && (CheckPage >= 1)) {
+                pageIn = (int) handling - 48;
+                displayTomorrowForecasting (pageIn);
+            } else {
+                displayTomorrowForecasting (pageIn);
+                printf ("Oops! Page not found, Please enter correct page: ");
+            }
+        } else {
+            displayTomorrowForecasting (pageIn);
+            printf ("Oops! Input is valided, Please enter correctly: ");
+        }
+    }
+}
+/*---------------------------------------------------------------Next Month Forcasting----------------------------------------------------------------------*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ShowNextMonthForecasting(){
+    nextMonthSaleForecast();//Execute Forecast processing.
+    
+    char handling;
+    int pageIn = 1, CheckPage;
+    displayNextMonthForecasting ();
+    for ( int i = 0; i >= 0; ++i ) {
+        printf (">>> ");
+        scanf (" %c", &handling);
+        if ((handling == 'B') || (handling == 'b')) {
+            forecastSwitchHub();
+        } else {
+            displayNextMonthForecasting (pageIn);
+            printf ("Oops! Input is valided, Please enter correctly: ");
+        }
+    }
+}
+
+void displayNextMonthForecasting() {
+    screenClear ();
+
+    time_t today = time(NULL);
+    int date, month, year;
+    toDateMonthYear(today, &date, &month, &year);
+    char thisMonthName[10];
+    strcpy(thisMonthName, monthName[month-1]);
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Next Month Forecasting");
+    bannerFullBorder ();
+    for (int i = 0; i < 14; ++i)
+    {
+        bannerBlankBorder ();
+    }
+    printf(":: %67s %-62s %-4d ::\n", "This month:", thisMonthName, year);
+    printf(":: %67s %-66.2lf ::\n", "- Revenue:", RevenueByMonth[month-1].totalPrice);
+    printf(":: %67s %-66.2lf ::\n", "- Profit:", RevenueByMonth[month-1].totalProfit);
+    bannerBlankBorder ();
+    printf(":: %67s %-62s %-4d ::\n", "Next month:", SaleForecastByMonth.monthName, year);
+    printf(":: %67s %-66.2lf ::\n", "- Revenue:", SaleForecastByMonth.totalPrice);
+    printf(":: %67s %-66.2lf ::\n", "- Profit:", SaleForecastByMonth.totalProfit);
+    for (int i = 0; i < 14; ++i)
+    {
+        bannerBlankBorder ();
+    }
+    bannerBlankBorderTextCen ("'B' to Forecasting Menu");
+    bannerFullBorder ();
+}
 /*
  *                                             All hail the god..
  *  -----------------------------------------------------------------------------------------------------------------------

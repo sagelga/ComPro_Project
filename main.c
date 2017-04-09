@@ -82,7 +82,7 @@ void switchHub () {
             break;
 
         case ('7'):
-           // forecastSwitchHub ();
+           forecastSwitchHub ();
             break;
 
         case ('8'):
