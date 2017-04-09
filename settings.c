@@ -126,7 +126,7 @@ void settingCat () {
     int i = 0;
     char text1[300] = "", text2[300] = "", text3[300] = "", text4[300] = "";
 
-    for ( int i = 0; i < 90; i++ ) {
+    for ( int i = 0; i < 89; i++ ) {
         screenClear ();
 
         strcpy(text1," ");

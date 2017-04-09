@@ -368,8 +368,14 @@ void annualForecast(){
 	
 }
 
-
 */
+
+void reportDailyForecastInterface(){
+
+}
+
+
+
 
 /*
  *                                             All hail the god..
