@@ -94,10 +94,10 @@ void bannerCen () {
 void bannerCenBorder (char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4) {
     // This function will print out the official banner.
     printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf (":: %54s ██╔══██╗██╔═══██╗██╔════╝ %53s ::\n", bannerLine1, bannerLine2);
+    printf (":: %-54s ██╔══██╗██╔═══██╗██╔════╝ %53s ::\n", bannerLine1, bannerLine2);
     printf ("::                                                        ██████╔╝██║   ██║███████╗                                                       ::\n");
     printf ("::                                                        ██╔═══╝ ██║   ██║╚════██║                                                       ::\n");
-    printf (":: %54s ██║     ╚██████╔╝███████║ %53s ::\n", bannerLine3, bannerLine4);
+    printf (":: %-54s ██║     ╚██████╔╝███████║ %53s ::\n", bannerLine3, bannerLine4);
     printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ╚═╝      ╚═════╝ ╚══════╝ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 

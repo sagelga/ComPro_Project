@@ -12,6 +12,7 @@ int main () { // This program will run first. POS Interface configuration will b
 
 void switchHub () {
 
+    /*
     if ( Session.user.role == 1 ) {
         //switchHubManager ();
     } else if ( Session.user.role == 2 ) {
@@ -25,15 +26,24 @@ void switchHub () {
 
         deauthenticate ();
     }
-
+*/
     screenClear ();
 
+    char text[140];
     char text1[140];
-    strcpy (text1, "Welcome back ");
-    strcat (text1, Session.user.username);
-    strcat (text1, "!");
 
-    bannerInverse (text1, "", "", "You are now connected to the POS system");
+    if ( Session.user.role == 0 ) {
+        strcpy (text1, "admin");
+    } else if ( Session.user.role == 1 ) {
+        strcpy (text1, "manager");
+    } else if ( Session.user.role == 2 ) {
+        strcpy (text1, "sale");
+    }
+
+
+    sprintf (text, "Welcome back %s @ %s!", Session.user.firstname,text1);
+
+    bannerInverse (text, "", "", Setting.storeName);
 
     bannerBlankBorderTextCen ("What do you want to do?");
     bannerBlankBorder ();

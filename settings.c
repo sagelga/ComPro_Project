@@ -25,7 +25,15 @@ void settingsSwitchHub () {
     bannerBlankBorderTextCen ("3. Change store name");
     bannerBlankBorderTextCen ("4. Change store address");
 
-    for ( int i = 0; i < 21; i++ )
+    for ( int i = 0; i < 2; i++ )
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("Credits");
+    bannerFullBorderSection ();
+    bannerBlankBorderTextCen ("5. List of contributors");
+    bannerBlankBorderTextCen ("6. Cat dance");
+
+    for ( int i = 0; i < 15; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -34,7 +42,7 @@ void settingsSwitchHub () {
     char flag;
     scanf (" %c", &flag);
 
-    switch ( flag ) {
+    switch ( toupper(flag) ) {
 
         case ('1'):
             return;
@@ -48,13 +56,11 @@ void settingsSwitchHub () {
         case ('4'):
             return;
 
-        case ('b'):
-            switchHub ();
+        case ('5'):
+            settingContributorList ();
         case ('B'):
             switchHub ();
 
-        case ('n'):
-            terminate ();
         case ('N'):
             terminate ();
 
@@ -65,8 +71,56 @@ void settingsSwitchHub () {
     }
 }
 
-void settingUpdateStoreName (char *storeName) {
+void settingUpdateUsernameInterface(){
 
+}
+
+void settingUpdatePasswordInterface(){
+
+}
+
+
+void settingUpdateStoreNameInterface(){
+}
+
+void settingUpdateStoreAddressInterface(){
+}
+
+void settingContributorList(){
+    screenClear ();
+
+    bannerCenBorder ("Educational purpose only","Redistribution of project is not allowed","Created by the 1st year student IT KMITL 14","POS Version 1.0");
+    bannerBlankBorder ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Lists of team members");
+    bannerFullBorderSection ();
+    bannerBlankBorderTextCen ("Kunanon   Srisuntiroj   @sagelga      59070022");
+    bannerBlankBorderTextCen ("Thanawat  Laodkaew      @skydddoogg   59070071");
+    bannerBlankBorderTextCen ("Noppanut  Ploywong      @noppanut15   59070082");
+    bannerBlankBorderTextCen ("Vasanchai Prakobkij     @59070156     59070156");
+    bannerBlankBorderTextCen ("Weerakorn Pongpum                     59070163");
+
+    for (int i = 2;i>0;i--)
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("Over 5000 lines of pure C language has been neatly crafted with love and passion <3");
+    bannerBlankBorderTextCen ("See our GitHub Repository : https://github.com/sagelga/ComPro_Project");
+
+    for (int i = 19;i>0;i--)
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("Redirecting you back in 10 seconds...");
+    bannerFullBorder ();
+
+    delay (10);
+
+    // Show picture of us in ASCII ;)
+}
+
+void settingCat(){
+
+}
+void settingUpdateStoreName (char *storeName) {
     strcpy (Setting.storeName, storeName);
     settingFileWrite ();    // Save to a Database file
 
