@@ -22,39 +22,41 @@ void inventorySwitchHub () {
     for ( int i = 0; i < 23; i++ ) {
         bannerBlankBorder ();
     }
-    bannerBlankBorderTextCen ("or type 'N' to return back to the hub");
+    bannerBlankBorderTextCen ("or type 'B' to return back to the hub");
     bannerFullBorder ();
     bannerUserInput ();
 
     char userInput;
     scanf (" %c", &userInput);
 
-    switch ( userInput ) {
+    switch ( toupper(userInput) ) {
         case ('1'):
             inventoryDatabaseInterface ();
-            return;
+            break;
         case ('2'):
             inventoryAdd();
-            return;
+            break;
         case ('3'):
             //inventoryEdit();
-            return;
+            break;
         case ('4'):
             inventoryRemove();
-            return;
+            break;
         case ('5'):
             categoryDatabaseInterface();
-            return;
+            break;
         case ('6'):
             categoryAdd();
-            return;
+            break;
         case ('7'):
             //categoryEdit();
-            return;
+            break;
+        case ('B'):
+            switchHub();
+            break;
         default:
             printf ("Your input is invalid. Please try again...");
             inventorySwitchHub ();
-            return;
     }
 }
 

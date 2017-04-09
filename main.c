@@ -45,17 +45,15 @@ void switchHub() {
 
     //These choice will be removed, when the program detects the permission level.
     bannerBlankBorderTextCen ("1. Go to POS System");
-    bannerBlankBorderTextCen ("2. Check Inventory/Category Database");
+    bannerBlankBorderTextCen ("2. Check Inventory Database");
     bannerBlankBorderTextCen ("3. Check Customer Database");
-    bannerBlankBorderTextCen ("4. Check Category Database");
-    bannerBlankBorderTextCen ("5. Check Promotion Database");
-    bannerBlankBorderTextCen ("6. Check Purchase Database");
-    bannerBlankBorderTextCen ("7. Check Transaction Database");
-    bannerBlankBorderTextCen ("8. Settings");
-    bannerBlankBorderTextCen ("9. Check Report");
+    bannerBlankBorderTextCen ("4. Check Promotion Database");
+    bannerBlankBorderTextCen ("5. Check Report");
+    bannerBlankBorderTextCen ("6. Sales Forecasting");
+    bannerBlankBorderTextCen ("7. Settings");
     bannerBlankBorder ();
 
-    for (int i = 20;i>0;i--)
+    for (int i = 21;i>0;i--)
         bannerBlankBorder();
 
     bannerBlankBorderTextCen ("  Type 'N' to quit  |  Type in your response  |  Type 'B' to logoff");
@@ -67,47 +65,41 @@ void switchHub() {
 
     screenClear ();
 
-    switch (flags) {
+    switch (toupper(flags)) {
         case ('1'): // Sign In / Sign Out
             cashierInterface ();
+            break;
 
         case ('2'):// Go to POS Systems Interface (for cashier)
             inventorySwitchHub ();
+            break;
 
         case ('3'):// Go to check Inventory Database
             customerSwitchHub ();
+            break;
 
         case ('4'):
-            categorySwitchHub ();
+            promotionSwitchHub ();
+            break;
 
         case ('5'):
-            promotionSwitchHub ();
+            reportSwitchHub();
+            break;
 
         case ('6'):
-            purchaseDatabase ();
+            break;
 
         case ('7'):
-            transactionSwitchHub ();
-
-        case ('8'):
             settingsSwitchHub ();
-            return;
+            break;
 
-        case ('9'):
-            reportSwitchHub();
-            return;
-
-        case ('n'):
-            terminate();
-        
         case ('N'):
             terminate();
-
-        case ('b'):
-            deauthenticate ();
+            break;
 
         case ('B'):
             deauthenticate ();
+            break;
 
         default:
             // The input is invalid. Trying to route back to ask for a valid input
