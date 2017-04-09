@@ -3,13 +3,13 @@
 
 void settingsSwitchHub () {
     screenClear ();
-    bannerFullBorder();
+    bannerFullBorder ();
     bannerBlankBorderTextCen ("Settings");
-    bannerFullBorder();
+    bannerFullBorder ();
 
     bannerBlankBorderTextCen ("What do you want to do?");
 
-    for (int i = 0;i<2;i++)
+    for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Authentication");
@@ -17,7 +17,7 @@ void settingsSwitchHub () {
     bannerBlankBorderTextCen ("1. Change Username");
     bannerBlankBorderTextCen ("2. Change Password");
 
-    for (int i = 0;i<2;i++)
+    for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Storefront");
@@ -25,16 +25,16 @@ void settingsSwitchHub () {
     bannerBlankBorderTextCen ("3. Change store name");
     bannerBlankBorderTextCen ("4. Change store address");
 
-    for (int i = 0;i<21;i++)
+    for ( int i = 0; i < 21; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
     char flag;
-    scanf(" %c", &flag);
+    scanf (" %c", &flag);
 
-    switch(flag){
+    switch ( flag ) {
 
         case ('1'):
             return;
@@ -65,26 +65,26 @@ void settingsSwitchHub () {
     }
 }
 
-void settingUpdateStoreName(char *storeName){
+void settingUpdateStoreName (char *storeName) {
 
-    strcpy(Setting.storeName, storeName);
-    settingFileWrite();    // Save to a Database file
+    strcpy (Setting.storeName, storeName);
+    settingFileWrite ();    // Save to a Database file
 
 }
 
-void settingUpdateAddress(char *storeAddress){
-    strcpy(Setting.storeAddress, storeAddress);
-    settingFileWrite();    // Save to a Database file
+void settingUpdateAddress (char *storeAddress) {
+    strcpy (Setting.storeAddress, storeAddress);
+    settingFileWrite ();    // Save to a Database file
 }
 
-void settingUpdatePriceToPoint(double priceToPoint){
+void settingUpdatePriceToPoint (double priceToPoint) {
     Setting.priceToPoint = priceToPoint;
-    settingFileWrite();    // Save to a Database file
+    settingFileWrite ();    // Save to a Database file
 }
 
-void settingUpdatePointToPrice(double pointToPrice){
+void settingUpdatePointToPrice (double pointToPrice) {
     Setting.pointToPrice = pointToPrice;
-    settingFileWrite();    // Save to a Database file
+    settingFileWrite ();    // Save to a Database file
 }
 
 /*

@@ -1,153 +1,153 @@
 // Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
 
-void screenAdjust(){
+void screenAdjust () {
     screenClear ();
 
     bannerCenBorder ("", "", "", "POS Version : 1.0");
 
-    for (int i = 0;i<3;i++)
-        bannerBlankBorder();
-    
-    bannerBlankBorderTextCen("Please configure the terminal screen to optimum size.");
+    for ( int i = 0; i < 3; i++ )
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("Please configure the terminal screen to optimum size.");
     bannerBlankBorderTextCen ("Optimal screen size : 140 x 40 character");
-    for (int i = 0;i<26;i++)
-        bannerBlankBorder();
-    
-    bannerBlankBorderTextCen("Type 'Y' to continue...");
-    bannerFullBorder();
+    for ( int i = 0; i < 26; i++ )
+        bannerBlankBorder ();
 
-    bannerUserInput();
+    bannerBlankBorderTextCen ("Type 'Y' to continue...");
+    bannerFullBorder ();
+
+    bannerUserInput ();
     char flags;
-    scanf(" %c",&flags);
+    scanf (" %c", &flags);
 
-    switch (toupper(flags)){
+    switch ( toupper (flags)) {
 
-        case('Y'):
-            screenClear();
-            authInterface();
+        case ('Y'):
+            screenClear ();
+            authInterface ();
             return;
 
-        case('N'):
-            screenClear();
-            terminate();
+        case ('N'):
+            screenClear ();
+            terminate ();
             return;
 
         default:
-            screenClear();
-            screenAdjust();
+            screenClear ();
+            screenAdjust ();
             return;
     }
 }
 
-void terminate(){
+void terminate () {
     // Type in the text that will be displayed after the user wants to terminate the program
-    screenClear();
+    screenClear ();
 
-    bannerFullBorder();
-    bannerBlankBorderTextCen("You about to terminate the POS system...");
-    bannerFullBorder();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("You about to terminate the POS system...");
+    bannerFullBorder ();
 
-    printf("Shutting the program down.... Please be patient!\n");
-    printf("Have a good luck. Bye Bye!\n");
+    printf ("Shutting the program down.... Please be patient!\n");
+    printf ("Have a good luck. Bye Bye!\n");
     delay (3);
     screenClear ();
-    exit(0);
-} 
+    exit (0);
+}
 
 
-void screenClear(){
+void screenClear () {
     // This function will clean the screen, and the other function will reprint the page.
-    system("clear");
+    system ("clear");
 }
 
-void banner(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
+void banner (char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4) {
     // This function will print out the official banner.
-    printf(":: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf(":: ██╔══██╗██╔═══██╗██╔════╝ :: %-105s ::\n", bannerLine1);
-    printf(":: ██████╔╝██║   ██║███████╗ :: %-105s ::\n", bannerLine2);
-    printf(":: ██╔═══╝ ██║   ██║╚════██║ :: %-105s ::\n", bannerLine3);
-    printf(":: ██║     ╚██████╔╝███████║ :: %-105s ::\n", bannerLine4);
-    printf(":: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf (":: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf (":: ██╔══██╗██╔═══██╗██╔════╝ :: %-105s ::\n", bannerLine1);
+    printf (":: ██████╔╝██║   ██║███████╗ :: %-105s ::\n", bannerLine2);
+    printf (":: ██╔═══╝ ██║   ██║╚════██║ :: %-105s ::\n", bannerLine3);
+    printf (":: ██║     ╚██████╔╝███████║ :: %-105s ::\n", bannerLine4);
+    printf (":: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
-void bannerInverse(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
+void bannerInverse (char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4) {
     // This function will print out the official banner.
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ ::\n");
-    printf(":: %105s :: ██╔══██╗██╔═══██╗██╔════╝ ::\n", bannerLine1);
-    printf(":: %105s :: ██████╔╝██║   ██║███████╗ ::\n", bannerLine2);
-    printf(":: %105s :: ██╔═══╝ ██║   ██║╚════██║ ::\n", bannerLine3);
-    printf(":: %105s :: ██║     ╚██████╔╝███████║ ::\n", bannerLine4);
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ╚═╝      ╚═════╝ ╚══════╝ ::\n");
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ ::\n");
+    printf (":: %105s :: ██╔══██╗██╔═══██╗██╔════╝ ::\n", bannerLine1);
+    printf (":: %105s :: ██████╔╝██║   ██║███████╗ ::\n", bannerLine2);
+    printf (":: %105s :: ██╔═══╝ ██║   ██║╚════██║ ::\n", bannerLine3);
+    printf (":: %105s :: ██║     ╚██████╔╝███████║ ::\n", bannerLine4);
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ╚═╝      ╚═════╝ ╚══════╝ ::\n");
 }
 
-void bannerCen(){
+void bannerCen () {
     // This function will print out the official banner.
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██╔══██╗██╔═══██╗██╔════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╔╝██║   ██║███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██╔═══╝ ██║   ██║╚════██║ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██║     ╚██████╔╝███████║ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██╔══██╗██╔═══██╗██╔════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╔╝██║   ██║███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██╔═══╝ ██║   ██║╚════██║ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██║     ╚██████╔╝███████║ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ╚═╝      ╚═════╝ ╚══════╝ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
-void bannerCenBorder(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
+void bannerCenBorder (char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4) {
     // This function will print out the official banner.
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf(":: %54s ██╔══██╗██╔═══██╗██╔════╝ %53s ::\n",bannerLine1,bannerLine2);
-    printf("::                                                        ██████╔╝██║   ██║███████╗                                                       ::\n");
-    printf("::                                                        ██╔═══╝ ██║   ██║╚════██║                                                       ::\n");
-    printf(":: %54s ██║     ╚██████╔╝███████║ %53s ::\n",bannerLine3,bannerLine4);
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ╚═╝      ╚═════╝ ╚══════╝ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╗  ██████╗ ███████╗ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf (":: %54s ██╔══██╗██╔═══██╗██╔════╝ %53s ::\n", bannerLine1, bannerLine2);
+    printf ("::                                                        ██████╔╝██║   ██║███████╗                                                       ::\n");
+    printf ("::                                                        ██╔═══╝ ██║   ██║╚════██║                                                       ::\n");
+    printf (":: %54s ██║     ╚██████╔╝███████║ %53s ::\n", bannerLine3, bannerLine4);
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ╚═╝      ╚═════╝ ╚══════╝ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 }
 
-void bannerCenStrikethrough(char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4){
+void bannerCenStrikethrough (char *bannerLine1, char *bannerLine2, char *bannerLine3, char *bannerLine4) {
     // This function will print out the official banner.
-    printf("::                                                        ██████╗  ██████╗ ███████╗                                                        ::\n");
-    printf("::%55s  ██╔══██╗██╔═══██╗██╔════╝ %55s::\n",bannerLine1,bannerLine2);
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╔╝██║   ██║███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██╔═══╝ ██║   ██║╚════██║ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf("::%55s ██║     ╚██████╔╝███████║ %55s::\n",bannerLine3,bannerLine4);
-    printf("::                                                        ╚═╝      ╚═════╝ ╚══════╝                                                        ::\n");
+    printf ("::                                                        ██████╗  ██████╗ ███████╗                                                        ::\n");
+    printf ("::%55s  ██╔══██╗██╔═══██╗██╔════╝ %55s::\n", bannerLine1, bannerLine2);
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██████╔╝██║   ██║███████╗ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf ("::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ██╔═══╝ ██║   ██║╚════██║ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf ("::%55s ██║     ╚██████╔╝███████║ %55s::\n", bannerLine3, bannerLine4);
+    printf ("::                                                        ╚═╝      ╚═════╝ ╚══════╝                                                        ::\n");
 }
 
-void bannerFullBorder(){
+void bannerFullBorder () {
     for ( int i = 0; i < 14; i++ )
         printf ("::::::::::");
-    printf("\n");
+    printf ("\n");
 }
 
-void bannerBlankBorderTextCen(char *text){
-    int length = strlen(text) - 1;  // Remove the terminal '\0'
+void bannerBlankBorderTextCen (char *text) {
+    int length = strlen (text) - 1;  // Remove the terminal '\0'
     int pad = (length >= 134) ? 0 : ((134 - length) / 2);
 
-    printf(":: %*s%s%*s ::\n", pad," ",text,133-pad-length," ");
+    printf (":: %*s%s%*s ::\n", pad, " ", text, 133 - pad - length, " ");
 }
 
-void bannerBlankBorderText(char *text){
-    printf(":: %134s ::\n", text);
+void bannerBlankBorderText (char *text) {
+    printf (":: %134s ::\n", text);
 }
 
-void bannerBlankBorderTextLeft (char *text){
-    printf(":: %-134s ::\n", text);
+void bannerBlankBorderTextLeft (char *text) {
+    printf (":: %-134s ::\n", text);
 }
 
-void bannerBlankBorder(){
-    printf(":: %134s ::\n", "");
+void bannerBlankBorder () {
+    printf (":: %134s ::\n", "");
 }
 
-void bannerUserInput(){
-    printf("\n>>> ");
+void bannerUserInput () {
+    printf ("\n>>> ");
 }
 
-void bannerFullBorderSection(){
-    printf(":: ______________________________________________________________________________________________________________________________________ ::\n");
+void bannerFullBorderSection () {
+    printf (":: ______________________________________________________________________________________________________________________________________ ::\n");
 }
 
 void delay (int interval) {
     // This function will stop all threads from executing everything. Please be cautious about this...
-    if (interval < 30) {// Avoiding excessive delay time.
-        sleep(interval);
+    if ( interval < 30 ) {// Avoiding excessive delay time.
+        sleep (interval);
     }
 }
 

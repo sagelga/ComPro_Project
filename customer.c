@@ -5,11 +5,11 @@
 
 void customerSwitchHub () {
     screenClear ();
-    bannerFullBorder();
+    bannerFullBorder ();
     bannerBlankBorderTextCen ("Customer Database");
-    bannerFullBorder();
+    bannerFullBorder ();
 
-    for (int i = 0;i<2;i++)
+    for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("What do you want to do?");
 
@@ -20,31 +20,31 @@ void customerSwitchHub () {
     bannerBlankBorderTextCen ("3. Delete customer metadata from the database");
     bannerBlankBorderTextCen ("4. Update existed customer");
 
-    for (int i = 0;i<24;i++)
+    for ( int i = 0; i < 24; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("ALTERNATE RESPONSE  |  Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
     char flag;
-    scanf(" %c", &flag);
+    scanf (" %c", &flag);
 
-    switch(toupper(flag)){
+    switch ( toupper (flag)) {
 
         case ('1'):
-            customerInsertInterface();
+            customerInsertInterface ();
             break;
 
         case ('2'):
-            customerSelectInterface();
+            customerSelectInterface ();
             break;
 
         case ('3'):
-            customerDeleteInterface();
+            customerDeleteInterface ();
             break;
 
         case ('4'):
-            customerUpdateInterface();
+            customerUpdateInterface ();
             break;
 
         case ('B'):
@@ -57,11 +57,11 @@ void customerSwitchHub () {
     }
 }
 
-void customerInsertInterface(){
+void customerInsertInterface () {
     screenClear ();
-    bannerFullBorder();
+    bannerFullBorder ();
     bannerBlankBorderTextCen ("Customer Database");
-    bannerFullBorder();
+    bannerFullBorder ();
 
     bannerBlankBorderTextCen ("Create new Customer ID");
 
@@ -82,54 +82,52 @@ void customerInsertInterface(){
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Insert CustomerID Below");
 
-    for (int i = 0;i<17;i++)
+    for ( int i = 0; i < 17; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
-    char id[MAX_LNG_ID], name[MAX_LNG_TEXT], lastname[MAX_LNG_TEXT], gender, buffer[140] ,checker;
+    char id[MAX_LNG_ID], name[MAX_LNG_TEXT], lastname[MAX_LNG_TEXT], gender, buffer[140], checker;
     int genderCheck;
-    while (1){
-        scanf("%s", id);
-        if (strcmp(id, "B") == 0 || strcmp(id, "b") == 0 ){
-            customerSwitchHub();
+    while ( 1 ) {
+        scanf ("%s", id);
+        if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
+            customerSwitchHub ();
             break;
-        }
-        else if (strcmp(id, "N") == 0 || strcmp(id, "n") == 0 ){
-            terminate();
+        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+            terminate ();
             break;
-        }
-        else{
+        } else {
             //------------------After Input--------------------
             //---------------------ID--------------------------
             screenClear ();
-            sprintf(buffer, "%s", id);
-            bannerFullBorder();
+            sprintf (buffer, "%s", id);
+            bannerFullBorder ();
             bannerBlankBorderTextCen ("Customer Database");
-            bannerFullBorder();
-    
+            bannerFullBorder ();
+
             bannerBlankBorderTextCen ("Insert Customer");
             bannerFullBorderSection ();
             bannerBlankBorder ();
             bannerBlankBorder ();
             bannerBlankBorderTextCen ("Customer Firstname ?");
             bannerBlankBorderTextCen (buffer);
-    
-            for (int i = 0;i<28;i++)
+
+            for ( int i = 0; i < 28; i++ )
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
 
             bannerUserInput ();
-    
+
             //---------------------FirstName--------------------------
-            scanf("%s", name);
-            sprintf(buffer, "%s %s", id, name);
+            scanf ("%s", name);
+            sprintf (buffer, "%s %s", id, name);
             screenClear ();
-            bannerFullBorder();
+            bannerFullBorder ();
             bannerBlankBorderTextCen ("Customer Database");
-            bannerFullBorder();
+            bannerFullBorder ();
 
             bannerBlankBorderTextCen ("Insert Customer");
 
@@ -138,21 +136,21 @@ void customerInsertInterface(){
             bannerBlankBorder ();
             bannerBlankBorderTextCen ("Customer Lastname ?");
             bannerBlankBorderTextCen (buffer);
-    
-            for (int i = 0;i<28;i++)
+
+            for ( int i = 0; i < 28; i++ )
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
-    
+
             bannerUserInput ();
 
             //---------------------LastName--------------------------
-            scanf("%s", lastname);
-            sprintf(buffer, "%s %s %s", id, name, lastname);
+            scanf ("%s", lastname);
+            sprintf (buffer, "%s %s %s", id, name, lastname);
             screenClear ();
-            bannerFullBorder();
+            bannerFullBorder ();
             bannerBlankBorderTextCen ("Customer Database");
-            bannerFullBorder();
+            bannerFullBorder ();
 
             bannerBlankBorderTextCen ("Insert Customer");
 
@@ -162,84 +160,83 @@ void customerInsertInterface(){
             bannerBlankBorderTextCen ("Customer Gender ?");
             bannerBlankBorderTextCen (buffer);
             bannerBlankBorderTextCen ("M = Male || F = Female");
-    
-            for (int i = 0;i<27;i++)
+
+            for ( int i = 0; i < 27; i++ )
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
-    
+
             bannerUserInput ();
 
             //---------------------Gender--------------------------
-            scanf(" %c", &gender);
+            scanf (" %c", &gender);
             screenClear ();
-            bannerFullBorder();
+            bannerFullBorder ();
             bannerBlankBorderTextCen ("Customer Database");
-            bannerFullBorder();
+            bannerFullBorder ();
 
             bannerBlankBorderTextCen ("Insert Customer");
 
             bannerFullBorderSection ();
             bannerBlankBorder ();
             bannerBlankBorder ();
-            if (gender == 'F' || gender == 'f'){
-                sprintf(buffer, "ID: %s | Firstname: %s | Lastname: %s | Gender: Female", id, name, lastname);
+            if ( gender == 'F' || gender == 'f' ) {
+                sprintf (buffer, "ID: %s | Firstname: %s | Lastname: %s | Gender: Female", id, name, lastname);
             }
-            if (gender == 'M' || gender == 'm'){
-                sprintf(buffer, "ID: %s | Firstname: %s | Lastname: %s | Gender: Male", id, name, lastname);
+            if ( gender == 'M' || gender == 'm' ) {
+                sprintf (buffer, "ID: %s | Firstname: %s | Lastname: %s | Gender: Male", id, name, lastname);
             }
             bannerBlankBorderTextCen (buffer);
             bannerBlankBorder ();
             bannerBlankBorderTextCen ("Are you sure to Insert this customer ?");
             bannerBlankBorderTextCen ("Type 'Y' to Yes || 'N' to No");
-    
-            for (int i = 0;i<26;i++)
+
+            for ( int i = 0; i < 26; i++ )
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
 
             bannerUserInput ();
-            scanf(" %c", &checker);
+            scanf (" %c", &checker);
 
             //
-            if (checker == 'y' || checker == 'Y'){
-                if (customerInsert(id, name, lastname, toupper(gender))){
+            if ( checker == 'y' || checker == 'Y' ) {
+                if ( customerInsert (id, name, lastname, toupper (gender))) {
                     screenClear ();
-                    bannerFullBorder();
+                    bannerFullBorder ();
                     bannerBlankBorderTextCen ("Customer Database");
-                    bannerFullBorder();
-        
+                    bannerFullBorder ();
+
                     bannerBlankBorderTextCen ("Insert Customer");
-        
+
                     bannerFullBorderSection ();
                     bannerBlankBorder ();
                     bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Insert Success");
-                    if (gender == 'F' || gender == 'f'){
-                        sprintf(buffer, "%s %s %s Female", id, name, lastname);
+                    if ( gender == 'F' || gender == 'f' ) {
+                        sprintf (buffer, "%s %s %s Female", id, name, lastname);
                     }
-                    if (gender == 'M' || gender == 'm'){
-                        sprintf(buffer, "%s %s %s Male", id, name, lastname);
+                    if ( gender == 'M' || gender == 'm' ) {
+                        sprintf (buffer, "%s %s %s Male", id, name, lastname);
                     }
                     bannerBlankBorderTextCen (buffer);
                     bannerBlankBorderTextCen ("_____________________");
                     bannerBlankBorderTextCen ("Insert Next Customer Or Type 'B' to Back");
-        
-                    for (int i = 0;i<26;i++)
+
+                    for ( int i = 0; i < 26; i++ )
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
 
                     bannerUserInput ();
-                }
-                else{
+                } else {
                     screenClear ();
-                    bannerFullBorder();
+                    bannerFullBorder ();
                     bannerBlankBorderTextCen ("Customer Database");
-                    bannerFullBorder();
-        
+                    bannerFullBorder ();
+
                     bannerBlankBorderTextCen ("Insert Customer");
-        
+
                     bannerFullBorderSection ();
                     bannerBlankBorder ();
                     bannerBlankBorder ();
@@ -249,8 +246,8 @@ void customerInsertInterface(){
                     bannerBlankBorderTextCen ("was repeatedly");
                     bannerBlankBorderTextCen ("_____________________");
                     bannerBlankBorderTextCen ("Insert Next Customer Or Type 'B' to Back");
-        
-                    for (int i = 0;i<24;i++)
+
+                    for ( int i = 0; i < 24; i++ )
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
@@ -258,54 +255,51 @@ void customerInsertInterface(){
                     bannerUserInput ();
 
                 }
-            }
-            else{
-                customerInsertInterface();
+            } else {
+                customerInsertInterface ();
             }
         }
     }
 }
 
-void customerSelectInterface(){
+void customerSelectInterface () {
     //sky create
     screenClear ();
-    bannerFullBorder();
+    bannerFullBorder ();
     bannerBlankBorderTextCen ("Customer Database");
-    bannerFullBorder();
+    bannerFullBorder ();
 
     bannerBlankBorderTextCen ("Select Customer");
 
-    for (int i = 0;i<2;i++)
+    for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
     bannerFullBorderSection ();
     bannerBlankBorder ();
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type Customer ID:");
 
-    for (int i = 0;i<26;i++)
+    for ( int i = 0; i < 26; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
     char id[MAX_LNG_ID];
-    scanf("%s", id);
-    if (strcmp(id, "B") == 0 || strcmp(id, "b") == 0 ){
-            customerSwitchHub();
-        }
-        else if (strcmp(id, "N") == 0 || strcmp(id, "n") == 0 ){
-            terminate();
-        }
-        else{
-            // customerSelectById(id);
-        }
+    scanf ("%s", id);
+    if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
+        customerSwitchHub ();
+    } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+        terminate ();
+    } else {
+        // customerSelectById(id);
+    }
 }
 
-void customerDeleteInterface(){
+void customerDeleteInterface () {
     screenClear ();
-    bannerFullBorder();
+    bannerFullBorder ();
     bannerBlankBorderTextCen ("Customer Database");
-    bannerFullBorder();
+    bannerFullBorder ();
 
     bannerBlankBorderTextCen ("Delete Customer");
 
@@ -314,7 +308,7 @@ void customerDeleteInterface(){
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type Customer ID");
 
-    for (int i = 0;i<29;i++)
+    for ( int i = 0; i < 29; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -322,21 +316,19 @@ void customerDeleteInterface(){
     bannerUserInput ();
     char id[MAX_LNG_ID], name[MAX_LNG_TEXT], lastname[MAX_LNG_TEXT], gender, buffer[140], flag;
     double point, totalbuy;
-    while (1){
-        scanf("%s", id);
-        if (strcmp(id, "B") == 0 || strcmp(id, "b") == 0 ){
-            customerSwitchHub();
-        }
-        else if (strcmp(id, "N") == 0 || strcmp(id, "n") == 0 ){
-            terminate();
-        }
-        else{
-            if (customerSelectById(id, name, lastname, &gender, &point, &totalbuy)){
+    while ( 1 ) {
+        scanf ("%s", id);
+        if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
+            customerSwitchHub ();
+        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+            terminate ();
+        } else {
+            if ( customerSelectById (id, name, lastname, &gender, &point, &totalbuy)) {
                 screenClear ();
-                sprintf(buffer, "%s %s %s %c %lf %lf", id, name, lastname, gender, point, totalbuy);
-                bannerFullBorder();
+                sprintf (buffer, "%s %s %s %c %lf %lf", id, name, lastname, gender, point, totalbuy);
+                bannerFullBorder ();
                 bannerBlankBorderTextCen ("Customer Database");
-                bannerFullBorder();
+                bannerFullBorder ();
 
                 bannerBlankBorderTextCen ("Delete Customer");
 
@@ -348,71 +340,69 @@ void customerDeleteInterface(){
                 bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'Y' to comfirm || Type 'N' to Discard");
 
-                for (int i = 0;i<26;i++)
+                for ( int i = 0; i < 26; i++ )
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
-                scanf(" %c", &flag);
-                if (flag == 'Y' || flag == 'y'){
-                    customerDelete(id);
+                scanf (" %c", &flag);
+                if ( flag == 'Y' || flag == 'y' ) {
+                    customerDelete (id);
                     screenClear ();
-                    bannerFullBorder();
+                    bannerFullBorder ();
                     bannerBlankBorderTextCen ("Customer Database");
-                    bannerFullBorder();
-            
+                    bannerFullBorder ();
+
                     bannerBlankBorderTextCen ("Delete Customer");
-            
+
                     bannerFullBorderSection ();
                     bannerBlankBorder ();
                     bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Delete Success");
                     bannerBlankBorderTextCen ("Type Next CustomerID Or Type 'B' to Back");
-            
-                    for (int i = 0;i<28;i++)
+
+                    for ( int i = 0; i < 28; i++ )
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
 
                     bannerUserInput ();
-                }
-                else{
+                } else {
                     screenClear ();
-                    customerDeleteInterface();
+                    customerDeleteInterface ();
                 }
-            }
-            else{
+            } else {
                 screenClear ();
-                bannerFullBorder();
+                bannerFullBorder ();
                 bannerBlankBorderTextCen ("Customer Database");
-                bannerFullBorder();
-            
+                bannerFullBorder ();
+
                 bannerBlankBorderTextCen ("Delete Customer");
-            
+
                 bannerFullBorderSection ();
                 bannerBlankBorder ();
                 bannerBlankBorder ();
                 bannerBlankBorderTextCen ("CustomerID dosen't exist.");
                 bannerBlankBorderTextCen ("Type Next CustomerID Or Type 'B' to Back");
-            
-                for (int i = 0;i<28;i++)
+
+                for ( int i = 0; i < 28; i++ )
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
             }
-            
+
         }
     }
 }
 
-void customerUpdateInterface(){
+void customerUpdateInterface () {
     screenClear ();
-    bannerFullBorder();
+    bannerFullBorder ();
     bannerBlankBorderTextCen ("Customer Database");
-    bannerFullBorder();
+    bannerFullBorder ();
 
     bannerBlankBorderTextCen ("Update Customer");
 
@@ -421,28 +411,26 @@ void customerUpdateInterface(){
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type customerID");
 
-    for (int i = 0;i<29;i++)
+    for ( int i = 0; i < 29; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
     char id[MAX_LNG_ID], name[MAX_LNG_TEXT], lastname[MAX_LNG_TEXT], gender, buffer[140], flag[MAX_LNG_TEXT], genderChanged[2];
     double point, totalbuy;
-    while (1){
-        scanf("%s", id);
-        if (strcmp(id, "B") == 0 || strcmp(id, "b") == 0 ){
-            customerSwitchHub();
-        }
-        else if (strcmp(id, "N") == 0 || strcmp(id, "n") == 0 ){
-            terminate();
-        }
-        else{
-            if (customerSelectById(id, name, lastname, &gender, &point, &totalbuy)){
+    while ( 1 ) {
+        scanf ("%s", id);
+        if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
+            customerSwitchHub ();
+        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+            terminate ();
+        } else {
+            if ( customerSelectById (id, name, lastname, &gender, &point, &totalbuy)) {
                 screenClear ();
-                sprintf(buffer, "%s %s %s %c", id, name, lastname, gender);
-                bannerFullBorder();
+                sprintf (buffer, "%s %s %s %c", id, name, lastname, gender);
+                bannerFullBorder ();
                 bannerBlankBorderTextCen ("Customer Database");
-                bannerFullBorder();
+                bannerFullBorder ();
 
                 bannerBlankBorderTextCen ("Update Customer");
 
@@ -455,83 +443,81 @@ void customerUpdateInterface(){
                 bannerBlankBorderTextCen ("Type another name to change customer name");
                 bannerBlankBorderTextCen ("Press Enter to set by default");
 
-                for (int i = 0;i<25;i++)
+                for ( int i = 0; i < 25; i++ )
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
                 bannerUserInput ();
 
-                printf("(%s) >>> ", name);
-                if (superscanf(flag) != 0)
-                    customerUpdateFirstname(id, flag);
-                printf("(%s) >>> ", lastname);
-                if (superscanf(flag) != 0)
-                    customerUpdateLastname(id, flag);
-                printf("(%c) >>> ", gender);
-                if (superscanf(genderChanged) != 0)
-                    customerUpdateGender(id, toupper(genderChanged[0]));
-                
+                printf ("(%s) >>> ", name);
+                if ( superscanf (flag) != 0 )
+                    customerUpdateFirstname (id, flag);
+                printf ("(%s) >>> ", lastname);
+                if ( superscanf (flag) != 0 )
+                    customerUpdateLastname (id, flag);
+                printf ("(%c) >>> ", gender);
+                if ( superscanf (genderChanged) != 0 )
+                    customerUpdateGender (id, toupper (genderChanged[0]));
+
                 screenClear ();
-                bannerFullBorder();
+                bannerFullBorder ();
                 bannerBlankBorderTextCen ("Customer Database");
-                bannerFullBorder();
-            
+                bannerFullBorder ();
+
                 bannerBlankBorderTextCen ("Update Customer");
-            
+
                 bannerFullBorderSection ();
                 bannerBlankBorder ();
                 bannerBlankBorder ();
-                customerSelectById(id, name, lastname, &gender, &point, &totalbuy);
-                sprintf(buffer, "%s %s %s %c", id, name, lastname, gender);
+                customerSelectById (id, name, lastname, &gender, &point, &totalbuy);
+                sprintf (buffer, "%s %s %s %c", id, name, lastname, gender);
                 bannerBlankBorderTextCen ("Customer has been updated");
                 bannerBlankBorderTextCen (buffer);
                 bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type Next CustomerID to Update Or Type 'B' to Back");
-            
-                for (int i = 0;i<26;i++)
+
+                for ( int i = 0; i < 26; i++ )
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
-            
-            }
-            else{
+
+            } else {
                 screenClear ();
-                bannerFullBorder();
+                bannerFullBorder ();
                 bannerBlankBorderTextCen ("Customer Database");
-                bannerFullBorder();
-            
+                bannerFullBorder ();
+
                 bannerBlankBorderTextCen ("Update Customer");
-            
+
                 bannerFullBorderSection ();
                 bannerBlankBorder ();
                 bannerBlankBorder ();
                 bannerBlankBorderTextCen ("CustomerID dosen't exist.");
                 bannerBlankBorderTextCen ("Type Next CustomerID Or Type 'B' to Back");
-            
-                for (int i = 0;i<28;i++)
+
+                for ( int i = 0; i < 28; i++ )
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
             }
-            
+
         }
     }
 }
 
 
-
-int customerSelectById(char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy){
+int customerSelectById (char *id, char *firstname, char *lastname, char *gender, double *point, double *totalBuy) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Customer[i].id, id) == 0 ) {
             // Return all values back by reference
-            strcpy(firstname, Customer[i].firstname);
-            strcpy(lastname, Customer[i].lastname);
+            strcpy (firstname, Customer[i].firstname);
+            strcpy (lastname, Customer[i].lastname);
             *gender = Customer[i].gender;
             *point = Customer[i].point;
             *totalBuy = Customer[i].totalBuy;
@@ -542,104 +528,104 @@ int customerSelectById(char *id, char *firstname, char *lastname, char *gender, 
     return 0;           // Not found the given `id` in the records
 }
 
-int customerInsert(char *id, char *firstname, char *lastname, char gender){
+int customerInsert (char *id, char *firstname, char *lastname, char gender) {
     int tailIndex = RecordCount.customer;
 
     // To comfirm that `id` is unique
-    for(int i = 0; i < tailIndex; i++){
-        if(strcmp(Customer[i].id, id) == 0)
+    for ( int i = 0; i < tailIndex; i++ ) {
+        if ( strcmp (Customer[i].id, id) == 0 )
             return 0;   // Error: Customer ID already exists
     }
 
-    strcpy(Customer[tailIndex].id, id);
-    strcpy(Customer[tailIndex].firstname, firstname);
-    strcpy(Customer[tailIndex].lastname, lastname);
+    strcpy (Customer[tailIndex].id, id);
+    strcpy (Customer[tailIndex].firstname, firstname);
+    strcpy (Customer[tailIndex].lastname, lastname);
     Customer[tailIndex].gender = gender;
     Customer[tailIndex].point = 0;          // Initail value
     Customer[tailIndex].totalBuy = 0;       // Initail value
 
     RecordCount.customer++;    // Update the amount of records
 
-    customerFileWrite();       // Save to a Database file
+    customerFileWrite ();       // Save to a Database file
     return 1;                  // Operation Success
 }
 
-int customerUpdateFirstname(char *id, char *firstname){
+int customerUpdateFirstname (char *id, char *firstname) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
-            strcpy(Customer[i].firstname, firstname);
-            customerFileWrite();    // Save to a Database file
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Customer[i].id, id) == 0 ) {
+            strcpy (Customer[i].firstname, firstname);
+            customerFileWrite ();    // Save to a Database file
             return 1;               // Record successfully updated
         }
     }
     return 0;   // Not found the given `id` in the records
 }
 
-int customerUpdateLastname(char *id, char *lastname){
+int customerUpdateLastname (char *id, char *lastname) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
-            strcpy(Customer[i].lastname, lastname);
-            customerFileWrite();    // Save to a Database file
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Customer[i].id, id) == 0 ) {
+            strcpy (Customer[i].lastname, lastname);
+            customerFileWrite ();    // Save to a Database file
             return 1;               // Record successfully updated
         }
     }
     return 0;   // Not found the given `id` in the records
 }
 
-int customerUpdateGender(char *id, char gender){
+int customerUpdateGender (char *id, char gender) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Customer[i].id, id) == 0 ) {
             Customer[i].gender = gender;
-            customerFileWrite();    // Save to a Database file
+            customerFileWrite ();    // Save to a Database file
             return 1;               // Record successfully updated
         }
     }
     return 0;   // Not found the given `id` in the records
 }
 
-int customerUpdatePoint(char *id, double point){
+int customerUpdatePoint (char *id, double point) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Customer[i].id, id) == 0 ) {
             Customer[i].point = point;
-            customerFileWrite();    // Save to a Database file
+            customerFileWrite ();    // Save to a Database file
             return 1;               // Record successfully updated
         }
     }
     return 0;   // Not found the given `id` in the records
 }
 
-int customerUpdatetotalBuy(char *id, double totalBuy){
+int customerUpdatetotalBuy (char *id, double totalBuy) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Customer[i].id, id) == 0 ) {
             Customer[i].totalBuy = totalBuy;
-            customerFileWrite();    // Save to a Database file
+            customerFileWrite ();    // Save to a Database file
             return 1;               // Record successfully updated
         }
     }
     return 0;   // Not found the given `id` in the records
 }
 
-int customerDelete(char *id){
+int customerDelete (char *id) {
     int numberOfRecords;    // Number of the records in a table
     numberOfRecords = RecordCount.customer;
-    for(int i = 0; i < numberOfRecords; i++){
-        if(strcmp(Customer[i].id, id) == 0){
-            while(i < numberOfRecords - 1){
-                Customer[i] = Customer[i+1];
+    for ( int i = 0; i < numberOfRecords; i++ ) {
+        if ( strcmp (Customer[i].id, id) == 0 ) {
+            while ( i < numberOfRecords - 1 ) {
+                Customer[i] = Customer[i + 1];
                 i++;
             }
             RecordCount.customer--;    // Update the amount of records
-            customerFileWrite();       // Save to a Database file
+            customerFileWrite ();       // Save to a Database file
             return 1;                  // Record successfully deleted
         }
     }
