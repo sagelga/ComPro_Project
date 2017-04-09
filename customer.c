@@ -29,7 +29,7 @@ void customerSwitchHub () {
     char flag;
     scanf(" %c", &flag);
 
-    switch(flag){
+    switch(toupper(flags)){
 
         case ('1'):
             customerInsertInterface();
@@ -47,8 +47,6 @@ void customerSwitchHub () {
             customerUpdateInterface();
             break;
 
-        case ('b'):
-            switchHub ();
         case ('B'):
             switchHub ();
 
