@@ -6,34 +6,38 @@ void settingsSwitchHub () {
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Settings");
     bannerFullBorder ();
+    for ( int i = 0; i < 5; i++ )
+        bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("What do you want to do?");
 
     for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("Authentication");
-    bannerFullBorderSection ();
-    bannerBlankBorderTextCen ("1. Change Username");
-    bannerBlankBorderTextCen ("2. Change Password");
+    bannerBlankBorderTextCen ("--------------------");
+    bannerBlankBorderTextCen ("|  Authentication  |");
+    bannerBlankBorderTextCen ("--------------------");
+    bannerBlankBorderTextCen ("1.Change Password");
 
     for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("Storefront");
-    bannerFullBorderSection ();
-    bannerBlankBorderTextCen ("3. Change store name");
-    bannerBlankBorderTextCen ("4. Change store address");
+    bannerBlankBorderTextCen ("----------------");
+    bannerBlankBorderTextCen ("|  Storefront  |");
+    bannerBlankBorderTextCen ("----------------");
+    bannerBlankBorderTextCen ("2. Change store name");
+    bannerBlankBorderTextCen ("3. Change store address");
 
     for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("Credits");
-    bannerFullBorderSection ();
-    bannerBlankBorderTextCen ("5. List of contributors");
-    bannerBlankBorderTextCen ("6. Cat dance");
+    bannerBlankBorderTextCen ("-------------");
+    bannerBlankBorderTextCen ("|  Credits  |");
+    bannerBlankBorderTextCen ("-------------");
+    bannerBlankBorderTextCen ("4. List of contributors");
+    bannerBlankBorderTextCen ("5. Cat dance");
 
-    for ( int i = 0; i < 15; i++ )
+    for ( int i = 0; i < 8; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -45,49 +49,274 @@ void settingsSwitchHub () {
     switch ( toupper (flag)) {
 
         case ('1'):
-            return;
+            settingUpdatePasswordInterface ();
+            break;
 
         case ('2'):
-            return;
+            settingUpdateStoreNameInterface ();
+            break;
 
         case ('3'):
-            return;
+            settingUpdateStoreAddressInterface ();
+            break;
 
         case ('4'):
-            return;
+            settingContributorList ();
+            break;
 
         case ('5'):
-            settingContributorList ();
-
-        case ('6'):
             settingCat ();
+            break;
 
         case ('B'):
             switchHub ();
+            break;
 
         case ('N'):
             terminate ();
+            break;
 
         default:
             settingsSwitchHub ();
-            return;
+            break;
 
     }
 }
 
-void settingUpdateUsernameInterface () {
-
-}
-
 void settingUpdatePasswordInterface () {
+    char oldPassword[MAX_LNG_TEXT], newPasswordBar1[MAX_LNG_TEXT], newPasswordBar2[MAX_LNG_TEXT], flag;
+    char firstname[MAX_LNG_TEXT], lastname[MAX_LNG_TEXT], username[MAX_LNG_TEXT], password[MAX_LNG_TEXT], barcodeToken[MAX_LNG_TOKEN];
+    int role;
+    personnelSelectById(Session.user.id, firstname, lastname, &role, username, password, barcodeToken);
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Settings");
+    bannerFullBorder ();
+    for (int i = 0;i<10;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Please Type Old Password");
+    bannerBlankBorder ();
 
+    for (int i = 0;i<22;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerFullBorder ();
+
+    bannerUserInput ();
+    scanf("%s", oldPassword);
+    while (1){
+        if (strcmp(oldPassword, password) == 0){
+            //Enter First password
+            screenClear ();
+            bannerFullBorder ();
+            bannerBlankBorderTextCen ("Settings");
+            bannerFullBorder ();
+            for (int i = 0;i<10;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Your password was Correct");
+            bannerBlankBorder ();
+
+            for (int i = 0;i<22;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Please type your new password...");
+            bannerFullBorder ();
+
+            bannerUserInput ();
+            scanf("%s", newPasswordBar1);
+
+            //Enter Second password
+            screenClear ();
+            bannerFullBorder ();
+            bannerBlankBorderTextCen ("Settings");
+            bannerFullBorder ();
+            for (int i = 0;i<10;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Test");
+            bannerBlankBorder ();
+
+            for (int i = 0;i<22;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Please type new password again...");
+            bannerFullBorder ();
+
+            bannerUserInput ();
+            scanf("%s", newPasswordBar2);
+
+            if (strcmp(newPasswordBar1, newPasswordBar2) == 0){
+                personnelUpdatePassword (Session.user.id, newPasswordBar1);
+                screenClear ();
+                bannerFullBorder ();
+                bannerBlankBorderTextCen ("Settings");
+                bannerFullBorder ();
+                for (int i = 0;i<10;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Change Password success");
+                bannerBlankBorder ();
+
+                for (int i = 0;i<22;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+                scanf(" %c", &flag);
+                if (flag == 'b' || flag == 'B'){
+                    settingsSwitchHub ();
+                }
+                else{
+                    terminate (); 
+                }
+            }
+            else{
+                screenClear ();
+                bannerFullBorder ();
+                bannerBlankBorderTextCen ("Settings");
+                bannerFullBorder ();
+                for (int i = 0;i<10;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Password not same");
+                bannerBlankBorderTextCen ("Please type same password");
+                bannerBlankBorder ();
+
+                for (int i = 0;i<21;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+                scanf(" %c", &flag);
+                if (flag == 'b' || flag == 'B'){
+                    settingsSwitchHub ();
+                }
+                else{
+                    terminate (); 
+                }
+            }
+        }
+        else{
+            screenClear ();
+            bannerFullBorder ();
+            bannerBlankBorderTextCen ("Settings");
+            bannerFullBorder ();
+            for (int i = 0;i<10;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Password was Incorrect !");
+            bannerBlankBorder ();
+
+            for (int i = 0;i<22;i++)
+                bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Please type your password again... | Type 'B' to back");
+            bannerFullBorder ();
+
+            bannerUserInput ();
+            scanf("%s", oldPassword);
+            if (tolower(oldPassword[0]) == 'b' && strlen(oldPassword) == 1){
+                settingsSwitchHub ();
+            }
+        }
+    }
 }
-
 
 void settingUpdateStoreNameInterface () {
+    char newstoreName[MAX_LNG_TEXT], flag;
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Settings");
+    bannerFullBorder ();
+    for (int i = 0;i<10;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Your current Storename");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen (Setting.storeName);
+    bannerBlankBorder ();
+
+    for (int i = 0;i<20;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Please enter new storename | Type 'B' to Back");
+    bannerFullBorder ();
+
+    bannerUserInput ();
+    scanf(" %[^\n]", newstoreName);
+    if (tolower(newstoreName[0]) == 'b' && strlen(newstoreName) == 1){
+        settingsSwitchHub ();
+    }
+    else{
+        settingUpdateStoreName(newstoreName);
+        screenClear ();
+        bannerFullBorder ();
+        bannerBlankBorderTextCen ("Settings");
+        bannerFullBorder ();
+        for (int i = 0;i<10;i++)
+            bannerBlankBorder ();
+        bannerBlankBorderTextCen ("Your storename has been changed to");
+        bannerBlankBorder ();
+        bannerBlankBorderTextCen (newstoreName);
+        bannerBlankBorder ();
+
+        for (int i = 0;i<20;i++)
+            bannerBlankBorder ();
+        bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+        bannerFullBorder ();
+        bannerUserInput ();
+        scanf(" %c", &flag);
+        if (tolower(flag) == 'b'){
+            settingsSwitchHub ();
+        }
+        else{
+            terminate();
+        }
+    }
 }
 
 void settingUpdateStoreAddressInterface () {
+    char newstoreAddress[MAX_LNG_TEXT], flag;
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Settings");
+    bannerFullBorder ();
+    for (int i = 0;i<10;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Your current StoreAddress");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen (Setting.storeAddress);
+    bannerBlankBorder ();
+
+    for (int i = 0;i<20;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Please enter new storeaddress | Type 'B' to Back");
+    bannerFullBorder ();
+
+    bannerUserInput ();
+    scanf(" %[^\n]", newstoreAddress);
+    if (tolower(newstoreAddress[0]) == 'b' && strlen(newstoreAddress) == 1){
+        settingsSwitchHub ();
+    }
+    else{
+        settingUpdateAddress(newstoreAddress);
+        screenClear ();
+        bannerFullBorder ();
+        bannerBlankBorderTextCen ("Settings");
+        bannerFullBorder ();
+        for (int i = 0;i<10;i++)
+            bannerBlankBorder ();
+        bannerBlankBorderTextCen ("Your storeadress has been changed to");
+        bannerBlankBorder ();
+        bannerBlankBorderTextCen (newstoreAddress);
+        bannerBlankBorder ();
+
+        for (int i = 0;i<20;i++)
+            bannerBlankBorder ();
+        bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+        bannerFullBorder ();
+        bannerUserInput ();
+        scanf(" %c", &flag);
+        if (tolower(flag) == 'b'){
+            settingsSwitchHub ();
+        }
+        else{
+            terminate();
+        }
+    }
 }
 
 void settingContributorList () {
@@ -185,6 +414,7 @@ void settingUpdatePointToPrice (double pointToPrice) {
     Setting.pointToPrice = pointToPrice;
     settingFileWrite ();    // Save to a Database file
 }
+
 
 /*
  *                                             All hail the god..

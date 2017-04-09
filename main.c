@@ -5,8 +5,8 @@
 int main () { // This program will run first. POS Interface configuration will be called, and ready to work.
     screenClear ();
     initDatabase ();
-    //screenAdjust();
-    switchHub ();
+    screenAdjust();
+    //switchHub ();
     return 0;
 }
 
