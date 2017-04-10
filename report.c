@@ -862,12 +862,18 @@ void displayTomorrowForecasting(int page) {
             if (RevenueByCategory[i].totalProfit > SaleForecastByCategory[i].totalProfit)
             {
                 sign = '-';
+                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
+            }
+            else if (RevenueByCategory[i].totalProfit < SaleForecastByCategory[i].totalProfit)
+            {
+                sign = '+';
+                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
             }
             else
             {
                 sign = '+';
+                different = 0;
             }
-            different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
             printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, different);
         }
         for ( int i = 0; i < 34 - (RecordCount.category % 34); ++i ) {
@@ -878,12 +884,18 @@ void displayTomorrowForecasting(int page) {
             if (RevenueByCategory[i].totalProfit > SaleForecastByCategory[i].totalProfit)
             {
                 sign = '-';
+                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
+            }
+            else if (RevenueByCategory[i].totalProfit < SaleForecastByCategory[i].totalProfit)
+            {
+                sign = '+';
+                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
             }
             else
             {
                 sign = '+';
+                different = 0;
             }
-            different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
             printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, different);
         }
     }
