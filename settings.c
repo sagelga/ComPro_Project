@@ -37,7 +37,7 @@ void settingsSwitchHub () {
     bannerBlankBorderTextCen ("4. List of contributors");
     bannerBlankBorderTextCen ("5. cat.gif");
 
-    for ( int i = 0; i < 14; i++ )
+    for ( int i = 0; i < 7; i++ )
         bannerBlankBorder ();
 
     if (errorResponse == 1){

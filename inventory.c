@@ -30,7 +30,7 @@ void inventorySwitchHub () {
     bannerBlankBorderTextCen ("6. Add new category to the database");
     bannerBlankBorderTextCen ("7. Edit category from the database");
 
-    for ( int i = 0; i < 18; i++ ) {
+    for ( int i = 0; i < 8; i++ ) {
         bannerBlankBorder ();
     }
 
@@ -229,11 +229,11 @@ void displayInventory (int page) {
             //bannerBlankBorder();
         }
         //display remaining line as bannerBlankBorder()
-        for ( int i = 0; i < 34 - (RecordCount.inventory % 34); ++i ) {
+        for ( int i = 0; i < 33 - (RecordCount.inventory % 34); ++i ) {
             printf ("::                |                                                    |            |            |                           |            ::\n");
         }
     } else {
-        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
+        for ( int i = (page - 1) * 34; i < page * 33/*(34*page)*/; ++i ) {
             printf (":: %-14s | %-50s | %10.2lf | %10.2lf | %-25s | %10u ::\n", Inventory[i].id, Inventory[i].name,
                     Inventory[i].price, Inventory[i].profit, Category[Inventory[i].categoryId].name,
                     Inventory[i].remain);
@@ -245,6 +245,8 @@ void displayInventory (int page) {
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
     bannerFullBorder ();
+
+    bannerUserInput ();
 
 }
 
