@@ -377,7 +377,7 @@ void settingCat () {
 
         bannerFullBorder ();
 
-        for ( int k = 8; k > 0; k-- ) {
+        for ( int k = 7; k > 0; k-- ) { // Cat count
             strcpy (text1, " ");
             strcpy (text2, " ");
             strcpy (text3, " ");
@@ -387,29 +387,32 @@ void settingCat () {
                 strcat (text1, "_");
             }
             strcat (text1, "━━━━___━*━___━━___━___*___━_*___┓╭━━━━━━━━━━━━╮");
-            printf ("%s", text1);
+            printf ("%s\n", text1);
 
             for ( int j = i; j > 0; j-- ) {
                 strcat (text2, "_");
             }
             strcat (text2, "___━━__*_━━___━━___━━*____━━___┗┓|::::::^----^|");
-            printf ("%s", text2);
+            printf ("%s\n", text2);
 
             for ( int j = i; j > 0; j-- ) {
                 strcat (text3, "_");
             }
             strcat (text3, "___━━___━━___━*━___━━____━━*___━┗|:::::|｡◕‿‿◕｡|");
-            printf ("%s", text3);
+            printf ("%s\n", text3);
 
             for ( int j = i; j > 0; j-- ) {
                 strcat (text4, "_");
             }
             strcat (text4, "___━━___*━__━━_*___━━___*━━___*━━╰O--O---O--O ╯");
-            printf ("%s", text4);
+            printf ("%s\n", text4);
 
-            bannerBlankBorder ();
+            printf ("\n");
         }
 
+        bannerBlankBorderTextCen ("~ ~ ~ Nyan Nyan Nyan ~ ~ ~");
+        bannerBlankBorderTextCen (
+                "The flying cat is crossing the galaxy. Wait for them to cross first before returning.");
         bannerFullBorder ();
         i++;
         delay (1);
