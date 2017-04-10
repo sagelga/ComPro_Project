@@ -835,15 +835,23 @@ int personnelDelete (char *id) {
     bannerBlankBorderTextCen ("3. Edit personnel in the database");
     bannerBlankBorderTextCen ("4. Remove personnel from the database");
 
-    for ( int i = 0; i < 28; i++ ) {
+    for ( int i = 0; i < 27; i++ ) {
         bannerBlankBorder ();
     }
+
+    if (errorResponse == 1){
+        bannerBlankBorderTextCen ("Invalid response. Please try again.");
+    } else{
+        bannerBlankBorder ();
+    }
+
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
 
     char userInput;
     scanf (" %c", &userInput);
+    errorResponse = 0;
 
     switch ( toupper (userInput)) {
         case ('1'):
@@ -880,12 +888,14 @@ int personnelDelete (char *id) {
 
         case ('Q'):
             terminate ();
+            break;
 
         default:
-            printf ("Your input is invalid. Please try again...");
+            errorResponse = 1;
             inventorySwitchHub ();
     }
-}*/
+}
+
 /*
  *                                             All hail the god..
  *  -----------------------------------------------------------------------------------------------------------------------
