@@ -465,6 +465,7 @@ void inventoryEdit(){
             terminate ();
         } else {
             if ( inventorySelectById (id, name, &price, &profit, &category, &remain)) {
+                categorySelectById(category, categoryName);
                 sprintf(buffer, "%-20s %-30s %-15.2lf %-15.2lf %-30s %-10u", id, name, price, profit, categoryName, remain);
                 screenClear ();
                 bannerFullBorder();
