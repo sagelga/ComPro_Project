@@ -126,6 +126,7 @@ int personnelDelete(char *id);                              // Delete the record
 void personnelSwitchHub();
 void personnelInsertInterface();
 void personnelSelectInterface();
+void displayPersonnel(int page);
 void personnelDeleteInterface();
 void personnelUpdateInterface();
 

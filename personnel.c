@@ -372,7 +372,6 @@ void personnelInsertInterface(){
     }
 }
 
-void displayPersonnel(int page);
 void displayPersonnel(int page) {
     screenClear ();
     int allPage = (int) ceil (RecordCount.personnel / 34) + 1;
