@@ -1,5 +1,6 @@
 // Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
+
 void personnelSwitchHub (){
     screenClear ();
     bannerFullBorder ();
@@ -9,7 +10,7 @@ void personnelSwitchHub (){
     bannerFullBorder ();
 
     for ( int i = 0; i < 10; i++ )
-        bannerBlankBorder ();
+        bannerBlankBorder ();a
     bannerBlankBorderTextCen ("What do you want to do ?");
     bannerBlankBorder ();
     bannerBlankBorder ();
@@ -895,6 +896,7 @@ int personnelDelete (char *id) {
             inventorySwitchHub ();
     }
 }
+ */
 
 /*
  *                                             All hail the god..

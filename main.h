@@ -30,7 +30,7 @@ Define all the constant values here*/
 #define MAX_LNG_SCREEN 140          // Maximum length of (Text on) Screen's width
 #define MAX_LNG_TOKEN 255           // Maximum length of Token
 
-#define errorResponse 0 // Show the flag that the program have receives an invalid response
+int errorResponse; // Show the flag that the program have receives an invalid response
 
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/

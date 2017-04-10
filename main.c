@@ -50,11 +50,7 @@ void switchHub () {
     for ( int i = 19; i > 0; i-- )
         bannerBlankBorder ();
 
-    if (errorResponse == 1){
-        bannerBlankBorderTextCen ("Invalid response. Please try again.");
-    } else{
-        bannerBlankBorder ();
-    }
+    errorResponse == 1 ? bannerBlankBorderTextCen ("Invalid response. Please try again.") : bannerBlankBorder ();
 
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("  Type 'Q' to quit  |  Type in your response  |  Type 'B' to logoff");
@@ -63,7 +59,7 @@ void switchHub () {
 
     char flags;
     scanf (" %c", &flags);
-    errorResponse == 0;
+    errorResponse = 0;
 
     screenClear ();
 
@@ -110,7 +106,7 @@ void switchHub () {
 
         default:
             // The input is invalid. Trying to route back to ask for a valid input
-            errorResponse == 1;
+            errorResponse = 1;
             switchHub ();
     }
 }
