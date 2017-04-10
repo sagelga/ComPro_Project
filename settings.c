@@ -379,25 +379,25 @@ void settingCat () {
                 strcat (text1, "_");
             }
             strcat (text1, "━━━━___━*━___━━___━___*___━_*___┓╭━━━━━━━━━━━━╮");
-            printf (text1);
+            printf ("%s",text1);
 
             for ( int j = i; j > 0; j-- ) {
                 strcat (text2, "_");
             }
             strcat (text2, "___━━__*_━━___━━___━━*____━━___┗┓|::::::^----^|");
-            printf (text2);
+            printf ("%s",text2);
 
             for ( int j = i; j > 0; j-- ) {
                 strcat (text3, "_");
             }
             strcat (text3, "___━━___━━___━*━___━━____━━*___━┗|:::::|｡◕‿‿◕｡|");
-            printf (text3);
+            printf ("%s",text3);
 
             for ( int j = i; j > 0; j-- ) {
                 strcat (text4, "_");
             }
             strcat (text4, "___━━___*━__━━_*___━━___*━━___*━━╰O--O---O--O ╯");
-            printf (text4);
+            printf ("%s",text4);
 
             bannerBlankBorder ();
         }
