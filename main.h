@@ -31,6 +31,7 @@ Define all the constant values here*/
 #define MAX_LNG_TOKEN 255           // Maximum length of Token
 
 int errorResponse; // Show the flag that the program have receives an invalid response
+int completeMark; // Show the flag that the program has been complete once
 
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
@@ -363,6 +364,8 @@ void settingUpdateAddress(char *storeAddress);          // For modifying the `st
 void settingUpdatePriceToPoint(double priceToPoint);    // For modifying the `priceToPoint`
 void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `pointToPrice`
 void settingUpdateUsernameInterface();
+void settingPointToPriceInterface();
+void settingPriceToPointInterface();
 
 void settingUpdatePasswordInterface();
 void settingUpdateStoreNameInterface();
