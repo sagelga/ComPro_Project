@@ -77,16 +77,27 @@ void displayCategory (int page) {
 
 void categoryDatabaseInterface () {
     char handling;
-    int pageIn;
+    int pageIn = 1, CheckPage;
     displayCategory (1);
     for ( int i = 0; i >= 0; ++i ) {
         scanf (" %c", &handling);
         if ((handling == 'B') || (handling == 'b')) {
             screenClear ();
             inventorySwitchHub ();
-        } else {
-            pageIn = (int) handling - 48;
+        } else if ( isdigit (handling)){
+            CheckPage = (int) handling - 48;
+            if ((CheckPage <= ((int) ceil (RecordCount.inventory / 32) + 1)) && (CheckPage >= 1)) {
+                pageIn = (int) handling - 48;
+                displayCategory (pageIn);
+            } else {
+                displayCategory (pageIn);
+                printf ("Oops! Page not found, Please enter correct page: ");
+            }
+        }
+        else
+        {
             displayCategory (pageIn);
+            printf ("Oops! Input Error, Please enter correctly: ");
         }
     }
 }
