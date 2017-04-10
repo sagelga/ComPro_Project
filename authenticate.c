@@ -9,17 +9,20 @@ void authInterface () {
     for ( int i = 3; i > 0; i-- )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("Please type in your username");
+    bannerBlankBorderTextCen ("Please type in your username / Scan the Personnel token code");
     for ( int i = 0; i < 27; i++ )
         bannerBlankBorder ();
     bannerFullBorder ();
 
-    char username[130]; // Copy data to SESSION struct;
+    char username[MAX_LNG_TOKEN]; // Copy data to SESSION struct;
     bannerUserInput ();
-    scanf ("%s", username); // Then save to session struct
+    scanf (" %[^\n]", username); // Then save to session struct
 
-
-
+    // First Check the Token ID
+    if(authenticateByToken(username)){
+        authInterfaceComplete ();
+    }
+    // If token is invalid then ask the password (Identify as Normal Login)
     screenClear ();
 
     bannerCenBorder ("", "", "", "POS Version : 1.0");
@@ -46,6 +49,7 @@ void authInterface () {
     // If the username and the password is matched from the database -> Call authInterfaceComplete();
     // If the username and the password is not matched from the database -> Call authInterfaceFail();
     // If these were interrupt -> Call authInterfaceError();
+
     if ( authenticateByUsername (username, password) == 1 ) {
         authInterfaceComplete ();
     } else if ( authenticateByUsername (username, password) == 0 ) {
