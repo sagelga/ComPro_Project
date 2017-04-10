@@ -30,9 +30,17 @@ void inventorySwitchHub () {
     bannerBlankBorderTextCen ("6. Add new category to the database");
     bannerBlankBorderTextCen ("7. Edit category from the database");
 
-    for ( int i = 0; i < 10; i++ ) {
+    for ( int i = 0; i < 18; i++ ) {
         bannerBlankBorder ();
     }
+
+    if (errorResponse == 1){
+        bannerBlankBorderTextCen ("Invalid response. Please try again.");
+    } else{
+        bannerBlankBorder ();
+    }
+
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();

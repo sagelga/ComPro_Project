@@ -1,5 +1,6 @@
 // Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
+
 void personnelSwitchHub (){
     screenClear ();
     bannerFullBorder ();
@@ -372,8 +373,89 @@ void personnelInsertInterface(){
     }
 }
 
-void personnelSelectInterface(){
+void displayPersonnel(int page) {
+    screenClear ();
+    int allPage = (int) ceil (RecordCount.personnel / 34) + 1;
+    char NewRole[10];
+    bannerFullBorder ();
+    printf ("::     %-16s |           %-19s |           %-19s |    %-6s |     %-12s |     %-12s ::\n", "Personnel ID", "Firstname", "Lastname", "Role", "Username", "Password");
+    bannerFullBorder ();
 
+    if ( page == allPage ) {
+        for ( int i = (page - 1) * 34; i < RecordCount.personnel; ++i ) {
+            if (Personnel[i].role == 0)
+            {
+                strcpy(NewRole, "Manager");
+            }
+            else if (Personnel[i].role == 1)
+            {
+                strcpy(NewRole, "Marketing");
+            }
+            else
+            {
+                strcpy(NewRole, "Sale");
+            }
+            printf (":: %-20s | %-29s | %-29s | %-9s | %16s | %16s ::\n", Personnel[i].id, Personnel[i].firstname,
+                    Personnel[i].lastname, NewRole, Personnel[i].username,
+                    Personnel[i].password);
+            //bannerBlankBorder();
+        }
+        //display remaining line as bannerBlankBorder()
+        for ( int i = 0; i < 34 - (RecordCount.personnel % 34); ++i ) {
+            printf (":: %-20s | %-29s | %-29s | %-9s | %16s | %16s ::\n", "", "", "", "", "", "");
+        }
+    } else {
+        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
+            if (Personnel[i].role == 0)
+            {
+                strcpy(NewRole, "Manager");
+            }
+            else if (Personnel[i].role == 1)
+            {
+                strcpy(NewRole, "Marketing");
+            }
+            else
+            {
+                strcpy(NewRole, "Sale");
+            }
+            printf (":: %-20s | %-29s | %-29s | %-9s | %16s | %16s ::\n", Personnel[i].id, Personnel[i].firstname,
+                    Personnel[i].lastname, NewRole, Personnel[i].username,
+                    Personnel[i].password);
+            //bannerBlankBorder();
+        }
+    }
+
+    bannerBlankBorderTextCen ("Enter Page/Enter 'B' to back to Personnel Menu");
+    printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
+            page, allPage);
+    bannerFullBorder ();
+
+}
+
+void personnelSelectInterface(){
+    char handling;
+    int pageIn = 1, CheckPage;
+    displayPersonnel(1);
+    for ( int i = 0; i >= 0; ++i ) {
+        printf(">>> ");
+        scanf (" %c", &handling);
+        if ((handling == 'B') || (handling == 'b')) {
+            screenClear ();
+            personnelSwitchHub ();
+        } else if ( isdigit (handling)) {
+            CheckPage = (int) handling - 48;
+            if ((CheckPage <= ((int) ceil (RecordCount.personnel / 34) + 1)) && (CheckPage >= 1)) {
+                pageIn = (int) handling - 48;
+                displayPersonnel(pageIn);
+            } else {
+                displayPersonnel(pageIn);
+                printf ("Oops! Page not found, Please enter correct page: ");
+            }
+        } else {
+            displayPersonnel(pageIn);
+            printf ("Oops! Input Error, Please enter correctly: ");
+        }
+    }
 }
 
 void personnelDeleteInterface(){
@@ -754,15 +836,23 @@ int personnelDelete (char *id) {
     bannerBlankBorderTextCen ("3. Edit personnel in the database");
     bannerBlankBorderTextCen ("4. Remove personnel from the database");
 
-    for ( int i = 0; i < 28; i++ ) {
+    for ( int i = 0; i < 27; i++ ) {
         bannerBlankBorder ();
     }
+
+    if (errorResponse == 1){
+        bannerBlankBorderTextCen ("Invalid response. Please try again.");
+    } else{
+        bannerBlankBorder ();
+    }
+
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
 
     char userInput;
     scanf (" %c", &userInput);
+    errorResponse = 0;
 
     switch ( toupper (userInput)) {
         case ('1'):
@@ -799,12 +889,15 @@ int personnelDelete (char *id) {
 
         case ('Q'):
             terminate ();
+            break;
 
         default:
-            printf ("Your input is invalid. Please try again...");
+            errorResponse = 1;
             inventorySwitchHub ();
     }
-}*/
+}
+ */
+
 /*
  *                                             All hail the god..
  *  -----------------------------------------------------------------------------------------------------------------------

@@ -3,10 +3,11 @@
 
 void settingsSwitchHub () {
     screenClear ();
+
     bannerFullBorder ();
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Settings");
-    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("________");
     bannerFullBorder ();
     for ( int i = 0; i < 5; i++ )
         bannerBlankBorder ();
@@ -17,14 +18,14 @@ void settingsSwitchHub () {
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Authentication");
-    bannerBlankBorderTextCen ("_________________________");
+    bannerBlankBorderTextCen ("______________");
     bannerBlankBorderTextCen ("1. Change Password");
 
     for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Storefront");
-    bannerBlankBorderTextCen ("____________________");
+    bannerBlankBorderTextCen ("__________");
     bannerBlankBorderTextCen ("2. Change store name");
     bannerBlankBorderTextCen ("3. Change store address");
 
@@ -32,41 +33,49 @@ void settingsSwitchHub () {
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Others");
-    bannerBlankBorderTextCen ("_________________");
+    bannerBlankBorderTextCen ("______");
     bannerBlankBorderTextCen ("4. List of contributors");
     bannerBlankBorderTextCen ("5. cat.gif");
 
-    for ( int i = 0; i < 9; i++ )
+    for ( int i = 0; i < 14; i++ )
         bannerBlankBorder ();
 
+    if (errorResponse == 1){
+       bannerBlankBorderTextCen ("Invalid response. Please try again.");
+    } else{
+        bannerBlankBorder ();
+    }
+
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
     char flag;
     scanf (" %c", &flag);
+    errorResponse = 0;
 
     switch ( toupper (flag)) {
 
         case ('1'):
             settingUpdatePasswordInterface ();
-            break;
+            return;
 
         case ('2'):
-            settingUpdateStoreNameInterface ();
+            settingUpdateStoreNameInterface();
             return;
 
         case ('3'):
-            settingUpdateStoreNameInterface ();
+            settingUpdateStoreAddressInterface ();
             return;
 
         case ('4'):
-            settingUpdateStoreAddressInterface ();
+            settingContributorList ();
             return;
 
         case ('5'):
             settingCat ();
-            break;
+            return;
 
         case ('B'):
             switchHub ();
@@ -77,6 +86,7 @@ void settingsSwitchHub () {
             break;
 
         default:
+            errorResponse = 1;
             settingsSwitchHub ();
             break;
 
