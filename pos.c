@@ -8,7 +8,7 @@ INVENTORY inventoryHist[1000]; // Save 1000 Transaction per a purchase
 int inventoryCounter[1000]; // Count the amount of each inventory
 int inventoryHistRecordCount = 0;   // Iterator of inventoryHist
 int histStart, histStop;   // Line pointer for printing the transaction list
-double subTotal, tax, total, pointEarn, voucher, totalProfit, discount, pointUsed;
+double subTotal, tax, total, pointEarn, totalProfit, discount, pointUsed;
 
 char promotionId[140];
 double promotionPrice;
@@ -18,7 +18,7 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
     // Initial Values
     isCustomerHasId = 0;
     inventoryHistRecordCount = 0;
-    subTotal = 0, tax = 0, total = 0, pointEarn = 0, voucher = 0, totalProfit = 0;
+    subTotal = 0, tax = 0, total = 0, pointEarn = 0, totalProfit = 0;
     promotionPrice = 0;
     discount = 0;
     pointUsed = 0;
@@ -178,6 +178,7 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
                 for(int i = 0; i < inventoryHistRecordCount; i++) {
                     if(strcmp(inventoryHist[i].id, inventoryIdInput) == 0){
                         isDuplicate = 1; // Duplicate inventory detector
+                        inventoryHist[i].remain--;
                         inventoryCounter[i]++;
                         break;
                     }
@@ -189,7 +190,7 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
                     inventoryHist[inventoryHistRecordCount].price = inventoryPrice;
                     inventoryHist[inventoryHistRecordCount].profit = inventoryProfit;
                     inventoryHist[inventoryHistRecordCount].categoryId = inventoryCategoryId;
-                    inventoryHist[inventoryHistRecordCount].remain = inventoryRemain;
+                    inventoryHist[inventoryHistRecordCount].remain = inventoryRemain - 1;
 
                     inventoryCounter[inventoryHistRecordCount] = 1;
                     inventoryHistRecordCount++;
@@ -199,6 +200,7 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
                 tax = total * 0.07;
                 subTotal = total - tax;
                 pointEarn = Setting.priceToPoint * total;
+                totalProfit += inventoryProfit;
                 cashierInterfaceInventory (0);
             }
             else{
@@ -275,7 +277,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
                         cashierInterface(0);
                         break;
                     case 'P':
-                        // Use point !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        // Use point
                         cashierInterfaceResult (1);
                         break;
                     case 'A':
@@ -286,7 +288,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
             else{
                 // Use Voucher
                 if(promotionSelectById(promotionId, &promotionPrice, &promotionStatus) && promotionStatus == 1){
-                    voucher = promotionPrice;
+                    discount = promotionPrice;
                     cashierInterfaceResult (0);
                 }
                 else{
@@ -331,7 +333,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
             else{
                 // Use Voucher
                 if(promotionSelectById(promotionId, &promotionPrice, &promotionStatus) && promotionStatus == 1){
-                    voucher = promotionPrice;
+                    discount = promotionPrice;
                     cashierInterfaceResult (0);
                 }
                 else{
@@ -356,8 +358,9 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
     // --- * Saving the purchase into DB ----------------------------------------------------------
     int i, j;
     if(!savedToDatabase){ // Doing this one time !!!
-        // Use point (Doing) !!!!!!!!!!!!!!!!!!!
+
         if(usePoint){
+            // Use point
             double discountByPoint = CurrentCustomer.point / Setting.pointToPrice; // Money that will be use to discount from totalPrice
             if(discountByPoint <= total){
                 discount = discountByPoint;
@@ -369,9 +372,18 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
                 customerUpdatePoint(CurrentCustomer.id, Setting.pointToPrice * total);
             }
         }
-
+        else if(discount > 0){
+            // Use Voucher
+            // Change status of voucher from Active -> Used
+            promotionUpdateStatus(promotionId, 0);
+            // Discount boundary
+            discount = (discount < total) ? discount : total;
+        }
+            
         // Saving all transactions into the Database
         for(i = 0; i < inventoryHistRecordCount; i++){
+                // Decreasing items the in stock
+                inventoryUpdateRemain(inventoryHist[i].id, inventoryHist[i].remain); 
             for(j = 0; j < inventoryCounter[i]; j++){
                 transactionInsert(RecordCount.purchase, inventoryHist[i].id);
             }
@@ -384,10 +396,10 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
         }
         // Saving a purchase into the Database
         if(isCustomerHasId){
-            purchaseInsert(RecordCount.purchase, voucher, totalProfit, CurrentCustomer.id, Session.user.id);
+            purchaseInsert(RecordCount.purchase, discount, totalProfit, CurrentCustomer.id, Session.user.id);
         }
         else{
-            purchaseInsert(RecordCount.purchase, voucher, totalProfit, "", Session.user.id);
+            purchaseInsert(RecordCount.purchase, discount, totalProfit, "", Session.user.id);
         }
         savedToDatabase = 1;
     }

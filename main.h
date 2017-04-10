@@ -495,6 +495,7 @@ time_t nMonthRollbackToDateMonthYear(int date, int month, int year, int nMonthRo
 int isTimeInRange(time_t timestamp, time_t start, time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
 int superscanf(char *input); // Addition form scanf() to detect Blankline; (Return 0 = Empty line | 1 = Has a input)
 double min(double a, double b); // Return the minimum value
+double max(double a, double b); // Return the maximum value
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: DECORATE.c
