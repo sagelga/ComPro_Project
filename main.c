@@ -5,8 +5,8 @@
 int main () { // This program will run first. POS Interface configuration will be called, and ready to work.
     screenClear ();
     initDatabase ();
-    //screenAdjust();
-    switchHub ();
+    screenAdjust();
+    //switchHub();
     return 0;
 }
 
@@ -72,7 +72,7 @@ void switchHub () {
 
     switch ( toupper (flags)) {
         case ('1'): // Sign In / Sign Out
-            cashierInterface ();
+            cashierInterface (0);
             break;
 
         case ('2'):// Go to POS Systems Interface (for cashier)

@@ -468,6 +468,7 @@ time_t nDayRollbackToDateMonthYear(int date, int month, int year, int nDayRollba
 time_t nMonthRollbackToDateMonthYear(int date, int month, int year, int nMonthRollback); // This function will help to rollback for n-months from the dd/mm/yyyy that you given
 int isTimeInRange(time_t timestamp, time_t start, time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
 int superscanf(char *input); // Addition form scanf() to detect Blankline; (Return 0 = Empty line | 1 = Has a input)
+double min(double a, double b); // Return the minimum value
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: DECORATE.c
@@ -517,10 +518,10 @@ void saleDatabaseInterface();
 /*-----------------------------------------------------------------------------
 Decease what the seller can do*/
 
-void cashierInterface();
-void cashierInterfaceInventory();
-void cashierInterfaceDiscount();// Interface that will ask for discount (voucher and points)
-void cashierInterfaceResult();// Interface that will show the total (just like the receipt)
+void cashierInterface (int customerIdNotFound);
+void cashierInterfaceInventory (int isError);
+void cashierInterfaceDiscount (int errorCode);// Interface that will ask for discount (voucher and points)
+void cashierInterfaceResult (int usePoint);// Interface that will show the total (just like the receipt)
 
 
 
