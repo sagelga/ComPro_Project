@@ -14,9 +14,9 @@ void screenAdjust () {
     for ( int i = 0; i < 23; i++ )
         bannerBlankBorder ();
 
-    if (errorResponse == 1){
+    if ( errorResponse == 1 ) {
         bannerBlankBorderTextCen ("Invalid response. Please try again.");
-    } else{
+    } else {
         bannerBlankBorder ();
     }
 
@@ -48,24 +48,41 @@ void screenAdjust () {
 
 void terminate () {
     // Type in the text that will be displayed after the user wants to terminate the program
-    screenClear ();
+    int i = 0;
+    char text[300];
 
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("You about to terminate the POS system...");
-    bannerFullBorder ();
+    for ( i = i; i < 10; i++ ) {
+        screenClear ();
 
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Shutting the program down....");
-    bannerBlankBorderTextCen ("Saving Context");
+        strcpy (text, " ");
 
-    for (int i = 34;i>0;i--)
+        bannerFullBorder ();
+        bannerBlankBorderTextCen ("You about to terminate the POS system...");
+        bannerFullBorder ();
+
+        bannerBlankBorder ();
+        bannerBlankBorderTextCen ("Shutting the program down....");
+        bannerBlankBorderTextCen ("Saving Context");
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("Have a good luck. Bye Bye!");
-    bannerFullBorder ();
+        strcat (text, "[ ");
 
+        for ( int j = i*10; j > 0; j-- ) {
+            strcat (text, "|");
+        }
 
-    delay (3);
+        strcat (text, " ] ");
+
+        bannerBlankBorderTextCen (text);
+
+        for ( int i = 29; i > 0; i-- )
+            bannerBlankBorder ();
+
+        bannerBlankBorderTextCen ("Have a good luck. Bye Bye!");
+        bannerFullBorder ();
+        delay (1);
+    }
+
     screenClear ();
     exit (0);
 }

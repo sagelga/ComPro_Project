@@ -47,7 +47,7 @@ void switchHub () {
     bannerBlankBorderTextCen ("8. Settings");
     bannerBlankBorder ();
 
-    for ( int i = 10; i > 0; i-- )
+    for ( int i = 9; i > 0; i-- )
         bannerBlankBorder ();
 
     errorResponse == 1 ? bannerBlankBorderTextCen ("Invalid response. Please try again.") : bannerBlankBorder ();
