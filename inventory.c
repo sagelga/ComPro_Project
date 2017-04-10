@@ -30,7 +30,7 @@ void inventorySwitchHub () {
     bannerBlankBorderTextCen ("6. Add new category to the database");
     bannerBlankBorderTextCen ("7. Edit category from the database");
 
-    for ( int i = 0; i < 8; i++ ) {
+    for ( int i = 0; i < 7; i++ ) {
         bannerBlankBorder ();
     }
 

@@ -107,7 +107,7 @@ void settingUpdatePasswordInterface () {
     bannerBlankBorderTextCen ("Please Type Old Password");
     bannerBlankBorder ();
 
-    for (int i = 0;i<22;i++)
+    for (int i = 0;i<21;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -126,7 +126,7 @@ void settingUpdatePasswordInterface () {
             bannerBlankBorderTextCen ("Your password was Correct");
             bannerBlankBorder ();
 
-            for (int i = 0;i<22;i++)
+            for (int i = 0;i<21;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please type your new password...");
             bannerFullBorder ();
@@ -141,10 +141,10 @@ void settingUpdatePasswordInterface () {
             bannerFullBorder ();
             for (int i = 0;i<10;i++)
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Test");
+            bannerBlankBorderTextCen ("Retype New Password");
             bannerBlankBorder ();
 
-            for (int i = 0;i<22;i++)
+            for (int i = 0;i<21;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please type new password again...");
             bannerFullBorder ();
@@ -163,7 +163,7 @@ void settingUpdatePasswordInterface () {
                 bannerBlankBorderTextCen ("Change Password success");
                 bannerBlankBorder ();
 
-                for (int i = 0;i<22;i++)
+                for (int i = 0;i<21;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -188,7 +188,7 @@ void settingUpdatePasswordInterface () {
                 bannerBlankBorderTextCen ("Please type same password");
                 bannerBlankBorder ();
 
-                for (int i = 0;i<21;i++)
+                for (int i = 0;i<20;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -213,7 +213,7 @@ void settingUpdatePasswordInterface () {
             bannerBlankBorderTextCen ("Password was Incorrect !");
             bannerBlankBorder ();
 
-            for (int i = 0;i<22;i++)
+            for (int i = 0;i<21;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please type your password again... | Type 'B' to back");
             bannerFullBorder ();
@@ -240,7 +240,7 @@ void settingUpdateStoreNameInterface () {
     bannerBlankBorderTextCen (Setting.storeName);
     bannerBlankBorder ();
 
-    for (int i = 0;i<20;i++)
+    for (int i = 0;i<19;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please enter new storename | Type 'B' to Back");
     bannerFullBorder ();
@@ -263,7 +263,7 @@ void settingUpdateStoreNameInterface () {
         bannerBlankBorderTextCen (newstoreName);
         bannerBlankBorder ();
 
-        for (int i = 0;i<20;i++)
+        for (int i = 0;i<19;i++)
             bannerBlankBorder ();
         bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
         bannerFullBorder ();
@@ -291,7 +291,7 @@ void settingUpdateStoreAddressInterface () {
     bannerBlankBorderTextCen (Setting.storeAddress);
     bannerBlankBorder ();
 
-    for (int i = 0;i<20;i++)
+    for (int i = 0;i<19;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please enter new storeaddress | Type 'B' to Back");
     bannerFullBorder ();
@@ -314,7 +314,7 @@ void settingUpdateStoreAddressInterface () {
         bannerBlankBorderTextCen (newstoreAddress);
         bannerBlankBorder ();
 
-        for (int i = 0;i<20;i++)
+        for (int i = 0;i<19;i++)
             bannerBlankBorder ();
         bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
         bannerFullBorder ();
