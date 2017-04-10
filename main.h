@@ -123,6 +123,8 @@ int personnelUpdateRole(char *id, int role);                // For modifying the
 int personnelUpdatePassword(char *id, char *password);      // For modifying the `password` (Select the record by `id`)
 int personnelDelete(char *id);                              // Delete the record (Select by `id`)
 
+void personnelSwitchHub();
+
 //-------------------------------------------------------------------------------------------------------
 // # - File: INVENTORY.c
 //-------------------------------------------------------------------------------------------------------
@@ -294,6 +296,8 @@ void customerDeleteInterface();
 
 void customerUpdateInterface();
 
+void displayCustomer(int page);
+
 //-------------------------------------------------------------------------------------------------------
 // # - File: PROMOTION.c
 //-------------------------------------------------------------------------------------------------------
@@ -326,6 +330,8 @@ void promotionInsertInterface();
 void promotionSelectInterface();
 void promotionDeleteInterface();
 void promotionUpdateInterface();
+
+void displayPromotion(int page);
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: SETTING.c
@@ -418,7 +424,9 @@ void PersonnelSaleReportInterface();
 void PersonnelSaleReportInputProcess();
 void displayPersonnelSaleReport(int page);
 
-//void MultipleDayReportInterface();
+void MultipleDayReportInterface();
+void MultipleDayReportInputProcess();
+void displayMultipleDayReport(int page);
 
 /*-----------------------------------------------------------------------------
 Declare all the forecast function can do*/

@@ -5,24 +5,23 @@
 
 void customerSwitchHub () {
     screenClear ();
-    bannerFullBorder ();
-    bannerBlankBorderTextCen ("Customer Database");
-    bannerFullBorder ();
 
-    for ( int i = 0; i < 2; i++ )
-        bannerBlankBorder ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Customer Hub");
+    bannerBlankBorderTextCen ("----------------------");
     bannerBlankBorderTextCen ("What do you want to do?");
+    bannerFullBorder ();
 
     bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("1. Create new customer ID");
-    bannerBlankBorderTextCen ("2. Preview customer database");
+    bannerBlankBorderTextCen ("1. Preview customer database");
+    bannerBlankBorderTextCen ("2. Create new customer ID");
     bannerBlankBorderTextCen ("3. Delete customer metadata from the database");
     bannerBlankBorderTextCen ("4. Update existed customer");
 
-    for (int i = 0;i<26;i++)
+    for (int i = 0;i<28;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("ALTERNATE RESPONSE  |  Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -32,11 +31,11 @@ void customerSwitchHub () {
     switch(toupper(flag)){
 
         case ('1'):
-            customerInsertInterface ();
+            customerSelectInterface ();
             break;
 
         case ('2'):
-            customerSelectInterface ();
+            customerInsertInterface ();
             break;
 
         case ('3'):
@@ -49,6 +48,9 @@ void customerSwitchHub () {
 
         case ('B'):
             switchHub ();
+
+        case ('Q'):
+            terminate ();
 
         default:
             customerSwitchHub ();
@@ -73,7 +75,7 @@ void customerInsertInterface () {
     bannerBlankBorderTextCen ("Firstname");
     bannerBlankBorderTextCen ("Lastname");
     bannerBlankBorderTextCen ("Gender(M/F)");
-    bannerBlankBorderTextCen (" ");
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Ex: 1234567891012");
     bannerBlankBorderTextCen ("Prayut");
     bannerBlankBorderTextCen ("Chun-O-Char");
@@ -250,7 +252,7 @@ void customerInsertInterface () {
                     bannerBlankBorder ();
                     bannerBlankBorderTextCen (buffer);
                     bannerBlankBorder ();
-                    bannerBlankBorderTextCen ("was repeatedly");
+                    bannerBlankBorderTextCen ("was a duplicate");
                     bannerBlankBorderTextCen ("_____________________");
                     bannerBlankBorder ();
                     bannerBlankBorder ();
@@ -271,36 +273,79 @@ void customerInsertInterface () {
     }
 }
 
-void customerSelectInterface () {
-    //sky create
+void displayCustomer(int page) {
     screenClear ();
+    int allPage = (int) ceil (RecordCount.customer / 34) + 1;
+    char NewGender[7];
     bannerFullBorder ();
-    bannerBlankBorderTextCen ("Customer Database");
-    bannerFullBorder ();
-
-    bannerBlankBorderTextCen ("Select Customer");
-
-    for ( int i = 0; i < 2; i++ )
-        bannerBlankBorder ();
-    bannerFullBorderSection ();
-    bannerBlankBorder ();
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type Customer ID:");
-
-    for ( int i = 0; i < 26; i++ )
-        bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    printf (":: %-20s | %-35s | %-35s | %-8s | %10s | %11s ::\n", "Customer ID", "Firstname", "Lastname", "Gender", "Point", "Total Buy");
     bannerFullBorder ();
 
-    bannerUserInput ();
-    char id[MAX_LNG_ID];
-    scanf ("%s", id);
-    if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
-        customerSwitchHub ();
-    } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
-        terminate ();
+    if ( page == allPage ) {
+        for ( int i = (page - 1) * 34; i < RecordCount.customer; ++i ) {
+            if (Customer[i].gender == 'F')
+            {
+                strcpy(NewGender, "Female");
+            }
+            else
+            {
+                strcpy(NewGender, "Male");
+            }
+            printf (":: %-20s | %-35s | %-35s | %-8s | %10.2lf | %11.2lf ::\n", Customer[i].id, Customer[i].firstname,
+                    Customer[i].lastname, NewGender, Customer[i].point,
+                    Customer[i].totalBuy);
+            //bannerBlankBorder();
+        }
+        //display remaining line as bannerBlankBorder()
+        for ( int i = 0; i < 34 - (RecordCount.customer % 34); ++i ) {
+            printf (":: %-20s | %-35s | %-35s | %-8s | %10s | %11s ::\n", "", "", "", "", "", "");
+        }
     } else {
-        // customerSelectById(id);
+        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
+            if (Customer[i].gender == 'F')
+            {
+                strcpy(NewGender, "Female");
+            }
+            else
+            {
+                strcpy(NewGender, "Male");
+            }
+            printf (":: %-20s | %-35s | %-35s | %-8s | %10.2lf | %11.2lf ::\n", Customer[i].id, Customer[i].firstname,
+                    Customer[i].lastname, NewGender, Customer[i].point,
+                    Customer[i].totalBuy);
+            //bannerBlankBorder();
+        }
+    }
+
+    bannerBlankBorderTextCen ("Enter Page/Enter 'B' to back to Customer Menu");
+    printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
+            page, allPage);
+    bannerFullBorder ();
+
+}
+
+void customerSelectInterface () {
+    char handling;
+    int pageIn = 1, CheckPage;
+    displayCustomer(1);
+    for ( int i = 0; i >= 0; ++i ) {
+        scanf (" %c", &handling);
+        if ((handling == 'B') || (handling == 'b')) {
+            screenClear ();
+            customerSwitchHub();
+        } else if ( isdigit (handling)) {
+            CheckPage = (int) handling - 48;
+            if ((CheckPage <= ((int) ceil (RecordCount.customer / 34) + 1)) && (CheckPage >= 1)) {
+                pageIn = (int) handling - 48;
+                displayCustomer(pageIn);
+            } else {
+                displayCustomer(pageIn);
+                printf ("Oops! Page not found, Please enter correct page: ");
+            }
+        } else {
+            displayCustomer(pageIn);
+            printf ("Oops! Input Error, Please enter correctly: ");
+        }
     }
 }
 

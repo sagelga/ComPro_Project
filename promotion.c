@@ -3,35 +3,37 @@
 
 void promotionSwitchHub () {
     screenClear ();
+
     bannerFullBorder ();
-    bannerBlankBorderTextCen ("Promotion Database");
+    bannerBlankBorderTextCen ("Promotion Hub");
+    bannerBlankBorderTextCen ("-----------------------");
+    bannerBlankBorderTextCen ("What do you want to do?");
     bannerFullBorder ();
 
-    bannerBlankBorderTextCen ("What do you want to do?");
-    bannerFullBorderSection ();
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("1. Create a new promotion");
-    bannerBlankBorderTextCen ("2. View all promotion in database");
+    bannerBlankBorderTextCen ("1. Preview promotion in database");
+    bannerBlankBorderTextCen ("2. Create a new promotion");
     bannerBlankBorderTextCen ("3. Delete promotion from database");
     bannerBlankBorderTextCen ("4. Update promotion metadata");
 
-    for (int i = 0;i<27;i++)
+    for (int i = 0;i<28;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
     char flag;
     scanf (" %c", &flag);
 
-    switch ( flag ) {
+    switch ( toupper(flag) ) {
 
         case ('1'):
-            promotionInsertInterface ();
+            promotionSelectInterface ();
+
             break;
 
         case ('2'):
-            promotionSelectInterface ();
+            promotionInsertInterface ();
             break;
 
         case ('3'):
@@ -42,14 +44,10 @@ void promotionSwitchHub () {
             promotionUpdateInterface ();
             break;
 
-        case ('b'):
-            switchHub ();
         case ('B'):
             switchHub ();
 
-        case ('n'):
-            terminate ();
-        case ('N'):
+        case ('Q'):
             terminate ();
 
         default:
@@ -209,8 +207,78 @@ void promotionInsertInterface(){
     }
 }
 
-void promotionSelectInterface () {
+void displayPromotion(int page) {
+    screenClear ();
+    int allPage = (int) ceil (RecordCount.promotion / 34) + 1;
+    char NewState[7];
+    bannerFullBorder ();
+    printf ("::                         %-42s |              %-18s |              %-18s ::\n", "Promotion ID", "Price", "Status");
+    bannerFullBorder ();
 
+    if ( page == allPage ) {
+        for ( int i = (page - 1) * 34; i < RecordCount.promotion; ++i ) {
+            if (Promotion[i].status)
+            {
+                strcpy(NewState, "Active");
+            }
+            else
+            {
+                strcpy(NewState, "Used");
+            }
+            printf ("::                        %-43s | %31.2lf |              %-18s ::\n", Promotion[i].id, Promotion[i].price,
+                    NewState);
+            //bannerBlankBorder();
+        }
+        //display remaining line as bannerBlankBorder()
+        for ( int i = 0; i < 34 - (RecordCount.promotion % 34); ++i ) {
+            printf (":: %-66s | %31s | %-31s ::\n", "", "", "");
+        }
+    } else {
+        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
+            if (Promotion[i].status)
+            {
+                strcpy(NewState, "Active");
+            }
+            else
+            {
+                strcpy(NewState, "Used");
+            }
+            printf ("::                       %-43s | %31.2lf |              %-18s ::\n", Promotion[i].id, Promotion[i].price,
+                    NewState);
+            //bannerBlankBorder();
+        }
+    }
+
+    bannerBlankBorderTextCen ("Enter Page/Enter 'B' to back to Promotion Menu");
+    printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
+            page, allPage);
+    bannerFullBorder ();
+
+}
+
+void promotionSelectInterface () {
+    char handling;
+    int pageIn = 1, CheckPage;
+    displayPromotion(1);
+    for ( int i = 0; i >= 0; ++i ) {
+        scanf (" %c", &handling);
+        if ((handling == 'B') || (handling == 'b')) {
+            screenClear ();
+            promotionSwitchHub();
+        } else if ( isdigit (handling)) {
+            CheckPage = (int) handling - 48;
+            if ((CheckPage <= ((int) ceil (RecordCount.promotion / 34) + 1)) && (CheckPage >= 1)) {
+                pageIn = (int) handling - 48;
+                displayPromotion(pageIn);
+            } else {
+                displayPromotion(pageIn);
+                printf ("Oops! Page not found, Please enter correct page: ");
+            }
+        } else {
+            displayPromotion(pageIn);
+            printf ("Oops! Input Error, Please enter correctly: ");
+        }
+    }
 }
 
 void promotionDeleteInterface(){

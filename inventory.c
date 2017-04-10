@@ -3,11 +3,17 @@
 
 void inventorySwitchHub () {
 
+    screenClear ();
+
     bannerFullBorder ();
-    bannerBlankBorderTextCen ("What are you going to do?");
+    bannerBlankBorderTextCen ("Inventory Hub");
+    bannerBlankBorderTextCen ("-----------------------");
+    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerFullBorder ();
+
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Inventory");
-    bannerFullBorderSection ();
+    bannerBlankBorderTextCen ("-------------------");
     bannerBlankBorderTextCen ("1. Check the database");
     bannerBlankBorderTextCen ("2. Add inventory data to the database");
     bannerBlankBorderTextCen ("3. Edit inventory data from the database");
@@ -15,15 +21,15 @@ void inventorySwitchHub () {
 
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Category");
-    bannerFullBorderSection ();
+    bannerBlankBorderTextCen ("------------------");
     bannerBlankBorderTextCen ("5. Check the category database");
     bannerBlankBorderTextCen ("6. Add new category to the database");
     bannerBlankBorderTextCen ("7. Edit category from the database");
 
-    for ( int i = 0; i < 23; i++ ) {
+    for ( int i = 0; i < 20; i++ ) {
         bannerBlankBorder ();
     }
-    bannerBlankBorderTextCen ("or type 'B' to return back to the hub");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
 
@@ -34,40 +40,42 @@ void inventorySwitchHub () {
         case ('1'):
             inventoryDatabaseInterface ();
             break;
+
         case ('2'):
             inventoryAdd ();
             break;
+
         case ('3'):
             //inventoryEdit();
             break;
+
         case ('4'):
             inventoryRemove ();
             break;
+
         case ('5'):
             categoryDatabaseInterface ();
             break;
+
         case ('6'):
             categoryAdd ();
             break;
+
         case ('7'):
             //categoryEdit();
             break;
+
         case ('B'):
             switchHub ();
             break;
+
+        case ('Q'):
+            terminate ();
+            
         default:
             printf ("Your input is invalid. Please try again...");
             inventorySwitchHub ();
     }
-}
-
-void inventoryAddInterface () {
-}
-
-void inventoryModifyInterface () {
-}
-
-void inventoryRemoveInterface () {
 }
 
 int inventorySelectById (char *id, char *name, double *price, double *profit, unsigned int *categoryId,
@@ -294,28 +302,29 @@ void inventoryAdd () {
             bannerBlankBorder ();
         }
         bannerBlankBorderTextCen ("Success!!! The inventory has been inserted.");
-        bannerBlankBorderTextCen ("<-- Enter A/b to add more inventory -->");
-        bannerBlankBorderTextCen ("<-- Enter B/b to back to Inventory&Category Menu -->");
+        bannerBlankBorderTextCen ("Enter A to add more inventory");
+        bannerBlankBorderTextCen ("Enter B to back to Inventory & Category Menu");
         for ( int i = 0; i < 17; ++i ) {
             bannerBlankBorder ();
         }
         bannerFullBorder ();
 
         scanf (" %c", &handling);
-        if ((handling == 'A') || (handling == 'a')) {
-            inventoryAdd ();
-        } else if ((handling == 'B') || (handling == 'b')) {
-            screenClear ();
-            inventorySwitchHub ();
-        } else {
+        switch (toupper(handling)){
+            case ('A'):
+                inventoryAdd ();
+                break;
+            case ('B'):
+                inventorySwitchHub ();
+            default:
             screenClear ();
             bannerFullBorder ();
             for ( int i = 0; i < 17; ++i ) {
                 bannerBlankBorder ();
             }
             bannerBlankBorderTextCen ("Input Error!!!");
-            bannerBlankBorderTextCen ("|| Enter A/b to add more inventory ||");
-            bannerBlankBorderTextCen ("|| Enter B/b to back to Inventory&Category Menu ||");
+                bannerBlankBorderTextCen ("Enter A to add more inventory");
+                bannerBlankBorderTextCen ("Enter B to back to Inventory & Category Menu");
             for ( int i = 0; i < 18; ++i ) {
                 bannerBlankBorder ();
             }
@@ -334,8 +343,8 @@ void inventoryAdd () {
                         bannerBlankBorder ();
                     }
                     bannerBlankBorderTextCen ("Input Error!!!");
-                    bannerBlankBorderTextCen ("|| Enter A/b to add more inventory ||");
-                    bannerBlankBorderTextCen ("|| Enter B/b to back to Inventory&Category Menu ||");
+                    bannerBlankBorderTextCen ("Enter A to add more inventory");
+                    bannerBlankBorderTextCen ("Enter B to back to Inventory & Category Menu");
                     for ( int i = 0; i < 18; ++i ) {
                         bannerBlankBorder ();
                     }
