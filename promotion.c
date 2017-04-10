@@ -221,14 +221,14 @@ void promotionInsertInterface(){
 
 void displayPromotion(int page) {
     screenClear ();
-    int allPage = (int) ceil (RecordCount.promotion / 34) + 1;
+    int allPage = (int) ceil (RecordCount.promotion / 32) + 1;
     char NewState[7];
     bannerFullBorder ();
     printf ("::                         %-42s |              %-18s |              %-18s ::\n", "Promotion ID", "Price", "Status");
     bannerFullBorder ();
 
     if ( page == allPage ) {
-        for ( int i = (page - 1) * 34; i < RecordCount.promotion; ++i ) {
+        for ( int i = (page - 1) * 32; i < RecordCount.promotion; ++i ) {
             if (Promotion[i].status)
             {
                 strcpy(NewState, "Active");
@@ -242,11 +242,11 @@ void displayPromotion(int page) {
             //bannerBlankBorder();
         }
         //display remaining line as bannerBlankBorder()
-        for ( int i = 0; i < 34-2 - (RecordCount.promotion % 34); ++i ) {
+        for ( int i = 0; i < 32-2 - (RecordCount.promotion % 32); ++i ) {
             printf (":: %-66s | %31s | %-31s ::\n", "", "", "");
         }
     } else {
-        for ( int i = (page - 1) * 34; i < page * 34-2/*(34*page)*/; ++i ) {
+        for ( int i = (page - 1) * 32; i < page * 32-2/*(34*page)*/; ++i ) {
             if (Promotion[i].status)
             {
                 strcpy(NewState, "Active");
@@ -280,7 +280,7 @@ void promotionSelectInterface () {
             promotionSwitchHub();
         } else if ( isdigit (handling)) {
             CheckPage = (int) handling - 48;
-            if ((CheckPage <= ((int) ceil (RecordCount.promotion / 34) + 1)) && (CheckPage >= 1)) {
+            if ((CheckPage <= ((int) ceil (RecordCount.promotion / 32) + 1)) && (CheckPage >= 1)) {
                 pageIn = (int) handling - 48;
                 displayPromotion(pageIn);
             } else {

@@ -216,24 +216,24 @@ int inventoryDelete (char *id) {
 
 void displayInventory (int page) {
     screenClear ();
-    int allPage = (int) ceil (RecordCount.inventory / 34) + 1;
+    int allPage = (int) ceil (RecordCount.inventory / 32) + 1;
     bannerFullBorder ();
     printf (":: ID             | Name                                               | Price      | Profit     | Category                  | In Stock   ::\n");
     bannerFullBorder ();
 
     if ( page == allPage ) {
-        for ( int i = (page - 1) * 34; i < RecordCount.inventory; ++i ) {
+        for ( int i = (page - 1) * 32; i < RecordCount.inventory; ++i ) {
             printf (":: %-14s | %-50s | %10.2lf | %10.2lf | %-25s | %10u ::\n", Inventory[i].id, Inventory[i].name,
                     Inventory[i].price, Inventory[i].profit, Category[Inventory[i].categoryId].name,
                     Inventory[i].remain);
             //bannerBlankBorder();
         }
         //display remaining line as bannerBlankBorder()
-        for ( int i = 0; i < 33 - (RecordCount.inventory % 34); ++i ) {
+        for ( int i = 0; i < 32 - (RecordCount.inventory % 32); ++i ) {
             printf ("::                |                                                    |            |            |                           |            ::\n");
         }
     } else {
-        for ( int i = (page - 1) * 34; i < page * 33/*(34*page)*/; ++i ) {
+        for ( int i = (page - 1) * 32; i < page * 32/*(34*page)*/; ++i ) {
             printf (":: %-14s | %-50s | %10.2lf | %10.2lf | %-25s | %10u ::\n", Inventory[i].id, Inventory[i].name,
                     Inventory[i].price, Inventory[i].profit, Category[Inventory[i].categoryId].name,
                     Inventory[i].remain);
@@ -261,7 +261,7 @@ void inventoryDatabaseInterface () {
             inventorySwitchHub ();
         } else if ( isdigit (handling)) {
             CheckPage = (int) handling - 48;
-            if ((CheckPage <= ((int) ceil (RecordCount.inventory / 34) + 1)) && (CheckPage >= 1)) {
+            if ((CheckPage <= ((int) ceil (RecordCount.inventory / 32) + 1)) && (CheckPage >= 1)) {
                 pageIn = (int) handling - 48;
                 displayInventory (pageIn);
             } else {
@@ -317,7 +317,7 @@ void inventoryAdd () {
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Insert Inventory Below");
 
-    for ( int i = 0; i < 12; i++ )
+    for ( int i = 0; i < 11; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -331,7 +331,7 @@ void inventoryAdd () {
     double profitIN;
     unsigned int categoryIdIN;
     unsigned int remainIN;
-    sprintf(bufferHead, "     %-15s |            %-24s |     %-10s |     %-10s |     %-13s |       %-4s", "Inventory ID", "Inventory Name", "Price", "Profit", "Category", "Number"); //idIN, nameIN, priceIN, profitIN, Category[i].name, remainIN
+    sprintf(bufferHead, "%-20s|%-35s|%-15s|%-15s|%-20s|%-10s", "Inventory ID", "Inventory Name", "Price", "Profit", "Category", "Number"); //idIN, nameIN, priceIN, profitIN, Category[i].name, remainIN
     while (1){
         scanf("%s", idIN);
         if (strcmp(idIN, "B") == 0 || strcmp(idIN, "b") == 0 ){
@@ -356,7 +356,7 @@ void inventoryAdd () {
             bannerBlankBorder ();
             bannerBlankBorderTextLeft (buffer);
     
-            for (int i = 0;i<28;i++)
+            for (int i = 0;i<27;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please enter The inventory name...");
             bannerFullBorder ();
@@ -378,7 +378,7 @@ void inventoryAdd () {
             bannerBlankBorder ();
             bannerBlankBorderTextLeft (buffer);
     
-            for (int i = 0;i<28;i++)
+            for (int i = 0;i<27;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please enter Price...");
             bannerFullBorder ();
@@ -387,7 +387,7 @@ void inventoryAdd () {
 
             //---------------------InventoryPrice--------------------------
             scanf (" %lf", &priceIN);
-            sprintf(buffer, "%-20s %-35s %14.2lf->", idIN, nameIN, priceIN);
+            sprintf(buffer, "%-20s %-35s %15.2lf->", idIN, nameIN, priceIN);
             screenClear ();
             bannerFullBorder ();
             bannerBlankBorderTextCen ("Inventory Database");
@@ -400,7 +400,7 @@ void inventoryAdd () {
             bannerBlankBorder ();
             bannerBlankBorderTextLeft (buffer);
     
-            for (int i = 0;i<28;i++)
+            for (int i = 0;i<27;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please enter Profit...");
             bannerFullBorder ();
@@ -409,7 +409,7 @@ void inventoryAdd () {
 
             //--------------------Profit-------------------------------
             scanf(" %lf", &profitIN);
-            sprintf(buffer, "%-20s %-35s %14.2lf %14.2lf->", idIN, nameIN, priceIN, profitIN);
+            sprintf(buffer, "%-20s %-35s %15.2lf %15.2lf->", idIN, nameIN, priceIN, profitIN);
             screenClear ();
             bannerFullBorder ();
             bannerBlankBorderTextCen ("Inventory Database");
@@ -422,7 +422,7 @@ void inventoryAdd () {
             bannerBlankBorder ();
             bannerBlankBorderTextLeft (buffer);
     
-            for (int i = 0;i<28;i++)
+            for (int i = 0;i<27;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please enter Category ID...");
             bannerFullBorder ();
@@ -445,12 +445,12 @@ void inventoryAdd () {
             {
                 if (categoryIdIN == Category[i].id)
                 {
-                    sprintf(buffer, "%-20s %-35s %14.2lf %14.2lf %-17s->", idIN, nameIN, priceIN, profitIN, Category[i].name);
+                    sprintf(buffer, "%-20s %-35s %15.2lf %15.2lf %20s->", idIN, nameIN, priceIN, profitIN, Category[i].name);
                 }
             }
             bannerBlankBorderTextLeft (buffer);
 
-            for (int i = 0;i<28;i++)
+            for (int i = 0;i<27;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please enter Number of this inventory...");
             bannerFullBorder ();
@@ -463,7 +463,7 @@ void inventoryAdd () {
             {
                 if (categoryIdIN == Category[i].id)
                 {
-                    sprintf(buffer, "%-20s %-35s %14.2lf %14.2lf %-17s %10u", idIN, nameIN, priceIN, profitIN, Category[i].name, remainIN);
+                    sprintf(buffer, "%-20s %-35s %15.2lf %15.2lf %20s %10u", idIN, nameIN, priceIN, profitIN, Category[i].name, remainIN);
                 }
             }
             screenClear ();
@@ -548,7 +548,7 @@ void inventoryAdd () {
                     bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Insert Next Inventory Or Type 'B' to Back");
         
-                    for (int i = 0;i<20;i++)
+                    for (int i = 0;i<19;i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
@@ -580,7 +580,7 @@ void inventoryEdit(){
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type InventoryID");
 
-    for (int i = 0;i<18;i++)
+    for (int i = 0;i<17;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -655,7 +655,7 @@ void inventoryEdit(){
                     bannerBlankBorderTextCen ("InventoyName doesn't exist");
                     bannerBlankBorderTextCen ("Please re-type InventoryID | Type 'B' to back");
                 
-                    for (int i = 0;i<15;i++)
+                    for (int i = 0;i<14;i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
@@ -684,7 +684,7 @@ void inventoryEdit(){
                     bannerBlankBorderTextCen ("Inventoy has been updated");
                     bannerBlankBorderTextCen ("Type Next InventoyID to Update Or Type 'B' to Back");
                 
-                    for (int i = 0;i<15;i++)
+                    for (int i = 0;i<14;i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
@@ -709,7 +709,7 @@ void inventoryEdit(){
                 bannerBlankBorderTextCen ("InventoryID dosen't exist.");
                 bannerBlankBorderTextCen ("Type Next InventoryID Or Type 'B' to Back");
             
-                for (int i = 0;i<16;i++)
+                for (int i = 0;i<15;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -731,117 +731,54 @@ void inventoryRemove () {
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Removing Inventory");
     bannerFullBorder ();
-    for ( int i = 0; i < 36; ++i ) {
+    for ( int i = 0; i < 33; ++i ) {
         bannerBlankBorder ();
     }
+    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
-    //Input
-    printf ("Enter the inventory ID to delete: ");
-    scanf ("%s", idIN);
     //Process
-    if ( inventoryDelete (idIN)) {
-        screenClear ();
-        bannerFullBorder ();
-        bannerBlankBorderTextCen ("Removing Inventory");
-        bannerFullBorder ();
-        for ( int i = 0; i < 16; ++i ) {
-            bannerBlankBorder ();
-        }
-        bannerBlankBorderTextCen ("Success!!! The inventory has been deleted.");
-        bannerBlankBorderTextCen ("<-- Enter D/d to delete more inventory -->");
-        bannerBlankBorderTextCen ("<-- Enter B/b to back to Inventory&Category Menu -->");
-        for ( int i = 0; i < 17; ++i ) {
-            bannerBlankBorder ();
-        }
-        bannerFullBorder ();
-
-        scanf (" %c", &handling);
-        if ((handling == 'D') || (handling == 'd')) {
-            inventoryRemove ();
-        } else if ((handling == 'B') || (handling == 'b')) {
-            screenClear ();
+    for (int i = 0; i >= 0; ++i)
+    {
+        printf("\n");
+        printf ("Enter the inventory ID to delete: ");
+        scanf ("%s", idIN);
+        if ((strcmp(idIN, "B") == 0) || (strcmp(idIN, "b") == 0))
+        {
             inventorySwitchHub ();
-        } else {
-            screenClear ();
-            bannerFullBorder ();
-            for ( int i = 0; i < 17; ++i ) {
-                bannerBlankBorder ();
-            }
-            bannerBlankBorderTextCen ("Input Error!!!");
-            bannerBlankBorderTextCen ("|| Enter D/d to delete more inventory ||");
-            bannerBlankBorderTextCen ("|| Enter B/b to back to Inventory&Category Menu ||");
-            for ( int i = 0; i < 18; ++i ) {
-                bannerBlankBorder ();
-            }
-            bannerFullBorder ();
-            for ( int i = 0; i >= 0; ++i ) {
-                scanf (" %c", &handling);
-                if ((handling == 'b') || (handling == 'B')) {
-                    screenClear ();
-                    inventorySwitchHub ();
-                } else if ((handling == 'D') || (handling == 'd')) {
-                    inventoryRemove ();
-                } else {
-                    screenClear ();
-                    bannerFullBorder ();
-                    for ( int i = 0; i < 17; ++i ) {
-                        bannerBlankBorder ();
-                    }
-                    bannerBlankBorderTextCen ("Input Error!!!");
-                    bannerBlankBorderTextCen ("|| Enter D/d to delete more inventory ||");
-                    bannerBlankBorderTextCen ("|| Enter B/b to back to Inventory&Category Menu ||");
-                    for ( int i = 0; i < 18; ++i ) {
-                        bannerBlankBorder ();
-                    }
-                    bannerFullBorder ();
+        }
+        else if ((strcmp(idIN, "N") == 0) || (strcmp(idIN, "n") == 0))
+        {
+            terminate ();
+        }
+        else
+        {
+            if ( inventoryDelete (idIN)) {
+                screenClear ();
+                bannerFullBorder ();
+                bannerBlankBorderTextCen ("Removing Inventory");
+                bannerFullBorder ();
+                for ( int i = 0; i < 16; ++i ) {
+                    bannerBlankBorder ();
                 }
-            }
-        }
-    } else {
-        screenClear ();
-        bannerFullBorder ();
-        for ( int i = 0; i < 18; ++i ) {
-            bannerBlankBorder ();
-        }
-        bannerBlankBorderTextCen ("Error. The inventory ID does not exist.");
-        bannerBlankBorderTextCen ("Please enter B/b to back to Removing Inventory");
-        for ( int i = 0; i < 18; ++i ) {
-            bannerBlankBorder ();
-        }
-        bannerFullBorder ();
-        scanf (" %c", &handling);
-        if ((handling == 'b') || (handling == 'B')) {
-            inventoryRemove ();
-        } else {
-            screenClear ();
-            bannerFullBorder ();
-            for ( int i = 0; i < 18; ++i ) {
-                bannerBlankBorder ();
-            }
-            bannerBlankBorderTextCen ("Input Error!!!");
-            bannerBlankBorderTextCen ("Please enter B/b to back to Removing Inventory.");
-            for ( int i = 0; i < 18; ++i ) {
-                bannerBlankBorder ();
-            }
-            bannerFullBorder ();
-            for ( int i = 0; i >= 0; ++i ) {
-                scanf (" %c", &handling);
-                if ((handling == 'b') || (handling == 'B')) {
-                    inventoryRemove ();
-                } else {
-                    screenClear ();
-                    bannerFullBorder ();
-                    for ( int i = 0; i < 18; ++i ) {
-                        bannerBlankBorder ();
-                    }
-                    bannerBlankBorderTextCen ("Input Error!!!");
-                    bannerBlankBorderTextCen ("Please enter B/b to back to Removint Inventory.");
-                    for ( int i = 0; i < 18; ++i ) {
-                        bannerBlankBorder ();
-                    }
-                    bannerFullBorder ();
+                bannerBlankBorderTextCen ("Success!!! The inventory has been deleted.");
+                for ( int i = 0; i < 16; ++i ) {
+                    bannerBlankBorder ();
                 }
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+            } else {
+                screenClear ();
+                bannerFullBorder ();
+                for ( int i = 0; i < 17; ++i ) {
+                    bannerBlankBorder ();
+                }
+                bannerBlankBorderTextCen ("Error. The inventory ID does not exist.");
+                for ( int i = 0; i < 17; ++i ) {
+                    bannerBlankBorder ();
+                }
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
             }
         }
     }

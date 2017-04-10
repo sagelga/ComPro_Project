@@ -49,21 +49,21 @@ int categoryUpdateName (unsigned int id, char *name) {
 
 void displayCategory (int page) {
     screenClear ();
-    int allPage = (int) ceil (RecordCount.category / 34) + 1;
+    int allPage = (int) ceil (RecordCount.category / 32) + 1;
     bannerFullBorder ();
     printf ("::          ID           | Category Name                                                                                                  ::\n");
     bannerFullBorder ();
 
     if ( page == allPage ) {
-        for ( int i = (page - 1) * 34; i < RecordCount.category; ++i ) {
+        for ( int i = (page - 1) * 32; i < RecordCount.category; ++i ) {
             printf ("::           %u           | %-110s ::\n", Category[i].id, Category[i].name);
         }
         //display remaining line as bannerBlankBorder()
-        for ( int i = 0; i < 34 - (RecordCount.category % 34); ++i ) {
+        for ( int i = 0; i < 32 - (RecordCount.category % 32); ++i ) {
             printf ("::                       |                                                                                                                ::\n");
         }
     } else {
-        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
+        for ( int i = (page - 1) * 32; i < page * 32/*(32*page)*/; ++i ) {
             printf (":: %u | %s ::\n", Category[i].id, Category[i].name);
         }
     }
@@ -72,7 +72,7 @@ void displayCategory (int page) {
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
     bannerFullBorder ();
-
+    bannerUserInput ();
 }
 
 void categoryDatabaseInterface () {
@@ -100,7 +100,7 @@ void categoryAdd () {
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Insert Category");
     bannerFullBorder ();
-    for ( int i = 0; i < 36; ++i ) {
+    for ( int i = 0; i < 34; ++i ) {
         bannerBlankBorder ();
     }
     bannerFullBorder ();
