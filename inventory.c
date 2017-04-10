@@ -741,7 +741,7 @@ void inventoryRemove () {
     for (int i = 0; i >= 0; ++i)
     {
         printf("\n");
-        printf ("Enter the inventory ID to delete: ");
+        printf ("Enter the inventory ID to delete >>> ");
         scanf ("%s", idIN);
         if ((strcmp(idIN, "B") == 0) || (strcmp(idIN, "b") == 0))
         {
