@@ -42,7 +42,7 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please scan / enter in customer ID");
 
-    for ( int i = 26; i > 0; i-- )
+    for ( int i = 25; i > 0; i-- )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Press ENTER to skip  |  Type 'V' to back");
@@ -88,7 +88,7 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
 void cashierInterfaceInventory (int isError) {// Interface that will remove the item from the database
     screenClear ();
     char buffer1[140], buffer2[140];
-    int maxItemOnScreen = 22;
+    int maxItemOnScreen = 21;
 
     histStart = 0 + (inventoryHistRecordCount / (maxItemOnScreen + 1)) * maxItemOnScreen;
     histStop = inventoryHistRecordCount;
@@ -255,7 +255,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
             "Invalid Promotion Code, Please try another one");
         }
         else{
-            for ( int i = 27; i > 0; i-- )
+            for ( int i = 26; i > 0; i-- )
                 bannerBlankBorder ();
         }
         bannerBlankBorderTextCen (
@@ -304,7 +304,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
     else{
         // Customer is not a member
 
-        for ( int i = 28; i > 0; i-- )
+        for ( int i = 27; i > 0; i-- )
             bannerBlankBorder ();
 
         bannerBlankBorderTextCen (
@@ -393,7 +393,7 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
     }
     // --------------------------------------------------------------------------------------------
     char buffer1[140], buffer2[140];
-    int maxItemOnScreen = 19;
+    int maxItemOnScreen = 18;
 
     histStart = 0 + screenStep;
     histStop = inventoryHistRecordCount;
@@ -411,9 +411,9 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
 
     bannerBlankBorder ();
     bannerBlankBorderTextLeft (
-            " ID                 | Item name                                                                             | Count      | Price      "); // Keep these on forever
+            " ID                 | Item name                                                                          | Count       | Price        "); // Keep these on forever
     bannerBlankBorderTextLeft (
-            " ------------------ | ------------------------------------------------------------------------------------- | ---------- | ---------- ");
+            " ------------------ | ---------------------------------------------------------------------------------- | ----------- | ------------ ");
     // Shows a total of 25 item at a time. Press ENTER to go to the next page
 
     int lineCounter = 0;
@@ -421,30 +421,46 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
     while(i < histStop){
         if(lineCounter == maxItemOnScreen)
             break;
-        printf("::  %-18s | %-85s | %10d | %10.2lf  ::\n", inventoryHist[i].id, inventoryHist[i].name, inventoryCounter[i], inventoryCounter[i] * inventoryHist[i].price);
+        printf("::  %-18s | %-82s | %11d | %12.2lf  ::\n", inventoryHist[i].id, inventoryHist[i].name, inventoryCounter[i], inventoryCounter[i] * inventoryHist[i].price);
         i++;
         lineCounter++;
     }
 
     for( ; lineCounter < maxItemOnScreen; lineCounter++)
-        bannerBlankBorderTextLeft ("                    |                                                                                       |            |          ");
+        bannerBlankBorderTextLeft ("                    |                                                                                    |             |            ");
 
+    if(isCustomerHasId){
+        // If customer is a member
+        bannerBlankBorderText ("|----------Membership----------| |----------Purchase---------|");
 
-    bannerBlankBorderText ("|----------Membership----------| |----------Purchase---------|");
+        strcpy (text, "");
+        sprintf (text, "| Points you have   : %8.0f | | Sub Total   : %11.2f |", CurrentCustomer.point, subTotal);
+        bannerBlankBorderText (text);
+        sprintf (text, "| Points you used   : %8.0f | | VAT         : %11.2f |", pointUsed, tax);
+        bannerBlankBorderText (text);
+        strcpy (text, "");
+        sprintf (text, "| Points you earn   : %8.0f | | Discount    : %+11.2f |", pointEarn, -discount);
+        bannerBlankBorderText (text);
 
+        bannerBlankBorderText ("|______________________________| |___________________________|");
+    }
+    else{
+        // If customer is not a member
+        bannerBlankBorderText ("|----------Purchase---------|");
+
+        strcpy (text, "");
+        sprintf (text, "| Sub Total   : %11.2f |", subTotal);
+        bannerBlankBorderText (text);
+        sprintf (text, "| VAT         : %11.2f |", tax);
+        bannerBlankBorderText (text);
+        strcpy (text, "");
+        sprintf (text, "| Discount    : %+11.2f |", -discount);
+        bannerBlankBorderText (text);
+
+        bannerBlankBorderText ("|___________________________|");
+    }
     strcpy (text, "");
-    sprintf (text, "| Points you have   : %8.0f | | Sub Total   : %11.2f |", CurrentCustomer.point, subTotal);
-    bannerBlankBorderText (text);
-    sprintf (text, "| Points you used   : %8.0f | | VAT         : %11.2f |", pointUsed, tax);
-    bannerBlankBorderText (text);
-    strcpy (text, "");
-    sprintf (text, "| Points you earn   : %8.0f | | Discount    : %+11.2f |", pointEarn, -discount);
-    bannerBlankBorderText (text);
-
-    bannerBlankBorderText ("|______________________________| |___________________________|");
-
-    strcpy (text, "");
-    sprintf (text, "| Total Points      : %8.0f | | Total       : %11.2f |", CurrentCustomer.point + pointEarn - pointUsed, total - discount);
+    sprintf (text, "| Total       : %11.2f |", total - discount);
     bannerBlankBorderText (text);
 
     bannerBlankBorderTextCen ("_______________________________________________________________");

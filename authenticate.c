@@ -90,7 +90,7 @@ void authInterfaceComplete () {
 
     bannerBlankBorderTextCen ("POS system is now LOCK");
 
-    for ( int i = 0; i < 14; i++ ) {
+    for ( int i = 0; i < 13; i++ ) {
         bannerBlankBorder ();
     }
     bannerFullBorder ();
@@ -126,7 +126,7 @@ void authInterfaceComplete () {
     bannerBlankBorderTextCen ("POS system is now UNLOCK");
 
 
-    for ( int i = 0; i < 13; i++ ) {
+    for ( int i = 0; i < 12; i++ ) {
         bannerBlankBorder ();
     }
 
