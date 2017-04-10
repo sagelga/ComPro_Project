@@ -50,7 +50,7 @@ void inventorySwitchHub () {
             break;
 
         case ('3'):
-            //inventoryEdit();
+            inventoryEdit();
             break;
 
         case ('4'):
@@ -66,7 +66,7 @@ void inventorySwitchHub () {
             break;
 
         case ('7'):
-            //categoryEdit();
+            categoryEdit();
             break;
 
         case ('B'):
@@ -418,6 +418,163 @@ void inventoryAdd () {
                     bannerFullBorder ();
                 }
             }
+        }
+    }
+}
+
+void inventoryEdit(){
+    char bufferHead[140];
+    sprintf(bufferHead, "%-20s|%-30s|%-15s|%-15s|%-30s|%-10s", "ID", "Name", "Price", "Profit", "Category", "In Stock");
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Inventory Database");
+    bannerFullBorder();
+    bannerBlankBorder ();
+
+    bannerBlankBorderTextLeft (bufferHead);
+    bannerFullBorderSection ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextLeft ("->");
+    for (int i = 0;i<10;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type InventoryID");
+
+    for (int i = 0;i<18;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerFullBorder ();
+    bannerUserInput ();
+    char id[MAX_LNG_ID], name[MAX_LNG_TEXT], buffer[140], flag[MAX_LNG_TEXT], categoryName[MAX_LNG_TEXT], flagCategory[MAX_LNG_TEXT];
+    double price, profit;
+    unsigned int remain, category;
+    while ( 1 ) {
+        scanf ("%s", id);
+        if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
+            inventorySwitchHub ();
+        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+            terminate ();
+        } else {
+            if ( inventorySelectById (id, name, &price, &profit, &category, &remain)) {
+                sprintf(buffer, "%-20s %-30s %-15.2lf %-15.2lf %-30s %-10u", id, name, price, profit, categoryName, remain);
+                screenClear ();
+                bannerFullBorder();
+                bannerBlankBorderTextCen ("Inventory Database");
+                bannerFullBorder();
+                bannerBlankBorder ();
+
+                bannerBlankBorderTextLeft (bufferHead);
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextLeft (buffer);
+                bannerBlankBorderTextCen (" ");
+
+                for (int i = 0;i<28;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type another name to change category name... | Press Enter to set by default");
+                bannerFullBorder ();
+                bannerUserInput ();
+
+                printf("Default Name: (%s) >>> ", name);
+                if (superscanf(flag) != 0)
+                    inventoryUpdateName(id, flag);
+                printf("Default Price: (%.2lf) >>> ", price);
+                if (superscanf(flag) != 0)
+                    inventoryUpdatePrice(id, atof(flag));
+                printf("Default Profit: (%.2lf) >>> ", profit);
+                if (superscanf(flag) != 0)
+                    inventoryUpdateProfit(id, atof(flag));
+                printf("Default Category: (%u) >>> ", category);
+                if (superscanf(flag) != 0){
+                    strcpy (flagCategory, flag);
+                    if (categorySelectById(strtoul(flag, NULL, 10), categoryName))
+                        inventoryUpdateCategory(id, strtoul(flag, NULL, 10));
+                }
+                printf("Default Remain: (%u) >>> ", remain);
+                if (superscanf(flag) != 0)
+                    inventoryUpdateRemain(id, strtoul(flag, NULL, 10));
+                
+                if (categorySelectById(strtoul(flagCategory, NULL, 10), categoryName) == 0){
+                    screenClear ();
+                    bannerFullBorder ();
+                    bannerBlankBorderTextCen ("Inventory Database");
+                    bannerFullBorder();
+                    bannerBlankBorder ();
+
+                    bannerBlankBorderTextLeft (bufferHead);
+                    bannerFullBorderSection ();
+                    bannerBlankBorder ();
+                    sprintf(buffer, "%-20s %-30s %-15.2lf %-15.2lf ->%-30s %-10u", id, name, price, profit, "Doesn't Exist !", remain);
+                    
+                    bannerBlankBorderTextLeft (buffer);
+                    bannerBlankBorder ();
+                    bannerBlankBorderTextLeft ("");
+                    for (int i=0;i<10;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("InventoyName doesn't exist");
+                    bannerBlankBorderTextCen ("Please re-type InventoryID | Type 'B' to back");
+                
+                    for (int i = 0;i<15;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerFullBorder ();
+
+                    bannerUserInput ();
+                }
+                else{
+                    screenClear ();
+                    bannerFullBorder ();
+                    bannerBlankBorderTextCen ("Inventory Database");
+                    bannerFullBorder();
+                    bannerBlankBorder ();
+
+                    bannerBlankBorderTextLeft (bufferHead);
+                    bannerFullBorderSection ();
+                    bannerBlankBorder ();
+                    inventorySelectById (id, name, &price, &profit, &category, &remain);
+                    categorySelectById(category, categoryName);
+                    sprintf(buffer, "%-20s %-30s %-15.2lf %-15.2lf %-30s %-10u", id, name, price, profit, categoryName, remain);
+                    
+                    bannerBlankBorderTextLeft (buffer);
+                    bannerBlankBorder ();
+                    bannerBlankBorderTextLeft ("->");
+                    for (int i=0;i<10;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("Inventoy has been updated");
+                    bannerBlankBorderTextCen ("Type Next InventoyID to Update Or Type 'B' to Back");
+                
+                    for (int i = 0;i<15;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerFullBorder ();
+
+                    bannerUserInput ();
+                }
+
+            } else {
+                screenClear ();
+                bannerFullBorder ();
+                bannerBlankBorderTextCen ("Inventory Database");
+                bannerFullBorder();
+                bannerBlankBorder ();
+
+                bannerBlankBorderTextLeft (bufferHead);
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextLeft ("->");
+                for (int i=0;i<10;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextCen ("InventoryID dosen't exist.");
+                bannerBlankBorderTextCen ("Type Next InventoryID Or Type 'B' to Back");
+            
+                for (int i = 0;i<16;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+            }
+
         }
     }
 }

@@ -165,6 +165,7 @@ int inventoryUpdateRemain(char *id, unsigned int remain);          // For modify
 int inventoryDelete(char *id);                                     // Delete the record (Select by `id`)
 
 void inventoryAdd();
+void inventoryEdit();
 void inventoryRemove();
 void inventoryDatabaseInterface ();
 void displayInventory(int page);
@@ -196,6 +197,7 @@ int categoryInsert(char *name);                               // Adding a new re
 int categoryUpdateName(unsigned int id, char *name);  // For modifying the `name` (Select the record by `id`)
 
 void categoryDatabaseInterface();
+void categoryEdit();
 void categoryAdd();
 void displayCategory(int page);
 

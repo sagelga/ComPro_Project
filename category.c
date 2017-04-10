@@ -213,6 +213,115 @@ void categoryAdd () {
         }
     }
 }
+
+void categoryEdit(){
+    char bufferHead[140];
+    sprintf(bufferHead, "%-60s|%s", "ID", "CategoryName");
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Category Database");
+    bannerFullBorder();
+    bannerBlankBorder ();
+
+    bannerBlankBorderTextLeft (bufferHead);
+    bannerFullBorderSection ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextLeft ("->");
+    for (int i = 0;i<10;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type CategoryID");
+
+    for (int i = 0;i<18;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerFullBorder ();
+    bannerUserInput ();
+    char id[MAX_LNG_TEXT], name[MAX_LNG_TEXT], buffer[MAX_LNG_TEXT], flag[MAX_LNG_TEXT];
+    while ( 1 ) {
+        scanf ("%s", id);
+        if (tolower(id[0]) == 'b') {
+            inventorySwitchHub();
+        } else if (tolower(id[0]) == 'n') {
+            terminate ();
+        } else {
+            if (categorySelectById(strtoul(id, NULL, 10), name)) {
+                screenClear ();
+                sprintf(buffer, "%-60s %s", id, name);
+                bannerFullBorder();
+                bannerBlankBorderTextCen ("Category Database");
+                bannerFullBorder();
+                bannerBlankBorder ();
+
+                bannerBlankBorderTextLeft (bufferHead);
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextLeft (buffer);
+                bannerBlankBorderTextCen (" ");
+
+                for (int i = 0;i<28;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type another name to change category name... | Press Enter to set by default");
+                bannerFullBorder ();
+                bannerUserInput ();
+
+                printf("Default CategoryName: (%s) >>> ", name);
+                if (superscanf(flag) != 0)
+                    categoryUpdateName(strtoul(id, NULL, 10), flag);
+                
+                screenClear ();
+                bannerFullBorder ();
+                bannerBlankBorderTextCen ("Category Database");
+                bannerFullBorder();
+                bannerBlankBorder ();
+
+                bannerBlankBorderTextLeft (bufferHead);
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                categorySelectById(strtoul(id, NULL, 10), name);
+                sprintf(buffer, "%-60s %s", id, name);
+                bannerBlankBorderTextLeft (buffer);
+                bannerBlankBorder ();
+                bannerBlankBorderTextLeft ("->");
+                for (int i=0;i<10;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Category has been updated");
+                bannerBlankBorderTextCen ("Type Next CategoryID to Update Or Type 'B' to Back");
+            
+                for (int i = 0;i<15;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+
+            } else {
+                screenClear ();
+                bannerFullBorder ();
+                bannerBlankBorderTextCen ("Category Database");
+                bannerFullBorder();
+                bannerBlankBorder ();
+
+                bannerBlankBorderTextLeft (bufferHead);
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextLeft ("->");
+                for (int i=0;i<10;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextCen ("CategoryID dosen't exist.");
+                bannerBlankBorderTextCen ("Type Next CategoryID Or Type 'B' to Back");
+            
+                for (int i = 0;i<16;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+            }
+
+        }
+    }
+}
 /*
  *                                             All hail the god..
  *  -----------------------------------------------------------------------------------------------------------------------
