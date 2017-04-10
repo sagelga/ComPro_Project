@@ -10,7 +10,7 @@ void personnelSwitchHub (){
     bannerFullBorder ();
 
     for ( int i = 0; i < 10; i++ )
-        bannerBlankBorder ();a
+        bannerBlankBorder ();
     bannerBlankBorderTextCen ("What do you want to do ?");
     bannerBlankBorder ();
     bannerBlankBorder ();
