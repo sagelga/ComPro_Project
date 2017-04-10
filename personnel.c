@@ -3,21 +3,22 @@
 void personnelSwitchHub (){
     screenClear ();
     bannerFullBorder ();
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Personnel Database");
+    bannerBlankBorder ();
     bannerFullBorder ();
 
-    for ( int i = 0; i < 2; i++ )
+    for ( int i = 0; i < 10; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("What do you want to do?");
-
+    bannerBlankBorderTextCen ("What do you want to do ?");
     bannerBlankBorder ();
-
-    bannerBlankBorderTextCen ("1. Create new personnel ID");
-    bannerBlankBorderTextCen ("2. Preview personnel database");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("1. Preview personnel database");
+    bannerBlankBorderTextCen ("2. Create new personnel ID");
     bannerBlankBorderTextCen ("3. Delete personnel metadata from the database");
     bannerBlankBorderTextCen ("4. Update existed personnel");
 
-    for (int i = 0;i<26;i++)
+    for (int i = 0;i<15;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("ALTERNATE RESPONSE  |  Type 'B' to back");
     bannerFullBorder ();
@@ -29,11 +30,11 @@ void personnelSwitchHub (){
     switch(toupper(flag)){
 
         case ('1'):
-            personnelInsertInterface ();
+            personnelSelectInterface ();
             break;
 
         case ('2'):
-            personnelSelectInterface ();
+            personnelInsertInterface ();
             break;
 
         case ('3'):
@@ -740,7 +741,7 @@ int personnelDelete (char *id) {
     return 0;   // Not found the given `id` in the records
 }
 
-void personnelSwitchHub(){
+/*void personnelSwitchHub(){
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Personnel Hub");
     bannerBlankBorderTextCen ("-----------------------");
@@ -803,7 +804,7 @@ void personnelSwitchHub(){
             printf ("Your input is invalid. Please try again...");
             inventorySwitchHub ();
     }
-}
+}*/
 /*
  *                                             All hail the god..
  *  -----------------------------------------------------------------------------------------------------------------------

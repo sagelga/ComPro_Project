@@ -4,7 +4,9 @@
 void settingsSwitchHub () {
     screenClear ();
     bannerFullBorder ();
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Settings");
+    bannerBlankBorder ();
     bannerFullBorder ();
     for ( int i = 0; i < 5; i++ )
         bannerBlankBorder ();
@@ -34,7 +36,7 @@ void settingsSwitchHub () {
     bannerBlankBorderTextCen ("4. List of contributors");
     bannerBlankBorderTextCen ("5. cat.gif");
 
-    for ( int i = 0; i < 17; i++ )
+    for ( int i = 0; i < 9; i++ )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
@@ -51,11 +53,11 @@ void settingsSwitchHub () {
             break;
 
         case ('2'):
-            settingUpdatePasswordInterface ();
+            settingUpdateStoreNameInterface ();
             return;
 
         case ('3'):
-            settingUpdateStoreNameInterface();
+            settingUpdateStoreNameInterface ();
             return;
 
         case ('4'):

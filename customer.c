@@ -7,19 +7,22 @@ void customerSwitchHub () {
     screenClear ();
 
     bannerFullBorder ();
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Customer Hub");
-    bannerBlankBorderTextCen ("----------------------");
-    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerBlankBorder ();
     bannerFullBorder ();
 
+    for ( int i = 0; i < 10; i++ )
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("What do you want to do ?");
     bannerBlankBorder ();
-
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("1. Preview customer database");
     bannerBlankBorderTextCen ("2. Create new customer ID");
     bannerBlankBorderTextCen ("3. Delete customer metadata from the database");
     bannerBlankBorderTextCen ("4. Update existed customer");
 
-    for (int i = 0;i<28;i++)
+    for (int i = 0;i<15;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
     bannerFullBorder ();

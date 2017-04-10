@@ -124,6 +124,10 @@ int personnelUpdatePassword(char *id, char *password);      // For modifying the
 int personnelDelete(char *id);                              // Delete the record (Select by `id`)
 
 void personnelSwitchHub();
+void personnelInsertInterface();
+void personnelSelectInterface();
+void personnelDeleteInterface();
+void personnelUpdateInterface();
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: INVENTORY.c
