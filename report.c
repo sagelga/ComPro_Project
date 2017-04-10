@@ -391,9 +391,9 @@ void reportSwitchHub () {
     screenClear ();
 
     bannerFullBorder ();
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Report Hub");
-    bannerBlankBorderTextCen ("--------------------");
-    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerBlankBorder ();
     bannerFullBorder ();
 
     bannerBlankBorderTextCen ("Choose a report");
@@ -417,7 +417,7 @@ void reportSwitchHub () {
         }
     }
 
-    for ( int i = 0; i < 13; i++ ) {
+    for ( int i = 0; i < 11; i++ ) {
         bannerBlankBorder ();
     }
 
@@ -475,7 +475,7 @@ void OneDayReportInputProcess () {
     }
     bannerBlankBorderTextCen ("Please enter date...");
     bannerBlankBorderTextCen ("Example --> dd/mm/yyyy");
-    for ( int i = 0; i < 16; ++i ) {
+    for ( int i = 0; i < 15; ++i ) {
         bannerBlankBorder ();
     }
     bannerFullBorder ();

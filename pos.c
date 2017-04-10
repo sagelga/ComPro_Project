@@ -8,7 +8,7 @@ INVENTORY inventoryHist[1000]; // Save 1000 Transaction per a purchase
 int inventoryCounter[1000]; // Count the amount of each inventory
 int inventoryHistRecordCount = 0;   // Iterator of inventoryHist
 int histStart, histStop;   // Line pointer for printing the transaction list
-double subTotal, tax, total, pointEarn, voucher, totalProfit, discount, pointUsed;
+double subTotal, tax, total, pointEarn, totalProfit, discount, pointUsed;
 
 char promotionId[140];
 double promotionPrice;
@@ -18,7 +18,7 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
     // Initial Values
     isCustomerHasId = 0;
     inventoryHistRecordCount = 0;
-    subTotal = 0, tax = 0, total = 0, pointEarn = 0, voucher = 0, totalProfit = 0;
+    subTotal = 0, tax = 0, total = 0, pointEarn = 0, totalProfit = 0;
     promotionPrice = 0;
     discount = 0;
     pointUsed = 0;
@@ -42,7 +42,7 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please scan / enter in customer ID");
 
-    for ( int i = 26; i > 0; i-- )
+    for ( int i = 25; i > 0; i-- )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Press ENTER to skip  |  Type 'V' to back");
@@ -88,7 +88,7 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
 void cashierInterfaceInventory (int isError) {// Interface that will remove the item from the database
     screenClear ();
     char buffer1[140], buffer2[140];
-    int maxItemOnScreen = 22;
+    int maxItemOnScreen = 21;
 
     histStart = 0 + (inventoryHistRecordCount / (maxItemOnScreen + 1)) * maxItemOnScreen;
     histStop = inventoryHistRecordCount;
@@ -178,6 +178,7 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
                 for(int i = 0; i < inventoryHistRecordCount; i++) {
                     if(strcmp(inventoryHist[i].id, inventoryIdInput) == 0){
                         isDuplicate = 1; // Duplicate inventory detector
+                        inventoryHist[i].remain--;
                         inventoryCounter[i]++;
                         break;
                     }
@@ -189,7 +190,7 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
                     inventoryHist[inventoryHistRecordCount].price = inventoryPrice;
                     inventoryHist[inventoryHistRecordCount].profit = inventoryProfit;
                     inventoryHist[inventoryHistRecordCount].categoryId = inventoryCategoryId;
-                    inventoryHist[inventoryHistRecordCount].remain = inventoryRemain;
+                    inventoryHist[inventoryHistRecordCount].remain = inventoryRemain - 1;
 
                     inventoryCounter[inventoryHistRecordCount] = 1;
                     inventoryHistRecordCount++;
@@ -199,6 +200,7 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
                 tax = total * 0.07;
                 subTotal = total - tax;
                 pointEarn = Setting.priceToPoint * total;
+                totalProfit += inventoryProfit;
                 cashierInterfaceInventory (0);
             }
             else{
@@ -255,7 +257,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
             "Invalid Promotion Code, Please try another one");
         }
         else{
-            for ( int i = 27; i > 0; i-- )
+            for ( int i = 26; i > 0; i-- )
                 bannerBlankBorder ();
         }
         bannerBlankBorderTextCen (
@@ -275,7 +277,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
                         cashierInterface(0);
                         break;
                     case 'P':
-                        // Use point !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        // Use point
                         cashierInterfaceResult (1);
                         break;
                     case 'A':
@@ -286,7 +288,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
             else{
                 // Use Voucher
                 if(promotionSelectById(promotionId, &promotionPrice, &promotionStatus) && promotionStatus == 1){
-                    voucher = promotionPrice;
+                    discount = promotionPrice;
                     cashierInterfaceResult (0);
                 }
                 else{
@@ -304,7 +306,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
     else{
         // Customer is not a member
 
-        for ( int i = 28; i > 0; i-- )
+        for ( int i = 27; i > 0; i-- )
             bannerBlankBorder ();
 
         bannerBlankBorderTextCen (
@@ -331,7 +333,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
             else{
                 // Use Voucher
                 if(promotionSelectById(promotionId, &promotionPrice, &promotionStatus) && promotionStatus == 1){
-                    voucher = promotionPrice;
+                    discount = promotionPrice;
                     cashierInterfaceResult (0);
                 }
                 else{
@@ -356,8 +358,9 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
     // --- * Saving the purchase into DB ----------------------------------------------------------
     int i, j;
     if(!savedToDatabase){ // Doing this one time !!!
-        // Use point (Doing) !!!!!!!!!!!!!!!!!!!
+
         if(usePoint){
+            // Use point
             double discountByPoint = CurrentCustomer.point / Setting.pointToPrice; // Money that will be use to discount from totalPrice
             if(discountByPoint <= total){
                 discount = discountByPoint;
@@ -369,9 +372,18 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
                 customerUpdatePoint(CurrentCustomer.id, Setting.pointToPrice * total);
             }
         }
-
+        else if(discount > 0){
+            // Use Voucher
+            // Change status of voucher from Active -> Used
+            promotionUpdateStatus(promotionId, 0);
+            // Discount boundary
+            discount = (discount < total) ? discount : total;
+        }
+            
         // Saving all transactions into the Database
         for(i = 0; i < inventoryHistRecordCount; i++){
+                // Decreasing items the in stock
+                inventoryUpdateRemain(inventoryHist[i].id, inventoryHist[i].remain); 
             for(j = 0; j < inventoryCounter[i]; j++){
                 transactionInsert(RecordCount.purchase, inventoryHist[i].id);
             }
@@ -384,16 +396,16 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
         }
         // Saving a purchase into the Database
         if(isCustomerHasId){
-            purchaseInsert(RecordCount.purchase, voucher, totalProfit, CurrentCustomer.id, Session.user.id);
+            purchaseInsert(RecordCount.purchase, discount, totalProfit, CurrentCustomer.id, Session.user.id);
         }
         else{
-            purchaseInsert(RecordCount.purchase, voucher, totalProfit, "", Session.user.id);
+            purchaseInsert(RecordCount.purchase, discount, totalProfit, "", Session.user.id);
         }
         savedToDatabase = 1;
     }
     // --------------------------------------------------------------------------------------------
     char buffer1[140], buffer2[140];
-    int maxItemOnScreen = 19;
+    int maxItemOnScreen = 18;
 
     histStart = 0 + screenStep;
     histStop = inventoryHistRecordCount;
@@ -411,9 +423,9 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
 
     bannerBlankBorder ();
     bannerBlankBorderTextLeft (
-            " ID                 | Item name                                                                             | Count      | Price      "); // Keep these on forever
+            " ID                 | Item name                                                                          | Count       | Price        "); // Keep these on forever
     bannerBlankBorderTextLeft (
-            " ------------------ | ------------------------------------------------------------------------------------- | ---------- | ---------- ");
+            " ------------------ | ---------------------------------------------------------------------------------- | ----------- | ------------ ");
     // Shows a total of 25 item at a time. Press ENTER to go to the next page
 
     int lineCounter = 0;
@@ -421,30 +433,46 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
     while(i < histStop){
         if(lineCounter == maxItemOnScreen)
             break;
-        printf("::  %-18s | %-85s | %10d | %10.2lf  ::\n", inventoryHist[i].id, inventoryHist[i].name, inventoryCounter[i], inventoryCounter[i] * inventoryHist[i].price);
+        printf("::  %-18s | %-82s | %11d | %12.2lf  ::\n", inventoryHist[i].id, inventoryHist[i].name, inventoryCounter[i], inventoryCounter[i] * inventoryHist[i].price);
         i++;
         lineCounter++;
     }
 
     for( ; lineCounter < maxItemOnScreen; lineCounter++)
-        bannerBlankBorderTextLeft ("                    |                                                                                       |            |          ");
+        bannerBlankBorderTextLeft ("                    |                                                                                    |             |            ");
 
+    if(isCustomerHasId){
+        // If customer is a member
+        bannerBlankBorderText ("|----------Membership----------| |----------Purchase---------|");
 
-    bannerBlankBorderText ("|----------Membership----------| |----------Purchase---------|");
+        strcpy (text, "");
+        sprintf (text, "| Points you have   : %8.0f | | Sub Total   : %11.2f |", CurrentCustomer.point, subTotal);
+        bannerBlankBorderText (text);
+        sprintf (text, "| Points you used   : %8.0f | | VAT         : %11.2f |", pointUsed, tax);
+        bannerBlankBorderText (text);
+        strcpy (text, "");
+        sprintf (text, "| Points you earn   : %8.0f | | Discount    : %+11.2f |", pointEarn, -discount);
+        bannerBlankBorderText (text);
 
+        bannerBlankBorderText ("|______________________________| |___________________________|");
+    }
+    else{
+        // If customer is not a member
+        bannerBlankBorderText ("|----------Purchase---------|");
+
+        strcpy (text, "");
+        sprintf (text, "| Sub Total   : %11.2f |", subTotal);
+        bannerBlankBorderText (text);
+        sprintf (text, "| VAT         : %11.2f |", tax);
+        bannerBlankBorderText (text);
+        strcpy (text, "");
+        sprintf (text, "| Discount    : %+11.2f |", -discount);
+        bannerBlankBorderText (text);
+
+        bannerBlankBorderText ("|___________________________|");
+    }
     strcpy (text, "");
-    sprintf (text, "| Points you have   : %8.0f | | Sub Total   : %11.2f |", CurrentCustomer.point, subTotal);
-    bannerBlankBorderText (text);
-    sprintf (text, "| Points you used   : %8.0f | | VAT         : %11.2f |", pointUsed, tax);
-    bannerBlankBorderText (text);
-    strcpy (text, "");
-    sprintf (text, "| Points you earn   : %8.0f | | Discount    : %+11.2f |", pointEarn, -discount);
-    bannerBlankBorderText (text);
-
-    bannerBlankBorderText ("|______________________________| |___________________________|");
-
-    strcpy (text, "");
-    sprintf (text, "| Total Points      : %8.0f | | Total       : %11.2f |", CurrentCustomer.point + pointEarn - pointUsed, total - discount);
+    sprintf (text, "| Total       : %11.2f |", total - discount);
     bannerBlankBorderText (text);
 
     bannerBlankBorderTextCen ("_______________________________________________________________");
