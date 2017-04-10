@@ -7,7 +7,7 @@ void inventorySwitchHub () {
 
     bannerFullBorder ();
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Inventory Hub");
+    bannerBlankBorderTextCen ("Inventory Management");
     bannerBlankBorder ();
     bannerFullBorder ();
 
@@ -41,7 +41,7 @@ void inventorySwitchHub () {
     }
 
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
 
@@ -322,7 +322,7 @@ void inventoryAdd () {
 
     for ( int i = 0; i < 11; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -340,7 +340,7 @@ void inventoryAdd () {
         if (strcmp(idIN, "B") == 0 || strcmp(idIN, "b") == 0 ){
             inventorySwitchHub ();
             break;
-        } else if ( strcmp (idIN, "N") == 0 || strcmp (idIN, "n") == 0 ) {
+        } else if ( strcmp (idIN, "Q") == 0 || strcmp (idIN, "q") == 0 ) {
             terminate ();
             break;
         } else {
@@ -531,7 +531,7 @@ void inventoryAdd () {
     
             for (int i = 0;i<15;i++)
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+            bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
 
             bannerUserInput ();
@@ -567,7 +567,7 @@ void inventoryAdd () {
         
                     for (int i = 0;i<15;i++)
                         bannerBlankBorder ();
-                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
 
                     bannerUserInput ();
@@ -597,7 +597,7 @@ void inventoryAdd () {
         
                     for (int i = 0;i<19;i++)
                         bannerBlankBorder ();
-                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
 
                     bannerUserInput ();
@@ -629,7 +629,7 @@ void inventoryEdit(){
 
     for (int i = 0;i<17;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
     char id[MAX_LNG_ID], name[MAX_LNG_TEXT], buffer[140], flag[MAX_LNG_TEXT], categoryName[MAX_LNG_TEXT], flagCategory[MAX_LNG_TEXT];
@@ -639,7 +639,7 @@ void inventoryEdit(){
         scanf ("%s", id);
         if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
             inventorySwitchHub ();
-        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+        } else if ( strcmp (id, "Q") == 0 || strcmp (id, "q") == 0 ) {
             terminate ();
         } else {
             if ( inventorySelectById (id, name, &price, &profit, &category, &remain)) {
@@ -704,7 +704,7 @@ void inventoryEdit(){
                 
                     for (int i = 0;i<14;i++)
                         bannerBlankBorder ();
-                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
 
                     bannerUserInput ();
@@ -733,7 +733,7 @@ void inventoryEdit(){
                 
                     for (int i = 0;i<14;i++)
                         bannerBlankBorder ();
-                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
 
                     bannerUserInput ();
@@ -758,7 +758,7 @@ void inventoryEdit(){
             
                 for (int i = 0;i<15;i++)
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
@@ -781,7 +781,7 @@ void inventoryRemove () {
     for ( int i = 0; i < 33; ++i ) {
         bannerBlankBorder ();
     }
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     //Process
@@ -801,7 +801,7 @@ void inventoryRemove () {
         {
             inventorySwitchHub ();
         }
-        else if ((strcmp(idIN, "N") == 0) || (strcmp(idIN, "n") == 0))
+        else if ((strcmp(idIN, "Q") == 0) || (strcmp(idIN, "q") == 0))
         {
             terminate ();
         }
@@ -829,7 +829,7 @@ void inventoryRemove () {
                 for ( int i = 0; i < 14; ++i ) {
                     bannerBlankBorder ();
                 }
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
             } else {
                 screenClear ();
@@ -841,7 +841,7 @@ void inventoryRemove () {
                 for ( int i = 0; i < 17; ++i ) {
                     bannerBlankBorder ();
                 }
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
             }
         }

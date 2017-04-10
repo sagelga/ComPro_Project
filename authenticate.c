@@ -1,4 +1,3 @@
-// Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
 
 void authInterface () {
@@ -9,8 +8,10 @@ void authInterface () {
     for ( int i = 3; i > 0; i-- )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("Please type in your username / Scan the Personnel token code");
-    for ( int i = 0; i < 27; i++ )
+    bannerBlankBorderTextCen ("Please type in your username");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("(or Scan the Personnel token code)");
+    for ( int i = 0; i < 25; i++ )
         bannerBlankBorder ();
     bannerFullBorder ();
 
@@ -151,7 +152,7 @@ void authInterfaceFail () {
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("We are redirecting you try again. If you wish to do that, type any key to continue");
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("or type 'N' to exit the program");
+    bannerBlankBorderTextCen ("or type 'Q' to exit the program");
 
     for ( int i = 0; i < 31; i++ )
         bannerBlankBorder ();
@@ -163,7 +164,7 @@ void authInterfaceFail () {
 
     switch (toupper(flag)) {
 
-        case ('N'):
+        case ('Q'):
             terminate ();
             return;
 
@@ -237,21 +238,21 @@ void deauthenticate () {
     char text[137];
     strcpy (text, "User ");
     strcat (text, Session.user.username);
+
+    for ( int i = 17; i > 0; i-- )
+        bannerBlankBorder ();
+
     strcat (text, " account has successfully logout.");
     bannerBlankBorderTextCen (text);
 
-    for ( int i = 3; i > 0; i-- )
-        bannerBlankBorder ();
-    bannerBlankBorderTextCen ("(,, ･A･)ﾉ゛");
-
-    for ( int i = 30; i > 0; i-- )
+    for ( int i = 17; i > 0; i-- )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Returning you back to login...");
     bannerFullBorder ();
 
     delay (3);
-    screenAdjust ();
+    authInterface ();
 }
 
 /*

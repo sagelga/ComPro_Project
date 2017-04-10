@@ -8,7 +8,7 @@ void customerSwitchHub () {
 
     bannerFullBorder ();
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Customer Hub");
+    bannerBlankBorderTextCen ("Customer Management");
     bannerBlankBorder ();
     bannerFullBorder ();
 
@@ -24,7 +24,7 @@ void customerSwitchHub () {
 
     for (int i = 0;i<14;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -89,7 +89,7 @@ void customerInsertInterface () {
 
     for ( int i = 0; i < 16; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -101,7 +101,7 @@ void customerInsertInterface () {
         if (strcmp(id, "B") == 0 || strcmp(id, "b") == 0 ){
             customerSwitchHub();
             break;
-        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+        } else if ( strcmp (id, "Q") == 0 || strcmp (id, "q") == 0 ) {
             terminate ();
             break;
         } else {
@@ -197,7 +197,7 @@ void customerInsertInterface () {
     
             for (int i = 0;i<15;i++)
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+            bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
 
             bannerUserInput ();
@@ -233,7 +233,7 @@ void customerInsertInterface () {
         
                     for (int i = 0;i<12;i++)
                         bannerBlankBorder ();
-                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
 
                     bannerUserInput ();
@@ -263,7 +263,7 @@ void customerInsertInterface () {
         
                     for (int i = 0;i<19;i++)
                         bannerBlankBorder ();
-                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
 
                     bannerUserInput ();
@@ -372,7 +372,7 @@ void customerDeleteInterface(){
 
     for (int i = 0;i<26;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      Please Type CustomerID...     |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      Please Type CustomerID...     |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -382,7 +382,7 @@ void customerDeleteInterface(){
         scanf ("%s", id);
         if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
             customerSwitchHub ();
-        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+        } else if ( strcmp (id, "Q") == 0 || strcmp (id, "q") == 0 ) {
             terminate ();
         } else {
             if ( customerSelectById (id, name, lastname, &gender, &point, &totalbuy)) {
@@ -407,7 +407,7 @@ void customerDeleteInterface(){
 
                 for (int i = 0;i<16;i++)
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
@@ -431,7 +431,7 @@ void customerDeleteInterface(){
             
                     for (int i = 0;i<16;i++)
                         bannerBlankBorder ();
-                    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
 
                     bannerUserInput ();
@@ -457,7 +457,7 @@ void customerDeleteInterface(){
             
                 for (int i = 0;i<15;i++)
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
@@ -486,7 +486,7 @@ void customerUpdateInterface(){
 
     for (int i = 0;i<17;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
     char id[MAX_LNG_ID], name[MAX_LNG_TEXT], lastname[MAX_LNG_TEXT], gender, buffer[140], flag[MAX_LNG_TEXT], genderChanged[2];
@@ -495,7 +495,7 @@ void customerUpdateInterface(){
         scanf ("%s", id);
         if ( strcmp (id, "B") == 0 || strcmp (id, "b") == 0 ) {
             customerSwitchHub ();
-        } else if ( strcmp (id, "N") == 0 || strcmp (id, "n") == 0 ) {
+        } else if ( strcmp (id, "Q") == 0 || strcmp (id, "q") == 0 ) {
             terminate ();
         } else {
             if ( customerSelectById (id, name, lastname, &gender, &point, &totalbuy)) {
@@ -559,7 +559,7 @@ void customerUpdateInterface(){
             
                 for (int i = 0;i<14;i++)
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
@@ -583,7 +583,7 @@ void customerUpdateInterface(){
             
                 for (int i = 0;i<15;i++)
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();

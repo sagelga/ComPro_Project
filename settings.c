@@ -16,37 +16,81 @@ void settingsSwitchHub () {
 
     for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
+    if(Session.user.role == 0){
+        // Manager
+        bannerBlankBorderTextCen ("Authentication");
+        bannerBlankBorderTextCen ("--------------");
+        bannerBlankBorderTextCen ("1. Change Password");
 
-    bannerBlankBorderTextCen ("Authentication");
-    bannerBlankBorderTextCen ("--------------");
-    bannerBlankBorderTextCen ("1. Change Password");
+        for ( int i = 0; i < 2; i++ )
+            bannerBlankBorder ();
 
-    for ( int i = 0; i < 2; i++ )
-        bannerBlankBorder ();
+        bannerBlankBorderTextCen ("Storefront");
+        bannerBlankBorderTextCen ("----------");
+        bannerBlankBorderTextCen ("2. Change store name");
+        bannerBlankBorderTextCen ("3. Change store address");
 
-    bannerBlankBorderTextCen ("Storefront");
-    bannerBlankBorderTextCen ("----------");
-    bannerBlankBorderTextCen ("2. Change store name");
-    bannerBlankBorderTextCen ("3. Change store address");
+        for ( int i = 0; i < 2; i++ )
+            bannerBlankBorder ();
 
-    for ( int i = 0; i < 2; i++ )
-        bannerBlankBorder ();
+        bannerBlankBorderTextCen ("Customer Loyalty Promotion");
+        bannerBlankBorderTextCen ("--------------------------");
+        bannerBlankBorderTextCen ("4. Edit Point per Price conversion rate");
+        bannerBlankBorderTextCen ("5. Edit Price per Point conversion rate");
 
-    bannerBlankBorderTextCen ("Customer Loyalty Promotion");
-    bannerBlankBorderTextCen ("--------------------------");
-    bannerBlankBorderTextCen ("4. Edit Point per Price conversion rate");
-    bannerBlankBorderTextCen ("5. Edit Price per Point conversion rate");
+        for ( int i = 0; i < 2; i++ )
+            bannerBlankBorder ();
 
-    for ( int i = 0; i < 2; i++ )
-        bannerBlankBorder ();
+        bannerBlankBorderTextCen ("Others");
+        bannerBlankBorderTextCen ("------");
+        bannerBlankBorderTextCen ("6. List of contributors");
+        bannerBlankBorderTextCen ("7. cat.gif");
 
-    bannerBlankBorderTextCen ("Others");
-    bannerBlankBorderTextCen ("------");
-    bannerBlankBorderTextCen ("6. List of contributors");
-    bannerBlankBorderTextCen ("7. cat.gif");
+        for ( int i = 0; i < 3; i++ )
+            bannerBlankBorder ();
+    }
+    else if (Session.user.role == 1){
+        // Marketing
+        bannerBlankBorderTextCen ("Authentication");
+        bannerBlankBorderTextCen ("--------------");
+        bannerBlankBorderTextCen ("1. Change Password");
 
-    for ( int i = 0; i < 3; i++ )
-        bannerBlankBorder ();
+        for ( int i = 0; i < 2; i++ )
+            bannerBlankBorder ();
+
+        bannerBlankBorderTextCen ("Customer Loyalty Promotion");
+        bannerBlankBorderTextCen ("--------------------------");
+        bannerBlankBorderTextCen ("2. Edit Point per Price conversion rate");
+        bannerBlankBorderTextCen ("3. Edit Price per Point conversion rate");
+
+        for ( int i = 0; i < 2; i++ )
+            bannerBlankBorder ();
+
+        bannerBlankBorderTextCen ("Others");
+        bannerBlankBorderTextCen ("------");
+        bannerBlankBorderTextCen ("4. List of contributors");
+        bannerBlankBorderTextCen ("5. cat.gif");
+
+        for ( int i = 0; i < 9; i++ )
+            bannerBlankBorder ();
+    }
+    else{
+        // Sale
+        bannerBlankBorderTextCen ("Authentication");
+        bannerBlankBorderTextCen ("--------------");
+        bannerBlankBorderTextCen ("1. Change Password");
+
+        for ( int i = 0; i < 2; i++ )
+            bannerBlankBorder ();
+
+        bannerBlankBorderTextCen ("Others");
+        bannerBlankBorderTextCen ("------");
+        bannerBlankBorderTextCen ("2. List of contributors");
+        bannerBlankBorderTextCen ("3. cat.gif");
+
+        for ( int i = 0; i < 15; i++ )
+            bannerBlankBorder ();        
+    }
 
     if ( errorResponse == 1 ) {
         bannerBlankBorderTextCen ("Invalid response. Please try again.");
@@ -55,57 +99,126 @@ void settingsSwitchHub () {
     }
 
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to quit   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
     char flag;
     scanf (" %c", &flag);
     errorResponse = 0;
+    if(Session.user.role == 0){
+        // Manager
+        switch ( toupper (flag)) {
 
-    switch ( toupper (flag)) {
+            case ('1'):
+                settingUpdatePasswordInterface ();
+                return;
 
-        case ('1'):
-            settingUpdatePasswordInterface ();
-            return;
+            case ('2'):
+                settingUpdateStoreNameInterface ();
+                return;
 
-        case ('2'):
-            settingUpdateStoreNameInterface ();
-            return;
+            case ('3'):
+                settingUpdateStoreAddressInterface ();
+                return;
 
-        case ('3'):
-            settingUpdateStoreAddressInterface ();
-            return;
+            case ('4'):
+                settingPointToPriceInterface ();
+                return;
 
-        case ('4'):
-            settingPointToPriceInterface ();
-            return;
+            case ('5'):
+                settingPriceToPointInterface ();
+                return;
 
-        case ('5'):
-            settingPriceToPointInterface ();
-            return;
+            case ('6'):
+                settingContributorList ();
+                return;
 
-        case ('6'):
-            settingContributorList ();
-            return;
+            case ('7'):
+                settingCat ();
+                return;
 
-        case ('7'):
-            settingCat ();
-            return;
+            case ('B'):
+                switchHub ();
+                break;
 
-        case ('B'):
-            switchHub ();
-            break;
+            case ('Q'):
+                terminate ();
+                break;
 
-        case ('Q'):
-            terminate ();
-            break;
+            default:
+                errorResponse = 1;
+                settingsSwitchHub ();
+                break;
+        }
+    }
+    else if(Session.user.role == 1){
+        // Marketing
+        switch ( toupper (flag)) {
 
-        default:
-            errorResponse = 1;
-            settingsSwitchHub ();
-            break;
+            case ('1'):
+                settingUpdatePasswordInterface ();
+                return;
 
+            case ('2'):
+                settingPointToPriceInterface ();
+                return;
+
+            case ('3'):
+                settingPriceToPointInterface ();
+                return;
+
+            case ('4'):
+                settingContributorList ();
+                return;
+
+            case ('5'):
+                settingCat ();
+                return;
+
+            case ('B'):
+                switchHub ();
+                break;
+
+            case ('Q'):
+                terminate ();
+                break;
+
+            default:
+                errorResponse = 1;
+                settingsSwitchHub ();
+                break;
+        }
+    }
+    else {
+        // Sale
+        switch ( toupper (flag)) {
+
+            case ('1'):
+                settingUpdatePasswordInterface ();
+                return;
+
+            case ('2'):
+                settingContributorList ();
+                return;
+
+            case ('3'):
+                settingCat ();
+                return;
+
+            case ('B'):
+                switchHub ();
+                break;
+
+            case ('Q'):
+                terminate ();
+                break;
+
+            default:
+                errorResponse = 1;
+                settingsSwitchHub ();
+                break;
+        }
     }
 }
 
@@ -120,12 +233,12 @@ void settingUpdatePasswordInterface () {
     bannerFullBorder ();
     for ( int i = 0; i < 10; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Please Type Old Password");
+    bannerBlankBorderTextCen ("Please type your old Password");
     bannerBlankBorder ();
 
     for ( int i = 0; i < 21; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to quit   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -139,7 +252,7 @@ void settingUpdatePasswordInterface () {
             bannerFullBorder ();
             for ( int i = 0; i < 10; i++ )
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Your password was Correct");
+            bannerBlankBorderTextCen ("");
             bannerBlankBorder ();
 
             for ( int i = 0; i < 21; i++ )
@@ -157,12 +270,12 @@ void settingUpdatePasswordInterface () {
             bannerFullBorder ();
             for ( int i = 0; i < 10; i++ )
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Retype New Password");
+            bannerBlankBorderTextCen ("");
             bannerBlankBorder ();
 
             for ( int i = 0; i < 21; i++ )
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Please type new password again...");
+            bannerBlankBorderTextCen ("Please retype your new password again...");
             bannerFullBorder ();
 
             bannerUserInput ();
@@ -176,12 +289,12 @@ void settingUpdatePasswordInterface () {
                 bannerFullBorder ();
                 for ( int i = 0; i < 10; i++ )
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Change Password success");
+                bannerBlankBorderTextCen ("Your password has been changed successfully!");
                 bannerBlankBorder ();
 
                 for ( int i = 0; i < 21; i++ )
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to quit   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
@@ -198,20 +311,22 @@ void settingUpdatePasswordInterface () {
                 bannerFullBorder ();
                 for ( int i = 0; i < 10; i++ )
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Password not same");
-                bannerBlankBorderTextCen ("Please type same password");
+                bannerBlankBorderTextCen ("The new password confirmation is not the same");
+                bannerBlankBorder ();
+                bannerBlankBorderTextCen ("- Operation Aborted -");
                 bannerBlankBorder ();
 
-                for ( int i = 0; i < 20; i++ )
+                for ( int i = 0; i < 19; i++ )
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to quit   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
                 scanf (" %c", &flag);
                 if ( flag == 'b' || flag == 'B' ) {
                     settingsSwitchHub ();
-                } else {
+                }
+                else{
                     terminate ();
                 }
             }
@@ -222,12 +337,12 @@ void settingUpdatePasswordInterface () {
             bannerFullBorder ();
             for ( int i = 0; i < 10; i++ )
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Password was Incorrect !");
+            bannerBlankBorderTextCen ("Your old password was incorrect !");
             bannerBlankBorder ();
 
             for ( int i = 0; i < 21; i++ )
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Please type your password again... | Type 'B' to back");
+            bannerBlankBorderTextCen ("Please type your old password again... | Type 'B' to back");
             bannerFullBorder ();
 
             bannerUserInput ();
@@ -247,14 +362,14 @@ void settingUpdateStoreNameInterface () {
     bannerFullBorder ();
     for ( int i = 0; i < 10; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Your current Storename");
+    bannerBlankBorderTextCen ("Your current store's name");
     bannerBlankBorder ();
     bannerBlankBorderTextCen (Setting.storeName);
     bannerBlankBorder ();
 
     for ( int i = 0; i < 19; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Please enter new storename | Type 'B' to Back");
+    bannerBlankBorderTextCen ("Please enter new store's name | Type 'B' to Back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -269,14 +384,14 @@ void settingUpdateStoreNameInterface () {
         bannerFullBorder ();
         for ( int i = 0; i < 10; i++ )
             bannerBlankBorder ();
-        bannerBlankBorderTextCen ("Your storename has been changed to");
+        bannerBlankBorderTextCen ("Your store's name has been changed to");
         bannerBlankBorder ();
         bannerBlankBorderTextCen (newstoreName);
         bannerBlankBorder ();
 
         for ( int i = 0; i < 19; i++ )
             bannerBlankBorder ();
-        bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+        bannerBlankBorderTextCen ("Type 'Q' to quit   |      ALTERNATE RESPONSE      |   Type 'B' to back");
         bannerFullBorder ();
         bannerUserInput ();
         scanf (" %c", &flag);
@@ -325,7 +440,7 @@ void settingUpdateStoreAddressInterface () {
 
         for ( int i = 0; i < 19; i++ )
             bannerBlankBorder ();
-        bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+        bannerBlankBorderTextCen ("Type 'Q' to quit   |      ALTERNATE RESPONSE      |   Type 'B' to back");
         bannerFullBorder ();
         bannerUserInput ();
         scanf (" %c", &flag);

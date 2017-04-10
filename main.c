@@ -16,19 +16,20 @@ void switchHub () {
 
     char text[140];
     char text1[140];
+    char text2[140];
 
     if ( Session.user.role == 0 ) {
-        strcpy (text1, "admin");
+        strcpy (text1, "Manager");
     } else if ( Session.user.role == 1 ) {
-        strcpy (text1, "manager");
+        strcpy (text1, "Marketing");
     } else if ( Session.user.role == 2 ) {
-        strcpy (text1, "sale");
+        strcpy (text1, "Sale");
     }
 
 
-    sprintf (text, "Welcome back %s as %s!", Session.user.firstname,text1);
+    sprintf (text, "Login as %s %c. (%s)", Session.user.firstname, Session.user.lastname[0], text1);
 
-    bannerInverse (text, "", "", Setting.storeName);
+    bannerInverse (Setting.storeName, Setting.storeAddress, "", text);
 
     for ( int i = 0; i < 7; i++ )
         bannerBlankBorder ();
@@ -37,23 +38,44 @@ void switchHub () {
     bannerBlankBorder ();
 
     //These choice will be removed, when the program detects the permission level.
-    bannerBlankBorderTextCen ("1. Go to POS System");
-    bannerBlankBorderTextCen ("2. Check Inventory");
-    bannerBlankBorderTextCen ("3. Check Customer");
-    bannerBlankBorderTextCen ("4. Check Personnel");
-    bannerBlankBorderTextCen ("5. Check Promotion");
-    bannerBlankBorderTextCen ("6. Check Report");
-    bannerBlankBorderTextCen ("7. Sales Forecasting");
-    bannerBlankBorderTextCen ("8. Settings");
-    bannerBlankBorder ();
+    if ( Session.user.role == 0 ) {
+        // Manager
+        bannerBlankBorderTextCen ("1. Go to POS System");
+        bannerBlankBorderTextCen ("2. Inventory management");
+        bannerBlankBorderTextCen ("3. Customer management");
+        bannerBlankBorderTextCen ("4. Personnel management");
+        bannerBlankBorderTextCen ("5. Promotion management");
+        bannerBlankBorderTextCen ("6. Sales Forecasting");
+        bannerBlankBorderTextCen ("7. View Report");
+        bannerBlankBorderTextCen ("8. Settings");
 
-    for ( int i = 9; i > 0; i-- )
-        bannerBlankBorder ();
+        for ( int i = 10; i > 0; i-- )
+            bannerBlankBorder ();
+    }
+    else if (Session.user.role == 1){
+        // Marketing
+        bannerBlankBorderTextCen ("1. Go to POS System");
+        bannerBlankBorderTextCen ("2. Promotion management");
+        bannerBlankBorderTextCen ("3. Sales Forecasting");
+        bannerBlankBorderTextCen ("4. View Report");
+        bannerBlankBorderTextCen ("5. Settings"); 
+
+        for ( int i = 13; i > 0; i-- )
+            bannerBlankBorder ();
+    }
+    else{
+        // Sale
+        bannerBlankBorderTextCen ("1. Go to POS System");
+        bannerBlankBorderTextCen ("2. Settings"); 
+
+        for ( int i = 16; i > 0; i-- )
+            bannerBlankBorder ();
+    }
 
     errorResponse == 1 ? bannerBlankBorderTextCen ("Invalid response. Please try again.") : bannerBlankBorder ();
 
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("  Type 'Q' to quit  |  Type in your response  |  Type 'B' to logoff");
+    bannerBlankBorderTextCen ("  Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to logoff");
     bannerFullBorder ();
     bannerUserInput ();
 
@@ -63,51 +85,116 @@ void switchHub () {
 
     screenClear ();
 
-    switch ( toupper (flags)) {
-        case ('1'): // Sign In / Sign Out
-            cashierInterface (0);
-            break;
+    if ( Session.user.role == 0 ) {
+        // Manager
+        switch ( toupper (flags)) {
+            case ('1'): 
+                cashierInterface (0);
+                break;
 
-        case ('2'):// Go to POS Systems Interface (for cashier)
-            inventorySwitchHub ();
-            break;
+            case ('2'):
+                inventorySwitchHub ();
+                break;
 
-        case ('3'):// Go to check Inventory Database
-            customerSwitchHub ();
-            break;
+            case ('3'):
+                customerSwitchHub ();
+                break;
 
-        case ('4'):
-            personnelSwitchHub ();
-            break;
+            case ('4'):
+                personnelSwitchHub ();
+                break;
 
-        case ('5'):
-            promotionSwitchHub ();
-            break;
+            case ('5'):
+                promotionSwitchHub ();
+                break;
 
-        case ('6'):
-            reportSwitchHub ();
-            break;
+            case ('6'):
+                forecastSwitchHub ();
+                break;
 
-        case ('7'):
-           forecastSwitchHub ();
-            break;
+            case ('7'):
+                reportSwitchHub ();
+                break;
 
-        case ('8'):
-            settingsSwitchHub ();
-            break;
+            case ('8'):
+                settingsSwitchHub ();
+                break;
 
-        case ('Q'):
-            terminate ();
-            break;
+            case ('Q'):
+                terminate ();
+                break;
 
-        case ('B'):
-            deauthenticate ();
-            break;
+            case ('B'):
+                deauthenticate ();
+                break;
 
-        default:
-            // The input is invalid. Trying to route back to ask for a valid input
-            errorResponse = 1;
-            switchHub ();
+            default:
+                // The input is invalid. Trying to route back to ask for a valid input
+                errorResponse = 1;
+                switchHub ();
+        }
+    }
+    else if(Session.user.role == 1){
+        // Marketing
+        switch ( toupper (flags)) {
+            case ('1'): 
+                cashierInterface (0);
+                break;
+
+            case ('2'):
+                promotionSwitchHub ();
+                break;
+
+            case ('3'):
+                forecastSwitchHub ();
+                break;
+
+            case ('4'):
+                reportSwitchHub ();
+                break;
+
+            case ('5'):
+                settingsSwitchHub ();
+                break;
+
+            case ('Q'):
+                terminate ();
+                break;
+
+            case ('B'):
+                deauthenticate ();
+                break;
+
+            default:
+                // The input is invalid. Trying to route back to ask for a valid input
+                errorResponse = 1;
+                switchHub ();
+        }
+    }
+    else{
+        // Sale
+        switch ( toupper (flags)) {
+            case ('1'): 
+                cashierInterface (0);
+                break;
+
+            case ('2'):
+                settingsSwitchHub ();
+                break;
+
+            case ('Q'):
+                terminate ();
+                break;
+
+            case ('B'):
+                deauthenticate ();
+                break;
+
+            default:
+                // The input is invalid. Trying to route back to ask for a valid input
+                errorResponse = 1;
+                switchHub ();
+        }
     }
 }
 

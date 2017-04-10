@@ -45,7 +45,7 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
     for ( int i = 25; i > 0; i-- )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Press ENTER to skip  |  Type 'V' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Press ENTER to skip  |  Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
 
@@ -61,9 +61,11 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
             // User type the switch
             switch (toupper(customerId[0])){
                 case 'Q':
-                case 'V':
+                case 'B':
                     switchHub();
                     break;
+                default:
+                    cashierInterface(0);
             }
         }
         else{
@@ -168,6 +170,8 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
                 case 'V':
                     cashierInterface(0);
                     break;
+                default:
+                    cashierInterfaceInventory(0);
             }
         }
         else{
@@ -283,6 +287,8 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
                     case 'A':
                         cashierInterfaceInventory (0);
                         break;
+                    default:
+                        cashierInterfaceDiscount(0);
                 }
             }
             else{
@@ -328,6 +334,8 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
                     case 'A':
                         cashierInterfaceInventory (0);
                         break;
+                    default:
+                        cashierInterfaceDiscount(0);
                 }
             }
             else{
@@ -396,10 +404,10 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
         }
         // Saving a purchase into the Database
         if(isCustomerHasId){
-            purchaseInsert(RecordCount.purchase, discount, totalProfit, CurrentCustomer.id, Session.user.id);
+            purchaseInsert(total, discount, totalProfit, CurrentCustomer.id, Session.user.id);
         }
         else{
-            purchaseInsert(RecordCount.purchase, discount, totalProfit, "", Session.user.id);
+            purchaseInsert(total, discount, totalProfit, "", Session.user.id);
         }
         savedToDatabase = 1;
     }
@@ -498,6 +506,8 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
             case 'Q':
                 switchHub();
                 break;
+            default:
+                cashierInterfaceResult(usePoint);
         }
 
     }

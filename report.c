@@ -116,14 +116,12 @@ void monthlyReport (unsigned int year) {
     int numberOfPurchaseRecords = RecordCount.purchase;
     int numberOfMonth = 12;
 
-    time_t startTime = toEpochTime (1, 1, year, 0, 0, 0);            // From: 01/01/yyyy 00:00:00
-    time_t endTime = toEpochTime (31, 12, year, 23, 59, 59);   // To:   31/12/yyyy 23:59:59
+    time_t startTime;
+    time_t endTime;
 
-    time_t purchaseTime;
     int monthIndex;
 
-    int i;
-    struct tm *timeinfo;
+    int i, j;
 
     for ( i = 0; i < numberOfMonth; i++ ) {
         // Initail the values
@@ -131,16 +129,16 @@ void monthlyReport (unsigned int year) {
         RevenueByMonth[i].totalPrice = 0;
         RevenueByMonth[i].totalProfit = 0;
     }
-
-    for ( i = 0; i < numberOfPurchaseRecords; i++ ) {
-        if ( isTimeInRange (Purchase[i].timestamp, startTime, endTime) == 0 ) {
-            // If the record is in the time range
-            purchaseTime = Purchase[i].timestamp;
-            timeinfo = localtime (&purchaseTime);
-
-            monthIndex = timeinfo->tm_mon;
-            RevenueByMonth[monthIndex].totalPrice += Purchase[i].totalPrice;
-            RevenueByMonth[monthIndex].totalProfit += Purchase[i].totalProfit;
+    for(i = 0 ; i < 12; i++) {
+        startTime = toEpochTime (1, i + 1, year, 0, 0, 0);            // From: 01/01/yyyy 00:00:00
+        endTime = toEpochTime (31, i + 1, year, 23, 59, 59);   // To:   31/12/yyyy 23:59:59
+        for ( j = 0; j < numberOfPurchaseRecords; j++ ) {
+            if ( isTimeInRange (Purchase[j].timestamp, startTime, endTime) == 0 ) {
+                // If the record is in the time range
+                monthIndex = i;
+                RevenueByMonth[monthIndex].totalPrice += Purchase[j].totalPrice;
+                RevenueByMonth[monthIndex].totalProfit += Purchase[j].totalProfit;
+            }
         }
     }
 }
@@ -392,36 +390,32 @@ void reportSwitchHub () {
 
     bannerFullBorder ();
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Report Hub");
+    bannerBlankBorderTextCen ("Report of Sales");
     bannerBlankBorder ();
     bannerFullBorder ();
 
-    bannerBlankBorderTextCen ("Choose a report");
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("1. One day report");
-    bannerBlankBorderTextCen ("2. Monthly report");
-    bannerBlankBorderTextCen ("3. Personnel sale report");
-    bannerBlankBorderTextCen ("4. Multiple day report");
-
-    if ( checkErrorIn ) {
-        for ( int i = 0; i < 3; ++i ) {
-            bannerBlankBorder ();
-        }
-        bannerBlankBorderTextCen ("Invalid input. Please try again !!!!");
-        for ( int i = 0; i < 10; ++i ) {
-            bannerBlankBorder ();
-        }
-    } else {
-        for ( int i = 0; i < 14; ++i ) {
-            bannerBlankBorder ();
-        }
-    }
-
-    for ( int i = 0; i < 11; i++ ) {
+    for ( int i = 0; i < 11; ++i ) {
         bannerBlankBorder ();
     }
 
-    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
+    bannerBlankBorderTextCen ("What do you want to do ?");
+    bannerBlankBorder ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("1. View one day report");
+    bannerBlankBorderTextCen ("2. View monthly report");
+    bannerBlankBorderTextCen ("3. View personnel sale report");
+    bannerBlankBorderTextCen ("4. View multiple day report");
+
+
+
+    for ( int i = 0; i < 12; i++ ) {
+        bannerBlankBorder ();
+    }
+
+    if(checkErrorIn)
+        bannerBlankBorderTextCen ("Invalid input. Please try again !!!!");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
     bannerFullBorder ();
 
     /*-----User input------*/
@@ -468,22 +462,27 @@ void OneDayReportInputProcess () {
     /*-----Initial interface-----*/
     screenClear ();
     bannerFullBorder ();
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("One Day Report");
+    bannerBlankBorder ();
     bannerFullBorder ();
-    for ( int i = 0; i < 16; ++i ) {
+    for ( int i = 0; i < 15; ++i ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("Please enter date...");
     bannerBlankBorderTextCen ("Example --> dd/mm/yyyy");
-    for ( int i = 0; i < 15; ++i ) {
+    for ( int i = 0; i < 14; ++i ) {
         bannerBlankBorder ();
     }
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
     bannerFullBorder ();
     /*--------------------------*/
     int dateIN, monthIN, yearIN;
+    char swInput[5];
     //Input
     bannerUserInput ();
     scanf (" %d/%d/%d", &dateIN, &monthIN, &yearIN);
+    sprintf(swInput, "%d", dateIN);
     //Process
     oneDayReport (dateIN, monthIN, yearIN);
     OneDayReportInterface ();
@@ -510,7 +509,7 @@ void displayOneDayReport (int page) {
                     RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit);
         }
     }
-    bannerBlankBorderTextCen ("'N' to enter new date | Enter Page(e.g. 1, 2, 3) | 'B' to Check Report Menu |");
+    bannerBlankBorderTextCen ("'N' to enter new date | Enter Page(e.g. 1, 2, 3) | 'B' to Check Report Menu");
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
     bannerFullBorder ();
@@ -582,7 +581,7 @@ void displayMonthlyReport () {
     for ( int i = 0; i < 21; ++i ) {
         printf ("::                                                                      |                                |                                ::\n");
     }
-    bannerBlankBorderTextCen ("'N' to enter year again | 'B' to Check Report Menu ");
+    bannerBlankBorderTextCen ("'N' to enter year again  |      ALTERNATE RESPONSE      |  'B' to Check Report Menu ");
     bannerFullBorder ();
     bannerUserInput ();
 }
@@ -783,7 +782,9 @@ int ErrorINput = 0;
 void forecastSwitchHub (){
     screenClear();
     bannerFullBorder();
+    bannerBlankBorder();
     bannerBlankBorderTextCen("Sale Forecasting");
+    bannerBlankBorder();
     bannerFullBorder();
     if (ErrorINput)
     {
@@ -792,14 +793,14 @@ void forecastSwitchHub (){
             bannerBlankBorder();
         }
         bannerBlankBorderTextCen("Invalid input. Please try again !!!!");
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 9; ++i)
         {
             bannerBlankBorder();
         }
     }
     else
     {
-        for (int i = 0; i < 14; ++i)
+        for (int i = 0; i < 13; ++i)
         {
             bannerBlankBorder();
         }
@@ -808,11 +809,11 @@ void forecastSwitchHub (){
     bannerBlankBorder();
     bannerBlankBorderTextCen("1. Tomorrow forecasting");
     bannerBlankBorderTextCen("2. Next month forecasting");
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < 14; i++)
     {
         bannerBlankBorder();
     }
-    bannerBlankBorderTextCen ("  Type 'N' to quit  |  Type in your response  |  Type 'B' to logoff");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
     bannerFullBorder();
 
     /*-----User input------*/
@@ -830,7 +831,7 @@ void forecastSwitchHub (){
             ShowNextMonthForecasting();
             break;
 
-        case ('N'):
+        case ('Q'):
             terminate();
             break;
 
@@ -968,9 +969,11 @@ void displayNextMonthForecasting() {
     char thisMonthName[10];
     strcpy(thisMonthName, monthName[month-1]);
     bannerFullBorder ();
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Next Month Forecasting");
+    bannerBlankBorder ();
     bannerFullBorder ();
-    for (int i = 0; i < 12; ++i)
+    for (int i = 0; i < 11; ++i)
     {
         bannerBlankBorder ();
     }
@@ -981,13 +984,25 @@ void displayNextMonthForecasting() {
     printf(":: %67s %-10s %-55d ::\n", "Next month:", SaleForecastByMonth.monthName, year);
     printf(":: %67s %-66.2lf ::\n", "- Revenue:", SaleForecastByMonth.totalPrice);
     printf(":: %67s %-66.2lf ::\n", "- Profit:", SaleForecastByMonth.totalProfit);
-    for (int i = 0; i < 14; ++i)
+    for (int i = 0; i < 13; ++i)
     {
         bannerBlankBorder ();
     }
-    bannerBlankBorderTextCen ("Enter 'B' to Forecasting Menu");
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
+    char sw;
+    scanf(" %c", &sw);
+    switch (toupper(sw)){
+        case 'Q':
+            switchHub();
+            break;
+        case 'B':
+            forecastSwitchHub();
+            break;
+        default:
+            displayNextMonthForecasting();
+    }
 }
 /*
  *                                             All hail the god..

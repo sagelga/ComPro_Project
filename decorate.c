@@ -21,7 +21,7 @@ void screenAdjust () {
     }
 
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'Y' to continue");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     bannerUserInput ();

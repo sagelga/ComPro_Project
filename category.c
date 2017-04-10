@@ -114,7 +114,7 @@ void categoryAdd () {
     for ( int i = 0; i < 33; ++i ) {
         bannerBlankBorder ();
     }
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
 
     for (int i = 0; i >= 0; ++i)
@@ -126,7 +126,7 @@ void categoryAdd () {
         {
             inventorySwitchHub ();
         }
-        else if ((strcmp(nameIN, "N") == 0) || (strcmp(nameIN, "n") == 0))
+        else if ((strcmp(nameIN, "Q") == 0) || (strcmp(nameIN, "q") == 0))
         {
             terminate ();
         }
@@ -144,7 +144,7 @@ void categoryAdd () {
                 for ( int i = 0; i < 16; ++i ) {
                     bannerBlankBorder ();
                 }
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
             } else {
                 screenClear ();
@@ -156,7 +156,7 @@ void categoryAdd () {
                 for ( int i = 0; i < 17; ++i ) {
                     bannerBlankBorder ();
                 }
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
             }
         }
@@ -183,7 +183,7 @@ void categoryEdit(){
 
     for (int i = 0;i<18;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
     char id[MAX_LNG_TEXT], name[MAX_LNG_TEXT], buffer[MAX_LNG_SCREEN], flag[MAX_LNG_TEXT];
@@ -191,7 +191,7 @@ void categoryEdit(){
         scanf ("%s", id);
         if (tolower(id[0]) == 'b') {
             inventorySwitchHub();
-        } else if (tolower(id[0]) == 'n') {
+        } else if (tolower(id[0]) == 'q') {
             terminate ();
         } else {
             if (categorySelectById(strtoul(id, NULL, 10), name)) {
@@ -239,7 +239,7 @@ void categoryEdit(){
             
                 for (int i = 0;i<15;i++)
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
@@ -263,7 +263,7 @@ void categoryEdit(){
             
                 for (int i = 0;i<16;i++)
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
                 bannerUserInput ();
