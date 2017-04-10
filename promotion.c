@@ -20,7 +20,7 @@ void promotionSwitchHub () {
     bannerBlankBorderTextCen ("3. Delete promotion from database");
     bannerBlankBorderTextCen ("4. Update promotion metadata");
 
-    for (int i = 0;i<26;i++)
+    for (int i = 0;i<12;i++)
         bannerBlankBorder ();
 
     if (errorResponse == 1){
@@ -89,7 +89,7 @@ void promotionInsertInterface(){
     bannerBlankBorderTextCen ("Ex: 1234567891012");
     bannerBlankBorderTextCen ("100");
 
-    for (int i = 0;i<24;i++)
+    for (int i = 0;i<23;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -121,7 +121,7 @@ void promotionInsertInterface(){
             bannerBlankBorder ();
             bannerBlankBorderTextLeft (buffer);
     
-            for (int i = 0;i<29;i++)
+            for (int i = 0;i<28;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
@@ -148,7 +148,7 @@ void promotionInsertInterface(){
             bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'Y' to comfirm || Type 'N' to Discard");
     
-            for (int i = 0;i<16;i++)
+            for (int i = 0;i<15;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
@@ -173,7 +173,7 @@ void promotionInsertInterface(){
                     bannerBlankBorderTextCen ("Insert Success");
                     bannerBlankBorderTextCen ("Insert Next PromotionID or Type 'B' to Back");
             
-                    for (int i = 0;i<17;i++)
+                    for (int i = 0;i<16;i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
@@ -202,7 +202,7 @@ void promotionInsertInterface(){
                     bannerBlankBorderTextCen ("This PromotionID was duplicated");
                     bannerBlankBorderTextCen ("Insert Next PromotionID or Type 'B' to Back");
             
-                    for (int i = 0;i<12;i++)
+                    for (int i = 0;i<11;i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
@@ -242,11 +242,11 @@ void displayPromotion(int page) {
             //bannerBlankBorder();
         }
         //display remaining line as bannerBlankBorder()
-        for ( int i = 0; i < 34-1 - (RecordCount.promotion % 34); ++i ) {
+        for ( int i = 0; i < 34-2 - (RecordCount.promotion % 34); ++i ) {
             printf (":: %-66s | %31s | %-31s ::\n", "", "", "");
         }
     } else {
-        for ( int i = (page - 1) * 34; i < page * 34-1/*(34*page)*/; ++i ) {
+        for ( int i = (page - 1) * 34; i < page * 34-2/*(34*page)*/; ++i ) {
             if (Promotion[i].status)
             {
                 strcpy(NewState, "Active");
@@ -312,7 +312,7 @@ void promotionDeleteInterface(){
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please type PromotionID");
 
-    for (int i = 0;i<18;i++)
+    for (int i = 0;i<17;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -350,7 +350,7 @@ void promotionDeleteInterface(){
                 bannerBlankBorderTextCen ("Are you sure to delete ?");
                 bannerBlankBorderTextCen ("Type 'Y' to comfirm || Type 'N' to Discard");
 
-                for (int i = 0;i<17;i++)
+                for (int i = 0;i<16;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -375,7 +375,7 @@ void promotionDeleteInterface(){
                     bannerBlankBorderTextCen ("Delete Success");
                     bannerBlankBorderTextCen ("Type Next PromotionID Or Type 'B' to Back");
             
-                    for (int i = 0;i<17;i++)
+                    for (int i = 0;i<16;i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
@@ -402,7 +402,7 @@ void promotionDeleteInterface(){
                 bannerBlankBorderTextCen ("PromotionID dosen't exist.");
                 bannerBlankBorderTextCen ("Type Next PromotionID Or Type 'B' to Back");
             
-                for (int i = 0;i<17;i++)
+                for (int i = 0;i<16;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -432,7 +432,7 @@ void promotionUpdateInterface(){
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type PromotionID");
 
-    for (int i = 0;i<18;i++)
+    for (int i = 0;i<17;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -467,7 +467,7 @@ void promotionUpdateInterface(){
                 for (int i = 0;i<10;i++)
                     bannerBlankBorder ();
 
-                for (int i = 0;i<22;i++)
+                for (int i = 0;i<21;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type new price || Press Enter to set by default");
                 bannerFullBorder ();
@@ -495,7 +495,7 @@ void promotionUpdateInterface(){
                 bannerBlankBorderTextCen ("Promotion has been updated");
                 bannerBlankBorderTextCen ("Type Next PromotionID to Update Or Type 'B' to Back");
             
-                for (int i = 0;i<16;i++)
+                for (int i = 0;i<15;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -519,7 +519,7 @@ void promotionUpdateInterface(){
                 bannerBlankBorderTextCen ("PromotionID dosen't exist.");
                 bannerBlankBorderTextCen ("Type Next PromotionID Or Type 'B' to Back");
             
-                for (int i = 0;i<17;i++)
+                for (int i = 0;i<16;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();

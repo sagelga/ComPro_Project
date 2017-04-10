@@ -6,8 +6,8 @@ void settingsSwitchHub () {
 
     bannerFullBorder ();
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Settings");
-    bannerBlankBorderTextCen ("________");
+    bannerBlankBorderTextCen ("Settings Hub");
+    bannerBlankBorder ();
     bannerFullBorder ();
     for ( int i = 0; i < 5; i++ )
         bannerBlankBorder ();
@@ -18,14 +18,14 @@ void settingsSwitchHub () {
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Authentication");
-    bannerBlankBorderTextCen ("______________");
+    bannerBlankBorderTextCen ("--------------");
     bannerBlankBorderTextCen ("1. Change Password");
 
     for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Storefront");
-    bannerBlankBorderTextCen ("__________");
+    bannerBlankBorderTextCen ("----------");
     bannerBlankBorderTextCen ("2. Change store name");
     bannerBlankBorderTextCen ("3. Change store address");
 
@@ -33,11 +33,11 @@ void settingsSwitchHub () {
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("Others");
-    bannerBlankBorderTextCen ("______");
+    bannerBlankBorderTextCen ("------");
     bannerBlankBorderTextCen ("4. List of contributors");
     bannerBlankBorderTextCen ("5. cat.gif");
 
-    for ( int i = 0; i < 14; i++ )
+    for ( int i = 0; i < 6; i++ )
         bannerBlankBorder ();
 
     if (errorResponse == 1){
@@ -107,7 +107,7 @@ void settingUpdatePasswordInterface () {
     bannerBlankBorderTextCen ("Please Type Old Password");
     bannerBlankBorder ();
 
-    for (int i = 0;i<22;i++)
+    for (int i = 0;i<21;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
@@ -126,7 +126,7 @@ void settingUpdatePasswordInterface () {
             bannerBlankBorderTextCen ("Your password was Correct");
             bannerBlankBorder ();
 
-            for (int i = 0;i<22;i++)
+            for (int i = 0;i<21;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please type your new password...");
             bannerFullBorder ();
@@ -141,10 +141,10 @@ void settingUpdatePasswordInterface () {
             bannerFullBorder ();
             for (int i = 0;i<10;i++)
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Test");
+            bannerBlankBorderTextCen ("Retype New Password");
             bannerBlankBorder ();
 
-            for (int i = 0;i<22;i++)
+            for (int i = 0;i<21;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please type new password again...");
             bannerFullBorder ();
@@ -163,7 +163,7 @@ void settingUpdatePasswordInterface () {
                 bannerBlankBorderTextCen ("Change Password success");
                 bannerBlankBorder ();
 
-                for (int i = 0;i<22;i++)
+                for (int i = 0;i<21;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -188,7 +188,7 @@ void settingUpdatePasswordInterface () {
                 bannerBlankBorderTextCen ("Please type same password");
                 bannerBlankBorder ();
 
-                for (int i = 0;i<21;i++)
+                for (int i = 0;i<20;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
@@ -213,7 +213,7 @@ void settingUpdatePasswordInterface () {
             bannerBlankBorderTextCen ("Password was Incorrect !");
             bannerBlankBorder ();
 
-            for (int i = 0;i<22;i++)
+            for (int i = 0;i<21;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please type your password again... | Type 'B' to back");
             bannerFullBorder ();
@@ -240,7 +240,7 @@ void settingUpdateStoreNameInterface () {
     bannerBlankBorderTextCen (Setting.storeName);
     bannerBlankBorder ();
 
-    for (int i = 0;i<20;i++)
+    for (int i = 0;i<19;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please enter new storename | Type 'B' to Back");
     bannerFullBorder ();
@@ -263,7 +263,7 @@ void settingUpdateStoreNameInterface () {
         bannerBlankBorderTextCen (newstoreName);
         bannerBlankBorder ();
 
-        for (int i = 0;i<20;i++)
+        for (int i = 0;i<19;i++)
             bannerBlankBorder ();
         bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
         bannerFullBorder ();
@@ -291,7 +291,7 @@ void settingUpdateStoreAddressInterface () {
     bannerBlankBorderTextCen (Setting.storeAddress);
     bannerBlankBorder ();
 
-    for (int i = 0;i<20;i++)
+    for (int i = 0;i<19;i++)
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please enter new storeaddress | Type 'B' to Back");
     bannerFullBorder ();
@@ -314,7 +314,7 @@ void settingUpdateStoreAddressInterface () {
         bannerBlankBorderTextCen (newstoreAddress);
         bannerBlankBorder ();
 
-        for (int i = 0;i<20;i++)
+        for (int i = 0;i<19;i++)
             bannerBlankBorder ();
         bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
         bannerFullBorder ();
@@ -357,6 +357,7 @@ void settingContributorList () {
     bannerFullBorder ();
 
     delay (10);
+    settingsSwitchHub ();
 }
 
 void settingCat () {
@@ -378,25 +379,25 @@ void settingCat () {
                 strcat (text1, "_");
             }
             strcat (text1, "━━━━___━*━___━━___━___*___━_*___┓╭━━━━━━━━━━━━╮");
-            bannerBlankBorderTextLeft (text1);
+            printf ("%s",text1);
 
             for ( int j = i; j > 0; j-- ) {
                 strcat (text2, "_");
             }
             strcat (text2, "___━━__*_━━___━━___━━*____━━___┗┓|::::::^----^|");
-            bannerBlankBorderTextLeft (text2);
+            printf ("%s",text2);
 
             for ( int j = i; j > 0; j-- ) {
                 strcat (text3, "_");
             }
             strcat (text3, "___━━___━━___━*━___━━____━━*___━┗|:::::|｡◕‿‿◕｡|");
-            bannerBlankBorderTextLeft (text3);
+            printf ("%s",text3);
 
             for ( int j = i; j > 0; j-- ) {
                 strcat (text4, "_");
             }
             strcat (text4, "___━━___*━__━━_*___━━___*━━___*━━╰O--O---O--O ╯");
-            bannerBlankBorderTextLeft (text4);
+            printf ("%s",text4);
 
             bannerBlankBorder ();
         }
@@ -410,7 +411,6 @@ void settingCat () {
 void settingUpdateStoreName (char *storeName) {
     strcpy (Setting.storeName, storeName);
     settingFileWrite ();    // Save to a Database file
-
 }
 
 void settingUpdateAddress (char *storeAddress) {
