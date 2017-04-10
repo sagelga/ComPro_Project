@@ -19,7 +19,7 @@ Declare all the libraries that we are going to use in this project*/
 Define all the constant values here*/
 #define MAX_IDX_PERSONNEL 10        // Maximum amount of Personnels
 #define MAX_IDX_INVENTORY 100       // Maximum amount of Inventory
-#define MAX_IDX_CATEGORY 10         // Maximum amount of Category
+#define MAX_IDX_CATEGORY 100         // Maximum amount of Category
 #define MAX_IDX_TRANSACTION 100000  // Maximum amount of Transaction (Count when item changed)
 #define MAX_IDX_PURCHASE 100000     // Maximum amount of Purchase (Count when checkout)
 #define MAX_IDX_CUSTOMER 100        // Maximum amount of Customer

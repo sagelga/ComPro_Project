@@ -64,7 +64,7 @@ void displayCategory (int page) {
         }
     } else {
         for ( int i = (page - 1) * 32; i < page * 32/*(32*page)*/; ++i ) {
-            printf (":: %u | %s ::\n", Category[i].id, Category[i].name);
+            printf ("::           %u           | %-110s ::\n", Category[i].id, Category[i].name);
         }
     }
 
