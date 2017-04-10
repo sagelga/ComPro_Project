@@ -474,7 +474,7 @@ void OneDayReportInputProcess () {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("Please enter date...");
-    bannerBlankBorderTextCen ("Example --> 07/03/2017");
+    bannerBlankBorderTextCen ("Example --> dd/mm/yyyy");
     for ( int i = 0; i < 17; ++i ) {
         bannerBlankBorder ();
     }
@@ -876,7 +876,7 @@ void displayTomorrowForecasting(int page) {
             }
             printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, different);
         }
-        for ( int i = 0; i < 34 - (RecordCount.category % 34); ++i ) {
+        for ( int i = 0; i < 34 - (RecordCount.category % 34)-2; ++i ) {
             printf(":: %-39s | %18s | %18s | %18s | %18s | %8s ::\n", "", "", "", "", "", "");
         }
     } else {
@@ -966,7 +966,7 @@ void displayNextMonthForecasting() {
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Next Month Forecasting");
     bannerFullBorder ();
-    for (int i = 0; i < 14; ++i)
+    for (int i = 0; i < 13; ++i)
     {
         bannerBlankBorder ();
     }
