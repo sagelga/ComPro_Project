@@ -11,30 +11,36 @@ void screenAdjust () {
 
     bannerBlankBorderTextCen ("Please configure the terminal screen to optimum size.");
     bannerBlankBorderTextCen ("Optimal screen size : 140 x 40 character");
-    for ( int i = 0; i < 27; i++ )
+    for ( int i = 0; i < 23; i++ )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("Type 'Y' to continue...");
+    if (errorResponse == 1){
+        bannerBlankBorderTextCen ("Invalid response. Please try again.");
+    } else{
+        bannerBlankBorder ();
+    }
+
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'Y' to continue");
     bannerFullBorder ();
 
     bannerUserInput ();
     char flags;
     scanf (" %c", &flags);
+    errorResponse = 0;
 
     switch ( toupper (flags)) {
 
         case ('Y'):
-            screenClear ();
             authInterface ();
             return;
 
-        case ('N'):
-            screenClear ();
+        case ('Q'):
             terminate ();
             return;
 
         default:
-            screenClear ();
+            errorResponse = 1;
             screenAdjust ();
             return;
     }

@@ -5,19 +5,31 @@ void promotionSwitchHub () {
     screenClear ();
 
     bannerFullBorder ();
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Promotion Hub");
-    bannerBlankBorderTextCen ("-----------------------");
-    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerBlankBorder ();
     bannerFullBorder ();
 
+    for ( int i = 0; i < 10; i++ )
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("What do you want to do ?");
+    bannerBlankBorder ();
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("1. Preview promotion in database");
     bannerBlankBorderTextCen ("2. Create a new promotion");
     bannerBlankBorderTextCen ("3. Delete promotion from database");
     bannerBlankBorderTextCen ("4. Update promotion metadata");
 
-    for (int i = 0;i<28;i++)
+    for (int i = 0;i<26;i++)
         bannerBlankBorder ();
+
+    if (errorResponse == 1){
+        bannerBlankBorderTextCen ("Invalid response. Please try again.");
+    } else{
+        bannerBlankBorder ();
+    }
+
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
     bannerFullBorder ();
 
@@ -230,11 +242,11 @@ void displayPromotion(int page) {
             //bannerBlankBorder();
         }
         //display remaining line as bannerBlankBorder()
-        for ( int i = 0; i < 34 - (RecordCount.promotion % 34); ++i ) {
+        for ( int i = 0; i < 34-1 - (RecordCount.promotion % 34); ++i ) {
             printf (":: %-66s | %31s | %-31s ::\n", "", "", "");
         }
     } else {
-        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
+        for ( int i = (page - 1) * 34; i < page * 34-1/*(34*page)*/; ++i ) {
             if (Promotion[i].status)
             {
                 strcpy(NewState, "Active");
@@ -253,6 +265,7 @@ void displayPromotion(int page) {
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
     bannerFullBorder ();
+    bannerUserInput ();
 
 }
 

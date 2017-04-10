@@ -30,6 +30,8 @@ Define all the constant values here*/
 #define MAX_LNG_SCREEN 140          // Maximum length of (Text on) Screen's width
 #define MAX_LNG_TOKEN 255           // Maximum length of Token
 
+#define errorResponse 0 // Show the flag that the program have receives an invalid response
+
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
 
@@ -124,6 +126,11 @@ int personnelUpdatePassword(char *id, char *password);      // For modifying the
 int personnelDelete(char *id);                              // Delete the record (Select by `id`)
 
 void personnelSwitchHub();
+void personnelInsertInterface();
+void personnelSelectInterface();
+void displayPersonnel(int page);
+void personnelDeleteInterface();
+void personnelUpdateInterface();
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: INVENTORY.c
@@ -419,6 +426,8 @@ void OneDayReportInputProcess();
 void displayOneDayReport(int page);
 
 void MonthlyReportInterface();
+void MonthlyReportInputProcess ();
+void displayMonthlyReport ();
 
 void PersonnelSaleReportInterface();
 void PersonnelSaleReportInputProcess();
@@ -438,6 +447,13 @@ void forecastResults();
 void forecastProgram();
 
 void forecastPrint();
+
+void forecastSwitchHub ();
+void ShowTomorrowForecasting();
+void ShowNextMonthForecasting();
+void displayNextMonthForecasting();
+void displayTomorrowForecasting(int page);
+//
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: SUPPORT.c
@@ -493,6 +509,7 @@ void inventorySwitchHub ();               // For moving to the selection of the 
 void customerSwitchHub ();               // For moving to the selection of the functions
 void promotionSwitchHub ();               // For moving to the selection of the functions
 void settingsSwitchHub ();               // For moving to the selection of the functions
+void personnelSwitchHub ();
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
