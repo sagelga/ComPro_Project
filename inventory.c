@@ -6,11 +6,15 @@ void inventorySwitchHub () {
     screenClear ();
 
     bannerFullBorder ();
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Inventory Hub");
-    bannerBlankBorderTextCen ("-----------------------");
-    bannerBlankBorderTextCen ("What do you want to do?");
+    bannerBlankBorder ();
     bannerFullBorder ();
 
+    for ( int i = 0; i < 7; i++ )
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("What do you want to do ?");
+    bannerBlankBorder ();
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Inventory");
     bannerBlankBorderTextCen ("-------------------");
@@ -26,7 +30,7 @@ void inventorySwitchHub () {
     bannerBlankBorderTextCen ("6. Add new category to the database");
     bannerBlankBorderTextCen ("7. Edit category from the database");
 
-    for ( int i = 0; i < 20; i++ ) {
+    for ( int i = 0; i < 10; i++ ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Type in your response  |  Type 'B' to back");
