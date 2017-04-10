@@ -56,7 +56,7 @@ void displayCategory (int page) {
 
     if ( page == allPage ) {
         for ( int i = (page - 1) * 32; i < RecordCount.category; ++i ) {
-            printf ("::          %u           | %-110s ::\n", Category[i].id, Category[i].name);
+            printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
         }
         //display remaining line as bannerBlankBorder()
         for ( int i = 0; i < 32 - (RecordCount.category % 32); ++i ) {
@@ -64,7 +64,7 @@ void displayCategory (int page) {
         }
     } else {
         for ( int i = (page - 1) * 32; i < page * 32/*(32*page)*/; ++i ) {
-            printf ("::           %u           | %-110s ::\n", Category[i].id, Category[i].name);
+            printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
         }
     }
 
@@ -165,6 +165,7 @@ void categoryAdd () {
 
 void categoryEdit(){
     char bufferHead[140];
+
     sprintf(bufferHead, "%-60s|%s", "ID", "CategoryName");
     screenClear ();
     bannerFullBorder ();
@@ -185,7 +186,7 @@ void categoryEdit(){
     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
-    char id[MAX_LNG_TEXT], name[MAX_LNG_TEXT], buffer[MAX_LNG_TEXT], flag[MAX_LNG_TEXT];
+    char id[MAX_LNG_TEXT], name[MAX_LNG_TEXT], buffer[MAX_LNG_SCREEN], flag[MAX_LNG_TEXT];
     while ( 1 ) {
         scanf ("%s", id);
         if (tolower(id[0]) == 'b') {
