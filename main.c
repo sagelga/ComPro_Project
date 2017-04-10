@@ -5,8 +5,8 @@
 int main () { // This program will run first. POS Interface configuration will be called, and ready to work.
     screenClear ();
     initDatabase ();
-    screenAdjust();
-    //switchHub ();
+    //screenAdjust();
+    switchHub ();
     return 0;
 }
 
@@ -44,7 +44,7 @@ void switchHub () {
     bannerBlankBorderTextCen ("8. Settings");
     bannerBlankBorder ();
 
-    for ( int i = 21; i > 0; i-- )
+    for ( int i = 20; i > 0; i-- )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("  Type 'Q' to quit  |  Type in your response  |  Type 'B' to logoff");
@@ -70,7 +70,7 @@ void switchHub () {
             break;
 
         case ('4'):
-            promotionSwitchHub ();
+            personnelSwitchHub ();
             break;
 
         case ('5'):

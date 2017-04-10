@@ -492,6 +492,7 @@ void inventorySwitchHub ();               // For moving to the selection of the 
 void customerSwitchHub ();               // For moving to the selection of the functions
 void promotionSwitchHub ();               // For moving to the selection of the functions
 void settingsSwitchHub ();               // For moving to the selection of the functions
+void personnelSwitchHub ();
 
 /*-----------------------------------------------------------------------------
 Declare all the gimmicks functions, which will be separate program from the original. No I/O*/
