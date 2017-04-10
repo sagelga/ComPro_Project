@@ -875,7 +875,7 @@ void displayTomorrowForecasting(int page) {
                 sign = '+';
                 different = 0;
             }
-            printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, different);
+            printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, fabs(different));
         }
         for ( int i = 0; i < 32 - (RecordCount.category % 32)-2; ++i ) {
             printf(":: %-39s | %18s | %18s | %18s | %18s | %8s ::\n", "", "", "", "", "", "");
@@ -897,7 +897,7 @@ void displayTomorrowForecasting(int page) {
                 sign = '+';
                 different = 0;
             }
-            printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, different);
+            printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, fabs(different));
         }
     }
     bannerBlankBorderTextCen ("Enter Page(e.g. 1, 2, 3) | 'B' to Forecasting Menu");
@@ -911,13 +911,15 @@ void ShowTomorrowForecasting(){
     time_t today = time(NULL);
     int date, month, year;
     toDateMonthYear(today, &date, &month, &year);
+    int i;
+
+    tomorrowSaleForecast(); //Execute Forecast processing.
     oneDayReport(date, month, year);
-    tomorrowSaleForecast();//Execute Forecast processing.
 
     char handling;
     int pageIn = 1, CheckPage;
     displayTomorrowForecasting (1);
-    for ( int i = 0; i >= 0; ++i ) {
+    for ( i = 0; i >= 0; ++i ) {
         printf (">>> ");
         scanf (" %c", &handling);
         if ((handling == 'B') || (handling == 'b')) {
