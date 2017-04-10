@@ -119,6 +119,9 @@ int inventoryInsert (char *id, char *name, double price, double profit, unsigned
             return 0;   // Error: Barcode ID already exists
     }
 
+    if(categoryId >= RecordCount.category)
+        return 0;   // Error: CategoryID doesn't exist
+
     strcpy (Inventory[tailIndex].id, id);
     strcpy (Inventory[tailIndex].name, name);
     Inventory[tailIndex].price = price;
@@ -331,7 +334,7 @@ void inventoryAdd () {
     double profitIN;
     unsigned int categoryIdIN;
     unsigned int remainIN;
-    sprintf(bufferHead, "%-20s|%-35s|%-15s|%-15s|%-20s|%-10s", "Inventory ID", "Inventory Name", "Price", "Profit", "Category", "Number"); //idIN, nameIN, priceIN, profitIN, Category[i].name, remainIN
+    sprintf(bufferHead, "%-20s|%-35s|%-15s|%-15s|%-20s|%-10s", "Inventory ID", "Inventory Name", "Price", "Profit", "Category", "In Stock"); //idIN, nameIN, priceIN, profitIN, Category[i].name, remainIN
     while (1){
         scanf("%s", idIN);
         if (strcmp(idIN, "B") == 0 || strcmp(idIN, "b") == 0 ){
@@ -482,7 +485,7 @@ void inventoryAdd () {
             bannerBlankBorderTextCen ("Are you sure to Insert this inventory ?");
             bannerBlankBorderTextCen ("Type 'Y' to Yes || 'N' to No");
     
-            for (int i = 0;i<16;i++)
+            for (int i = 0;i<15;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
             bannerFullBorder ();
@@ -518,7 +521,7 @@ void inventoryAdd () {
                     bannerBlankBorderTextCen ("_____________________");
                     bannerBlankBorderTextCen ("Insert Next Inventory Or Type 'B' to Back");
         
-                    for (int i = 0;i<13;i++)
+                    for (int i = 0;i<15;i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                     bannerFullBorder ();
@@ -652,7 +655,7 @@ void inventoryEdit(){
                     bannerBlankBorderTextLeft ("");
                     for (int i=0;i<10;i++)
                         bannerBlankBorder ();
-                    bannerBlankBorderTextCen ("InventoyName doesn't exist");
+                    bannerBlankBorderTextCen ("Category ID doesn't exist");
                     bannerBlankBorderTextCen ("Please re-type InventoryID | Type 'B' to back");
                 
                     for (int i = 0;i<14;i++)

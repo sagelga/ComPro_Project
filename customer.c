@@ -128,7 +128,7 @@ void customerInsertInterface () {
             bannerUserInput ();
 
             //---------------------FirstName--------------------------
-            scanf("%s", name);
+            scanf(" %[^\n]", name);
             sprintf(buffer, "%-20s %-50s->", id, name);
             screenClear ();
             bannerFullBorder ();
@@ -150,7 +150,7 @@ void customerInsertInterface () {
             bannerUserInput ();
 
             //---------------------LastName--------------------------
-            scanf("%s", lastname);
+            scanf(" %[^\n]", lastname);
             sprintf(buffer, "%-20s %-50s %-50s->", id, name, lastname);
             screenClear ();
             bannerFullBorder ();
@@ -482,7 +482,7 @@ void customerUpdateInterface(){
     bannerBlankBorderTextLeft ("->");
     for (int i = 0;i<10;i++)
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type CustomerID");
+    bannerBlankBorderTextCen ("Please enter a Customer ID");
 
     for (int i = 0;i<17;i++)
         bannerBlankBorder ();

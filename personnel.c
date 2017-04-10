@@ -130,7 +130,7 @@ void personnelInsertInterface(){
             bannerUserInput ();
 
             //---------------------FirstName--------------------------
-            scanf("%s", firstname);
+            scanf(" %[^\n]", firstname);
             sprintf(buffer, "%-20s %-28s->", id, firstname);
             screenClear ();
             bannerFullBorder ();
@@ -152,7 +152,7 @@ void personnelInsertInterface(){
             bannerUserInput ();
 
             //---------------------LastName--------------------------
-            scanf("%s", lastname);
+            scanf(" %[^\n]", lastname);
             sprintf(buffer, "%-20s %-28s %-28s->", id, firstname, lastname);
             screenClear ();
             bannerFullBorder ();

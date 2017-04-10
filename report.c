@@ -592,7 +592,7 @@ void MonthlyReportInterface () {
     char handling;
     displayMonthlyReport ();
     for ( int i = 0; i >= 0; ++i ) {
-        printf (">>> ");
+        //printf (">>> ");
         scanf (" %c", &handling);
         if ((handling == 'B') || (handling == 'b')) {
             reportSwitchHub ();
@@ -808,7 +808,7 @@ void forecastSwitchHub (){
     bannerBlankBorder();
     bannerBlankBorderTextCen("1. Tomorrow forecasting");
     bannerBlankBorderTextCen("2. Next month forecasting");
-    for (int i = 0; i < 14; i++)
+    for (int i = 0; i < 15; i++)
     {
         bannerBlankBorder();
     }
@@ -900,6 +900,7 @@ void displayTomorrowForecasting(int page) {
             printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, fabs(different));
         }
     }
+    bannerBlankBorder();
     bannerBlankBorderTextCen ("Enter Page(e.g. 1, 2, 3) | 'B' to Forecasting Menu");
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
@@ -920,7 +921,6 @@ void ShowTomorrowForecasting(){
     int pageIn = 1, CheckPage;
     displayTomorrowForecasting (1);
     for ( i = 0; i >= 0; ++i ) {
-        printf (">>> ");
         scanf (" %c", &handling);
         if ((handling == 'B') || (handling == 'b')) {
             forecastSwitchHub();
@@ -948,7 +948,7 @@ void ShowNextMonthForecasting(){
     int pageIn = 1, CheckPage;
     displayNextMonthForecasting ();
     for ( int i = 0; i >= 0; ++i ) {
-        printf (">>> ");
+ 
         scanf (" %c", &handling);
         if ((handling == 'B') || (handling == 'b')) {
             forecastSwitchHub();

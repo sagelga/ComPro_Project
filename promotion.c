@@ -242,11 +242,11 @@ void displayPromotion(int page) {
             //bannerBlankBorder();
         }
         //display remaining line as bannerBlankBorder()
-        for ( int i = 0; i < 32-2 - (RecordCount.promotion % 32); ++i ) {
+        for ( int i = 0; i < 32 - (RecordCount.promotion % 32); ++i ) {
             printf (":: %-66s | %31s | %-31s ::\n", "", "", "");
         }
     } else {
-        for ( int i = (page - 1) * 32; i < page * 32-2/*(34*page)*/; ++i ) {
+        for ( int i = (page - 1) * 32; i < page * 32/*(34*page)*/; ++i ) {
             if (Promotion[i].status)
             {
                 strcpy(NewState, "Active");
