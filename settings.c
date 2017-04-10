@@ -622,6 +622,195 @@ void settingPriceToPointInterface () {
 }
 
 void settingPointToPriceInterface () {
+    screenClear ();
+
+    bannerFullBorder ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Price to Point Conversion Rate");
+    bannerBlankBorder ();
+    bannerFullBorder ();
+
+    for ( int i = 2; i > 0; i-- )
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("Your current conversion rate");
+    bannerBlankBorder ();
+
+    char text[140];
+    sprintf (text, "You use %.2f point   ->   Get 1 baht discount", Setting.priceToPoint);
+    bannerBlankBorderTextCen (text);
+
+    bannerBlankBorderTextCen ("________________");
+
+    strcpy (text, " ");
+    sprintf (text, "%.2f point   ->   10 baht", Setting.pointToPrice * 10);
+    bannerBlankBorderTextCen (text);
+
+    strcpy (text, " ");
+    sprintf (text, "%.2f point   ->   20 baht", Setting.pointToPrice * 20);
+    bannerBlankBorderTextCen (text);
+
+    strcpy (text, " ");
+    sprintf (text, "%.2f point   ->   50 baht", Setting.pointToPrice * 50);
+    bannerBlankBorderTextCen (text);
+
+    strcpy (text, " ");
+    sprintf (text, "%.2f point   ->   100 baht", Setting.pointToPrice * 100);
+    bannerBlankBorderTextCen (text);
+
+    bannerBlankBorder ();
+
+    if(completeMark == 0){
+        bannerBlankBorder ();
+    }
+    else{
+        bannerBlankBorderTextCen ("Change is now saved.");
+    }
+
+    for ( int i = 18; i > 0; i-- )
+        bannerBlankBorder ();
+
+    bannerBlankBorderTextCen ("Would you like to change a conversion rate?");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   | Type 'Y' to continue  |   Type 'B' to back");
+    bannerFullBorder ();
+    bannerUserInput ();
+
+    char flag;
+    scanf (" %c", &flag);
+
+    switch ( toupper(flag) ) {
+        case ('Y'):
+            screenClear ();
+
+            bannerFullBorder ();
+            bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Price to Point Conversion Rate");
+            bannerBlankBorder ();
+            bannerFullBorder ();
+
+            for ( int i = 2; i > 0; i-- )
+                bannerBlankBorder ();
+
+            bannerBlankBorderTextCen ("Your current conversion rate");
+            bannerBlankBorder ();
+
+            char text[140];
+            sprintf (text, "You use %.2f point   ->   Get 1 baht discount", Setting.priceToPoint);
+            bannerBlankBorderTextCen (text);
+
+            bannerBlankBorderTextCen ("________________");
+
+            strcpy (text, " ");
+            sprintf (text, "%.2f point   ->   10 baht", Setting.pointToPrice * 10);
+            bannerBlankBorderTextCen (text);
+
+            strcpy (text, " ");
+            sprintf (text, "%.2f point   ->   20 baht", Setting.pointToPrice * 20);
+            bannerBlankBorderTextCen (text);
+
+            strcpy (text, " ");
+            sprintf (text, "%.2f point   ->   50 baht", Setting.pointToPrice * 50);
+            bannerBlankBorderTextCen (text);
+
+            strcpy (text, " ");
+            sprintf (text, "%.2f point   ->   100 baht", Setting.pointToPrice * 100);
+
+            for ( int i = 21; i > 0; i-- )
+                bannerBlankBorder ();
+
+            bannerBlankBorderTextCen ("What is your new convertion rate?");
+            bannerFullBorder ();
+            bannerUserInput ();
+
+            // This will ask for new conversion rate
+            double newConversionRate;
+            scanf ("%lf",&newConversionRate);
+
+
+            // New conversion rate displays
+            screenClear ();
+
+            bannerFullBorder ();
+            bannerBlankBorder ();
+            bannerBlankBorderTextCen ("Price to Point Conversion Rate");
+            bannerBlankBorder ();
+            bannerFullBorder ();
+
+            for ( int i = 2; i > 0; i-- )
+                bannerBlankBorder ();
+
+            bannerBlankBorderTextCen ("Your current conversion rate");
+            bannerBlankBorder ();
+
+            strcpy (text, " ");
+            sprintf (text, "You use %.2f (from %.2f) point   ->   Get 1 baht discount", newConversionRate,Setting.priceToPoint);
+            bannerBlankBorderTextCen (text);
+
+            bannerBlankBorderTextCen ("________________");
+
+            strcpy (text, " ");
+            sprintf (text, "%.2f (from %.2f) point   ->   10 baht", newConversionRate*10,Setting.pointToPrice * 10);
+            bannerBlankBorderTextCen (text);
+
+            strcpy (text, " ");
+            sprintf (text, "%.2f (from %.2f) point   ->   20 baht", newConversionRate*20,Setting.pointToPrice * 20);
+            bannerBlankBorderTextCen (text);
+
+            strcpy (text, " ");
+            sprintf (text, "%.2f (from %.2f) point   ->   50 baht", newConversionRate*50,Setting.pointToPrice * 50);
+            bannerBlankBorderTextCen (text);
+
+            strcpy (text, " ");
+            sprintf (text, "%.2f (from %.2f) point   ->   100 baht", newConversionRate*100,Setting.pointToPrice * 100);
+
+            for ( int i = 20; i > 0; i-- )
+                bannerBlankBorder ();
+
+            bannerBlankBorderTextCen ("Do you want to save your change?");
+            bannerBlankBorderTextCen ("Type 'Q' to stop  |  Type 'Y' to continue  |  Type 'B' to back");
+            bannerFullBorder ();
+            bannerUserInput ();
+
+            char flag2;
+            scanf(" %c",&flag2);
+            errorResponse = 0;
+
+            switch (toupper(flag2)){
+                case ('Y'):
+                    settingUpdatePriceToPoint (newConversionRate);
+
+                    completeMark = 1;
+
+                    settingPointToPriceInterface ();
+                    return;
+
+                case ('N'):
+                    settingPointToPriceInterface ();
+                    return;
+
+                case ('B'):
+                    settingPointToPriceInterface ();
+                    return;
+
+                case ('Q'):
+                    terminate ();
+                    return;
+            }
+
+        case ('B'):
+            settingsSwitchHub ();
+            return;
+
+        case ('Q'):
+            terminate ();
+            return;
+
+        default:
+            errorResponse = 1;
+            settingPointToPriceInterface ();
+            return;
+    }
+
 
 }
 
