@@ -434,6 +434,50 @@ void inventoryAdd () {
 
             //---------------------CategoryID--------------------------
             scanf (" %u", &categoryIdIN);
+            int checkExist = 0;
+            for (int i = 0; i < RecordCount.category; ++i)
+            {
+                if (categoryIdIN == Category[i].id)
+                {
+                    checkExist = 1;
+                }
+            }
+            for (int i = 0; i >= 0; ++i)
+            {
+                if (checkExist)
+                {
+                    break;
+                }
+                else
+                {
+                    screenClear ();
+                    bannerFullBorder ();
+                    bannerBlankBorderTextCen ("Inventory Database");
+                    bannerFullBorder();
+                    bannerBlankBorder ();
+
+                    bannerBlankBorderTextLeft (bufferHead);
+                    bannerFullBorderSection ();
+                    bannerBlankBorder ();
+                    bannerBlankBorder ();
+                    bannerBlankBorderTextLeft (buffer);
+            
+                    for (int i = 0;i<27;i++)
+                        bannerBlankBorder ();
+                    bannerBlankBorderTextCen ("The Category doesn't exist!! Please enter Category ID...");
+                    bannerFullBorder ();
+
+                    bannerUserInput ();
+                    scanf (" %u", &categoryIdIN);
+                    for (int i = 0; i < RecordCount.category; ++i)
+                    {
+                        if (categoryIdIN == Category[i].id)
+                        {
+                            checkExist = 1;
+                        }
+                    }
+                }
+            }
             screenClear ();
             bannerFullBorder ();
             bannerBlankBorderTextCen ("Inventory Database");
@@ -746,6 +790,13 @@ void inventoryRemove () {
         printf("\n");
         printf ("Enter the inventory ID to delete >>> ");
         scanf ("%s", idIN);
+
+        char nameMEM[MAX_LNG_TEXT];
+        double priceMEM, profitMEM;
+        unsigned int categoryIdMEM, remainMEM;
+
+        inventorySelectById(idIN, nameMEM, &priceMEM, &profitMEM, &categoryIdMEM, &remainMEM);
+
         if ((strcmp(idIN, "B") == 0) || (strcmp(idIN, "b") == 0))
         {
             inventorySwitchHub ();
@@ -761,11 +812,21 @@ void inventoryRemove () {
                 bannerFullBorder ();
                 bannerBlankBorderTextCen ("Removing Inventory");
                 bannerFullBorder ();
-                for ( int i = 0; i < 16; ++i ) {
+                for ( int i = 0; i < 14; ++i ) {
                     bannerBlankBorder ();
                 }
+                bannerBlankBorderTextCen (idIN);
+                bannerBlankBorderTextCen (nameMEM);
+                for (int i = 0; i < RecordCount.category; ++i)
+                {
+                    if (categoryIdMEM == Category[i].id)
+                    {
+                        bannerBlankBorderTextCen (Category[i].name);
+                    }
+                }
+                bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Success!!! The inventory has been deleted.");
-                for ( int i = 0; i < 16; ++i ) {
+                for ( int i = 0; i < 14; ++i ) {
                     bannerBlankBorder ();
                 }
                 bannerBlankBorderTextCen ("Type 'N' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
@@ -776,7 +837,7 @@ void inventoryRemove () {
                 for ( int i = 0; i < 17; ++i ) {
                     bannerBlankBorder ();
                 }
-                bannerBlankBorderTextCen ("Error. The inventory ID does not exist.");
+                bannerBlankBorderTextCen ("Error!!! The inventory ID does not exist.");
                 for ( int i = 0; i < 17; ++i ) {
                     bannerBlankBorder ();
                 }
