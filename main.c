@@ -30,21 +30,24 @@ void switchHub () {
 
     bannerInverse (text, "", "", Setting.storeName);
 
-    bannerBlankBorderTextCen ("What do you want to do?");
+    for ( int i = 0; i < 7; i++ )
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("What do you want to do ?");
+    bannerBlankBorder ();
     bannerBlankBorder ();
 
     //These choice will be removed, when the program detects the permission level.
     bannerBlankBorderTextCen ("1. Go to POS System");
     bannerBlankBorderTextCen ("2. Check Inventory");
     bannerBlankBorderTextCen ("3. Check Customer");
-    bannerBlankBorderTextCen ("4. Check Promotion");
-    bannerBlankBorderTextCen ("5. Check Personnel");
+    bannerBlankBorderTextCen ("4. Check Personnel");
+    bannerBlankBorderTextCen ("5. Check Promotion");
     bannerBlankBorderTextCen ("6. Check Report");
     bannerBlankBorderTextCen ("7. Sales Forecasting");
     bannerBlankBorderTextCen ("8. Settings");
     bannerBlankBorder ();
 
-    for ( int i = 20; i > 0; i-- )
+    for ( int i = 12; i > 0; i-- )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("  Type 'Q' to quit  |  Type in your response  |  Type 'B' to logoff");
@@ -74,7 +77,7 @@ void switchHub () {
             break;
 
         case ('5'):
-           personnelSwitchHub ();
+            promotionSwitchHub ();
             break;
 
         case ('6'):
