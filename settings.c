@@ -777,7 +777,7 @@ void settingPointToPriceInterface () {
 
             switch (toupper(flag2)){
                 case ('Y'):
-                    settingUpdatePriceToPoint (newConversionRate);
+                    settingUpdatePointToPrice (newConversionRate);
 
                     completeMark = 1;
 
