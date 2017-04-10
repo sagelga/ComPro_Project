@@ -414,6 +414,7 @@ void settingCat () {
         i++;
         delay (1);
     }
+    settingsSwitchHub ();
 }
 
 void settingUpdateStoreName (char *storeName) {
