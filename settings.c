@@ -465,10 +465,9 @@ void settingPriceToPointInterface () {
 
     bannerBlankBorder ();
 
-    if(completeMark == 0){
+    if ( completeMark == 0 ) {
         bannerBlankBorder ();
-    }
-    else{
+    } else {
         bannerBlankBorderTextCen ("Change is now saved.");
     }
 
@@ -482,8 +481,8 @@ void settingPriceToPointInterface () {
 
     char flag;
     scanf (" %c", &flag);
-
-    switch ( toupper(flag) ) {
+    completeMark = 0;
+    switch ( toupper (flag)) {
         case ('Y'):
             screenClear ();
 
@@ -530,7 +529,7 @@ void settingPriceToPointInterface () {
 
             // This will ask for new conversion rate
             double newConversionRate;
-            scanf ("%lf",&newConversionRate);
+            scanf ("%lf", &newConversionRate);
 
 
             // New conversion rate displays
@@ -549,25 +548,26 @@ void settingPriceToPointInterface () {
             bannerBlankBorder ();
 
             strcpy (text, " ");
-            sprintf (text, "1 baht   ->   %.2f (from %.2f) point", newConversionRate,Setting.priceToPoint);
+            sprintf (text, "1 baht   ->   %.2f (from %.2f) point", newConversionRate, Setting.priceToPoint);
             bannerBlankBorderTextCen (text);
 
             bannerBlankBorderTextCen ("________________");
 
             strcpy (text, " ");
-            sprintf (text, "10 baht   ->   %.2f (from %.2f) point", newConversionRate * 10,Setting.priceToPoint * 10);
+            sprintf (text, "10 baht   ->   %.2f (from %.2f) point", newConversionRate * 10, Setting.priceToPoint * 10);
             bannerBlankBorderTextCen (text);
 
             strcpy (text, " ");
-            sprintf (text, "20 baht   ->   %.2f (from %.2f) point", newConversionRate* 20,Setting.priceToPoint * 20);
+            sprintf (text, "20 baht   ->   %.2f (from %.2f) point", newConversionRate * 20, Setting.priceToPoint * 20);
             bannerBlankBorderTextCen (text);
 
             strcpy (text, " ");
-            sprintf (text, "50 baht   ->   %.2f (from %.2f) point", newConversionRate* 50,Setting.priceToPoint * 50);
+            sprintf (text, "50 baht   ->   %.2f (from %.2f) point", newConversionRate * 50, Setting.priceToPoint * 50);
             bannerBlankBorderTextCen (text);
 
             strcpy (text, " ");
-            sprintf (text, "100 baht   ->   %.2f (from %.2f) point", newConversionRate* 100,Setting.priceToPoint * 100);
+            sprintf (text, "100 baht   ->   %.2f (from %.2f) point", newConversionRate * 100,
+                     Setting.priceToPoint * 100);
             bannerBlankBorderTextCen (text);
 
             for ( int i = 20; i > 0; i-- )
@@ -579,10 +579,10 @@ void settingPriceToPointInterface () {
             bannerUserInput ();
 
             char flag2;
-            scanf(" %c",&flag2);
+            scanf (" %c", &flag2);
             errorResponse = 0;
 
-            switch (toupper(flag2)){
+            switch ( toupper (flag2)) {
                 case ('Y'):
                     settingUpdatePriceToPoint (newConversionRate);
 
@@ -660,10 +660,9 @@ void settingPointToPriceInterface () {
 
     bannerBlankBorder ();
 
-    if(completeMark == 0){
+    if ( completeMark == 0 ) {
         bannerBlankBorder ();
-    }
-    else{
+    } else {
         bannerBlankBorderTextCen ("Change is now saved.");
     }
 
@@ -677,8 +676,9 @@ void settingPointToPriceInterface () {
 
     char flag;
     scanf (" %c", &flag);
+    completeMark = 0;
 
-    switch ( toupper(flag) ) {
+    switch ( toupper (flag)) {
         case ('Y'):
             screenClear ();
 
@@ -724,7 +724,7 @@ void settingPointToPriceInterface () {
 
             // This will ask for new conversion rate
             double newConversionRate;
-            scanf ("%lf",&newConversionRate);
+            scanf ("%lf", &newConversionRate);
 
 
             // New conversion rate displays
@@ -743,25 +743,27 @@ void settingPointToPriceInterface () {
             bannerBlankBorder ();
 
             strcpy (text, " ");
-            sprintf (text, "You use %.2f (from %.2f) point   ->   Get 1 baht discount", newConversionRate,Setting.priceToPoint);
+            sprintf (text, "You use %.2f (from %.2f) point   ->   Get 1 baht discount", newConversionRate,
+                     Setting.priceToPoint);
             bannerBlankBorderTextCen (text);
 
             bannerBlankBorderTextCen ("________________");
 
             strcpy (text, " ");
-            sprintf (text, "%.2f (from %.2f) point   ->   10 baht", newConversionRate*10,Setting.pointToPrice * 10);
+            sprintf (text, "%.2f (from %.2f) point   ->   10 baht", newConversionRate * 10, Setting.pointToPrice * 10);
             bannerBlankBorderTextCen (text);
 
             strcpy (text, " ");
-            sprintf (text, "%.2f (from %.2f) point   ->   20 baht", newConversionRate*20,Setting.pointToPrice * 20);
+            sprintf (text, "%.2f (from %.2f) point   ->   20 baht", newConversionRate * 20, Setting.pointToPrice * 20);
             bannerBlankBorderTextCen (text);
 
             strcpy (text, " ");
-            sprintf (text, "%.2f (from %.2f) point   ->   50 baht", newConversionRate*50,Setting.pointToPrice * 50);
+            sprintf (text, "%.2f (from %.2f) point   ->   50 baht", newConversionRate * 50, Setting.pointToPrice * 50);
             bannerBlankBorderTextCen (text);
 
             strcpy (text, " ");
-            sprintf (text, "%.2f (from %.2f) point   ->   100 baht", newConversionRate*100,Setting.pointToPrice * 100);
+            sprintf (text, "%.2f (from %.2f) point   ->   100 baht", newConversionRate * 100,
+                     Setting.pointToPrice * 100);
 
             for ( int i = 20; i > 0; i-- )
                 bannerBlankBorder ();
@@ -772,10 +774,10 @@ void settingPointToPriceInterface () {
             bannerUserInput ();
 
             char flag2;
-            scanf(" %c",&flag2);
+            scanf (" %c", &flag2);
             errorResponse = 0;
 
-            switch (toupper(flag2)){
+            switch ( toupper (flag2)) {
                 case ('Y'):
                     settingUpdatePointToPrice (newConversionRate);
 
