@@ -19,7 +19,7 @@ Declare all the libraries that we are going to use in this project*/
 Define all the constant values here*/
 #define MAX_IDX_PERSONNEL 10        // Maximum amount of Personnels
 #define MAX_IDX_INVENTORY 100       // Maximum amount of Inventory
-#define MAX_IDX_CATEGORY 10         // Maximum amount of Category
+#define MAX_IDX_CATEGORY 100         // Maximum amount of Category
 #define MAX_IDX_TRANSACTION 100000  // Maximum amount of Transaction (Count when item changed)
 #define MAX_IDX_PURCHASE 100000     // Maximum amount of Purchase (Count when checkout)
 #define MAX_IDX_CUSTOMER 100        // Maximum amount of Customer
@@ -29,6 +29,9 @@ Define all the constant values here*/
 #define MAX_LNG_TEXT 50             // Maximum length of Normal Text
 #define MAX_LNG_SCREEN 140          // Maximum length of (Text on) Screen's width
 #define MAX_LNG_TOKEN 255           // Maximum length of Token
+
+int errorResponse; // Show the flag that the program have receives an invalid response
+int completeMark; // Show the flag that the program has been complete once
 
 /*-----------------------------------------------------------------------------
 Declare all the global variables here*/
@@ -124,6 +127,11 @@ int personnelUpdatePassword(char *id, char *password);      // For modifying the
 int personnelDelete(char *id);                              // Delete the record (Select by `id`)
 
 void personnelSwitchHub();
+void personnelInsertInterface();
+void personnelSelectInterface();
+void displayPersonnel(int page);
+void personnelDeleteInterface();
+void personnelUpdateInterface();
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: INVENTORY.c
@@ -161,6 +169,7 @@ int inventoryUpdateRemain(char *id, unsigned int remain);          // For modify
 int inventoryDelete(char *id);                                     // Delete the record (Select by `id`)
 
 void inventoryAdd();
+void inventoryEdit();
 void inventoryRemove();
 void inventoryDatabaseInterface ();
 void displayInventory(int page);
@@ -192,6 +201,7 @@ int categoryInsert(char *name);                               // Adding a new re
 int categoryUpdateName(unsigned int id, char *name);  // For modifying the `name` (Select the record by `id`)
 
 void categoryDatabaseInterface();
+void categoryEdit();
 void categoryAdd();
 void displayCategory(int page);
 
@@ -354,6 +364,8 @@ void settingUpdateAddress(char *storeAddress);          // For modifying the `st
 void settingUpdatePriceToPoint(double priceToPoint);    // For modifying the `priceToPoint`
 void settingUpdatePointToPrice(double pointToPrice);    // For modifying the `pointToPrice`
 void settingUpdateUsernameInterface();
+void settingPointToPriceInterface();
+void settingPriceToPointInterface();
 
 void settingUpdatePasswordInterface();
 void settingUpdateStoreNameInterface();
@@ -485,6 +497,8 @@ time_t nDayRollbackToDateMonthYear(int date, int month, int year, int nDayRollba
 time_t nMonthRollbackToDateMonthYear(int date, int month, int year, int nMonthRollback); // This function will help to rollback for n-months from the dd/mm/yyyy that you given
 int isTimeInRange(time_t timestamp, time_t start, time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
 int superscanf(char *input); // Addition form scanf() to detect Blankline; (Return 0 = Empty line | 1 = Has a input)
+double min(double a, double b); // Return the minimum value
+double max(double a, double b); // Return the maximum value
 
 //-------------------------------------------------------------------------------------------------------
 // # - File: DECORATE.c
@@ -535,10 +549,10 @@ void saleDatabaseInterface();
 /*-----------------------------------------------------------------------------
 Decease what the seller can do*/
 
-void cashierInterface();
-void cashierInterfaceInventory();
-void cashierInterfaceDiscount();// Interface that will ask for discount (voucher and points)
-void cashierInterfaceResult();// Interface that will show the total (just like the receipt)
+void cashierInterface (int customerIdNotFound);
+void cashierInterfaceInventory (int isError);
+void cashierInterfaceDiscount (int errorCode);// Interface that will ask for discount (voucher and points)
+void cashierInterfaceResult (int usePoint);// Interface that will show the total (just like the receipt)
 
 
 

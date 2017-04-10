@@ -49,22 +49,22 @@ int categoryUpdateName (unsigned int id, char *name) {
 
 void displayCategory (int page) {
     screenClear ();
-    int allPage = (int) ceil (RecordCount.category / 34) + 1;
+    int allPage = (int) ceil (RecordCount.category / 32) + 1;
     bannerFullBorder ();
     printf ("::          ID           | Category Name                                                                                                  ::\n");
     bannerFullBorder ();
 
     if ( page == allPage ) {
-        for ( int i = (page - 1) * 34; i < RecordCount.category; ++i ) {
-            printf ("::           %u           | %-110s ::\n", Category[i].id, Category[i].name);
+        for ( int i = (page - 1) * 32; i < RecordCount.category; ++i ) {
+            printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
         }
         //display remaining line as bannerBlankBorder()
-        for ( int i = 0; i < 34 - (RecordCount.category % 34); ++i ) {
+        for ( int i = 0; i < 32 - (RecordCount.category % 32); ++i ) {
             printf ("::                       |                                                                                                                ::\n");
         }
     } else {
-        for ( int i = (page - 1) * 34; i < page * 34/*(34*page)*/; ++i ) {
-            printf (":: %u | %s ::\n", Category[i].id, Category[i].name);
+        for ( int i = (page - 1) * 32; i < page * 32/*(32*page)*/; ++i ) {
+            printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
         }
     }
 
@@ -72,21 +72,32 @@ void displayCategory (int page) {
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
     bannerFullBorder ();
-
+    bannerUserInput ();
 }
 
 void categoryDatabaseInterface () {
     char handling;
-    int pageIn;
+    int pageIn = 1, CheckPage;
     displayCategory (1);
     for ( int i = 0; i >= 0; ++i ) {
         scanf (" %c", &handling);
         if ((handling == 'B') || (handling == 'b')) {
             screenClear ();
             inventorySwitchHub ();
-        } else {
-            pageIn = (int) handling - 48;
+        } else if ( isdigit (handling)){
+            CheckPage = (int) handling - 48;
+            if ((CheckPage <= ((int) ceil (RecordCount.inventory / 32) + 1)) && (CheckPage >= 1)) {
+                pageIn = (int) handling - 48;
+                displayCategory (pageIn);
+            } else {
+                displayCategory (pageIn);
+                printf ("Oops! Page not found, Please enter correct page: ");
+            }
+        }
+        else
+        {
             displayCategory (pageIn);
+            printf ("Oops! Input Error, Please enter correctly: ");
         }
     }
 }
@@ -100,116 +111,164 @@ void categoryAdd () {
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Insert Category");
     bannerFullBorder ();
-    for ( int i = 0; i < 36; ++i ) {
+    for ( int i = 0; i < 33; ++i ) {
         bannerBlankBorder ();
     }
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
-    //Input
-    printf ("Enter the Category name to add: ");
-    scanf (" %[^\n]", nameIN);
 
-    if ( categoryInsert (nameIN)) {
-        screenClear ();
-        bannerFullBorder ();
-        bannerBlankBorderTextCen ("Insert Category");
-        bannerFullBorder ();
-        for ( int i = 0; i < 16; ++i ) {
-            bannerBlankBorder ();
-        }
-        bannerBlankBorderTextCen ("Successful!!! The category has been inserted.");
-        bannerBlankBorderTextCen ("Type 'A' to add more");
-        bannerBlankBorderTextCen ("Type 'B' to back");
-        for ( int i = 0; i < 17; ++i ) {
-            bannerBlankBorder ();
-        }
-        bannerFullBorder ();
-        scanf (" %c", &handling);
-        if ((handling == 'A') || (handling == 'a')) {
-            categoryAdd ();
-        } else if ((handling == 'B') || (handling == 'b')) {
-            screenClear ();
+    for (int i = 0; i >= 0; ++i)
+    {
+        printf("\n");
+        printf ("Enter the Category name to add >>> ");
+        scanf (" %[^\n]", nameIN);
+        if ((strcmp(nameIN, "B") == 0) || (strcmp(nameIN, "b") == 0))
+        {
             inventorySwitchHub ();
-        } else {
-            screenClear ();
-            bannerFullBorder ();
-            for ( int i = 0; i < 17; ++i ) {
-                bannerBlankBorder ();
-            }
-            bannerBlankBorderTextCen ("Input Error!!!");
-            bannerBlankBorderTextCen ("Type 'A' to add more");
-        bannerBlankBorderTextCen ("Type 'B' to back");
-            for ( int i = 0; i < 18; ++i ) {
-                bannerBlankBorder ();
-            }
-            bannerFullBorder ();
-            for ( int i = 0; i >= 0; ++i ) {
-                scanf (" %c", &handling);
-                if ((handling == 'b') || (handling == 'B')) {
-                    screenClear ();
-                    inventorySwitchHub ();
-                } else if ((handling == 'A') || (handling == 'a')) {
-                    categoryAdd ();
-                } else {
-                    screenClear ();
-                    bannerFullBorder ();
-                    for ( int i = 0; i < 17; ++i ) {
-                        bannerBlankBorder ();
-                    }
-                    bannerBlankBorderTextCen ("Input Error!!!");
-                    bannerBlankBorderTextCen ("Type 'A' to add more");
-        bannerBlankBorderTextCen ("Type 'B' to back");
-                    for ( int i = 0; i < 18; ++i ) {
-                        bannerBlankBorder ();
-                    }
-                    bannerFullBorder ();
+        }
+        else if ((strcmp(nameIN, "Q") == 0) || (strcmp(nameIN, "q") == 0))
+        {
+            terminate ();
+        }
+        else
+        {
+            if ( categoryInsert (nameIN)) {
+                screenClear ();
+                bannerFullBorder ();
+                bannerBlankBorderTextCen ("Insert Category");
+                bannerFullBorder ();
+                for ( int i = 0; i < 16; ++i ) {
+                    bannerBlankBorder ();
                 }
-            }
-        }
-    } else {
-        screenClear ();
-        bannerFullBorder ();
-        for ( int i = 0; i < 18; ++i ) {
-            bannerBlankBorder ();
-        }
-        bannerBlankBorderTextCen ("Error!!! Category name already exists");
-        bannerBlankBorderTextCen ("Type 'B' to back");
-        for ( int i = 0; i < 18; ++i ) {
-            bannerBlankBorder ();
-        }
-        bannerFullBorder ();
-        scanf (" %c", &handling);
-        if ((handling == 'b') || (handling == 'B')) {
-            categoryAdd ();
-        } else {
-            screenClear ();
-            bannerFullBorder ();
-            for ( int i = 0; i < 18; ++i ) {
-                bannerBlankBorder ();
-            }
-            bannerBlankBorderTextCen ("Input Error!!!");
-        bannerBlankBorderTextCen ("Type 'B' to back");
-            for ( int i = 0; i < 18; ++i ) {
-                bannerBlankBorder ();
-            }
-            bannerFullBorder ();
-            for ( int i = 0; i >= 0; ++i ) {
-                scanf (" %c", &handling);
-                if ((handling == 'b') || (handling == 'B')) {
-                    categoryAdd ();
-                } else {
-                    screenClear ();
-                    bannerFullBorder ();
-                    for ( int i = 0; i < 18; ++i ) {
-                        bannerBlankBorder ();
-                    }
-                    bannerBlankBorderTextCen ("Input Error!!!");
-        bannerBlankBorderTextCen ("Type 'B' to back");
-                    for ( int i = 0; i < 18; ++i ) {
-                        bannerBlankBorder ();
-                    }
-                    bannerFullBorder ();
+                bannerBlankBorderTextCen ("Successful!!! The category has been inserted.");
+                for ( int i = 0; i < 16; ++i ) {
+                    bannerBlankBorder ();
                 }
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+            } else {
+                screenClear ();
+                bannerFullBorder ();
+                for ( int i = 0; i < 17; ++i ) {
+                    bannerBlankBorder ();
+                }
+                bannerBlankBorderTextCen ("Error!!! Category name already exists");
+                for ( int i = 0; i < 17; ++i ) {
+                    bannerBlankBorder ();
+                }
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
             }
+        }
+    }
+}
+
+void categoryEdit(){
+    char bufferHead[140];
+
+    sprintf(bufferHead, "%-60s|%s", "ID", "CategoryName");
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorderTextCen ("Category Database");
+    bannerFullBorder();
+    bannerBlankBorder ();
+
+    bannerBlankBorderTextLeft (bufferHead);
+    bannerFullBorderSection ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextLeft ("->");
+    for (int i = 0;i<10;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type CategoryID");
+
+    for (int i = 0;i<18;i++)
+        bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerFullBorder ();
+    bannerUserInput ();
+    char id[MAX_LNG_TEXT], name[MAX_LNG_TEXT], buffer[MAX_LNG_SCREEN], flag[MAX_LNG_TEXT];
+    while ( 1 ) {
+        scanf ("%s", id);
+        if (tolower(id[0]) == 'b') {
+            inventorySwitchHub();
+        } else if (tolower(id[0]) == 'q') {
+            terminate ();
+        } else {
+            if (categorySelectById(strtoul(id, NULL, 10), name)) {
+                screenClear ();
+                sprintf(buffer, "%-60s %s", id, name);
+                bannerFullBorder();
+                bannerBlankBorderTextCen ("Category Database");
+                bannerFullBorder();
+                bannerBlankBorder ();
+
+                bannerBlankBorderTextLeft (bufferHead);
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextLeft (buffer);
+                bannerBlankBorderTextCen (" ");
+
+                for (int i = 0;i<28;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type another name to change category name... | Press Enter to set by default");
+                bannerFullBorder ();
+                bannerUserInput ();
+
+                printf("Default CategoryName: (%s) >>> ", name);
+                if (superscanf(flag) != 0)
+                    categoryUpdateName(strtoul(id, NULL, 10), flag);
+                
+                screenClear ();
+                bannerFullBorder ();
+                bannerBlankBorderTextCen ("Category Database");
+                bannerFullBorder();
+                bannerBlankBorder ();
+
+                bannerBlankBorderTextLeft (bufferHead);
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                categorySelectById(strtoul(id, NULL, 10), name);
+                sprintf(buffer, "%-60s %s", id, name);
+                bannerBlankBorderTextLeft (buffer);
+                bannerBlankBorder ();
+                bannerBlankBorderTextLeft ("->");
+                for (int i=0;i<10;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Category has been updated");
+                bannerBlankBorderTextCen ("Type Next CategoryID to Update Or Type 'B' to Back");
+            
+                for (int i = 0;i<15;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+
+            } else {
+                screenClear ();
+                bannerFullBorder ();
+                bannerBlankBorderTextCen ("Category Database");
+                bannerFullBorder();
+                bannerBlankBorder ();
+
+                bannerBlankBorderTextLeft (bufferHead);
+                bannerFullBorderSection ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextLeft ("->");
+                for (int i=0;i<10;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorder ();
+                bannerBlankBorderTextCen ("CategoryID dosen't exist.");
+                bannerBlankBorderTextCen ("Type Next CategoryID Or Type 'B' to Back");
+            
+                for (int i = 0;i<16;i++)
+                    bannerBlankBorder ();
+                bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+                bannerFullBorder ();
+
+                bannerUserInput ();
+            }
+
         }
     }
 }
