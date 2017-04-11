@@ -1,6 +1,9 @@
 // Welcome to the program. The declaration of the functions and the library used is in .h file
 #include "main.h"
 
+#ifdef __linux__
+#include <stdio_ext.h>  // For _fpurge() function
+#endif
 int isFileExist (const char *filename) {
     if ( access (filename, F_OK) != -1 ) {
         // file exists
@@ -77,7 +80,11 @@ int superscanf (char *input) {
 
     char temp[MAX_LNG_SCREEN];
     int i, len;
-    fseek (stdin, 0, SEEK_END);
+    #ifdef __linux__
+        _fpurge(stdin);
+    #else
+        fseek (stdin, 0, SEEK_END);
+    #endif
     fgets (temp, sizeof (temp), stdin);
     if ( temp[0] == '\n' ) {
         return 0;
