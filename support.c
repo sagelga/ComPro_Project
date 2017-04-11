@@ -81,7 +81,7 @@ int superscanf (char *input) {
     char temp[MAX_LNG_SCREEN];
     int i, len;
     #ifdef __linux__
-        _fpurge(stdin);
+        __fpurge(stdin);
     #else
         fseek (stdin, 0, SEEK_END);
     #endif
