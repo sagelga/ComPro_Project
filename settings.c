@@ -466,7 +466,7 @@ void settingContributorList () {
     bannerBlankBorderTextCen ("Thanawat  Laodkaew      @skydddoogg   59070071");
     bannerBlankBorderTextCen ("Noppanut  Ploywong      @noppanut15   59070082");
     bannerBlankBorderTextCen ("Vasanchai Prakobkij     @59070156     59070156");
-    bannerBlankBorderTextCen ("Weerakorn Pongpum                     59070163");
+    bannerBlankBorderTextCen ("Weerakorn Pongpum       @fablemay     59070163");
 
     for ( int i = 2; i > 0; i-- )
         bannerBlankBorder ();
