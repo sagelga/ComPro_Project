@@ -119,7 +119,7 @@ void categoryAdd () {
         printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
     }
 
-    for ( int i = 0; i < 33 - RecordCount.category - 2; ++i ) {
+    for ( int i = 0; i < (33 - RecordCount.category - 2); ++i ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
@@ -153,7 +153,7 @@ void categoryAdd () {
                     printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
                 }
 
-                for ( int i = 0; i < 32 - RecordCount.category - 3; ++i ) {
+                for ( int i = 0; i < (32 - RecordCount.category - 3); ++i ) {
                     bannerBlankBorder ();
                 }
 
@@ -213,8 +213,9 @@ void categoryEdit(){
         printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
     }
     
-    for (int i = 0;i<27 - RecordCount.category - 1 - 4;i++)
+    for (int i = 0; i < (27 - (RecordCount.category - 1 - 4)); i++)
         bannerBlankBorder ();
+
     bannerBlankBorderTextCen ("Please type the Category ID");
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");

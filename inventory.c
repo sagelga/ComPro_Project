@@ -480,7 +480,7 @@ void inventoryAdd () {
                         printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
                     }
 
-                    for (int i = 0;i< 27 - RecordCount.category - 1 - 3;i++)
+                    for (int i = 0;i< (27 - RecordCount.category - 1 - 3);i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("The Category doesn't exist!! Please enter Category ID...");
                     bannerFullBorder ();
@@ -674,8 +674,17 @@ void inventoryEdit(){
                 bannerBlankBorder ();
                 bannerBlankBorderTextLeft (buffer);
                 bannerBlankBorderTextCen (" ");
+                
+                bannerBlankBorder ();
+                bannerFullBorder ();
+                printf ("::          ID           | Category Name                                                                                                  ::\n");
+                bannerFullBorder ();
 
-                for (int i = 0;i<28;i++)
+                for ( int i = 0; i < RecordCount.category; ++i ) {
+                    printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
+                }
+
+                for (int i = 0;i<(28 - RecordCount.category - 5);i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type another name to change category name... | Press Enter to set by default");
                 bannerFullBorder ();
@@ -718,7 +727,7 @@ void inventoryEdit(){
                     for (int i=0;i<10;i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("Category ID doesn't exist");
-                    bannerBlankBorderTextCen ("Please re-type InventoryID | Type 'B' to back");
+                    bannerBlankBorderTextCen ("Please re-type Inventory ID | Type 'B' to back");
                 
                     for (int i = 0;i<14;i++)
                         bannerBlankBorder ();
