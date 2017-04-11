@@ -61,6 +61,8 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
             // User type the switch
             switch (toupper(customerId[0])){
                 case 'Q':
+                    terminate();
+                    break;
                 case 'B':
                     switchHub();
                     break;
@@ -165,7 +167,7 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
             // User type the switch
             switch (toupper(inventoryIdInput[0])){
                 case 'Q':
-                    switchHub();
+                    terminate();
                     break;
                 case 'V':
                     cashierInterface(0);
@@ -275,7 +277,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
                 // Use Command
                 switch (toupper(promotionId[0])){
                     case 'Q':
-                        switchHub();
+                        terminate();
                         break;
                     case 'V':
                         cashierInterface(0);
@@ -326,7 +328,7 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
                 // Use Command
                 switch (toupper(promotionId[0])){
                     case 'Q':
-                        switchHub();
+                        terminate();
                         break;
                     case 'V':
                         cashierInterface(0);
