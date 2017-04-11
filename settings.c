@@ -132,6 +132,7 @@ void settingsSwitchHub () {
 
             case ('6'):
                 settingContributorList ();
+                settingsSwitchHub ();
                 return;
 
             case ('7'):
@@ -480,7 +481,6 @@ void settingContributorList () {
     bannerFullBorder ();
 
     delay (10);
-    settingsSwitchHub ();
 }
 
 void settingCat () {

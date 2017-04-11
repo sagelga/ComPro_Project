@@ -21,7 +21,7 @@ void screenAdjust () {
     }
 
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
+    bannerBlankBorderTextCen ("Type 'Q' to stop   |   Type 'Y' to login   |   Type 'C' to see credits");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -37,6 +37,11 @@ void screenAdjust () {
 
         case ('Q'):
             terminate ();
+            return;
+
+        case ('C'):
+            settingContributorList ();
+            screenAdjust ();
             return;
 
         default:
