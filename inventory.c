@@ -424,8 +424,17 @@ void inventoryAdd () {
             bannerBlankBorder ();
             bannerBlankBorder ();
             bannerBlankBorderTextLeft (buffer);
-    
-            for (int i = 0;i<27;i++)
+            bannerBlankBorder ();
+
+            bannerFullBorder ();
+            printf ("::          ID           | Category Name                                                                                                  ::\n");
+            bannerFullBorder ();
+
+            for ( int i = 0; i < RecordCount.category; ++i ) {
+                printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
+            }
+
+            for (int i = 0;i<27 - RecordCount.category - 1 - 3;i++)
                 bannerBlankBorder ();
             bannerBlankBorderTextCen ("Please enter Category ID...");
             bannerFullBorder ();
@@ -461,8 +470,17 @@ void inventoryAdd () {
                     bannerBlankBorder ();
                     bannerBlankBorder ();
                     bannerBlankBorderTextLeft (buffer);
-            
-                    for (int i = 0;i<27;i++)
+                    bannerBlankBorder ();
+
+                    bannerFullBorder ();
+                    printf ("::          ID           | Category Name                                                                                                  ::\n");
+                    bannerFullBorder ();
+
+                    for ( int i = 0; i < RecordCount.category; ++i ) {
+                        printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
+                    }
+
+                    for (int i = 0;i< 27 - RecordCount.category - 1 - 3;i++)
                         bannerBlankBorder ();
                     bannerBlankBorderTextCen ("The Category doesn't exist!! Please enter Category ID...");
                     bannerFullBorder ();

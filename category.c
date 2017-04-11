@@ -21,7 +21,7 @@ int categoryInsert (char *name) {
 
     // To comfirm that `name` is unique
     for ( int i = 0; i < tailIndex; i++ ) {
-        if ( strcmp (Inventory[i].name, name) == 0 )
+        if ( strcmp (Category[i].name, name) == 0 )
             return 0;   // Error: Category name already exists
     }
 
@@ -111,7 +111,15 @@ void categoryAdd () {
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Insert Category");
     bannerFullBorder ();
-    for ( int i = 0; i < 33; ++i ) {
+
+    printf ("::          ID           | Category Name                                                                                                  ::\n");
+    bannerFullBorder ();
+
+    for ( int i = 0; i < RecordCount.category; ++i ) {
+        printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
+    }
+
+    for ( int i = 0; i < 33 - RecordCount.category - 2; ++i ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
@@ -137,27 +145,44 @@ void categoryAdd () {
                 bannerFullBorder ();
                 bannerBlankBorderTextCen ("Insert Category");
                 bannerFullBorder ();
-                for ( int i = 0; i < 16; ++i ) {
+
+                printf ("::          ID           | Category Name                                                                                                  ::\n");
+                bannerFullBorder ();
+
+                for ( int i = 0; i < RecordCount.category; ++i ) {
+                    printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
+                }
+
+                for ( int i = 0; i < 32 - RecordCount.category - 3; ++i ) {
                     bannerBlankBorder ();
                 }
+
                 bannerBlankBorderTextCen ("Successful!!! The category has been inserted.");
-                for ( int i = 0; i < 16; ++i ) {
-                    bannerBlankBorder ();
-                }
+                bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
             } else {
                 screenClear ();
                 bannerFullBorder ();
-                for ( int i = 0; i < 17; ++i ) {
+                bannerBlankBorderTextCen ("Insert Category");
+                bannerFullBorder ();
+
+                printf ("::          ID           | Category Name                                                                                                  ::\n");
+                bannerFullBorder ();
+
+                for ( int i = 0; i < RecordCount.category; ++i ) {
+                    printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
+                }
+
+                for ( int i = 0; i < 32 - RecordCount.category - 3; ++i ) {
                     bannerBlankBorder ();
                 }
+
                 bannerBlankBorderTextCen ("Error!!! Category name already exists");
-                for ( int i = 0; i < 17; ++i ) {
-                    bannerBlankBorder ();
-                }
+                bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
+
             }
         }
     }
@@ -177,12 +202,21 @@ void categoryEdit(){
     bannerFullBorderSection ();
     bannerBlankBorder ();
     bannerBlankBorderTextLeft ("->");
-    for (int i = 0;i<10;i++)
-        bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Type CategoryID");
 
-    for (int i = 0;i<18;i++)
+    bannerBlankBorder ();
+
+    bannerFullBorder ();
+    printf ("::          ID           | Category Name                                                                                                  ::\n");
+    bannerFullBorder ();
+
+    for ( int i = 0; i < RecordCount.category; ++i ) {
+        printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
+    }
+    
+    for (int i = 0;i<27 - RecordCount.category - 1 - 4;i++)
         bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Please type the Category ID");
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
@@ -208,7 +242,7 @@ void categoryEdit(){
                 bannerBlankBorderTextLeft (buffer);
                 bannerBlankBorderTextCen (" ");
 
-                for (int i = 0;i<28;i++)
+                for (int i = 0;i<27;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type another name to change category name... | Press Enter to set by default");
                 bannerFullBorder ();
@@ -228,17 +262,24 @@ void categoryEdit(){
                 bannerFullBorderSection ();
                 bannerBlankBorder ();
                 categorySelectById(strtoul(id, NULL, 10), name);
-                sprintf(buffer, "%-60s %s", id, name);
+                sprintf(buffer, "-> %-57s %s", id, name);
                 bannerBlankBorderTextLeft (buffer);
                 bannerBlankBorder ();
-                bannerBlankBorderTextLeft ("->");
-                for (int i=0;i<10;i++)
+
+
+                bannerFullBorder ();
+                printf ("::          ID           | Category Name                                                                                                  ::\n");
+                bannerFullBorder ();
+
+                for ( int i = 0; i < RecordCount.category; ++i ) {
+                    printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
+                }
+
+                for (int i=0;i<25 - RecordCount.category - 3;i++)
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Category has been updated");
                 bannerBlankBorderTextCen ("Type Next CategoryID to Update Or Type 'B' to Back");
             
-                for (int i = 0;i<15;i++)
-                    bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
 
