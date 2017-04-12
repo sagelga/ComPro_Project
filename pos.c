@@ -384,7 +384,7 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
         if ( isCustomerHasId ) {
             // If customer is a member
             customerUpdatePoint (CurrentCustomer.id, CurrentCustomer.point + pointEarn - pointUsed);
-            customerUpdatetotalBuy (CurrentCustomer.id, CurrentCustomer.totalBuy + total);
+            customerUpdatetotalBuy (CurrentCustomer.id, CurrentCustomer.totalBuy + total - discount);
         }
         // Saving a purchase into the Database
         if ( isCustomerHasId ) {
