@@ -469,7 +469,7 @@ void settingContributorList () {
             bannerBlankBorder ();
 
         bannerBlankBorderTextCen (
-                "Over 5000 lines of pure C language has been neatly crafted with love and passion <3");
+                "Over 8000 lines of pure C language has been neatly crafted with love and passion <3");
         bannerBlankBorderTextCen ("See our GitHub Repository : https://github.com/sagelga/ComPro_Project");
 
         for ( int i = 18; i > 0; i-- )
@@ -494,6 +494,7 @@ void settingCat () {
         bannerFullBorder ();
 
         for ( int k = 7; k > 0; k-- ) { // Cat count
+            i++;
             strcpy (text1, " ");
             strcpy (text2, " ");
             strcpy (text3, " ");
@@ -530,7 +531,6 @@ void settingCat () {
         bannerBlankBorderTextCen (
                 "The flying cat is crossing the galaxy. Wait for them to cross first before returning.");
         bannerFullBorder ();
-        i++;
         delay (1);
     }
     settingsSwitchHub ();
