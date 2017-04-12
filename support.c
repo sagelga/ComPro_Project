@@ -4,6 +4,7 @@
 #ifdef __linux__
 #include <stdio_ext.h>  // For _fpurge() function
 #endif
+
 int isFileExist (const char *filename) {
     if ( access (filename, F_OK) != -1 ) {
         // file exists
@@ -28,9 +29,9 @@ time_t toEpochTime (int date, int month, int year, int hour, int minute, int sec
     return result;
 }
 
-void toDateMonthYear(time_t epochTime, int *date, int *month, int *year){
+void toDateMonthYear (time_t epochTime, int *date, int *month, int *year) {
 
-    struct tm * timeinfo;
+    struct tm *timeinfo;
     timeinfo = localtime (&epochTime);
 
     *date = timeinfo->tm_mday;
@@ -38,7 +39,7 @@ void toDateMonthYear(time_t epochTime, int *date, int *month, int *year){
     *year = timeinfo->tm_year + 1900;
 }
 
-time_t nDayRollbackToDateMonthYear(int date, int month, int year, int nDayRollback){
+time_t nDayRollbackToDateMonthYear (int date, int month, int year, int nDayRollback) {
 
     struct tm timeinfo = {0};
     time_t result = 0;
@@ -49,11 +50,11 @@ time_t nDayRollbackToDateMonthYear(int date, int month, int year, int nDayRollba
     timeinfo.tm_mon = month - 1;
     timeinfo.tm_year = year - 1900;
 
-    result = mktime(&timeinfo);
+    result = mktime (&timeinfo);
     return result;
 }
 
-time_t nMonthRollbackToDateMonthYear(int date, int month, int year, int nMonthRollback){
+time_t nMonthRollbackToDateMonthYear (int date, int month, int year, int nMonthRollback) {
 
     struct tm timeinfo = {0};
     time_t result = 0;
@@ -64,12 +65,12 @@ time_t nMonthRollbackToDateMonthYear(int date, int month, int year, int nMonthRo
     timeinfo.tm_mon = month - 1 - nMonthRollback;
     timeinfo.tm_year = year - 1900;
 
-    result = mktime(&timeinfo);
+    result = mktime (&timeinfo);
     return result;
 }
 
-int isTimeInRange(time_t timestamp, time_t start, time_t end){
-    if(timestamp < start)
+int isTimeInRange (time_t timestamp, time_t start, time_t end) {
+    if ( timestamp < start )
         return -1;  // Starting point is in the future
     else if ( timestamp > end )
         return 1;   // Endpoint is in the past
@@ -80,11 +81,11 @@ int superscanf (char *input) {
 
     char temp[MAX_LNG_SCREEN];
     int i, len;
-    #ifdef __linux__
-        __fpurge(stdin);
-    #else
-        fseek (stdin, 0, SEEK_END);
-    #endif
+#ifdef __linux__
+    __fpurge(stdin);
+#else
+    fseek (stdin, 0, SEEK_END);
+#endif
     fgets (temp, sizeof (temp), stdin);
     if ( temp[0] == '\n' ) {
         return 0;
@@ -101,14 +102,14 @@ int superscanf (char *input) {
 
 }
 
-double min(double a, double b){
-    if(a > b)
+double min (double a, double b) {
+    if ( a > b )
         return b;
     return a;
 }
 
-double max(double a, double b){
-    if(a > b)
+double max (double a, double b) {
+    if ( a > b )
         return a;
     return b;
 }
