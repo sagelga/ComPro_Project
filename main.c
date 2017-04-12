@@ -5,8 +5,7 @@
 int main () { // This program will run first. POS Interface configuration will be called, and ready to work.
     screenClear ();
     initDatabase ();
-    screenAdjust();
-    //switchHub();
+    screenAdjust ();
     return 0;
 }
 
@@ -51,22 +50,20 @@ void switchHub () {
 
         for ( int i = 10; i > 0; i-- )
             bannerBlankBorder ();
-    }
-    else if (Session.user.role == 1){
+    } else if ( Session.user.role == 1 ) {
         // Marketing
         bannerBlankBorderTextCen ("1. Go to POS System");
         bannerBlankBorderTextCen ("2. Promotion management");
         bannerBlankBorderTextCen ("3. Sales Forecasting");
         bannerBlankBorderTextCen ("4. View Report");
-        bannerBlankBorderTextCen ("5. Settings"); 
+        bannerBlankBorderTextCen ("5. Settings");
 
         for ( int i = 13; i > 0; i-- )
             bannerBlankBorder ();
-    }
-    else{
+    } else {
         // Sale
         bannerBlankBorderTextCen ("1. Go to POS System");
-        bannerBlankBorderTextCen ("2. Settings"); 
+        bannerBlankBorderTextCen ("2. Settings");
 
         for ( int i = 16; i > 0; i-- )
             bannerBlankBorder ();
@@ -88,7 +85,7 @@ void switchHub () {
     if ( Session.user.role == 0 ) {
         // Manager
         switch ( toupper (flags)) {
-            case ('1'): 
+            case ('1'):
                 cashierInterface (0);
                 break;
 
@@ -133,11 +130,10 @@ void switchHub () {
                 errorResponse = 1;
                 switchHub ();
         }
-    }
-    else if(Session.user.role == 1){
+    } else if ( Session.user.role == 1 ) {
         // Marketing
         switch ( toupper (flags)) {
-            case ('1'): 
+            case ('1'):
                 cashierInterface (0);
                 break;
 
@@ -170,11 +166,10 @@ void switchHub () {
                 errorResponse = 1;
                 switchHub ();
         }
-    }
-    else{
+    } else {
         // Sale
         switch ( toupper (flags)) {
-            case ('1'): 
+            case ('1'):
                 cashierInterface (0);
                 break;
 
@@ -196,12 +191,6 @@ void switchHub () {
                 switchHub ();
         }
     }
-}
-
-void switchHubManager () { // Copies the item from the switchHub()
-}
-
-void switchHubSales () { // Copies the item from the switchHub()
 }
 
 /*

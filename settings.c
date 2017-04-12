@@ -16,7 +16,7 @@ void settingsSwitchHub () {
 
     for ( int i = 0; i < 2; i++ )
         bannerBlankBorder ();
-    if(Session.user.role == 0){
+    if ( Session.user.role == 0 ) {
         // Manager
         bannerBlankBorderTextCen ("Authentication");
         bannerBlankBorderTextCen ("--------------");
@@ -48,8 +48,7 @@ void settingsSwitchHub () {
 
         for ( int i = 0; i < 3; i++ )
             bannerBlankBorder ();
-    }
-    else if (Session.user.role == 1){
+    } else if ( Session.user.role == 1 ) {
         // Marketing
         bannerBlankBorderTextCen ("Authentication");
         bannerBlankBorderTextCen ("--------------");
@@ -73,8 +72,7 @@ void settingsSwitchHub () {
 
         for ( int i = 0; i < 9; i++ )
             bannerBlankBorder ();
-    }
-    else{
+    } else {
         // Sale
         bannerBlankBorderTextCen ("Authentication");
         bannerBlankBorderTextCen ("--------------");
@@ -89,7 +87,7 @@ void settingsSwitchHub () {
         bannerBlankBorderTextCen ("3. cat.gif");
 
         for ( int i = 0; i < 15; i++ )
-            bannerBlankBorder ();        
+            bannerBlankBorder ();
     }
 
     if ( errorResponse == 1 ) {
@@ -106,7 +104,7 @@ void settingsSwitchHub () {
     char flag;
     scanf (" %c", &flag);
     errorResponse = 0;
-    if(Session.user.role == 0){
+    if ( Session.user.role == 0 ) {
         // Manager
         switch ( toupper (flag)) {
 
@@ -152,8 +150,7 @@ void settingsSwitchHub () {
                 settingsSwitchHub ();
                 break;
         }
-    }
-    else if(Session.user.role == 1){
+    } else if ( Session.user.role == 1 ) {
         // Marketing
         switch ( toupper (flag)) {
 
@@ -190,8 +187,7 @@ void settingsSwitchHub () {
                 settingsSwitchHub ();
                 break;
         }
-    }
-    else {
+    } else {
         // Sale
         switch ( toupper (flag)) {
 
@@ -290,7 +286,7 @@ void settingUpdatePasswordInterface () {
                 bannerFullBorder ();
                 for ( int i = 0; i < 10; i++ )
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Your password has been changed successfully!");
+                bannerBlankBorderTextCen ("Your password has been successfully changed!");
                 bannerBlankBorder ();
 
                 for ( int i = 0; i < 21; i++ )
@@ -312,7 +308,7 @@ void settingUpdatePasswordInterface () {
                 bannerFullBorder ();
                 for ( int i = 0; i < 10; i++ )
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("The new password confirmation is not the same");
+                bannerBlankBorderTextCen ("New password confirmation failed");
                 bannerBlankBorder ();
                 bannerBlankBorderTextCen ("- Operation Aborted -");
                 bannerBlankBorder ();
@@ -326,8 +322,7 @@ void settingUpdatePasswordInterface () {
                 scanf (" %c", &flag);
                 if ( flag == 'b' || flag == 'B' ) {
                     settingsSwitchHub ();
-                }
-                else{
+                } else {
                     terminate ();
                 }
             }
@@ -338,7 +333,7 @@ void settingUpdatePasswordInterface () {
             bannerFullBorder ();
             for ( int i = 0; i < 10; i++ )
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen ("Your old password was incorrect !");
+            bannerBlankBorderTextCen ("Your password is incorrect");
             bannerBlankBorder ();
 
             for ( int i = 0; i < 21; i++ )
@@ -370,7 +365,7 @@ void settingUpdateStoreNameInterface () {
 
     for ( int i = 0; i < 19; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Please enter new store's name | Type 'B' to Back");
+    bannerBlankBorderTextCen ("Please enter new store name | Type 'B' to Back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -385,7 +380,7 @@ void settingUpdateStoreNameInterface () {
         bannerFullBorder ();
         for ( int i = 0; i < 10; i++ )
             bannerBlankBorder ();
-        bannerBlankBorderTextCen ("Your store's name has been changed to");
+        bannerBlankBorderTextCen ("Your new store name is now");
         bannerBlankBorder ();
         bannerBlankBorderTextCen (newstoreName);
         bannerBlankBorder ();
@@ -412,14 +407,14 @@ void settingUpdateStoreAddressInterface () {
     bannerFullBorder ();
     for ( int i = 0; i < 10; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Your current StoreAddress");
+    bannerBlankBorderTextCen ("Your current Store Address");
     bannerBlankBorder ();
     bannerBlankBorderTextCen (Setting.storeAddress);
     bannerBlankBorder ();
 
     for ( int i = 0; i < 19; i++ )
         bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Please enter new storeaddress | Type 'B' to Back");
+    bannerBlankBorderTextCen ("Please enter new store address | Type 'B' to Back");
     bannerFullBorder ();
 
     bannerUserInput ();
@@ -434,7 +429,7 @@ void settingUpdateStoreAddressInterface () {
         bannerFullBorder ();
         for ( int i = 0; i < 10; i++ )
             bannerBlankBorder ();
-        bannerBlankBorderTextCen ("Your storeadress has been changed to");
+        bannerBlankBorderTextCen ("Your store adress has been changed to");
         bannerBlankBorder ();
         bannerBlankBorderTextCen (newstoreAddress);
         bannerBlankBorder ();
@@ -454,33 +449,39 @@ void settingUpdateStoreAddressInterface () {
 }
 
 void settingContributorList () {
-    screenClear ();
+    char text[200];
+    for (int i = 10;i>0;i--) {
+        screenClear ();
 
-    bannerCenBorder ("Educational purpose only", "Redistribution of project is not allowed",
-                     "Created by the 1st year student IT KMITL 14", "POS Version 1.0");
-    bannerBlankBorder ();
-    bannerBlankBorder ();
-    bannerBlankBorderTextCen ("Lists of team members");
-    bannerFullBorderSection ();
-    bannerBlankBorderTextCen ("Kunanon   Srisuntiroj   @sagelga      59070022");
-    bannerBlankBorderTextCen ("Thanawat  Laodkaew      @skydddoogg   59070071");
-    bannerBlankBorderTextCen ("Noppanut  Ploywong      @noppanut15   59070082");
-    bannerBlankBorderTextCen ("Vasanchai Prakobkij     @59070156     59070156");
-    bannerBlankBorderTextCen ("Weerakorn Pongpum       @fablemay     59070163");
-
-    for ( int i = 2; i > 0; i-- )
+        bannerCenBorder ("Educational purpose only", "Redistribution of project is not allowed",
+                         "Created by the 1st year student IT KMITL 14", "POS Version 1.0");
         bannerBlankBorder ();
-
-    bannerBlankBorderTextCen ("Over 5000 lines of pure C language has been neatly crafted with love and passion <3");
-    bannerBlankBorderTextCen ("See our GitHub Repository : https://github.com/sagelga/ComPro_Project");
-
-    for ( int i = 18; i > 0; i-- )
         bannerBlankBorder ();
+        bannerBlankBorderTextCen ("Lists of team members");
+        bannerFullBorderSection ();
+        bannerBlankBorderTextCen ("Kunanon   Srisuntiroj   @sagelga      59070022");
+        bannerBlankBorderTextCen ("Thanawat  Laodkaew      @skydddoogg   59070071");
+        bannerBlankBorderTextCen ("Noppanut  Ploywong      @noppanut15   59070082");
+        bannerBlankBorderTextCen ("Vasanchai Prakobkij     @59070156     59070156");
+        bannerBlankBorderTextCen ("Weerakorn Pongpum       @fablemay     59070163");
 
-    bannerBlankBorderTextCen ("Redirecting you back in 10 seconds...");
-    bannerFullBorder ();
+        for ( int i = 2; i > 0; i-- )
+            bannerBlankBorder ();
 
-    delay (10);
+        bannerBlankBorderTextCen (
+                "Over 5000 lines of pure C language has been neatly crafted with love and passion <3");
+        bannerBlankBorderTextCen ("See our GitHub Repository : https://github.com/sagelga/ComPro_Project");
+
+        for ( int i = 18; i > 0; i-- )
+            bannerBlankBorder ();
+
+        strcpy(text," ");
+        sprintf(text,"Redirecting you back in %d second(s)",i);
+        bannerBlankBorderTextCen (text);
+        bannerFullBorder ();
+
+        delay (1);
+    }
 }
 
 void settingCat () {

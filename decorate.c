@@ -72,7 +72,7 @@ void terminate () {
 
         strcat (text, "[ ");
 
-        for ( int j = i*10; j > 0; j-- ) {
+        for ( int j = i * 10; j > 0; j-- ) {
             strcat (text, "|");
         }
 

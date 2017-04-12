@@ -10,7 +10,7 @@ void authInterface () {
 
     bannerBlankBorderTextCen ("Please type in your username");
     bannerBlankBorder ();
-    bannerBlankBorderTextCen ("(or Scan the Personnel token code)");
+    bannerBlankBorderTextCen ("(or scan the Personnel token code)");
     for ( int i = 0; i < 25; i++ )
         bannerBlankBorder ();
     bannerFullBorder ();
@@ -20,7 +20,7 @@ void authInterface () {
     scanf (" %[^\n]", username); // Then save to session struct
 
     // First Check the Token ID
-    if(authenticateByToken(username)){
+    if ( authenticateByToken (username)) {
         authInterfaceComplete ();
     }
     // If token is invalid then ask the password (Identify as Normal Login)
@@ -47,19 +47,13 @@ void authInterface () {
     char password[130];
     scanf ("%s", password);
 
-    // If the username and the password is matched from the database -> Call authInterfaceComplete();
-    // If the username and the password is not matched from the database -> Call authInterfaceFail();
-    // If these were interrupt -> Call authInterfaceError();
-
-    if ( authenticateByUsername (username, password) == 1 ) {
+    if ( authenticateByUsername (username, password) == 1 ) { // If the username and the password is matched from the database
         authInterfaceComplete ();
-    } else if ( authenticateByUsername (username, password) == 0 ) {
+    } else if ( authenticateByUsername (username, password) == 0 ) { // If the username and the password is not matched from the database
         authInterfaceFail ();
-    } else {
+    } else {// If username does not exist
         authInterfaceError ();
     }
-
-    // In case of BETA TEST only     Calling -> authInterfaceComplete ();
 }
 
 void authInterfaceComplete () {
@@ -79,7 +73,7 @@ void authInterfaceComplete () {
     sprintf (text2, "Signing in as : %s", Session.user.username);
     bannerBlankBorderTextCen (text2);
 
-    for (int i = 2;i>0;i--)
+    for ( int i = 2; i > 0; i-- )
         bannerBlankBorder ();
 
     printf ("::                                                                 ██████                                                                 ::\n");
@@ -90,10 +84,10 @@ void authInterfaceComplete () {
     printf ("::                                                               ████  ████                                                               ::\n");
     printf ("::                                                               ██████████                                                               ::\n");
 
-    for (int i = 2;i>0;i--)
+    for ( int i = 2; i > 0; i-- )
         bannerBlankBorder ();
 
-    bannerBlankBorderTextCen ("POS system is now LOCK");
+    bannerBlankBorderTextCen ("POS system is LOCKED");
 
     for ( int i = 0; i < 13; i++ ) {
         bannerBlankBorder ();
@@ -114,7 +108,7 @@ void authInterfaceComplete () {
 
     bannerBlankBorderTextCen (text2);
 
-    for (int i = 2;i>0;i--)
+    for ( int i = 2; i > 0; i-- )
         bannerBlankBorder ();
 
     printf ("::                                                                 ██████                                                                 ::\n");
@@ -125,7 +119,7 @@ void authInterfaceComplete () {
     printf ("::                                                               ████  ████                                                               ::\n");
     printf ("::                                                               ██████████                                                               ::\n");
 
-    for (int i = 2;i>0;i--)
+    for ( int i = 2; i > 0; i-- )
         bannerBlankBorder ();
 
     bannerBlankBorderTextCen ("POS system is now UNLOCK");
@@ -139,7 +133,7 @@ void authInterfaceComplete () {
     bannerFullBorder ();
     delay (3);
 
-    /* During this betq test only (assuming all user are admin) ->*/ switchHub ();
+    switchHub ();
 }
 
 void authInterfaceFail () {
@@ -162,7 +156,7 @@ void authInterfaceFail () {
     char flag;
     scanf (" %c", &flag);
 
-    switch (toupper(flag)) {
+    switch ( toupper (flag)) {
 
         case ('Q'):
             terminate ();
@@ -182,7 +176,7 @@ void authInterfaceError () {
     bannerBlankBorderTextCen ("Oops!");
     bannerFullBorder ();
 
-    bannerBlankBorderTextCen ("The username that you have type are not in the system...");
+    bannerBlankBorderTextCen ("Username does not exist in our database.");
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please try again or contact an administrator if this occur too many times");
     for ( int i = 0; i < 32; i++ )
@@ -192,8 +186,6 @@ void authInterfaceError () {
 
     delay (4);
     authInterface ();
-
-    // Program will delay for 4 seconds, and will be redirect back to login page...
 }
 
 int authenticateByUsername (char *username, char *password) {
@@ -235,14 +227,11 @@ void deauthenticate () {
     screenClear ();
     bannerFullBorder ();
 
-    char text[137];
-    strcpy (text, "User ");
-    strcat (text, Session.user.username);
-
     for ( int i = 17; i > 0; i-- )
         bannerBlankBorder ();
 
-    strcat (text, " account has successfully logout.");
+    char text[137];
+    sprintf(text,"User %s has successfully log out.",Session.user.username);
     bannerBlankBorderTextCen (text);
 
     for ( int i = 17; i > 0; i-- )

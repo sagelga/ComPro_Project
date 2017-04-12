@@ -129,7 +129,7 @@ void monthlyReport (unsigned int year) {
         RevenueByMonth[i].totalPrice = 0;
         RevenueByMonth[i].totalProfit = 0;
     }
-    for(i = 0 ; i < 12; i++) {
+    for ( i = 0; i < 12; i++ ) {
         startTime = toEpochTime (1, i + 1, year, 0, 0, 0);            // From: 01/01/yyyy 00:00:00
         endTime = toEpochTime (31, i + 1, year, 23, 59, 59);   // To:   31/12/yyyy 23:59:59
         for ( j = 0; j < numberOfPurchaseRecords; j++ ) {
@@ -407,12 +407,11 @@ void reportSwitchHub () {
     bannerBlankBorderTextCen ("4. View multiple day report");
 
 
-
     for ( int i = 0; i < 12; i++ ) {
         bannerBlankBorder ();
     }
 
-    if(checkErrorIn)
+    if ( checkErrorIn )
         bannerBlankBorderTextCen ("Invalid input. Please try again !!!!");
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
@@ -482,7 +481,7 @@ void OneDayReportInputProcess () {
     //Input
     bannerUserInput ();
     scanf (" %d/%d/%d", &dateIN, &monthIN, &yearIN);
-    sprintf(swInput, "%d", dateIN);
+    sprintf (swInput, "%d", dateIN);
     //Process
     oneDayReport (dateIN, monthIN, yearIN);
     OneDayReportInterface ();
@@ -712,9 +711,9 @@ void MultipleDayReportInputProcess () {
     /*--------------------------*/
     int FdateIN, FmonthIN, FyearIN, TdateIN, TmonthIN, TyearIN;
     //Input
-    printf("From >>> ");
+    printf ("From >>> ");
     scanf (" %d/%d/%d", &FdateIN, &FmonthIN, &FyearIN);
-    printf("To >>> ");
+    printf ("To >>> ");
     scanf (" %d/%d/%d", &TdateIN, &TmonthIN, &TyearIN);
     //Process
     multipleDayReport (FdateIN, FmonthIN, FyearIN, TdateIN, TmonthIN, TyearIN);
@@ -749,7 +748,7 @@ void displayMultipleDayReport (int page) {
     bannerUserInput ();
 }
 
-void MultipleDayReportInterface() {
+void MultipleDayReportInterface () {
     char handling;
     int pageIn = 1, CheckPage;
     displayMultipleDayReport (1);
@@ -779,129 +778,124 @@ void MultipleDayReportInterface() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int ErrorINput = 0;
-void forecastSwitchHub (){
-    screenClear();
-    bannerFullBorder();
-    bannerBlankBorder();
-    bannerBlankBorderTextCen("Sale Forecasting");
-    bannerBlankBorder();
-    bannerFullBorder();
-    if (ErrorINput)
-    {
-        for (int i = 0; i < 3; ++i)
-        {
-            bannerBlankBorder();
+
+void forecastSwitchHub () {
+    screenClear ();
+    bannerFullBorder ();
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("Sale Forecasting");
+    bannerBlankBorder ();
+    bannerFullBorder ();
+    if ( ErrorINput ) {
+        for ( int i = 0; i < 3; ++i ) {
+            bannerBlankBorder ();
         }
-        bannerBlankBorderTextCen("Invalid input. Please try again !!!!");
-        for (int i = 0; i < 9; ++i)
-        {
-            bannerBlankBorder();
+        bannerBlankBorderTextCen ("Invalid input. Please try again !!!!");
+        for ( int i = 0; i < 9; ++i ) {
+            bannerBlankBorder ();
         }
-    }
-    else
-    {
-        for (int i = 0; i < 13; ++i)
-        {
-            bannerBlankBorder();
+    } else {
+        for ( int i = 0; i < 13; ++i ) {
+            bannerBlankBorder ();
         }
     }
-    bannerBlankBorderTextCen("Choose a forecasting");
-    bannerBlankBorder();
-    bannerBlankBorderTextCen("1. Tomorrow forecasting");
-    bannerBlankBorderTextCen("2. Next month forecasting");
-    for (int i = 0; i < 14; i++)
-    {
-        bannerBlankBorder();
+    bannerBlankBorderTextCen ("Choose a forecasting");
+    bannerBlankBorder ();
+    bannerBlankBorderTextCen ("1. Tomorrow forecasting");
+    bannerBlankBorderTextCen ("2. Next month forecasting");
+    for ( int i = 0; i < 14; i++ ) {
+        bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
-    bannerFullBorder();
+    bannerFullBorder ();
 
     /*-----User input------*/
     char UserIn;
     bannerUserInput ();
-    scanf(" %c", &UserIn);
-    switch (toupper(UserIn)){
+    scanf (" %c", &UserIn);
+    switch ( toupper (UserIn)) {
         case ('1'):
             ErrorINput = 0;
-            ShowTomorrowForecasting();
+            ShowTomorrowForecasting ();
             break;
 
         case ('2'):
             ErrorINput = 0;
-            ShowNextMonthForecasting();
+            ShowNextMonthForecasting ();
             break;
 
         case ('Q'):
-            terminate();
+            terminate ();
             break;
 
         case ('B'):
             ErrorINput = 0;
-            switchHub();
+            switchHub ();
             break;
 
         default:
             ErrorINput = 1;
-            forecastSwitchHub();
-    } 
+            forecastSwitchHub ();
+    }
 }
 
 /*---------------------------------------------------------------Tomorrow Forcasting----------------------------------------------------------------------*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void displayTomorrowForecasting(int page) {
+void displayTomorrowForecasting (int page) {
     screenClear ();
     int allPage = (int) ceil (RecordCount.category / 32) + 1;
     double different;
     char sign;
     bannerFullBorder ();
-    printf(":: %39s |                   %-21s |                 %-23s | %8s ::\n", "", "TODAY", "TOMORROW", "");
-    printf("::                 %-23s |       %-12s |        %-11s |       %-12s |        %-11s |     %-4s ::\n", "Category", "Revenue", "Profit", "Revenue", "Profit", "%");
+    printf (":: %39s |                   %-21s |                 %-23s | %8s ::\n", "", "TODAY", "TOMORROW", "");
+    printf ("::                 %-23s |       %-12s |        %-11s |       %-12s |        %-11s |     %-4s ::\n",
+            "Category", "Revenue", "Profit", "Revenue", "Profit", "%");
     //printf (":: %-68s |             Revenue            |              Profit            ::\n", "Category Name");
     bannerFullBorder ();
 
     if ( page == allPage ) {
         for ( int i = (page - 1) * 32; i < RecordCount.category; ++i ) {
-            if (RevenueByCategory[i].totalProfit > SaleForecastByCategory[i].totalProfit)
-            {
+            if ( RevenueByCategory[i].totalProfit > SaleForecastByCategory[i].totalProfit ) {
                 sign = '-';
-                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
-            }
-            else if (RevenueByCategory[i].totalProfit < SaleForecastByCategory[i].totalProfit)
-            {
+                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) /
+                             RevenueByCategory[i].totalProfit) * 100;
+            } else if ( RevenueByCategory[i].totalProfit < SaleForecastByCategory[i].totalProfit ) {
                 sign = '+';
-                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
-            }
-            else
-            {
+                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) /
+                             RevenueByCategory[i].totalProfit) * 100;
+            } else {
                 sign = '+';
                 different = 0;
             }
-            printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, fabs(different));
+            printf (":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n",
+                    SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice,
+                    RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice,
+                    SaleForecastByCategory[i].totalProfit, sign, fabs (different));
         }
-        for ( int i = 0; i < 32 - (RecordCount.category % 32)-2; ++i ) {
-            printf(":: %-39s | %18s | %18s | %18s | %18s | %8s ::\n", "", "", "", "", "", "");
+        for ( int i = 0; i < 32 - (RecordCount.category % 32) - 2; ++i ) {
+            printf (":: %-39s | %18s | %18s | %18s | %18s | %8s ::\n", "", "", "", "", "", "");
         }
     } else {
         for ( int i = (page - 1) * 32; i < page * 32/*(34*page)*/; ++i ) {
-            if (RevenueByCategory[i].totalProfit > SaleForecastByCategory[i].totalProfit)
-            {
+            if ( RevenueByCategory[i].totalProfit > SaleForecastByCategory[i].totalProfit ) {
                 sign = '-';
-                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
-            }
-            else if (RevenueByCategory[i].totalProfit < SaleForecastByCategory[i].totalProfit)
-            {
+                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) /
+                             RevenueByCategory[i].totalProfit) * 100;
+            } else if ( RevenueByCategory[i].totalProfit < SaleForecastByCategory[i].totalProfit ) {
                 sign = '+';
-                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) / RevenueByCategory[i].totalProfit) * 100;
-            }
-            else
-            {
+                different = ((SaleForecastByCategory[i].totalProfit - RevenueByCategory[i].totalProfit) /
+                             RevenueByCategory[i].totalProfit) * 100;
+            } else {
                 sign = '+';
                 different = 0;
             }
-            printf(":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n", SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice, SaleForecastByCategory[i].totalProfit, sign, fabs(different));
+            printf (":: %-39s | %18.2lf | %18.2lf | %18.2lf | %18.2lf | %c%7.2lf ::\n",
+                    SaleForecastByCategory[i].categoryName, RevenueByCategory[i].totalPrice,
+                    RevenueByCategory[i].totalProfit, SaleForecastByCategory[i].totalPrice,
+                    SaleForecastByCategory[i].totalProfit, sign, fabs (different));
         }
     }
-    bannerBlankBorder();
+    bannerBlankBorder ();
     bannerBlankBorderTextCen ("Enter Page(e.g. 1, 2, 3) | 'B' to Forecasting Menu");
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
@@ -909,14 +903,14 @@ void displayTomorrowForecasting(int page) {
     bannerUserInput ();
 }
 
-void ShowTomorrowForecasting(){
-    time_t today = time(NULL);
+void ShowTomorrowForecasting () {
+    time_t today = time (NULL);
     int date, month, year;
-    toDateMonthYear(today, &date, &month, &year);
+    toDateMonthYear (today, &date, &month, &year);
     int i;
 
-    tomorrowSaleForecast(); //Execute Forecast processing.
-    oneDayReport(date, month, year);
+    tomorrowSaleForecast (); //Execute Forecast processing.
+    oneDayReport (date, month, year);
 
     char handling;
     int pageIn = 1, CheckPage;
@@ -924,7 +918,7 @@ void ShowTomorrowForecasting(){
     for ( i = 0; i >= 0; ++i ) {
         scanf (" %c", &handling);
         if ((handling == 'B') || (handling == 'b')) {
-            forecastSwitchHub();
+            forecastSwitchHub ();
         } else if ( isdigit (handling)) {
             CheckPage = (int) handling - 48;
             if ((CheckPage <= ((int) ceil (RecordCount.category / 32) + 1)) && (CheckPage >= 1)) {
@@ -942,17 +936,17 @@ void ShowTomorrowForecasting(){
 }
 /*---------------------------------------------------------------Next Month Forcasting----------------------------------------------------------------------*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ShowNextMonthForecasting(){
-    nextMonthSaleForecast();//Execute Forecast processing.
-    
+void ShowNextMonthForecasting () {
+    nextMonthSaleForecast ();//Execute Forecast processing.
+
     char handling;
     int pageIn = 1, CheckPage;
     displayNextMonthForecasting ();
     for ( int i = 0; i >= 0; ++i ) {
- 
+
         scanf (" %c", &handling);
         if ((handling == 'B') || (handling == 'b')) {
-            forecastSwitchHub();
+            forecastSwitchHub ();
         } else {
             displayNextMonthForecasting (pageIn);
             printf ("Oops! Input is valided, Please enter correctly: ");
@@ -960,48 +954,46 @@ void ShowNextMonthForecasting(){
     }
 }
 
-void displayNextMonthForecasting() {
+void displayNextMonthForecasting () {
     screenClear ();
 
-    time_t today = time(NULL);
+    time_t today = time (NULL);
     int date, month, year;
-    toDateMonthYear(today, &date, &month, &year);
+    toDateMonthYear (today, &date, &month, &year);
     char thisMonthName[10];
-    strcpy(thisMonthName, monthName[month-1]);
+    strcpy (thisMonthName, monthName[month - 1]);
     bannerFullBorder ();
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Next Month Forecasting");
     bannerBlankBorder ();
     bannerFullBorder ();
-    for (int i = 0; i < 11; ++i)
-    {
+    for ( int i = 0; i < 11; ++i ) {
         bannerBlankBorder ();
     }
-    printf(":: %67s %-10s %-55d ::\n", "This month:", thisMonthName, year);
-    printf(":: %67s %-66.2lf ::\n", "- Revenue:", RevenueByMonth[month-1].totalPrice);
-    printf(":: %67s %-66.2lf ::\n", "- Profit:", RevenueByMonth[month-1].totalProfit);
+    printf (":: %67s %-10s %-55d ::\n", "This month:", thisMonthName, year);
+    printf (":: %67s %-66.2lf ::\n", "- Revenue:", RevenueByMonth[month - 1].totalPrice);
+    printf (":: %67s %-66.2lf ::\n", "- Profit:", RevenueByMonth[month - 1].totalProfit);
     bannerBlankBorder ();
-    printf(":: %67s %-10s %-55d ::\n", "Next month:", SaleForecastByMonth.monthName, year);
-    printf(":: %67s %-66.2lf ::\n", "- Revenue:", SaleForecastByMonth.totalPrice);
-    printf(":: %67s %-66.2lf ::\n", "- Profit:", SaleForecastByMonth.totalProfit);
-    for (int i = 0; i < 13; ++i)
-    {
+    printf (":: %67s %-10s %-55d ::\n", "Next month:", SaleForecastByMonth.monthName, year);
+    printf (":: %67s %-66.2lf ::\n", "- Revenue:", SaleForecastByMonth.totalPrice);
+    printf (":: %67s %-66.2lf ::\n", "- Profit:", SaleForecastByMonth.totalProfit);
+    for ( int i = 0; i < 13; ++i ) {
         bannerBlankBorder ();
     }
     bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
     char sw;
-    scanf(" %c", &sw);
-    switch (toupper(sw)){
+    scanf (" %c", &sw);
+    switch ( toupper (sw)) {
         case 'Q':
-            switchHub();
+            switchHub ();
             break;
         case 'B':
-            forecastSwitchHub();
+            forecastSwitchHub ();
             break;
         default:
-            displayNextMonthForecasting();
+            displayNextMonthForecasting ();
     }
 }
 /*
