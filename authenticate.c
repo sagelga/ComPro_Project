@@ -148,7 +148,7 @@ void authInterfaceFail () {
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("or type 'Q' to exit the program");
 
-    for ( int i = 0; i < 31; i++ )
+    for ( int i = 0; i < 25; i++ )
         bannerBlankBorder ();
 
     bannerFullBorder ();
