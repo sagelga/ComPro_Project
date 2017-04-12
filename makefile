@@ -5,6 +5,7 @@ EXEC = Click-to-run-POS
 
 $(EXEC): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $(EXEC) -lm
+	-rm *.o
 
 authenticate.o: authenticate.c main.h
 	$(CC) $(CFLAGS) -c authenticate.c
@@ -57,7 +58,7 @@ transaction.o: transaction.c main.h
 .PHONY : clean
 
 clean:
-	-rm $(EXEC) *.o
+	-rm *.o
 
 clear:
 	-rm $(EXEC) *.o
