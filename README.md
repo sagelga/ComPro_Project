@@ -3,7 +3,7 @@
 
 สำหรับวิธีการใช้งานอย่างละเอียด สามารถเข้าไปดูได้ที่ : [https://github.com/sagelga/ComPro_Project/wiki](https://github.com/sagelga/ComPro_Project/wiki/)
 
-และสำหรับผู้ที่สนใจสถิติของโปรเจ็คนี้ สามารถเข้าไปดูได้ที่ : https://github.com/sagelga/ComPro_Project/releases/tag/1.0
+และสำหรับผู้ที่สนใจสถิติของโปรเจ็คนี้ หรือต้องการจะดาวน์โหลดรุ่นล่าสุด สามารถเข้าไปดูได้ที่ : https://github.com/sagelga/ComPro_Project/releases/tag/1.0
 
 ***
 
