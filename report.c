@@ -43,7 +43,7 @@ void multipleDayReport (int fromDate, int fromMonth, int fromYear, int toDate, i
     int i;
 
     for ( i = 0; i < numberOfCategoryRecords; i++ ) {
-        // Initail the values
+        // Initial the values
         strcpy (RevenueByCategory[i].categoryName, Category[i].name);
         RevenueByCategory[i].totalPrice = 0;
         RevenueByCategory[i].totalProfit = 0;
@@ -69,7 +69,7 @@ void nextnDayReport (int fromDate, int fromMonth, int fromYear, int nDay) {
     int i;
 
     for ( i = 0; i < numberOfCategoryRecords; i++ ) {
-        // Initail the values
+        // Initial the values
         strcpy (RevenueByCategory[i].categoryName, Category[i].name);
         RevenueByCategory[i].totalPrice = 0;
         RevenueByCategory[i].totalProfit = 0;
@@ -95,7 +95,7 @@ void nextnMonthReport (int fromDate, int fromMonth, int fromYear, int nMonth) {
     int i;
 
     for ( i = 0; i < numberOfCategoryRecords; i++ ) {
-        // Initail the values
+        // Initial the values
         strcpy (RevenueByCategory[i].categoryName, Category[i].name);
         RevenueByCategory[i].totalPrice = 0;
         RevenueByCategory[i].totalProfit = 0;
@@ -124,7 +124,7 @@ void monthlyReport (unsigned int year) {
     int i, j;
 
     for ( i = 0; i < numberOfMonth; i++ ) {
-        // Initail the values
+        // Initial the values
         strcpy (RevenueByMonth[i].monthName, monthName[i]);
         RevenueByMonth[i].totalPrice = 0;
         RevenueByMonth[i].totalProfit = 0;
@@ -147,7 +147,7 @@ void monthlyReport (unsigned int year) {
 void tomorrowSaleForecast () {
     // Setting
     int nDayRollback = 7;    // Number of day that will be sampling
-    double alpha;    // A weight of forcasting
+    double alpha;    // A weight of forecasting
 
     // Getting time now & convert to the format of dd/mm/yyyy
     int dateToday, monthToday, yearToday;
@@ -179,7 +179,7 @@ void tomorrowSaleForecast () {
         for ( int iter = 1; iter <= 100; iter++ ) {
             alpha = iter / 100.0;
             while ( datePassed < nDayRollback + 1 +
-                                 1 ) {    // + 1 means `today also be used as sampling` & + 1 means `tomorrow` (forcasting)
+                                 1 ) {    // + 1 means `today also be used as sampling` & + 1 means `tomorrow` (forecasting)
 
                 oneDayReport (dateRollbacked + datePassed, monthRollbacked, yearRollbacked);
 
@@ -227,7 +227,7 @@ void tomorrowSaleForecast () {
 void tomorrowSaleForecast(){
 	// Setting
 	int nDayRollback = 7;	// Number of day that will be sampling
-	double alpha = 0.5;		// A weight of forcasting
+	double alpha = 0.5;		// A weight of forecasting
 
 	// Getting time now & convert to the format of dd/mm/yyyy
 	int dateToday, monthToday, yearToday;
@@ -253,7 +253,7 @@ void tomorrowSaleForecast(){
 	for(i = 0; i < numberOfCategoryRecords; i++){ // For each category
 
 		datePassed = 0;
-		while(datePassed < nDayRollback + 1 + 1){	// + 1 means `today also be used as sampling` & + 1 means `tomorrow` (forcasting)
+		while(datePassed < nDayRollback + 1 + 1){	// + 1 means `today also be used as sampling` & + 1 means `tomorrow` (forecasting)
 			oneDayReport(dateRollbacked + datePassed, monthRollbacked, yearRollbacked);
 
 			if(datePassed == 0){ 	// First time, assign the initial values
@@ -283,7 +283,7 @@ void tomorrowSaleForecast(){
 
 void nextMonthSaleForecast () {
     // Setting
-    double alpha;    // A weight of forcasting
+    double alpha;    // A weight of forecasting
 
     // Getting time now & convert to the format of dd/mm/yyyy
     int dateToday, monthToday, yearToday;
@@ -304,7 +304,7 @@ void nextMonthSaleForecast () {
     monthlyReport (yearToday);
 
     for ( i = 0; i < monthToday +
-                     1; i++ ) { // means `this month also be used as sampling` & + 1 means `next month` (forcasting)
+                     1; i++ ) { // means `this month also be used as sampling` & + 1 means `next month` (forecasting)
         sumSquareError = 0;
         minSumSquareError = 3.402823e+38;
         for ( int iter = 50; iter <= 50; iter++ ) {
@@ -774,7 +774,7 @@ void MultipleDayReportInterface () {
     }
 }
 
-/*---------------------------------------------------------------Forcasting----------------------------------------------------------------------*/
+/*---------------------------------------------------------------forecasting----------------------------------------------------------------------*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int ErrorINput = 0;
@@ -839,7 +839,7 @@ void forecastSwitchHub () {
     }
 }
 
-/*---------------------------------------------------------------Tomorrow Forcasting----------------------------------------------------------------------*/
+/*---------------------------------------------------------------Tomorrow forecasting----------------------------------------------------------------------*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void displayTomorrowForecasting (int page) {
     screenClear ();
@@ -934,7 +934,7 @@ void ShowTomorrowForecasting () {
         }
     }
 }
-/*---------------------------------------------------------------Next Month Forcasting----------------------------------------------------------------------*/
+/*---------------------------------------------------------------Next Month forecasting----------------------------------------------------------------------*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ShowNextMonthForecasting () {
     nextMonthSaleForecast ();//Execute Forecast processing.
