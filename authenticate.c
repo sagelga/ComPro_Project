@@ -179,7 +179,7 @@ void authInterfaceError () {
     bannerBlankBorderTextCen ("Username does not exist in our database.");
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please try again or contact an administrator if this occur too many times");
-    for ( int i = 0; i < 32; i++ )
+    for ( int i = 0; i < 31; i++ )
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Redirect to sign in...");
     bannerFullBorder ();
