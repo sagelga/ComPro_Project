@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.com/sagelga/ComPro_Project.svg?token=hxfRmfpCpbnunWcyMpkC&branch=master)](https://travis-ci.com/sagelga/ComPro_Project) | Development branch is 
- [![Build Status](https://travis-ci.com/sagelga/ComPro_Project.svg?token=hxfRmfpCpbnunWcyMpkC&branch=development)](https://travis-ci.com/sagelga/ComPro_Project)
-
 # Introduction
 สวัสดีครับ กลุ่ม POS System เราได้สร้าง โปรแกรมที่นำไปใช้กับเครื่องคิดเงิน (หรือที่เรียกว่า ระบบ POS) อย่างเต็มรูปแบบ โดยการใช้เพียง ภาษา C ในการเขียน 100%
 
@@ -13,9 +10,7 @@
 `make && make run`
 เพื่อเป็นการ Compile ไฟล์ภาษา .c และ .h (C Header file) หลายไฟล์เข้าด้วยกัน โดยหากทำผ่านแล้ว จะขื้นเป็นหน้า Interface ที่มีการให้ปรับขนาดหน้าจอ
 
-***
-
-# Optimized Device Configurations
+## Optimized Device Configurations
 โปรแกรมของเรา จะรันได้อย่างราบรื่นมากที่สุดโดยการใช้ระบบปฏิบัติการ MacOS (OSX) แต่ยังใช้งานได้กับระบบอื่นๆ เช่น Ubuntu Linux
 
 สำหรับการตั้งขนาด Terminal เป็นค่าแนะนำ เนื่องจากข้อมูลเรามีมาก **เราจึงแนะนำให้ใช้ความกว้างหน้าจอขนาด 140 pixel และยาว 40 pixel** ผู้้ใช้สามารถเลือกใช้ขนาดที่ใหญ่กว่าขนาดที่ได้แนะนำไว้ได้ แต่ไม่สำหรับขนาดความละเอียดที่น้อยกว่านี้
@@ -29,9 +24,7 @@
 3. พิมพ์ password ของผู้ใช้งาน (user) นั้น
 4. ระบบจะเช็คหาถึงความถูกต้องของ username / password และนำผู้ใช้ไปที่หน้่าหลัก
 
-***
-
-# Features
+## Features
 สำหรับการใช้งานระบบ POS ก็จะมีระบบย่อยๆ ต่างๆ เพื่อช่วยในการขาย เช่น
 * เช็คสินค้าคงคลัง (Inventory)
 * เช็คถึงยอดขาย (Sales)
@@ -64,5 +57,10 @@
 3|Noppanut|Ploywong|@noppanut15|59070082
 4|Vasanchai|Prakobkij|@59070156|59070156
 5|Weerakorn|Pongpum|@fablemay|59070163
+
+## Status Check
+Master|Development
+-|-
+[![Build Status](https://travis-ci.com/sagelga/ComPro_Project.svg?token=hxfRmfpCpbnunWcyMpkC&branch=master)](https://travis-ci.com/sagelga/ComPro_Project)|[![Build Status](https://travis-ci.com/sagelga/ComPro_Project.svg?token=hxfRmfpCpbnunWcyMpkC&branch=development)](https://travis-ci.com/sagelga/ComPro_Project)
 
 
