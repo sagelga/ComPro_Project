@@ -439,15 +439,16 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
         bannerBlankBorderText ("|----------Membership----------| |----------Purchase---------|");
 
         strcpy (text, "");
-        sprintf (text, "| Points you have   : %8.0f | | Sub Total   : %11.2f |", CurrentCustomer.point, subTotal);
+        sprintf (text, "| Points you have   : %8.2f | | Sub Total   : %11.2f |", CurrentCustomer.point, subTotal);
         bannerBlankBorderText (text);
-        sprintf (text, "| Points you used   : %8.0f | | VAT         : %11.2f |", pointUsed, tax);
+        sprintf (text, "| Points you used   : %8.2f | | VAT         : %11.2f |", pointUsed, tax);
         bannerBlankBorderText (text);
         strcpy (text, "");
-        sprintf (text, "| Points you earn   : %8.0f | | Discount    : %+11.2f |", pointEarn, -discount);
+        sprintf (text, "| Points you earn   : %8.2f | | Discount    : %+11.2f |", pointEarn, -discount);
         bannerBlankBorderText (text);
 
         bannerBlankBorderText ("|______________________________| |___________________________|");
+        sprintf (text, "| Total             : %8.2f | | Total       : %11.2f |", CurrentCustomer.point - pointUsed + pointEarn, total - discount);
     } else {
         // If customer is not a member
         bannerBlankBorderText ("|----------Purchase---------|");
@@ -462,9 +463,9 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
         bannerBlankBorderText (text);
 
         bannerBlankBorderText ("|___________________________|");
+        sprintf (text, "| Total       : %11.2f |", total - discount);
     }
-    strcpy (text, "");
-    sprintf (text, "| Total       : %11.2f |", total - discount);
+
     bannerBlankBorderText (text);
 
     bannerBlankBorderTextCen ("_______________________________________________________________");
