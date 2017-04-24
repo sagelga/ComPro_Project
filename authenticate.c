@@ -154,7 +154,7 @@ void authInterfaceFail () {
     bannerFullBorder ();
     bannerUserInput ();
     char flag;
-    scanf (" %c", &flag);
+    scanf (" %1c", &flag);
 
     switch ( toupper (flag)) {
 

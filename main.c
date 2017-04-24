@@ -10,7 +10,6 @@ int main () { // This program will run first. POS Interface configuration will b
 }
 
 void switchHub () {
-
     screenClear ();
 
     char text[140];
@@ -77,7 +76,7 @@ void switchHub () {
     bannerUserInput ();
 
     char flags;
-    scanf (" %c", &flags);
+    scanf (" %1c", &flags);
     errorResponse = 0;
 
     screenClear ();

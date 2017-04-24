@@ -3,7 +3,6 @@
 
 void screenAdjust () {
     screenClear ();
-
     bannerCenBorder ("", "", "", "POS Version : 1.0");
 
     for ( int i = 0; i < 3; i++ )
@@ -26,7 +25,7 @@ void screenAdjust () {
 
     bannerUserInput ();
     char flags;
-    scanf (" %c", &flags);
+    scanf (" %1c", &flags);
     errorResponse = 0;
 
     switch ( toupper (flags)) {
@@ -46,6 +45,7 @@ void screenAdjust () {
 
         default:
             errorResponse = 1;
+            printf("\n");
             screenAdjust ();
             return;
     }
@@ -95,6 +95,7 @@ void terminate () {
 
 void screenClear () {
     // This function will clean the screen, and the other function will reprint the page.
+    printf("\n");
     system ("clear");
 }
 
