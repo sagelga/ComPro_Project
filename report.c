@@ -146,13 +146,16 @@ void monthlyReport (unsigned int year) {
 // Auto alpha adjusting by choosing Least Sum Square Error
 void tomorrowSaleForecast () {
     // Setting
-    int nDayRollback = 7;    // Number of day that will be sampling
+    int nDayRollback = 7;    // Maximum number of day that will be sampling
     double alpha;    // A weight of forecasting
 
     // Getting time now & convert to the format of dd/mm/yyyy
     int dateToday, monthToday, yearToday;
     time_t epochTimeNow = time (NULL);
     toDateMonthYear (epochTimeNow, &dateToday, &monthToday, &yearToday);
+
+    // Getting the real rolling days that can be rolled
+    nDayRollback = getProperTimeRollingInDay (dateToday, monthToday, yearToday, nDayRollback);
 
     int dateRollbacked, monthRollbacked, yearRollbacked;
     time_t timeRollbacked = nDayRollbackToDateMonthYear (dateToday, monthToday, yearToday, nDayRollback);
@@ -303,14 +306,18 @@ void nextMonthSaleForecast () {
 
     monthlyReport (yearToday);
 
-    for ( i = 0; i < monthToday +
-                     1; i++ ) { // means `this month also be used as sampling` & + 1 means `next month` (forecasting)
+    i = getProperTimeStartInMonth (monthToday, yearToday) - 1; // - 1 because, the index of RevenueByMonth is start at 0
+
+    for ( int iter = 1; iter <= 100; iter++ ) {
+        alpha = iter / 100.0;
         sumSquareError = 0;
         minSumSquareError = 3.402823e+38;
-        for ( int iter = 50; iter <= 50; iter++ ) {
+        monthPassed = 0;
 
-            alpha = iter / 100.0;
-            if ( i == 0 ) {    // First time, assign the initial values
+        for ( ; i < monthToday +
+                         1; i++ ) { // means `this month also be used as sampling` & + 1 means `next month` (forecasting)
+                
+            if ( monthPassed == 0 ) {    // First time, assign the initial values
                 SaleForecastByMonth.totalPrice = RevenueByMonth[i].totalPrice;
                 SaleForecastByMonth.totalProfit = RevenueByMonth[i].totalProfit;
             } else {
@@ -343,6 +350,7 @@ void nextMonthSaleForecast () {
             SaleForecastByMonthTemp = SaleForecastByMonth;
         }
     }
+
     SaleForecastByMonth = SaleForecastByMonthTemp;
 
 }

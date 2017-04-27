@@ -638,7 +638,7 @@ void personnelUpdateInterface () {
 
                 for ( int i = 0; i < 27; i++ )
                     bannerBlankBorder ();
-                bannerBlankBorderTextCen ("Type another name to change personnel name | Press ENTER to use default");
+                bannerBlankBorderTextCen ("Type Personnel Name & Role in numeric... ( 0 = Manager | 1 = Marketing | 2 = Sale ) | Press ENTER to use default");
                 bannerFullBorder ();
                 bannerUserInput ();
 

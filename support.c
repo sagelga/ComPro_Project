@@ -69,6 +69,48 @@ time_t nMonthRollbackToDateMonthYear (int date, int month, int year, int nMonthR
     return result;
 }
 
+int getProperTimeRollingInDay (int date, int month, int year, int maxRolling) {
+    int numberOfTransactionRecords = RecordCount.transaction;
+
+    time_t startTime, endTime;
+    int i, roll = maxRolling + 1;
+
+    while(roll--){
+
+        startTime = toEpochTime (date - roll, month, year, 0, 0, 0);   // From: dd/mm/yyyy 00:00:00
+        endTime = toEpochTime (date - roll, month, year, 23, 59, 59);  // To:   dd/mm/yyyy 23:59:59
+        for ( i = 0;
+              i < numberOfTransactionRecords && isTimeInRange (Transaction[i].timestamp, startTime, endTime) <= 0; i++ ) {
+            if ( isTimeInRange (Transaction[i].timestamp, startTime, endTime) == 0 ) {
+                // If the record is in the time range
+                return roll;
+            }
+        }
+    }
+    return 0;
+}
+
+int getProperTimeStartInMonth (int monthToday, int yearToday) {
+    int numberOfTransactionRecords = RecordCount.transaction;
+
+    time_t startTime, endTime;
+    int i, startMonth;
+
+    for(startMonth = 1; startMonth < monthToday; startMonth++){
+
+        startTime = toEpochTime (1, startMonth, yearToday, 0, 0, 0);   // From: dd/mm/yyyy 00:00:00
+        endTime = toEpochTime (31, startMonth, yearToday, 23, 59, 59);  // To:   dd/mm/yyyy 23:59:59
+        for ( i = 0;
+              i < numberOfTransactionRecords && isTimeInRange (Transaction[i].timestamp, startTime, endTime) <= 0; i++ ) {
+            if ( isTimeInRange (Transaction[i].timestamp, startTime, endTime) == 0 ) {
+                // If the record is in the time range
+                return startMonth;
+            }
+        }
+    }
+    return monthToday;
+}
+
 int isTimeInRange (time_t timestamp, time_t start, time_t end) {
     if ( timestamp < start )
         return -1;  // Starting point is in the future

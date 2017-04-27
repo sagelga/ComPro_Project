@@ -552,6 +552,8 @@ time_t nDayRollbackToDateMonthYear (int date, int month, int year,
                                     int nDayRollback); // This function will help to rollback for n-days from the dd/mm/yyyy that you given
 time_t nMonthRollbackToDateMonthYear (int date, int month, int year,
                                       int nMonthRollback); // This function will help to rollback for n-months from the dd/mm/yyyy that you given
+int getProperTimeRollingInDay (int date, int month, int year, int maxRolling); // This is the helper function of forecasting
+int getProperTimeStartInMonth (int monthToday, int yearToday); // This is the helper function of forecasting
 int isTimeInRange (time_t timestamp, time_t start,
                    time_t end);  // Return 1 if the timestamp is in that range (From Start to End), if not return 0
 int superscanf (char *input); // Addition form scanf() to detect Blankline; (Return 0 = Empty line | 1 = Has a input)
