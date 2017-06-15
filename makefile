@@ -1,68 +1,61 @@
-CC = gcc
-CFLAGS = -std=c99
-OBJECTS = authenticate.o category.o customer.o decorate.o inventory.o main.o personnel.o pos.o promotion.o purchase.o report.o sales.o settings.o support.o systemcall.o transaction.o
-EXEC = Click-to-run-POS
+compiler = gcc
+versions = -std=c99
+object = authenticate.o category.o customer.o decorate.o inventory.o main.o personnel.o pos.o promotion.o purchase.o report.o sales.o settings.o support.o systemcall.o transaction.o
+exec_file = POS-System
 
-$(EXEC): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(EXEC) -lm
+$(exec_file): $(object)
+	$(compiler) $(versions) $(object) -o $(exec_file) -lm
 	-rm *.o
 
 authenticate.o: authenticate.c main.h
-	$(CC) $(CFLAGS) -c authenticate.c
+	$(compiler) $(versions) -c authenticate.c
 
 category.o: category.c main.h
-	$(CC) $(CFLAGS) -c category.c
+	$(compiler) $(versions) -c category.c
 
 customer.o: customer.c main.h
-	$(CC) $(CFLAGS) -c customer.c
+	$(compiler) $(versions) -c customer.c
 
 decorate.o: decorate.c main.h
-	$(CC) $(CFLAGS) -c decorate.c
+	$(compiler) $(versions) -c decorate.c
 
 inventory.o: inventory.c main.h
-	$(CC) $(CFLAGS) -c inventory.c
+	$(compiler) $(versions) -c inventory.c
 
 main.o: main.c main.h
-	$(CC) $(CFLAGS) -c main.c
+	$(compiler) $(versions) -c main.c
 
 personnel.o: personnel.c main.h
-	$(CC) $(CFLAGS) -c personnel.c
+	$(compiler) $(versions) -c personnel.c
 
 pos.o: pos.c main.h
-	$(CC) $(CFLAGS) -c pos.c
+	$(compiler) $(versions) -c pos.c
 
 promotion.o: promotion.c main.h
-	$(CC) $(CFLAGS) -c promotion.c
+	$(compiler) $(versions) -c promotion.c
 
 purchase.o: purchase.c main.h
-	$(CC) $(CFLAGS) -c purchase.c
+	$(compiler) $(versions) -c purchase.c
 
 report.o: report.c main.h
-	$(CC) $(CFLAGS) -c report.c
+	$(compiler) $(versions) -c report.c
 
 sales.o: sales.c main.h
-	$(CC) $(CFLAGS) -c sales.c
+	$(compiler) $(versions) -c sales.c
 
 settings.o: settings.c main.h
-	$(CC) $(CFLAGS) -c settings.c
+	$(compiler) $(versions) -c settings.c
 
 support.o: support.c main.h
-	$(CC) $(CFLAGS) -c support.c
+	$(compiler) $(versions) -c support.c
 
 systemcall.o: systemcall.c main.h
-	$(CC) $(CFLAGS) -c systemcall.c
+	$(compiler) $(versions) -c systemcall.c
 
 transaction.o: transaction.c main.h
-	$(CC) $(CFLAGS) -c transaction.c
+	$(compiler) $(versions) -c transaction.c
 
 .PHONY : clean
 
-clean:
-	-rm *.o
-
-clear:
-	-rm $(EXEC) *.o
-
 run:
-	./$(EXEC)
-
+	./$(exec_file)

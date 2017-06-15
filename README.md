@@ -64,7 +64,7 @@
 ![](/Resource/POS%20Landing%20Page.png)
 
 |Step 1|Step 2|Step 3|Step 4|
-|:-:|:-:|:-:|:-:|
+|:-|:-|:-|:-|
 |กรอก รหัสบัตรสมาชิก (หากไม่มี สามารถกด Skip ขั้นตอนนี้ได้)|สแกนสินค้าที่ต้องการจ่าย <br/>(หากสินค้าที่สแกน ไม่ได้อยู่ในระบบ หรือของคงคลังหมด ระบบจะแจ้งว่าสินค้านั้นไม่สามารถจ่ายได้)|หากลูกค้าอยากใช้คะแนนเป็นส่วนลด หรือใช้ Voucher เงินสด ก็สามารถสแกนเข้าไปได้|ยอดการใช้จ่ายครั้งนี้ และ ยอดคะแนนสะสมของลูกค้า จะถูกแสดงในขั้นตอนนี้|
 
 ---
@@ -117,13 +117,9 @@ Exponential Smoothing เป็นรูปแบบหนึ่งของก�
 
 ![](/Resource/Exponential%20Smoothing.png)
 
-Sum of squared errors
-
 Sum of squared errors (SSE) คือ การหาค่าความคลาดเคลื่อนของข้อมูลที่ได้จากการทำนาย กับข้อมูลที่เกิดขึ้นจริง
 
-![](/Resource/Exponential%20Smoothing.png)
-
-การพยากรณ์ยอดขายของระบบ
+![](/Resource/Sum%20of%20Square%20Error.png)
 
 โปรแกรม Point of Sales (POS) Systems สามารถพยากรณ์ยอดขายให้ผู้ใช้ระบบ สามารถดูการพยากรณ์ยอดขายของวันถัดไป และเดือนถัดไปได้ โดยใช้หลักการของ Exponential Smoothing ร่วมกับค่า Sum of squared errors (SSE)
 
@@ -139,16 +135,16 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 # ![](/Resource/Person.png) Team Members
 |  |ชื่อ|นามสกุล|GitHub Username|รหัสนักศึกษา|
 |:-:|--|------|---------------|---------|
-|![https://www.facebook.com/son9912](/Resource/sagelga.jpg)|Kunanon|Srisuntiroj|[@sagelga](https://github.com/sagelga)|59070022|
-|![www.facebook.com/hideokyjima](/Resource/skydddoogg.jpg)|Thanawat|Laodkaew|[@skydddoogg](https://github.com/skydddoogg)|59070071|
-|![https://www.facebook.com/noppanut](/Resource/noppanut15.jpg)|Noppanut|Ploywong|[@noppanut15](https://github.com/noppanut15)|59070082|
-|![https://www.facebook.com/7eay.mask](/Resource/59070156.jpg)|Vasanchai|Prakobkij|[@59070156](https://github.com/@59070156)|59070156|
-|![https://www.facebook.com/momay.weerakorn](/Resource/fablemay.jpg)|Weerakorn|Pongpum|[@fablemay](https://github.com/@fablemay)|59070163|
+|![https://www.facebook.com/son9912](/Resource/sagelga.png)|Kunanon|Srisuntiroj|[@sagelga](https://github.com/sagelga)|59070022|
+|![www.facebook.com/hideokyjima](/Resource/skydddoogg.png)|Thanawat|Laodkaew|[@skydddoogg](https://github.com/skydddoogg)|59070071|
+|![https://www.facebook.com/noppanut](/Resource/noppanut15.png)|Noppanut|Ploywong|[@noppanut15](https://github.com/noppanut15)|59070082|
+|![https://www.facebook.com/7eay.mask](/Resource/59070156.png)|Vasanchai|Prakobkij|[@59070156](https://github.com/@59070156)|59070156|
+|![https://www.facebook.com/momay.weerakorn](/Resource/fablemay.png)|Weerakorn|Pongpum|[@fablemay](https://github.com/@fablemay)|59070163|
 
 # ![](/Resource/Supervisor.png) Assistant Teacher
 |ผศ. ดร. กิติ์สุชาติ พสุภา|ผศ. ดร. ปานวิทย์ ธุวะนุติ|
 |:-:|:-:|
-|![](/Resource/Aj.%20Oong.jpg)|![](/Resource/Aj.%20Panwit.jpg)|
+|![](/Resource/Aj.%20Oong.png)|![](/Resource/Aj.%20Panwit.png)|
 
 รายงานนี้เป็นส่วนหนึ่งของวิชา Computer Programming (รหัส 06016206)
 
@@ -159,4 +155,4 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 # ![](/Resource/Line%20Chart.png) Status Check
 |![](/Resource/TravisCI%20Mascot.png) <br/> Travis-CI|![](/Resource/TravisCI%20Mascot.png) <br/> Travis-CI|
 |:-:|:-:|
-|Master <br/> [![Build Status](https://travis-ci.com/sagelga/ComPro_Project.svg?token=hxfRmfpCpbnunWcyMpkC&branch=master)](https://travis-ci.com/sagelga/ComPro_Project)|Development <br/> [![Build Status](https://travis-ci.com/sagelga/ComPro_Project.svg?token=hxfRmfpCpbnunWcyMpkC&branch=dev)](https://travis-ci.com/sagelga/ComPro_Project)|
+|Master <br/> [![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=master)](https://travis-ci.org/sagelga/ComPro_Project)|Development <br/> [![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=development)](https://travis-ci.org/sagelga/ComPro_Project)|

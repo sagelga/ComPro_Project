@@ -108,7 +108,7 @@ All of the `int` functions
 int personnelSelectById (char *id, char *firstname, char *lastname, int *role, char *username, char *password, char *barcodeToken);
 // Retrieve the record by `id` (all values will return automatically by the concept of `pass by reference`)
 
-int personnelInsert (char *id, char *firstname, char *lastname, int role, char *username, char *password char *barcodeToken);
+int personnelInsert (char *id, char *firstname, char *lastname, int role, char *username, char *password, char *barcodeToken);
 // Adding a new record to the database
 
 int personnelUpdateFirstname (char *id, char *firstname);    // For modifying the `firstname` (Select the record by `id`)
