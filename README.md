@@ -30,6 +30,8 @@
 3. พิมพ์ password ของผู้ใช้งาน (user) นั้น
 4. ระบบจะเช็คหาถึงความถูกต้องของ username / password และนำผู้ใช้ไปที่หน้่าหลัก
 
+![](/Resource/Login%20Interface.gif)
+
 ในการใช้ demo นี้ คุณสามารถใช้
 
 `username : admin`
@@ -88,6 +90,9 @@
 ### Category Database Interface
 ![](/Resource/Category%20List.png)
 
+### Reporting Interface
+![](/Resource/Report%20List.png)
+
 ---
 
 # ![](/Resource/Help.png) How to use Settings Dashboard
@@ -101,6 +106,11 @@
 |4|เปลี่ยนค่าคะแนนที่จะได้รับจากการใช้จ่าย|โดยที่ การใช้จ่ายทุกๆ x บาท จะได้ 1 คะแนน <br/> โดยเจ้าของร้านสามารถแก้ไขค่า x ได้ และจะเรื่มใช้งานด้วยเรทใหม่กับการทำรายการหลังจากการเปลี่ยนเท่านั้น (ไม่แก้ไขย้อนหลัง)|
 |5|เปลี่ยนค่าคะแนนเป็นส่วนสดเงินสด|โดยที่ การใช้ x คะแนน สามารถแลกเป็นส่วนลดได้ 1 บาท <br/> โดยเจ้าของร้านสามารถแก้ไขค่า x ได้ และจะเรื่มใช้งานด้วยเรทใหม่กับการทำรายการหลังจากการเปลี่ยนเท่านั้น (ไม่แก้ไขย้อนหลัง)|
 
+### Price to Point Interface
+![](/Resource/Point%20to%20Price%20List.png)
+
+### Terminate Interface
+![](/Resource/Terminate.png)
 ---
 
 # ![](/Resource/Help.png) How to use Forecast Dashboard
@@ -156,3 +166,57 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 |![](/Resource/TravisCI%20Mascot.png) <br/> Travis-CI|![](/Resource/TravisCI%20Mascot.png) <br/> Travis-CI|
 |:-:|:-:|
 |Master <br/> [![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=master)](https://travis-ci.org/sagelga/ComPro_Project)|Development <br/> [![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=development)](https://travis-ci.org/sagelga/ComPro_Project)|
+
+These status checks will check on every `git commit`
+
+---
+
+# ![](/Resource/Line%20Chart.png) Repository Statistics
+Over 35.1 MB (and growing) are used to complete this projects.
+
+|Classifiers|Lines|Words|Letters|
+|---------|-----|-----|-------|
+|**All programming files** <br/> (.c and .h)|6,542|28,745|283,862|
+|**All .c files**|5,971|25,539|255,361|
+|**All additional files** <br/> (MAKEFILE and .md)|287|734|19,972|
+|**All database file**<br/> (including backup)|328|2,704|20,006|
+
+### as a individual files
+|File Name|Lines|Words|Letters|
+|---------|-----|-----|-------|
+|authenticate.c|245|885|8,747|
+|category.c|252|1,218|11,857|
+|customer.c|622|2,776|27,386|
+|decorate.c|190|755|9,315|
+|inventory.c|771|3,344|34,779|
+|main.c|148|483|5,000|
+|main.h|571|3,206|28,501|
+|personnel.c|718|3,147|32,314|
+|pos.c|412|1,873|18,715|
+|promotion.c|521|2,183|21,772|
+|purchase.c|35|179|1,707|
+|report.c|825|3,784|36,379|
+|settings.c|760|2,895|30,100|
+|support.c|139|586|4,255|
+|systemcall.c|292|1,246|11,171|
+|transaction.c|35|179|1,815|
+|.gitignore|4|2|24|
+|.travis.yml|2|4|25|
+|README.md|227|583|18,509|
+|Database/Backup/category.db|16|38|193|
+|Database/Backup/customer.db|3|21|149|
+|Database/Backup/inventory.db|44|378|2,774|
+|Database/Backup/personnel.db|3|21|198|
+|Database/Backup/promotion.db|4|12|128|
+|Database/Backup/purchase.db|6|42|394|
+|Database/Backup/setting.db|1|10|76|
+|Database/Backup/transaction.db|29|294|2,086|
+|Database/category.db|16|38|193|
+|Database/inventory.db|48|418|3,029|
+|Database/personnel.db|6|42|382|
+|Database/promotion.db|16|48|503|
+|Database/purchase.db|20|138|1,241|
+|Database/setting.db|1|10|76|
+|Database/transaction.db|112|1,175|8,431|
+
+Calculated using git commands `git ls-files | xargs wc`
