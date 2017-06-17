@@ -1,6 +1,6 @@
 compiler = gcc
 versions = -std=c99
-object = authenticate.o category.o customer.o decorate.o inventory.o main.o personnel.o pos.o promotion.o purchase.o report.o sales.o settings.o support.o systemcall.o transaction.o
+object = authenticate.o category.o customer.o decorate.o inventory.o main.o personnel.o pos.o promotion.o purchase.o report.o settings.o support.o systemcall.o transaction.o
 exec_file = POS-System
 
 $(exec_file): $(object)
@@ -39,9 +39,6 @@ purchase.o: purchase.c main.h
 
 report.o: report.c main.h
 	$(compiler) $(versions) -c report.c
-
-sales.o: sales.c main.h
-	$(compiler) $(versions) -c sales.c
 
 settings.o: settings.c main.h
 	$(compiler) $(versions) -c settings.c

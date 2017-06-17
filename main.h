@@ -543,10 +543,6 @@ void bannerUserInput ();                       // Asks for input from user
 void bannerFullBorderSection ();
 
 /*-----------------------------------------------------------------------------
-Define what the sales report can do*/
-void saleDatabaseInterface ();
-
-/*-----------------------------------------------------------------------------
 Declare what the seller can do*/
 
 void cashierInterface (int customerIdNotFound);

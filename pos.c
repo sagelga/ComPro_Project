@@ -3,18 +3,18 @@
 
 CUSTOMER CurrentCustomer;
 int isCustomerHasId;
-
 INVENTORY inventoryHist[1000]; // Save 1000 Transaction per a purchase
 int inventoryCounter[1000]; // Count the amount of each inventory
 int inventoryHistRecordCount = 0;   // Iterator of inventoryHist
 int histStart, histStop;   // Line pointer for printing the transaction list
 double subTotal, tax, total, pointEarn, totalProfit, discount, pointUsed;
-
 char promotionId[140];
 double promotionPrice;
 int savedToDatabase;
+int screenStep = 0;
 
-void cashierInterface (int customerIdNotFound) {//Interface that will ask for customer ID
+void cashierInterface (int customerIdNotFound) {
+  //Interface that will ask for customer ID
     // Initial Values
     isCustomerHasId = 0;
     inventoryHistRecordCount = 0;
@@ -23,39 +23,27 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
     discount = 0;
     pointUsed = 0;
     savedToDatabase = 0;
-
     screenClear ();
     char buffer[140];
-
     sprintf (buffer, "Cashier: %s %s", Session.user.firstname, Session.user.lastname);
     banner (Setting.storeName, Setting.storeAddress, "", buffer);
-
     bannerBlankBorder ();
-
     sprintf (buffer, "My name is %s %.1s. and I am your cashier", Session.user.firstname, Session.user.lastname);
     bannerBlankBorderTextCen (buffer);
-
     bannerBlankBorder ();
     if ( customerIdNotFound )
         bannerBlankBorderTextCen ("Customer not found");
     else
         bannerBlankBorder ();
     bannerBlankBorderTextCen ("Please scan / enter in customer ID");
-
     for ( int i = 25; i > 0; i-- )
         bannerBlankBorder ();
-
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Press ENTER to skip  |  Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
-
     // Receives input + let user type in the member ID or type N or type ENTER or type B
-
-    /* Call this if the input is not N or B -> */ //delay (5);
-    // cashierInterfaceInventory ();
-
+    // Call this if the input is not N or B -> delay (5); cashierInterfaceInventory ();
     char customerId[MAX_LNG_ID];
-
     if ( superscanf (customerId)) {
         if ( strlen (customerId) == 1 ) {
             // User type the switch
@@ -81,36 +69,30 @@ void cashierInterface (int customerIdNotFound) {//Interface that will ask for cu
                 cashierInterface (1);
             }
         }
-    } else {
-        // Press only ENTER to skip
+    } else { // Press only ENTER to skip
         cashierInterfaceInventory (0);
     }
 }
 
-void cashierInterfaceInventory (int isError) {// Interface that will remove the item from the database
+void cashierInterfaceInventory (int isError) {
+  // Interface that will remove the item from the database
     screenClear ();
     char buffer1[140], buffer2[140];
     int maxItemOnScreen = 21;
-
     histStart = 0 + (inventoryHistRecordCount / (maxItemOnScreen + 1)) * maxItemOnScreen;
     histStop = inventoryHistRecordCount;
-
-
     sprintf (buffer1, "%s %s is serving you today", Session.user.firstname, Session.user.lastname);
     if ( isCustomerHasId )
         sprintf (buffer2, "Welcome back, K. %s %s", CurrentCustomer.firstname, CurrentCustomer.lastname);
     else
         sprintf (buffer2, "Welcome back, Customer");
-
     banner (Setting.storeName, Setting.storeAddress, buffer1, buffer2);
-
     bannerBlankBorder ();
     bannerBlankBorderTextLeft (
             " ID                 | Item name                                                                             | Count      | Price      "); // Keep these on forever
     bannerBlankBorderTextLeft (
             " ------------------ | ------------------------------------------------------------------------------------- | ---------- | ---------- ");
     // Following by LAST `maxItemOnScreen` items that have been scanned....
-
     int lineCounter = 0;
     int i = histStart;
     while ( i < histStop ) {
@@ -123,46 +105,37 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
     for ( ; lineCounter < maxItemOnScreen; lineCounter++ )
         bannerBlankBorderTextLeft (
                 "                    |                                                                                       |            |          ");
-
     char text[140];
-
     bannerBlankBorder ();
     sprintf (text, "Sub Total %.2f", subTotal);
     bannerBlankBorderText (text); // Total Price - 7% (Shows only 2 significant point!!)
-
     sprintf (text, "Tax %.2f", tax);
     bannerBlankBorderText (text); // VAT calculated from total price
-
     sprintf (text, "Total %.2f", total);
     bannerBlankBorderText (text); // Total Price
-    if ( isCustomerHasId ) {
+    if ( isCustomerHasId ){
         sprintf (text, "Points you will earned %.2f", pointEarn);
         bannerBlankBorderText (text);
     } else
         bannerBlankBorder ();
-
     if ( isError )
         bannerBlankBorderTextCen ("No item in the inventory");
     else
         bannerBlankBorder ();
-
     bannerBlankBorderTextCen ("Type 'Q' to quit  |  Press ENTER to finish  |  Type 'V' to void");
     bannerFullBorder ();
     bannerUserInput ();
-
     // Buffer
     char inventoryName[MAX_LNG_SCREEN];
     double inventoryPrice;
     double inventoryProfit; // Profit per item
     unsigned int inventoryCategoryId; // Category ID
     unsigned int inventoryRemain;
-
     // Receives item ID -> Query on database -> Find a match (if stock = 0 means no match) -> Show a match -> Add price to the total -> Remove stock from DB of 1
     char inventoryIdInput[MAX_LNG_SCREEN];
     int isDuplicate;
     if ( superscanf (inventoryIdInput)) {
-        if ( strlen (inventoryIdInput) == 1 ) {
-            // User type the switch
+        if ( strlen (inventoryIdInput) == 1 ) { // User type the switch
             switch ( toupper (inventoryIdInput[0])) {
                 case 'Q':
                     terminate ();
@@ -173,11 +146,9 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
                 default:
                     cashierInterfaceInventory (0);
             }
-        } else {
-            // User scan the inventory's barcode
+        } else { // User scan the inventory's barcode
             if ( inventorySelectById (inventoryIdInput, inventoryName, &inventoryPrice, &inventoryProfit,
                                       &inventoryCategoryId, &inventoryRemain)) {
-
                 isDuplicate = 0;
                 for ( int i = 0; i < inventoryHistRecordCount; i++ ) {
                     if ( strcmp (inventoryHist[i].id, inventoryIdInput) == 0 ) {
@@ -187,7 +158,6 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
                         break;
                     }
                 }
-
                 if ( !isDuplicate ) {
                     strcpy (inventoryHist[inventoryHistRecordCount].id, inventoryIdInput);
                     strcpy (inventoryHist[inventoryHistRecordCount].name, inventoryName);
@@ -195,78 +165,55 @@ void cashierInterfaceInventory (int isError) {// Interface that will remove the 
                     inventoryHist[inventoryHistRecordCount].profit = inventoryProfit;
                     inventoryHist[inventoryHistRecordCount].categoryId = inventoryCategoryId;
                     inventoryHist[inventoryHistRecordCount].remain = inventoryRemain - 1;
-
                     inventoryCounter[inventoryHistRecordCount] = 1;
                     inventoryHistRecordCount++;
                 }
-
                 total += inventoryPrice;
                 tax = total * 0.07;
                 subTotal = total - tax;
                 pointEarn = Setting.priceToPoint * total;
                 totalProfit += inventoryProfit;
                 cashierInterfaceInventory (0);
-            } else {
+            } else
                 cashierInterfaceInventory (1);
-            }
         }
-    } else {
-        // Press only ENTER to finish the job
+    } else
         cashierInterfaceDiscount (0);
-    }
 }
 
-void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for discount (voucher and points)
-    if ( inventoryHistRecordCount == 0 ) {
-        // If no input of inventory then return back to add the inventory again
+void cashierInterfaceDiscount (int errorCode) {
+  // Interface that will ask for discount (voucher and points)
+    if ( inventoryHistRecordCount == 0 ) { // If no input of inventory then return back to add the inventory again
         cashierInterfaceInventory (0);
-
-    }
     screenClear ();
-
     char buffer1[140], buffer2[140];
     sprintf (buffer1, "%s %s is serving you today", Session.user.firstname, Session.user.lastname);
     if ( isCustomerHasId )
         sprintf (buffer2, "Welcome back, K. %s %s", CurrentCustomer.firstname, CurrentCustomer.lastname);
     else
         sprintf (buffer2, "Welcome back, Customer");
-
     banner (Setting.storeName, Setting.storeAddress, buffer1, buffer2);
-
     bannerBlankBorder ();
-    // bannerBlankBorderTextCen ("Do you have a voucher or discount?");
     bannerBlankBorderTextCen ("Scan a Voucher / Discount Code");
     bannerBlankBorder ();
-
-
     char text[140];
-
-
-    int promotionStatus;    // 0 = Used | 1 = Active
-
-    if ( isCustomerHasId ) {
-        // Customer is a Member
-
+    int promotionStatus; // 0 = Used | 1 = Active
+    if ( isCustomerHasId ) { // Customer is a Member
         sprintf (text, "You have %.2lf points", CurrentCustomer.point);
         bannerBlankBorderTextCen (text);
         if ( errorCode == 1 ) {
             for ( int i = 26; i > 0; i-- )
                 bannerBlankBorder ();
-            bannerBlankBorderTextCen (
-                    "Invalid Promotion Code, Please try another one");
-        } else {
+            bannerBlankBorderTextCen ("Invalid Promotion Code, Please try another one");
+        } else
             for ( int i = 26; i > 0; i-- )
                 bannerBlankBorder ();
-        }
         bannerBlankBorderTextCen (
                 "Type 'Q' to quit  |  Type 'V' to void  |  Press ENTER to skip  |  Type 'P' to use point  |  Type 'A' to add more item");
         bannerFullBorder ();
         bannerUserInput ();
-
-        // Logic
         if ( superscanf (promotionId)) {
             if ( strlen (promotionId) == 1 ) {
-                // Use Command
                 switch ( toupper (promotionId[0])) {
                     case 'Q':
                         terminate ();
@@ -284,35 +231,25 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
                     default:
                         cashierInterfaceDiscount (0);
                 }
-            } else {
-                // Use Voucher
+            } else { // Use Voucher
                 if ( promotionSelectById (promotionId, &promotionPrice, &promotionStatus) && promotionStatus == 1 ) {
                     discount = promotionPrice;
                     cashierInterfaceResult (0);
-                } else {
+                } else
                     cashierInterfaceDiscount (1);
-                }
             }
-        } else {
-            // Skipping
+        } else { // Skipping
             cashierInterfaceResult (0);
         }
-
-    } else {
-        // Customer is not a member
-
+    } else { // Customer is not a member
         for ( int i = 27; i > 0; i-- )
             bannerBlankBorder ();
-
         bannerBlankBorderTextCen (
                 "Type 'Q' to quit  |  Type 'V' to void  |  Press ENTER to skip  | Type 'A' to add more item");
         bannerFullBorder ();
         bannerUserInput ();
-
-        // Logic
         if ( superscanf (promotionId)) {
-            if ( strlen (promotionId) == 1 ) {
-                // Use Command
+            if ( strlen (promotionId) == 1 ) { // Use Command
                 switch ( toupper (promotionId[0])) {
                     case 'Q':
                         terminate ();
@@ -326,33 +263,27 @@ void cashierInterfaceDiscount (int errorCode) {// Interface that will ask for di
                     default:
                         cashierInterfaceDiscount (0);
                 }
-            } else {
-                // Use Voucher
+            } else { // Use Voucher
                 if ( promotionSelectById (promotionId, &promotionPrice, &promotionStatus) && promotionStatus == 1 ) {
                     discount = promotionPrice;
                     cashierInterfaceResult (0);
-                } else {
+                } else
                     cashierInterfaceDiscount (1);
-                }
-
             }
         } else {
-            // Skipping
             cashierInterfaceResult (0);
         }
     }
 }
+}
 
-int screenStep = 0;
-
-void cashierInterfaceResult (int usePoint) {// Interface that will show the total (just like the receipt)
+void cashierInterfaceResult (int usePoint) {
+  // Interface that will show the total (just like the receipt)
     screenClear ();
-    // --- * Saving the purchase into DB ----------------------------------------------------------
+    // Saving the purchase into DB ----------------------------------------------------------
     int i, j;
     if ( !savedToDatabase ) { // Doing this one time !!!
-
-        if ( usePoint ) {
-            // Use point
+        if ( usePoint ) { // Use point
             double discountByPoint =
                     CurrentCustomer.point / Setting.pointToPrice; // Money that will be use to discount from totalPrice
             if ( discountByPoint <= total ) {
@@ -365,60 +296,47 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
                 customerUpdatePoint (CurrentCustomer.id, Setting.pointToPrice * total);
             }
         } else if ( discount > 0 ) {
-            // Use Voucher
-            // Change status of voucher from Active -> Used
+            // Use Voucher + Change status of voucher from Active -> Used
             promotionUpdateStatus (promotionId, 0);
             // Discount boundary
             discount = (discount < total) ? discount : total;
         }
-
         // Saving all transactions into the Database
         for ( i = 0; i < inventoryHistRecordCount; i++ ) {
             // Decreasing items the in stock
             inventoryUpdateRemain (inventoryHist[i].id, inventoryHist[i].remain);
-            for ( j = 0; j < inventoryCounter[i]; j++ ) {
+            for ( j = 0; j < inventoryCounter[i]; j++ )
                 transactionInsert (RecordCount.purchase, inventoryHist[i].id);
-            }
         }
         // Update total points & total buy of customer
-        if ( isCustomerHasId ) {
-            // If customer is a member
+        if ( isCustomerHasId ) { // If customer is a member
             customerUpdatePoint (CurrentCustomer.id, CurrentCustomer.point + pointEarn - pointUsed);
             customerUpdatetotalBuy (CurrentCustomer.id, CurrentCustomer.totalBuy + total - discount);
         }
         // Saving a purchase into the Database
-        if ( isCustomerHasId ) {
+        if ( isCustomerHasId )
             purchaseInsert (total, discount, totalProfit, CurrentCustomer.id, Session.user.id);
-        } else {
+        else
             purchaseInsert (total, discount, totalProfit, "", Session.user.id);
-        }
         savedToDatabase = 1;
     }
-    // --------------------------------------------------------------------------------------------
     char buffer1[140], buffer2[140];
     int maxItemOnScreen = 18;
-
     histStart = 0 + screenStep;
     histStop = inventoryHistRecordCount;
-
-
     sprintf (buffer1, "%s %s is serving you today", Session.user.firstname, Session.user.lastname);
     if ( isCustomerHasId )
         sprintf (buffer2, "Welcome back, K. %s %s", CurrentCustomer.firstname, CurrentCustomer.lastname);
     else
         sprintf (buffer2, "Welcome back, Customer");
-
     banner (Setting.storeName, Setting.storeAddress, buffer1, buffer2);
-
     char text[140];
-
     bannerBlankBorder ();
     bannerBlankBorderTextLeft (
             " ID                 | Item name                                                                          | Count       | Price        "); // Keep these on forever
     bannerBlankBorderTextLeft (
             " ------------------ | ---------------------------------------------------------------------------------- | ----------- | ------------ ");
     // Shows a total of 25 item at a time. Press ENTER to go to the next page
-
     int lineCounter = 0;
     i = histStart;
     while ( i < histStop ) {
@@ -429,15 +347,12 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
         i++;
         lineCounter++;
     }
-
     for ( ; lineCounter < maxItemOnScreen; lineCounter++ )
         bannerBlankBorderTextLeft (
                 "                    |                                                                                    |             |            ");
-
     if ( isCustomerHasId ) {
         // If customer is a member
         bannerBlankBorderText ("|----------Membership----------| |----------Purchase---------|");
-
         strcpy (text, "");
         sprintf (text, "| Points you have   : %8.2f | | Sub Total   : %11.2f |", CurrentCustomer.point, subTotal);
         bannerBlankBorderText (text);
@@ -446,13 +361,11 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
         strcpy (text, "");
         sprintf (text, "| Points you earn   : %8.2f | | Discount    : %+11.2f |", pointEarn, -discount);
         bannerBlankBorderText (text);
-
         bannerBlankBorderText ("|______________________________| |___________________________|");
         sprintf (text, "| Total             : %8.2f | | Total       : %11.2f |", CurrentCustomer.point - pointUsed + pointEarn, total - discount);
     } else {
         // If customer is not a member
         bannerBlankBorderText ("|----------Purchase---------|");
-
         strcpy (text, "");
         sprintf (text, "| Sub Total   : %11.2f |", subTotal);
         bannerBlankBorderText (text);
@@ -461,19 +374,14 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
         strcpy (text, "");
         sprintf (text, "| Discount    : %+11.2f |", -discount);
         bannerBlankBorderText (text);
-
         bannerBlankBorderText ("|___________________________|");
         sprintf (text, "| Total       : %11.2f |", total - discount);
     }
-
     bannerBlankBorderText (text);
-
     bannerBlankBorderTextCen ("_______________________________________________________________");
-
     strcpy (text, "");
     sprintf (text, "THANK YOU FOR SHOPPING AT %s", Setting.storeName);
     bannerBlankBorderTextCen (text);
-
     bannerBlankBorder ();
     if ( screenStep < inventoryHistRecordCount - maxItemOnScreen )
         bannerBlankBorderTextCen (
@@ -482,7 +390,6 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
         bannerBlankBorderTextCen ("Type 'Q' to quit  |  Press ENTER to finish purchase");
     bannerFullBorder ();
     bannerUserInput ();
-
     char userInput[5];
     if ( superscanf (userInput)) {
         switch ( toupper (userInput[0])) {
@@ -495,33 +402,11 @@ void cashierInterfaceResult (int usePoint) {// Interface that will show the tota
             default:
                 cashierInterfaceResult (usePoint);
         }
-
-    } else {
-        // Press ENTER
+    } else { // Press ENTER
         if ( screenStep < inventoryHistRecordCount - maxItemOnScreen ) {
             screenStep++;
             cashierInterfaceResult (0);
-        } else {
+        } else
             cashierInterface (0);
-        }
-
     }
 }
-
-/*
- *                                             All hail the god..
- *  -----------------------------------------------------------------------------------------------------------------------
- *  |      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      |
- *  |    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    |
- *  |    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    |
- *  |    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    |
- *  |  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  |
- *  | (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) |
- *  |---------------||---------------||---------------||---------------||---------------||---------------||---------------|
- *  |     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     |
- *  |     Monday    ||    Tuesday    ||   Wednesday   ||    Thursday   ||     Friday    ||    Saturday   ||     Sunday    |
- *  -----------------------------------------------------------------------------------------------------------------------
- *                                         Program bug best enemy
- *                                 Please. No bug. No crash. No interrupt.
- *  -----------------------------------------------------------------------------------------------------------------------
- */

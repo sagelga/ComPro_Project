@@ -6,11 +6,9 @@
 #endif
 
 int isFileExist (const char *filename) {
-    if ( access (filename, F_OK) != -1 ) {
-        // file exists
+    if ( access (filename, F_OK) != -1 ) { // file exists
         return 1;
-    } else {
-        // file doesn't exist
+    } else { // file doesn't exist
         return 0;
     }
 }
@@ -24,23 +22,19 @@ time_t toEpochTime (int date, int month, int year, int hour, int minute, int sec
     timeinfo.tm_mday = date;
     timeinfo.tm_mon = month - 1;
     timeinfo.tm_year = year - 1900;
-
     result = mktime (&timeinfo);
     return result;
 }
 
 void toDateMonthYear (time_t epochTime, int *date, int *month, int *year) {
-
     struct tm *timeinfo;
     timeinfo = localtime (&epochTime);
-
     *date = timeinfo->tm_mday;
     *month = timeinfo->tm_mon + 1;
     *year = timeinfo->tm_year + 1900;
 }
 
 time_t nDayRollbackToDateMonthYear (int date, int month, int year, int nDayRollback) {
-
     struct tm timeinfo = {0};
     time_t result = 0;
     timeinfo.tm_sec = 59;
@@ -49,13 +43,11 @@ time_t nDayRollbackToDateMonthYear (int date, int month, int year, int nDayRollb
     timeinfo.tm_mday = date - nDayRollback;
     timeinfo.tm_mon = month - 1;
     timeinfo.tm_year = year - 1900;
-
     result = mktime (&timeinfo);
     return result;
 }
 
 time_t nMonthRollbackToDateMonthYear (int date, int month, int year, int nMonthRollback) {
-
     struct tm timeinfo = {0};
     time_t result = 0;
     timeinfo.tm_sec = 59;
@@ -64,19 +56,15 @@ time_t nMonthRollbackToDateMonthYear (int date, int month, int year, int nMonthR
     timeinfo.tm_mday = date;
     timeinfo.tm_mon = month - 1 - nMonthRollback;
     timeinfo.tm_year = year - 1900;
-
     result = mktime (&timeinfo);
     return result;
 }
 
 int getProperTimeRollingInDay (int date, int month, int year, int maxRolling) {
     int numberOfTransactionRecords = RecordCount.transaction;
-
     time_t startTime, endTime;
     int i, roll = maxRolling + 1;
-
     while(roll--){
-
         startTime = toEpochTime (date - roll, month, year, 0, 0, 0);   // From: dd/mm/yyyy 00:00:00
         endTime = toEpochTime (date - roll, month, year, 23, 59, 59);  // To:   dd/mm/yyyy 23:59:59
         for ( i = 0;
@@ -92,12 +80,9 @@ int getProperTimeRollingInDay (int date, int month, int year, int maxRolling) {
 
 int getProperTimeStartInMonth (int monthToday, int yearToday) {
     int numberOfTransactionRecords = RecordCount.transaction;
-
     time_t startTime, endTime;
     int i, startMonth;
-
     for(startMonth = 1; startMonth < monthToday; startMonth++){
-
         startTime = toEpochTime (1, startMonth, yearToday, 0, 0, 0);   // From: dd/mm/yyyy 00:00:00
         endTime = toEpochTime (31, startMonth, yearToday, 23, 59, 59);  // To:   dd/mm/yyyy 23:59:59
         for ( i = 0;
@@ -120,7 +105,6 @@ int isTimeInRange (time_t timestamp, time_t start, time_t end) {
 }
 
 int superscanf (char *input) {
-
     char temp[MAX_LNG_SCREEN];
     int i, len;
 #ifdef __linux__
@@ -140,8 +124,6 @@ int superscanf (char *input) {
         input[i] = '\0';
         return 1;
     }
-
-
 }
 
 double min (double a, double b) {
@@ -155,21 +137,3 @@ double max (double a, double b) {
         return a;
     return b;
 }
-
-/*
- *                                             All hail the god..
- *  -----------------------------------------------------------------------------------------------------------------------
- *  |      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      |
- *  |    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    |
- *  |    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    |
- *  |    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    |
- *  |  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  |
- *  | (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) |
- *  |---------------||---------------||---------------||---------------||---------------||---------------||---------------|
- *  |     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     |
- *  |     Monday    ||    Tuesday    ||   Wednesday   ||    Thursday   ||     Friday    ||    Saturday   ||     Sunday    |
- *  -----------------------------------------------------------------------------------------------------------------------
- *                                         Program bug best enemy
- *                                 Please. No bug. No crash. No interrupt.
- *  -----------------------------------------------------------------------------------------------------------------------
- */

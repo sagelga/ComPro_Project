@@ -13,7 +13,6 @@ int transactionSelectById (unsigned int id, unsigned int *purchaseId, double *in
             *inventoryProfit = Transaction[i].inventoryProfit;
             *inventoryCategoryId = Transaction[i].inventoryCategoryId;
             *timestamp = Transaction[i].timestamp;
-
             return 1;   // Found a record
         }
     }
@@ -23,7 +22,7 @@ int transactionSelectById (unsigned int id, unsigned int *purchaseId, double *in
 void transactionInsert (unsigned int purchaseId, char *inventoryId) {
     int tailIndex = RecordCount.transaction;
     unsigned int trash;    // Don't really want data, just buffer
-    Transaction[tailIndex].id = tailIndex;  // Auto-increment 
+    Transaction[tailIndex].id = tailIndex;  // Auto-increment
     Transaction[tailIndex].purchaseId = purchaseId;
     strcpy (Transaction[tailIndex].inventoryId, inventoryId);
     inventorySelectById (inventoryId, Transaction[tailIndex].inventoryName, &Transaction[tailIndex].inventoryPrice,
@@ -34,21 +33,3 @@ void transactionInsert (unsigned int purchaseId, char *inventoryId) {
 
     transactionFileWrite ();       // Save to a Database file
 }
-
-/*
- *                                             All hail the god..
- *  -----------------------------------------------------------------------------------------------------------------------
- *  |      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      |
- *  |    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    |
- *  |    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    |
- *  |    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    |
- *  |  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  |
- *  | (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) |
- *  |---------------||---------------||---------------||---------------||---------------||---------------||---------------|
- *  |     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     |
- *  |     Monday    ||    Tuesday    ||   Wednesday   ||    Thursday   ||     Friday    ||    Saturday   ||     Sunday    |
- *  -----------------------------------------------------------------------------------------------------------------------
- *                                         Program bug best enemy
- *                                 Please. No bug. No crash. No interrupt.
- *  -----------------------------------------------------------------------------------------------------------------------
- */

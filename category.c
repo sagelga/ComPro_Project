@@ -17,18 +17,14 @@ int categorySelectById (unsigned int id, char *name) {
 
 int categoryInsert (char *name) {
     int tailIndex = RecordCount.category;
-
     // To confirm that `name` is unique
     for ( int i = 0; i < tailIndex; i++ ) {
         if ( strcmp (Category[i].name, name) == 0 )
             return 0;   // Error: Category name already exists
     }
-
-    Category[tailIndex].id = tailIndex; // Auto-increment 
+    Category[tailIndex].id = tailIndex; // Auto-increment
     strcpy (Category[tailIndex].name, name);
-
     RecordCount.category++;    // Update the amount of records
-
     categoryFileWrite ();       // Save to a Database file
     return 1;                  // Operation Success
 }
@@ -52,28 +48,21 @@ void displayCategory (int page) {
     bannerFullBorder ();
     printf ("::          ID           | Category Name                                                                                                  ::\n");
     bannerFullBorder ();
-
     if ( page == allPage ) {
-        for ( int i = (page - 1) * 32; i < RecordCount.category; ++i ) {
+        for ( int i = (page - 1) * 32; i < RecordCount.category; ++i )
             printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
-        }
-        //display remaining line as bannerBlankBorder()
-        for ( int i = 0; i < 32 - (RecordCount.category % 32); ++i ) {
+        for ( int i = 0; i < 32 - (RecordCount.category % 32); ++i )
             printf ("::                       |                                                                                                                ::\n");
-        }
     } else {
-        for ( int i = (page - 1) * 32; i < page * 32/*(32*page)*/; ++i ) {
+        for ( int i = (page - 1) * 32; i < page * 32/*(32*page)*/; ++i )
             printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
-        }
     }
-
     bannerBlankBorderTextCen ("Enter Page Number | Type 'B' to back");
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
     bannerFullBorder ();
     bannerUserInput ();
 }
-
 void categoryDatabaseInterface () {
     char handling;
     int pageIn = 1, CheckPage;
@@ -98,30 +87,21 @@ void categoryDatabaseInterface () {
         }
     }
 }
-
 void categoryAdd () {
     screenClear ();
     char nameIN[MAX_LNG_TEXT];
-
     char handling;
-
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Insert Category");
     bannerFullBorder ();
-
     printf ("::          ID           | Category Name                                                                                                  ::\n");
     bannerFullBorder ();
-
-    for ( int i = 0; i < RecordCount.category; ++i ) {
+    for ( int i = 0; i < RecordCount.category; ++i )
         printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
-    }
-
-    for ( int i = 0; i < (33 - RecordCount.category - 2); ++i ) {
+    for ( int i = 0; i < (33 - RecordCount.category - 2); ++i )
         bannerBlankBorder ();
-    }
     bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
     bannerFullBorder ();
-
     for ( int i = 0; i >= 0; ++i ) {
         printf ("\n");
         printf ("Enter the Category name to add >>> ");
@@ -136,18 +116,12 @@ void categoryAdd () {
                 bannerFullBorder ();
                 bannerBlankBorderTextCen ("Insert Category");
                 bannerFullBorder ();
-
                 printf ("::          ID           | Category Name                                                                                                  ::\n");
                 bannerFullBorder ();
-
-                for ( int i = 0; i < RecordCount.category; ++i ) {
+                for ( int i = 0; i < RecordCount.category; ++i )
                     printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
-                }
-
-                for ( int i = 0; i < (32 - RecordCount.category - 3); ++i ) {
+                for ( int i = 0; i < (32 - RecordCount.category - 3); ++i )
                     bannerBlankBorder ();
-                }
-
                 bannerBlankBorderTextCen ("Successful!!! The category has been inserted.");
                 bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
@@ -157,56 +131,40 @@ void categoryAdd () {
                 bannerFullBorder ();
                 bannerBlankBorderTextCen ("Insert Category");
                 bannerFullBorder ();
-
                 printf ("::          ID           | Category Name                                                                                                  ::\n");
                 bannerFullBorder ();
-
-                for ( int i = 0; i < RecordCount.category; ++i ) {
+                for ( int i = 0; i < RecordCount.category; ++i )
                     printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
-                }
-
-                for ( int i = 0; i < 32 - RecordCount.category - 3; ++i ) {
+                for ( int i = 0; i < 32 - RecordCount.category - 3; ++i )
                     bannerBlankBorder ();
-                }
-
                 bannerBlankBorderTextCen ("Error!!! Category name already exists");
                 bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
-
             }
         }
     }
 }
-
 void categoryEdit () {
     char bufferHead[140];
-
     sprintf (bufferHead, "%-60s|%s", "ID", "CategoryName");
     screenClear ();
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Category Database");
     bannerFullBorder ();
     bannerBlankBorder ();
-
     bannerBlankBorderTextLeft (bufferHead);
     bannerFullBorderSection ();
     bannerBlankBorder ();
     bannerBlankBorderTextLeft ("->");
-
     bannerBlankBorder ();
-
     bannerFullBorder ();
     printf ("::          ID           | Category Name                                                                                                  ::\n");
     bannerFullBorder ();
-
-    for ( int i = 0; i < RecordCount.category; ++i ) {
+    for ( int i = 0; i < RecordCount.category; ++i )
         printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
-    }
-
     for ( int i = 0; i < (27 - (RecordCount.category - 1 - 4)); i++ )
         bannerBlankBorder ();
-
     bannerBlankBorderTextCen ("Please type the Category ID");
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
@@ -227,24 +185,20 @@ void categoryEdit () {
                 bannerBlankBorderTextCen ("Category Database");
                 bannerFullBorder ();
                 bannerBlankBorder ();
-
                 bannerBlankBorderTextLeft (bufferHead);
                 bannerFullBorderSection ();
                 bannerBlankBorder ();
                 bannerBlankBorderTextLeft (buffer);
                 bannerBlankBorderTextCen (" ");
-
                 for ( int i = 0; i < 27; i++ )
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen (
                         "Type another name to change category name... | Press Enter to set by default");
                 bannerFullBorder ();
                 bannerUserInput ();
-
                 printf ("Default CategoryName: (%s) >>> ", name);
                 if ( superscanf (flag) != 0 )
                     categoryUpdateName (strtoul (id, NULL, 10), flag);
-
                 screenClear ();
                 bannerFullBorder ();
                 bannerBlankBorderTextCen ("Category Database");
@@ -258,26 +212,18 @@ void categoryEdit () {
                 sprintf (buffer, "-> %-57s %s", id, name);
                 bannerBlankBorderTextLeft (buffer);
                 bannerBlankBorder ();
-
-
                 bannerFullBorder ();
                 printf ("::          ID           | Category Name                                                                                                  ::\n");
                 bannerFullBorder ();
-
-                for ( int i = 0; i < RecordCount.category; ++i ) {
+                for ( int i = 0; i < RecordCount.category; ++i )
                     printf ("::          %2u           | %-110s ::\n", Category[i].id, Category[i].name);
-                }
-
                 for ( int i = 0; i < 25 - RecordCount.category - 3; i++ )
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Category has been updated");
                 bannerBlankBorderTextCen ("Type Next CategoryID to Update Or Type 'B' to Back");
-
                 bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
-
                 bannerUserInput ();
-
             } else {
                 screenClear ();
                 bannerFullBorder ();
@@ -299,26 +245,8 @@ void categoryEdit () {
                     bannerBlankBorder ();
                 bannerBlankBorderTextCen ("Type 'Q' to stop   |      ALTERNATE RESPONSE      |   Type 'B' to back");
                 bannerFullBorder ();
-
                 bannerUserInput ();
             }
         }
     }
 }
-/*
- *                                             All hail the god..
- *  -----------------------------------------------------------------------------------------------------------------------
- *  |      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      |
- *  |    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    |
- *  |    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    |
- *  |    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    |
- *  |  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  |
- *  | (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) |
- *  |---------------||---------------||---------------||---------------||---------------||---------------||---------------|
- *  |     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     |
- *  |     Monday    ||    Tuesday    ||   Wednesday   ||    Thursday   ||     Friday    ||    Saturday   ||     Sunday    |
- *  -----------------------------------------------------------------------------------------------------------------------
- *                                         Program bug best enemy
- *                                 Please. No bug. No crash. No interrupt.
- *  -----------------------------------------------------------------------------------------------------------------------
- */

@@ -12,17 +12,12 @@ void oneDayReport (int date, int month, int year) {
 
     time_t startTime = toEpochTime (date, month, year, 0, 0, 0);   // From: dd/mm/yyyy 00:00:00
     time_t endTime = toEpochTime (date, month, year, 23, 59, 59);  // To:   dd/mm/yyyy 23:59:59
-
-    int i;
-
-    for ( i = 0; i < numberOfCategoryRecords; i++ ) {
-        // Initial the values
+    for (int i = 0; i < numberOfCategoryRecords; i++ ) {
         strcpy (RevenueByCategory[i].categoryName, Category[i].name);
         RevenueByCategory[i].totalPrice = 0;
         RevenueByCategory[i].totalProfit = 0;
     }
-
-    for ( i = 0;
+    for (int i = 0;
           i < numberOfTransactionRecords && isTimeInRange (Transaction[i].timestamp, startTime, endTime) <= 0; i++ ) {
         if ( isTimeInRange (Transaction[i].timestamp, startTime, endTime) == 0 ) {
             // If the record is in the time range
@@ -30,26 +25,20 @@ void oneDayReport (int date, int month, int year) {
             RevenueByCategory[Transaction[i].inventoryCategoryId].totalProfit += Transaction[i].inventoryProfit;
         }
     }
-
 }
 
 void multipleDayReport (int fromDate, int fromMonth, int fromYear, int toDate, int toMonth, int toYear) {
     int numberOfTransactionRecords = RecordCount.transaction;
     int numberOfCategoryRecords = RecordCount.category;
-
     time_t startTime = toEpochTime (fromDate, fromMonth, fromYear, 0, 0, 0);   // From: dd/mm/yyyy 00:00:00
     time_t endTime = toEpochTime (toDate, toMonth, toYear, 23, 59, 59);  // To:   dd/mm/yyyy 23:59:59
-
-    int i;
-
-    for ( i = 0; i < numberOfCategoryRecords; i++ ) {
+    for (int i = 0; i < numberOfCategoryRecords; i++ ) {
         // Initial the values
         strcpy (RevenueByCategory[i].categoryName, Category[i].name);
         RevenueByCategory[i].totalPrice = 0;
         RevenueByCategory[i].totalProfit = 0;
     }
-
-    for ( i = 0;
+    for ( int i = 0;
           i < numberOfTransactionRecords && isTimeInRange (Transaction[i].timestamp, startTime, endTime) <= 0; i++ ) {
         if ( isTimeInRange (Transaction[i].timestamp, startTime, endTime) == 0 ) {
             // If the record is in the time range
@@ -62,20 +51,15 @@ void multipleDayReport (int fromDate, int fromMonth, int fromYear, int toDate, i
 void nextnDayReport (int fromDate, int fromMonth, int fromYear, int nDay) {
     int numberOfTransactionRecords = RecordCount.transaction;
     int numberOfCategoryRecords = RecordCount.category;
-
     time_t startTime = toEpochTime (fromDate, fromMonth, fromYear, 0, 0, 0);         // From: dd/mm/yyyy 00:00:00
     time_t endTime = toEpochTime (fromDate + nDay, fromMonth, fromYear, 23, 59, 59);  // To:   dd/mm/yyyy 23:59:59
-
-    int i;
-
-    for ( i = 0; i < numberOfCategoryRecords; i++ ) {
+    for ( int i = 0; i < numberOfCategoryRecords; i++ ) {
         // Initial the values
         strcpy (RevenueByCategory[i].categoryName, Category[i].name);
         RevenueByCategory[i].totalPrice = 0;
         RevenueByCategory[i].totalProfit = 0;
     }
-
-    for ( i = 0;
+    for ( int i = 0;
           i < numberOfTransactionRecords && isTimeInRange (Transaction[i].timestamp, startTime, endTime) <= 0; i++ ) {
         if ( isTimeInRange (Transaction[i].timestamp, startTime, endTime) == 0 ) {
             // If the record is in the time range
@@ -91,17 +75,13 @@ void nextnMonthReport (int fromDate, int fromMonth, int fromYear, int nMonth) {
 
     time_t startTime = toEpochTime (fromDate, fromMonth, fromYear, 0, 0, 0);            // From: dd/mm/yyyy 00:00:00
     time_t endTime = toEpochTime (fromDate, fromMonth + nMonth, fromYear, 23, 59, 59);   // To:   dd/mm/yyyy 23:59:59
-
-    int i;
-
-    for ( i = 0; i < numberOfCategoryRecords; i++ ) {
+    for ( int i = 0; i < numberOfCategoryRecords; i++ ) {
         // Initial the values
         strcpy (RevenueByCategory[i].categoryName, Category[i].name);
         RevenueByCategory[i].totalPrice = 0;
         RevenueByCategory[i].totalProfit = 0;
     }
-
-    for ( i = 0;
+    for ( int i = 0;
           i < numberOfTransactionRecords && isTimeInRange (Transaction[i].timestamp, startTime, endTime) <= 0; i++ ) {
         if ( isTimeInRange (Transaction[i].timestamp, startTime, endTime) == 0 ) {
             // If the record is in the time range
@@ -115,24 +95,19 @@ void nextnMonthReport (int fromDate, int fromMonth, int fromYear, int nMonth) {
 void monthlyReport (unsigned int year) {
     int numberOfPurchaseRecords = RecordCount.purchase;
     int numberOfMonth = 12;
-
     time_t startTime;
     time_t endTime;
-
     int monthIndex;
-
-    int i, j;
-
-    for ( i = 0; i < numberOfMonth; i++ ) {
+    for ( int i = 0; i < numberOfMonth; i++ ) {
         // Initial the values
         strcpy (RevenueByMonth[i].monthName, monthName[i]);
         RevenueByMonth[i].totalPrice = 0;
         RevenueByMonth[i].totalProfit = 0;
     }
-    for ( i = 0; i < 12; i++ ) {
+    for ( int i = 0; i < 12; i++ ) {
         startTime = toEpochTime (1, i + 1, year, 0, 0, 0);            // From: 01/01/yyyy 00:00:00
         endTime = toEpochTime (31, i + 1, year, 23, 59, 59);   // To:   31/12/yyyy 23:59:59
-        for ( j = 0; j < numberOfPurchaseRecords; j++ ) {
+        for ( int j = 0; j < numberOfPurchaseRecords; j++ ) {
             if ( isTimeInRange (Purchase[j].timestamp, startTime, endTime) == 0 ) {
                 // If the record is in the time range
                 monthIndex = i;
@@ -148,44 +123,32 @@ void tomorrowSaleForecast () {
     // Setting
     int nDayRollback = 7;    // Maximum number of day that will be sampling
     double alpha;    // A weight of forecasting
-
     // Getting time now & convert to the format of dd/mm/yyyy
     int dateToday, monthToday, yearToday;
     time_t epochTimeNow = time (NULL);
     toDateMonthYear (epochTimeNow, &dateToday, &monthToday, &yearToday);
-
     // Getting the real rolling days that can be rolled
     nDayRollback = getProperTimeRollingInDay (dateToday, monthToday, yearToday, nDayRollback);
 
     int dateRollbacked, monthRollbacked, yearRollbacked;
     time_t timeRollbacked = nDayRollbackToDateMonthYear (dateToday, monthToday, yearToday, nDayRollback);
     toDateMonthYear (timeRollbacked, &dateRollbacked, &monthRollbacked, &yearRollbacked);
-
-
     int numberOfCategoryRecords = RecordCount.category;
     int i, j, datePassed;
     long double pastTotalPrice, pastTotalProfit, pastForecastTotalPrice, pastForecastTotalProfit;
-
     long double sumSquareError, minSumSquareError;
     // Initialing
-
-    for ( i = 0; i < numberOfCategoryRecords; i++ ) {
+    for ( i = 0; i < numberOfCategoryRecords; i++ )
         strcpy (SaleForecastByCategory[i].categoryName, Category[i].name);
-    }
-
     for ( i = 0; i < numberOfCategoryRecords; i++ ) { // For each category
-
         datePassed = 0;
         sumSquareError = 0;
         minSumSquareError = 3.402823e+38;
-
         for ( int iter = 1; iter <= 100; iter++ ) {
             alpha = iter / 100.0;
             while ( datePassed < nDayRollback + 1 +
                                  1 ) {    // + 1 means `today also be used as sampling` & + 1 means `tomorrow` (forecasting)
-
                 oneDayReport (dateRollbacked + datePassed, monthRollbacked, yearRollbacked);
-
                 if ( datePassed == 0 ) {    // First time, assign the initial values
                     SaleForecastByCategory[i].totalPrice = RevenueByCategory[i].totalPrice;
                     SaleForecastByCategory[i].totalProfit = RevenueByCategory[i].totalProfit;
@@ -197,7 +160,6 @@ void tomorrowSaleForecast () {
                     SaleForecastByCategory[i].totalProfit =
                             pastForecastTotalProfit + (alpha * (pastTotalProfit - pastForecastTotalProfit));
                 }
-
                 // Find Sum of Squared Error (From `start date` to `today`)
                 if ( datePassed <= nDayRollback ) {
                     sumSquareError += pow (SaleForecastByCategory[i].totalPrice - RevenueByCategory[i].totalPrice, 2);
@@ -208,115 +170,39 @@ void tomorrowSaleForecast () {
                 pastTotalProfit = RevenueByCategory[i].totalProfit;
                 pastForecastTotalPrice = SaleForecastByCategory[i].totalPrice;
                 pastForecastTotalProfit = SaleForecastByCategory[i].totalProfit;
-
                 // Next day
                 datePassed++;
-
             }
             if ( sumSquareError < minSumSquareError ) {
                 minSumSquareError = sumSquareError;
                 SaleForecastByCategoryTemp = SaleForecastByCategory[i];
             }
-
         }
         SaleForecastByCategory[i] = SaleForecastByCategoryTemp;
     }
-
 }
-
-/*
-// Mannual alpha adjusting
-
-void tomorrowSaleForecast(){
-	// Setting
-	int nDayRollback = 7;	// Number of day that will be sampling
-	double alpha = 0.5;		// A weight of forecasting
-
-	// Getting time now & convert to the format of dd/mm/yyyy
-	int dateToday, monthToday, yearToday;
-	time_t epochTimeNow = time(NULL);
-	toDateMonthYear(epochTimeNow, &dateToday, &monthToday, &yearToday);
-
-	int dateRollbacked, monthRollbacked, yearRollbacked;
-	time_t timeRollbacked = nDayRollbackToDateMonthYear(dateToday, monthToday, yearToday, nDayRollback);
-	toDateMonthYear(timeRollbacked, &dateRollbacked, &monthRollbacked, &yearRollbacked);
-
-
-	int numberOfCategoryRecords = RecordCount.category;
-	int i, j, datePassed;
-	double pastTotalPrice, pastTotalProfit, pastForecastTotalPrice, pastForecastTotalProfit;
-
-	// Initialing
-
-	for(i = 0; i < numberOfCategoryRecords; i++){
-		strcpy(SaleForecastByCategory[i].categoryName, Category[i].name);
-	}
-
-
-	for(i = 0; i < numberOfCategoryRecords; i++){ // For each category
-
-		datePassed = 0;
-		while(datePassed < nDayRollback + 1 + 1){	// + 1 means `today also be used as sampling` & + 1 means `tomorrow` (forecasting)
-			oneDayReport(dateRollbacked + datePassed, monthRollbacked, yearRollbacked);
-
-			if(datePassed == 0){ 	// First time, assign the initial values
-				SaleForecastByCategory[i].totalPrice = RevenueByCategory[i].totalPrice;
-				SaleForecastByCategory[i].totalProfit = RevenueByCategory[i].totalProfit;
-			}
-			else{
-				// Revenue Forecasting
-				SaleForecastByCategory[i].totalPrice = pastForecastTotalPrice + (alpha * (pastTotalPrice - pastForecastTotalPrice));
-				// Profit Forecasting
-				SaleForecastByCategory[i].totalProfit = pastForecastTotalProfit + (alpha * (pastTotalProfit - pastForecastTotalProfit));
-			}
-
-			// Store past value to use in the next loop
-			pastTotalPrice = RevenueByCategory[i].totalPrice;
-			pastTotalProfit = RevenueByCategory[i].totalProfit;
-			pastForecastTotalPrice = SaleForecastByCategory[i].totalPrice;
-			pastForecastTotalProfit = SaleForecastByCategory[i].totalProfit;
-
-			// Next day
-			datePassed++;
-		}
-	}
-}
-*/
-
 
 void nextMonthSaleForecast () {
-    // Setting
     double alpha;    // A weight of forecasting
-
     // Getting time now & convert to the format of dd/mm/yyyy
     int dateToday, monthToday, yearToday;
     time_t epochTimeNow = time (NULL);
     toDateMonthYear (epochTimeNow, &dateToday, &monthToday, &yearToday);
-
-
     int numberOfMonths = 12;
     int i, j, monthPassed;
     double pastTotalPrice, pastTotalProfit, pastForecastTotalPrice, pastForecastTotalProfit;
-
     long double sumSquareError, minSumSquareError;
     // Initialing
-
-
     strcpy (SaleForecastByMonth.monthName, monthName[monthToday]);
-
     monthlyReport (yearToday);
-
     i = getProperTimeStartInMonth (monthToday, yearToday) - 1; // - 1 because, the index of RevenueByMonth is start at 0
-
     for ( int iter = 1; iter <= 100; iter++ ) {
         alpha = iter / 100.0;
         sumSquareError = 0;
         minSumSquareError = 3.402823e+38;
         monthPassed = 0;
-
-        for ( ; i < monthToday +
+        for ( int i = 0; i < monthToday +
                          1; i++ ) { // means `this month also be used as sampling` & + 1 means `next month` (forecasting)
-                
             if ( monthPassed == 0 ) {    // First time, assign the initial values
                 SaleForecastByMonth.totalPrice = RevenueByMonth[i].totalPrice;
                 SaleForecastByMonth.totalProfit = RevenueByMonth[i].totalProfit;
@@ -328,51 +214,33 @@ void nextMonthSaleForecast () {
                 SaleForecastByMonth.totalProfit =
                         pastForecastTotalProfit + (alpha * (pastTotalProfit - pastForecastTotalProfit));
             }
-
             // Find Sum of Squared Error (From `January` to `Current month`)
             if ( i <= monthToday - 1 ) {
                 sumSquareError += pow (SaleForecastByMonth.totalPrice - RevenueByMonth[i].totalPrice, 2);
                 sumSquareError += pow (SaleForecastByMonth.totalProfit - RevenueByMonth[i].totalProfit, 2);
             }
-
             // Store past value to use in the next loop
             pastTotalPrice = RevenueByMonth[i].totalPrice;
             pastTotalProfit = RevenueByMonth[i].totalProfit;
             pastForecastTotalPrice = SaleForecastByMonth.totalPrice;
             pastForecastTotalProfit = SaleForecastByMonth.totalProfit;
-
             // Next month
             monthPassed++;
-
         }
         if ( sumSquareError < minSumSquareError ) {
             minSumSquareError = sumSquareError;
             SaleForecastByMonthTemp = SaleForecastByMonth;
         }
     }
-
     SaleForecastByMonth = SaleForecastByMonthTemp;
-
 }
-
-/*
-void nextYearSaleForecast(){
-	
-}
-
-
-
-*/
 
 void personnelSaleReport (unsigned int year) {
     int numberOfPersonnelRecords = RecordCount.personnel;
     int numberOfPurchaseRecords = RecordCount.purchase;
-
     time_t startTime = toEpochTime (1, 1, year, 0, 0, 0);            // From: 01/01/yyyy 00:00:00
     time_t endTime = toEpochTime (31, 12, year, 23, 59, 59);   // To:   31/12/yyyy 23:59:59
-
     int i, j;
-
     for ( i = 0; i < numberOfPersonnelRecords; i++ ) {
         // Initializing the information of each record
         strcpy (RevenueByPersonnel[i].id, Personnel[i].id);
@@ -380,7 +248,6 @@ void personnelSaleReport (unsigned int year) {
         strcpy (RevenueByPersonnel[i].lastname, Personnel[i].lastname);
         RevenueByPersonnel[i].totalPrice = 0;
         RevenueByPersonnel[i].totalProfit = 0;
-
         for ( j = 0;
               j < numberOfPurchaseRecords && isTimeInRange (Purchase[j].timestamp, startTime, endTime) <= 0; j++ ) {
             if ( strcmp (Personnel[i].id, Purchase[j].personnelId) == 0 &&
@@ -395,17 +262,14 @@ void personnelSaleReport (unsigned int year) {
 int checkErrorIn = 0; //State for Error.
 void reportSwitchHub () {
     screenClear ();
-
     bannerFullBorder ();
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Report of Sales");
     bannerBlankBorder ();
     bannerFullBorder ();
 
-    for ( int i = 0; i < 11; ++i ) {
+    for ( int i = 0; i < 11; ++i )
         bannerBlankBorder ();
-    }
-
     bannerBlankBorderTextCen ("What do you want to do ?");
     bannerBlankBorder ();
     bannerBlankBorder ();
@@ -413,52 +277,38 @@ void reportSwitchHub () {
     bannerBlankBorderTextCen ("2. View monthly report");
     bannerBlankBorderTextCen ("3. View personnel sale report");
     bannerBlankBorderTextCen ("4. View multiple day report");
-
-
-    for ( int i = 0; i < 12; i++ ) {
+    for ( int i = 0; i < 12; i++ )
         bannerBlankBorder ();
-    }
-
     if ( checkErrorIn )
         bannerBlankBorderTextCen ("Invalid input. Please try again !!!!");
     bannerBlankBorder ();
     bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
     bannerFullBorder ();
-
     /*-----User input------*/
-
     bannerUserInput ();
     char UserIn;
     scanf (" %c", &UserIn);
-
     switch ( toupper (UserIn)) {
-
         case ('1'):
             checkErrorIn = 0;
             OneDayReportInputProcess ();
             break;
-
         case ('2'):
             checkErrorIn = 0;
             MonthlyReportInputProcess ();
             break;
-
         case ('3'):
             checkErrorIn = 0;
             PersonnelSaleReportInputProcess ();
             break;
-
         case ('4'):
             checkErrorIn = 0;
             MultipleDayReportInputProcess ();
             break;
-
         case ('B'):
             switchHub ();
-
         case ('Q'):
             terminate ();
-
         default:
             checkErrorIn = 1;
             reportSwitchHub ();
@@ -473,24 +323,21 @@ void OneDayReportInputProcess () {
     bannerBlankBorderTextCen ("One Day Report");
     bannerBlankBorder ();
     bannerFullBorder ();
-    for ( int i = 0; i < 15; ++i ) {
+    for ( int i = 0; i < 15; ++i )
         bannerBlankBorder ();
-    }
     bannerBlankBorderTextCen ("Please enter date...");
     bannerBlankBorderTextCen ("Example --> dd/mm/yyyy");
-    for ( int i = 0; i < 14; ++i ) {
+    for ( int i = 0; i < 14; ++i )
         bannerBlankBorder ();
-    }
     bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
     bannerFullBorder ();
-    /*--------------------------*/
     int dateIN, monthIN, yearIN;
     char swInput[5];
-    //Input
+    // Input
     bannerUserInput ();
     scanf (" %d/%d/%d", &dateIN, &monthIN, &yearIN);
     sprintf (swInput, "%d", dateIN);
-    //Process
+    // Process
     oneDayReport (dateIN, monthIN, yearIN);
     OneDayReportInterface ();
 }
@@ -501,21 +348,16 @@ void displayOneDayReport (int page) {
     bannerFullBorder ();
     printf (":: %-68s |             Revenue            |              Profit            ::\n", "Category Name");
     bannerFullBorder ();
-
     if ( page == allPage ) {
-        for ( int i = (page - 1) * 32; i < RecordCount.category; ++i ) {
+        for ( int i = (page - 1) * 32; i < RecordCount.category; ++i )
             printf (":: %-68s | %30.2lf | %30.2lf ::\n", RevenueByCategory[i].categoryName,
                     RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit);
-        }
-        for ( int i = 0; i < 32 - (RecordCount.category % 32); ++i ) {
+        for ( int i = 0; i < 32 - (RecordCount.category % 32); ++i )
             printf ("::                                                                      |                                |                                ::\n");
-        }
-    } else {
-        for ( int i = (page - 1) * 32; i < page * 32/*(34*page)*/; ++i ) {
+    } else
+        for ( int i = (page - 1) * 32; i < page * 32/*(34*page)*/; ++i )
             printf (":: %-68s | %30.2lf | %30.2lf ::\n", RevenueByCategory[i].categoryName,
                     RevenueByCategory[i].totalPrice, RevenueByCategory[i].totalProfit);
-        }
-    }
     bannerBlankBorderTextCen ("'N' to enter new date | Enter Page(e.g. 1, 2, 3) | 'B' to Check Report Menu");
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
@@ -550,28 +392,24 @@ void OneDayReportInterface () {
 }
 
 /*---------------------------------------------------------------Monthly Report----------------------------------------------------------------------*/
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MonthlyReportInputProcess () {
     /*-----Initial interface-----*/
     screenClear ();
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Monthly Report");
     bannerFullBorder ();
-    for ( int i = 0; i < 16; ++i ) {
+    for ( int i = 0; i < 16; ++i )
         bannerBlankBorder ();
-    }
     bannerBlankBorderTextCen ("Please enter year...");
     bannerBlankBorderTextCen ("Example --> 2017");
-    for ( int i = 0; i < 16; ++i ) {
+    for ( int i = 0; i < 16; ++i )
         bannerBlankBorder ();
-    }
     bannerFullBorder ();
-    /*--------------------------*/
     unsigned int year;
-    //Input
+    // Input
     bannerUserInput ();
     scanf ("%u", &year);
-    //Process
+    // Process
     monthlyReport (year);
     MonthlyReportInterface ();
 }
@@ -581,13 +419,11 @@ void displayMonthlyReport () {
     bannerFullBorder ();
     printf (":: %-68s |             Revenue            |              Profit            ::\n", "Month");
     bannerFullBorder ();
-    for ( int i = 0; i < 12; ++i ) {
+    for ( int i = 0; i < 12; ++i )
         printf (":: %-68s | %30.2lf | %30.2lf ::\n", RevenueByMonth[i].monthName, RevenueByMonth[i].totalPrice,
                 RevenueByMonth[i].totalProfit);
-    }
-    for ( int i = 0; i < 21; ++i ) {
+    for ( int i = 0; i < 21; ++i )
         printf ("::                                                                      |                                |                                ::\n");
-    }
     bannerBlankBorderTextCen ("'N' to enter year again  |      ALTERNATE RESPONSE      |  'B' to Check Report Menu ");
     bannerFullBorder ();
     bannerUserInput ();
@@ -612,28 +448,24 @@ void MonthlyReportInterface () {
 }
 
 /*---------------------------------------------------------------Personnel Report----------------------------------------------------------------------*/
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void PersonnelSaleReportInputProcess () {
     /*-----Initial interface-----*/
     screenClear ();
     bannerFullBorder ();
     bannerBlankBorderTextCen ("Personeel Sale Report");
     bannerFullBorder ();
-    for ( int i = 0; i < 16; ++i ) {
+    for ( int i = 0; i < 16; ++i )
         bannerBlankBorder ();
-    }
     bannerBlankBorderTextCen ("Please enter year...");
     bannerBlankBorderTextCen ("Example --> 2017");
-    for ( int i = 0; i < 16; ++i ) {
+    for ( int i = 0; i < 16; ++i )
         bannerBlankBorder ();
-    }
     bannerFullBorder ();
-    /*--------------------------*/
     unsigned int year;
-    //Input
+    // Input
     bannerUserInput ();
     scanf ("%u", &year);
-    //Process
+    // Process
     personnelSaleReport (year);
     PersonnelSaleReportInterface ();
 }
@@ -650,20 +482,15 @@ void displayPersonnelSaleReport (int page) {
             printf (":: %-14s | %-35s | %-35s | %19.2lf | %19.2lf ::\n", RevenueByPersonnel[i].id,
                     RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice,
                     RevenueByPersonnel[i].totalProfit);
-            //bannerBlankBorder();
         }
-        //display remaining line as bannerBlankBorder()
-        for ( int i = 0; i < 32 - (RecordCount.personnel % 32); ++i ) {
+        for ( int i = 0; i < 32 - (RecordCount.personnel % 32); ++i )
             printf (":: %-14s | %-35s | %-35s | %19s | %19s ::\n", "", "", "", "", "");
-        }
-    } else {
+    } else
         for ( int i = (page - 1) * 32; i < page * 32/*(34*page)*/; ++i ) {
             printf (":: %-14s | %-35s | %-35s | %19.2lf | %19.2lf ::\n", RevenueByPersonnel[i].id,
                     RevenueByPersonnel[i].firstname, RevenueByPersonnel[i].lastname, RevenueByPersonnel[i].totalPrice,
                     RevenueByPersonnel[i].totalProfit);
-            //bannerBlankBorder();
         }
-    }
     bannerBlankBorderTextCen ("'N' to enter new year | Enter Page | 'B' to back to Check Report Menu");
     printf ("::                                                       <<  <  ( Page %d of %d ) > >>                                                      ::\n",
             page, allPage);
@@ -699,7 +526,6 @@ void PersonnelSaleReportInterface () {
 }
 
 /*---------------------------------------------------------------Multiple Day Report----------------------------------------------------------------------*/
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MultipleDayReportInputProcess () {
     /*-----Initial interface-----*/
     screenClear ();
@@ -783,8 +609,6 @@ void MultipleDayReportInterface () {
 }
 
 /*---------------------------------------------------------------forecasting----------------------------------------------------------------------*/
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 int ErrorINput = 0;
 
 void forecastSwitchHub () {
@@ -848,7 +672,6 @@ void forecastSwitchHub () {
 }
 
 /*---------------------------------------------------------------Tomorrow forecasting----------------------------------------------------------------------*/
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void displayTomorrowForecasting (int page) {
     screenClear ();
     int allPage = (int) ceil (RecordCount.category / 32) + 1;
@@ -943,7 +766,6 @@ void ShowTomorrowForecasting () {
     }
 }
 /*---------------------------------------------------------------Next Month forecasting----------------------------------------------------------------------*/
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ShowNextMonthForecasting () {
     nextMonthSaleForecast ();//Execute Forecast processing.
 
@@ -964,7 +786,6 @@ void ShowNextMonthForecasting () {
 
 void displayNextMonthForecasting () {
     screenClear ();
-
     time_t today = time (NULL);
     int date, month, year;
     toDateMonthYear (today, &date, &month, &year);
@@ -975,9 +796,8 @@ void displayNextMonthForecasting () {
     bannerBlankBorderTextCen ("Next Month Forecasting");
     bannerBlankBorder ();
     bannerFullBorder ();
-    for ( int i = 0; i < 11; ++i ) {
+    for ( int i = 0; i < 11; ++i )
         bannerBlankBorder ();
-    }
     printf (":: %67s %-10s %-55d ::\n", "This month:", thisMonthName, year);
     printf (":: %67s %-66.2lf ::\n", "- Revenue:", RevenueByMonth[month - 1].totalPrice);
     printf (":: %67s %-66.2lf ::\n", "- Profit:", RevenueByMonth[month - 1].totalProfit);
@@ -985,9 +805,8 @@ void displayNextMonthForecasting () {
     printf (":: %67s %-10s %-55d ::\n", "Next month:", SaleForecastByMonth.monthName, year);
     printf (":: %67s %-66.2lf ::\n", "- Revenue:", SaleForecastByMonth.totalPrice);
     printf (":: %67s %-66.2lf ::\n", "- Profit:", SaleForecastByMonth.totalProfit);
-    for ( int i = 0; i < 13; ++i ) {
+    for ( int i = 0; i < 13; ++i )
         bannerBlankBorder ();
-    }
     bannerBlankBorderTextCen ("Type 'Q' to quit  |      ALTERNATE RESPONSE      |  Type 'B' to back");
     bannerFullBorder ();
     bannerUserInput ();
@@ -1004,20 +823,3 @@ void displayNextMonthForecasting () {
             displayNextMonthForecasting ();
     }
 }
-/*
- *                                             All hail the god..
- *  -----------------------------------------------------------------------------------------------------------------------
- *  |      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      ||      _=_      |
- *  |    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    ||    q(-_-)p    |
- *  |    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    ||    '_) (_`    |
- *  |    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    ||    /__/  \    |
- *  |  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  ||  _(<_   / )_  |
- *  | (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) || (__\_\_|_/__) |
- *  |---------------||---------------||---------------||---------------||---------------||---------------||---------------|
- *  |     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     ||     Hello     |
- *  |     Monday    ||    Tuesday    ||   Wednesday   ||    Thursday   ||     Friday    ||    Saturday   ||     Sunday    |
- *  -----------------------------------------------------------------------------------------------------------------------
- *                                         Program bug best enemy
- *                                 Please. No bug. No crash. No interrupt.
- *  -----------------------------------------------------------------------------------------------------------------------
- */
