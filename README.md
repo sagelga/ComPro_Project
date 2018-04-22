@@ -5,12 +5,12 @@
 
 โดยนอกเหนือจาก ระบบ POS แล้ว ทางระบบได้มีระบบการคาดเดาข้อมูลเกี่ยวกับการขาย และการสมัครสมาชิกของผู้ใช้งานร่วมกับการขายของทั่วไป
 
-ทำให้ระบบ POS นี้ทำงานได้อย่างครบวงจร เหมาะสำหรับการใช้งานกับร้านค้าต่างๆ เช่นร้านป้าไม่ได้อะไรเลย เป็นต้น
+ทำให้ระบบ POS นี้ทำงานได้อย่างครบวงจร เหมาะสำหรับการใช้งานกับร้านค้าต่างๆ เช่นร้านสะดวกซื้อ ร้านของชำ ร้านอาหาร เป็นต้น
 
 ---
 # ![](https://png.icons8.com/ios/50/000000/table-of-content.png) Table of Contents
-|[Install](https://github.com/sagelga/ComPro_Project/tree/develop/readme#--installation)|[How to use](https://github.com/sagelga/ComPro_Project/tree/develop/readme#-contributing)|[Features](https://github.com/sagelga/ComPro_Project/tree/develop/readme#features)|[Wiki](https://github.com/sagelga/ComPro_Project/wiki)|[Team Member](https://github.com/sagelga/ComPro_Project#-team-members)|[Contribute](https://github.com/sagelga/ComPro_Project/tree/develop/readme#-contributing)|
-|-|----|-------|----|-----------|----------|
+|[Install](https://github.com/sagelga/ComPro_Project/tree/develop/readme#--installation)|[How to use](https://github.com/sagelga/ComPro_Project/tree/develop/readme#-contributing)|[Features](https://github.com/sagelga/ComPro_Project/tree/develop/readme#features)|[Wiki](https://github.com/sagelga/ComPro_Project/wiki)|[Team Member](https://github.com/sagelga/ComPro_Project#-team-members)|[Contribute](https://github.com/sagelga/ComPro_Project/tree/develop/readme#-contributing)|[System Report](https://github.com/sagelga/ComPro_Project/wiki/System-Report)
+|-|----|-------|----|-----------|---------|-|
 
 # ![](img/Settings.png)  Installation
 สำหรับการใช้งานนั้น ผู้ใช้จะต้องทำการ `git clone` เพื่อทำการนำโปรเจ็คเข้าสู่คอมพิวเตอร์ก่อน หากไม่ทราบวิธีการ clone ก็สามารถเรียนวิธีการ clone repository [ที่นี่](https://help.github.com/articles/cloning-a-repository/)
@@ -26,6 +26,7 @@
 ![](img/Startup%20Page.png)
 
 ---
+
 # How to use
 สำหรับการใช้งานระบบนั้น ทางผู้จัดทำได้จัดเก็บไว้ที่ https://github.com/sagelga/ComPro_Project/wiki
 
@@ -33,6 +34,8 @@
 ![](img/github-wiki-tab.png)
 
 เราแนะนำให้ท่านเข้าไปดูใน wiki เพื่อเรียนรู้วิธีการใช้งานระบบ
+
+---
 
 ## Features
 สำหรับการใช้งานระบบ POS ก็จะมีระบบย่อยๆ ต่างๆ เพื่อช่วยในการขาย เช่น
@@ -203,10 +206,5 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 หรือเรียนวิธีการ fork ได้ที่ https://guides.github.com/activities/forking/
 
 ---
-
-# ![](img/Line%20Chart.png) Status Check
-|![](img/TravisCI%20Mascot.png) <br> Travis-CI|![](img/TravisCI%20Mascot.png) <br> Travis-CI|
-|:-:|:-:|
-|Master <br/> [![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=master)](https://travis-ci.org/sagelga/ComPro_Project)|Development <br/> [![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=development)](https://travis-ci.org/sagelga/ComPro_Project)|
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/powered-by-responsibility.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/built-with-swag.svg)](https://forthebadge.com)
