@@ -1,4 +1,4 @@
-![](/Resource/Banner.png)
+![](img/Banner.png)
 
 # ![](img/Home.png) Introduction
 สวัสดีครับ วันนี้กลุ่ม POS System เราได้สร้างโปรแกรมที่นำไปใช้กับเครื่องคิดเงิน (หรือที่เรียกว่า ระบบ Point of Sale) อย่างเต็มรูปแบบ และสามารถทำงานได้จริง และรองรับการทำงานได้ในหลายระบบปฎิบัติการที่สร้างขื้นจากระบบ UNIX โดยการใช้เพียงภาษา C ในการเขียน 100%
@@ -9,18 +9,15 @@
 
 ---
 # ![](https://png.icons8.com/ios/50/000000/table-of-content.png) Table of Contents
-- วิธีการใช้งานระบบ [Wiki](https://github.com/sagelga/ComPro_Project/wiki)
-- ผู้พัฒนาระบบ [Team Member](https://github.com/sagelga/ComPro_Project#-team-members)
-- วิธีการ contribute [Contribute]()
-
+|[Install](https://github.com/sagelga/ComPro_Project/tree/develop/readme#--installation)|[How to use](https://github.com/sagelga/ComPro_Project/tree/develop/readme#-contributing)|[Features](https://github.com/sagelga/ComPro_Project/tree/develop/readme#features)|[Wiki](https://github.com/sagelga/ComPro_Project/wiki)|[Team Member](https://github.com/sagelga/ComPro_Project#-team-members)|[Contribute](https://github.com/sagelga/ComPro_Project/tree/develop/readme#-contributing)|
+|-|----|-------|----|-----------|----------|
 
 # ![](img/Settings.png)  Installation
-สำหรับการใช้งานนั้น ผู้ใช้จะต้องทำการ `git clone` เพื่อทำการนำโปรเจ็คเข้าสู่คอมพิวเตอร์ก่อน [วิธีการ clone repository](https://help.github.com/articles/cloning-a-repository/)
+สำหรับการใช้งานนั้น ผู้ใช้จะต้องทำการ `git clone` เพื่อทำการนำโปรเจ็คเข้าสู่คอมพิวเตอร์ก่อน หากไม่ทราบวิธีการ clone ก็สามารถเรียนวิธีการ clone repository [ที่นี่](https://help.github.com/articles/cloning-a-repository/)
 
 และทำการไปที่โฟล์เดอร์หลักของโปรเจ็ค แล้วพิมพ์ `make && make run` ผ่าน Command Line เพื่อเป็นการ สร้างไฟล์ Executable (.exe) และโปรแกรมจะเปิดโปรแกรมขื้นมาให้ทันทีอัตโนมัติ สามารถใช้ระบบได้เลยทันที
 
 ![](img/First%20time%20Loadup.png)
-
 
 โปรแกรมของเรา จะรันได้อย่างราบรื่นมากที่สุดโดยผ่านการใช้ระบบปฏิบัติการ MacOS เวอร์ชั่นล่าสุด และระบบปฏิบัติการที่มาจาก UNIX (UNIX-based OS) เช่น Linux Ubuntu และผู้ใช้จะต้องมี GCP เพื่อทำการรันภาษา C (โดยปกติแล้ว ทุกเครื่องจะมี GCP อยู่แล้ว)
 
@@ -29,13 +26,13 @@
 ![](img/Startup%20Page.png)
 
 ---
-# Usage
+# How to use
 สำหรับการใช้งานระบบนั้น ทางผู้จัดทำได้จัดเก็บไว้ที่ https://github.com/sagelga/ComPro_Project/wiki
 
-หรือเข้าไปโดยการกด 'Wiki' 
+หรือเข้าไปโดยการกด 'Wiki' ที่ tab ด้านบน<br> 
 ![](img/github-wiki-tab.png)
 
-เราแนะนำให้ท่านเข้าไปดู เพื่อเรียนรู้วิธีการใช้งานระบบที่ wiki ของเรา
+เราแนะนำให้ท่านเข้าไปดูใน wiki เพื่อเรียนรู้วิธีการใช้งานระบบ
 
 ## Features
 สำหรับการใช้งานระบบ POS ก็จะมีระบบย่อยๆ ต่างๆ เพื่อช่วยในการขาย เช่น
@@ -66,6 +63,8 @@ password : admin
 ```
 
 เพื่อทำการ login เข้าสู่ระบบ
+
+> ท่านสามารถเข้าไปดูผู้ใช้งานได้ที่ไฟล์ `/Database/personnel.db`
 
 ---
 
@@ -113,13 +112,13 @@ password : admin
 |6|เพื่มประเภทสืนค้า|เพื่มชื่อประเภทสินค้่าโดยการพิมพ์ชื่อประเภทที่เราต้องการ <br> (หากมีชื่อนั้นอยู่แล้ว จะไม่สามารถตั้งซ้ำได้) <br> และระบบจะสร้าง ไอดี เพื่อนำไปติดกับสินค้าได้|
 |7|เปลี่ยนชื่อของประเภทสืนค้า|เปลี่ยนชื่อประเภทสินค้าโดยการพิมพ์ชื่อประเภทเก่าที่ต้องการเปลี่ยน และพิมพ์ชื่อใหม่เข้าไป ระบบจะเปลี่ยนชื่อในทันที (ไอดีจะคงเหมือนเดิม ดังนั้นระบบจะยังสามารถทำงานต่อได้อย่างปกติ)|
 
-### Inventory Database Interface
+### ![](img/Help.png) Inventory Database Interface
 ![](img/Inventory%20List.png)
 
-### Category Database Interface
+### ![](img/Help.png) Category Database Interface
 ![](img/Category%20List.png)
 
-### Reporting Interface
+### ![](img/Help.png) Reporting Interface
 ![](img/Report%20List.png)
 
 ---
@@ -135,10 +134,10 @@ password : admin
 |4|เปลี่ยนค่าคะแนนที่จะได้รับจากการใช้จ่าย|โดยที่ การใช้จ่ายทุกๆ x บาท จะได้ 1 คะแนน <br> โดยเจ้าของร้านสามารถแก้ไขค่า x ได้ และจะเรื่มใช้งานด้วยเรทใหม่กับการทำรายการหลังจากการเปลี่ยนเท่านั้น (ไม่แก้ไขย้อนหลัง)|
 |5|เปลี่ยนค่าคะแนนเป็นส่วนสดเงินสด|โดยที่ การใช้ x คะแนน สามารถแลกเป็นส่วนลดได้ 1 บาท <br> โดยเจ้าของร้านสามารถแก้ไขค่า x ได้ และจะเรื่มใช้งานด้วยเรทใหม่กับการทำรายการหลังจากการเปลี่ยนเท่านั้น (ไม่แก้ไขย้อนหลัง)|
 
-### Price to Point Interface
+### ![](img/Help.png) Price to Point Interface
 ![](img/Point%20to%20Price%20List.png)
 
-### Terminate Interface
+### ![](img/Help.png) Terminate Interface
 ![](img/Terminate.png)
 ---
 
@@ -166,7 +165,7 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 (alpha) ที่เหมาะสม ซึ่งโปรแกรม POS จะทำการเลือกค่า  ที่เหมาะสมจากการคำนวนค่า Sum of squared errors โดยจะเลือกค่า alpha ที่มีค่า Sum of squared errors ที่น้อยที่สุด
 
 
-### Daily Forecast Interface
+### ![](img/Help.png) Daily Forecast Interface
 ![](img/Forecast%20List.png)
 
 ---
@@ -192,8 +191,9 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 ---
 
 # ![](https://png.icons8.com/material/50/000000/code-fork.png) Contributing
-หากท่านชอบใจระบบของเรา ท่านก็สามาถช่วยเราในการพัฒนาระบบเพื่มได้โดยการ
-1. ทำการ fork repository โดยการกดปุ่ม [![fork this repo](http://githubbadges.com/fork.svg?user=sagelga&repo=ComPro_Project&style=default)](https://github.com/sagelga/ComPro_Project/fork)
+หากท่านชอบใจระบบของเรา ท่านก็สามาถช่วยเราในการพัฒนาระบบเพื่มเติมได้โดยการ
+1. ทำการ fork repository โดยการกดปุ่ม 'Fork'
+![](https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png)
 2. แก้ไขโค้ด **บน forked repository** ของคุณ
 3. เข้า repository หลัก และทำการสร้าง Pull Request
 4. ให้ base branch เป็น develop และ compare branch เป็น branch fork ของคุณ
@@ -209,3 +209,4 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 |:-:|:-:|
 |Master <br/> [![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=master)](https://travis-ci.org/sagelga/ComPro_Project)|Development <br/> [![Build Status](https://travis-ci.org/sagelga/ComPro_Project.svg?branch=development)](https://travis-ci.org/sagelga/ComPro_Project)|
 
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/powered-by-responsibility.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/built-with-swag.svg)](https://forthebadge.com)
