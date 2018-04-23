@@ -186,7 +186,7 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 |![https://www.facebook.com/momay.weerakorn](img/fablemay.png)|Weerakorn|Pongpum|[@fablemay](https://github.com/@fablemay)|59070163|
 
 # ![](img/Supervisor.png) Assistant Teacher
-|ผศ. ดร. กิติ์สุชาติ พสุภา|ผศ. ดร. ปานวิทย์ ธุวะนุติ|
+|ผศ. ดร. กิติ์สุชาต พสุภา|ผศ. ดร. ปานวิทย์ ธุวะนุติ|
 |:-:|:-:|
 |![](img/Aj.%20Oong.png)|![](img/Aj.%20Panwit.png)|
 
