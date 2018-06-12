@@ -9,8 +9,8 @@
 
 ---
 # ![](https://png.icons8.com/ios/50/000000/table-of-content.png) Table of Contents
-|[Install](https://github.com/sagelga/ComPro_Project/tree/develop/readme#--installation)|[How to use](https://github.com/sagelga/ComPro_Project/tree/develop/readme#-contributing)|[Features](https://github.com/sagelga/ComPro_Project/tree/develop/readme#features)|[Wiki](https://github.com/sagelga/ComPro_Project/wiki)|[Team Member](https://github.com/sagelga/ComPro_Project#-team-members)|[Contribute](https://github.com/sagelga/ComPro_Project/tree/develop/readme#-contributing)|[System Report](https://github.com/sagelga/ComPro_Project/wiki/System-Report)
-|-|----|-------|----|-----------|---------|-|
+|[Install](https://github.com/sagelga/ComPro_Project/tree/develop/readme#--installation)|[How to use](https://github.com/sagelga/ComPro_Project/tree/develop/readme#-contributing)|[Features](https://github.com/sagelga/ComPro_Project/tree/develop/readme#features)|[Wiki](https://github.com/sagelga/ComPro_Project/wiki)|[Team Member](https://github.com/sagelga/ComPro_Project#-team-members)|[System Report](https://github.com/sagelga/ComPro_Project/wiki/System-Report)
+|-|----|-------|----|-----------|---------|
 
 # ![](img/Settings.png)  Installation
 สำหรับการใช้งานนั้น ผู้ใช้จะต้องทำการ `git clone` เพื่อทำการนำโปรเจ็คเข้าสู่คอมพิวเตอร์ก่อน หากไม่ทราบวิธีการ clone ก็สามารถเรียนวิธีการ clone repository [ที่นี่](https://help.github.com/articles/cloning-a-repository/)
@@ -195,22 +195,6 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 ภาคเรียนที่ 2 ปีการศึกษา 2559<br>
 คณะเทคโนโลยีสารสนเทศ<br>
 สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง<br>
-
----
-
-# ![](https://png.icons8.com/material/50/000000/code-fork.png) Contributing
-> เนื่องจากระบบของเราเป็นส่วนหนึ่งของรายวิชา การสร้างโปรแกรมคอมพิวเตอร์ (Computer Programming) กรุณาอ่าน [LICENCE.md](LICENSE.md) สำหรับการนำไปใช้ต่อ
-
-หากท่านชอบใจระบบของเรา ท่านก็สามาถช่วยเราในการพัฒนาระบบเพื่มเติมได้โดยการ
-1. ทำการ fork repository โดยการกดปุ่ม 'Fork'
-![](https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png)
-2. แก้ไขโค้ด **บน forked repository** ของคุณ
-3. เข้า repository หลัก และทำการสร้าง Pull Request
-4. ให้ base branch เป็น develop และ compare branch เป็น branch fork ของคุณ
-5. สร้าง Pull Request
-6. ทางผู้จัดทำจะทำการอ่านและทำการดึงโค้ดใหม่ของคุณ
-
-หรือเรียนวิธีการ fork ได้ที่ https://guides.github.com/activities/forking/
 
 ---
 
