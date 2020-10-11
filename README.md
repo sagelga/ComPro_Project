@@ -1,16 +1,18 @@
 ![](img/Banner.png)
 
 # ![](img/Home.png) Introduction
-สวัสดีครับ วันนี้กลุ่ม POS System เราได้สร้างโปรแกรมที่นำไปใช้กับเครื่องคิดเงิน (หรือที่เรียกว่า ระบบ Point of Sale) อย่างเต็มรูปแบบ และสามารถทำงานได้จริง และรองรับการทำงานได้ในหลายระบบปฎิบัติการที่สร้างขื้นจากระบบ UNIX โดยการใช้เพียงภาษา C ในการเขียน 100%
+ระบบจุดขายหน้าร้าน (ระบบ Point of Sale หรือ POS) อย่างเต็มรูปแบบ และเขียนด้วยภาษา C ทั้งระบบ ซึ่งการเขียนในภาษา C นั้นทำให้ผู้ใช้งาน macOS หรือ Linux-based OS เป็นประโยชน์เพื่อให้ผู้ใช้ไม่จำเป็นที่จะต้องซื้อเครื่องคำนวณที่พลังแรงเพื่อมาใช้ระบบจุดขายหน้าร้านอีกต่อไป
 
-โดยนอกเหนือจาก ระบบ POS แล้ว ทางระบบได้มีระบบการคาดเดาข้อมูลเกี่ยวกับการขาย และการสมัครสมาชิกของผู้ใช้งานร่วมกับการขายของทั่วไป
-
-ทำให้ระบบ POS นี้ทำงานได้อย่างครบวงจร เหมาะสำหรับการใช้งานกับร้านค้าต่างๆ เช่นร้านสะดวกซื้อ ร้านของชำ ร้านอาหาร เป็นต้น
+สามารถตอบโจทย์การใช้งานหน้าร้านอย่างเต็มรูปแบบ ตัวอย่างเช่นระบบลูกค้าสัมพันธ์เพื่อให้ลูกค้าสามารถใช้คะแนนมาแลกเป็นส่วนลดสินค้า การจัดการสินค้าคงคลัง การกำหนดการเข้าถึงของพนักงานแต่ละคน พร้อมทั้งการจัดทำรายงานสำหรับยอดขายและการคาดเดายอดขายอีกด้วย ทำให้ระบบ POS นี้เหมาะสำหรับการใช้งานกับร้านค้าต่างๆ เช่นร้านสะดวกซื้อ ร้านของชำ ร้านอาหาร ฯลฯ
 
 ---
-# ![](https://png.icons8.com/ios/50/000000/table-of-content.png) Table of Contents
-|[Install](https://github.com/sagelga/ComPro_Project/tree/develop/readme#--installation)|[How to use](https://github.com/sagelga/ComPro_Project/tree/develop/readme#-contributing)|[Features](https://github.com/sagelga/ComPro_Project/tree/develop/readme#features)|[Wiki](https://github.com/sagelga/ComPro_Project/wiki)|[Team Member](https://github.com/sagelga/ComPro_Project#-team-members)|[System Report](https://github.com/sagelga/ComPro_Project/wiki/System-Report)
-|-|----|-------|----|-----------|---------|
+
+# ![](img/Help.png) Documentation
+สำหรับวิธีการใช้ระบบและอื่นๆ เราได้ทำการเอกสารประกอบ (Documentation) ไว้ที่ [docs.sagelga.com/compro-project](https://app.gitbook.com/@sagelga/s/compro-project/) 
+
+ทางเราแนะนำให้ท่านเข้าไปทำความเข้าใจวิธีการใช้งานก่อนการนำระบบไปใช้งานเพื่อการใช้งานระบบอย่างมีประสิทธิภาพสูงสุด
+
+---
 
 # ![](img/Settings.png)  Installation
 สำหรับการใช้งานนั้น ผู้ใช้จะต้องทำการ `git clone` เพื่อทำการนำโปรเจ็คเข้าสู่คอมพิวเตอร์ก่อน หากไม่ทราบวิธีการ clone ก็สามารถเรียนวิธีการ clone repository [ที่นี่](https://help.github.com/articles/cloning-a-repository/)
@@ -27,16 +29,6 @@
 และผู้ใช้ควรปรับความกว้างหน้า Terminal (Command Prompt) เป็นขนาดอย่างน้อย 140 x 40 pixel หรือมากกว่านี้
 
 ![](img/Startup%20Page.png)
-
----
-
-# How to use
-สำหรับการใช้งานระบบนั้น ทางผู้จัดทำได้จัดเก็บไว้ที่ https://github.com/sagelga/ComPro_Project/wiki
-
-หรือเข้าไปโดยการกด 'Wiki' ที่ tab ด้านบน<br> 
-![](img/github-wiki-tab.png)
-
-เราแนะนำให้ท่านเข้าไปดูใน wiki เพื่อเรียนรู้วิธีการใช้งานระบบ
 
 ---
 
