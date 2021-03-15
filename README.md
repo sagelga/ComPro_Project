@@ -5,16 +5,15 @@
 
 สามารถตอบโจทย์การใช้งานหน้าร้านอย่างเต็มรูปแบบ ตัวอย่างเช่นระบบลูกค้าสัมพันธ์เพื่อให้ลูกค้าสามารถใช้คะแนนมาแลกเป็นส่วนลดสินค้า การจัดการสินค้าคงคลัง การกำหนดการเข้าถึงของพนักงานแต่ละคน พร้อมทั้งการจัดทำรายงานสำหรับยอดขายและการคาดเดายอดขายอีกด้วย ทำให้ระบบ POS นี้เหมาะสำหรับการใช้งานกับร้านค้าต่างๆ เช่นร้านสะดวกซื้อ ร้านของชำ ร้านอาหาร ฯลฯ
 
+
+## <img src="img/Help.png" height=16px> Documentation
+สำหรับวิธีการใช้ระบบ ความต้องการของระบบ และเอกสารประกอบการใช้งาน (Documentation) เราได้สร้างไว้แล้วที่ [https://docs.sagelga.com/compro-project/](https://docs.sagelga.com/compro-project/)
+
+เราแนะนำให้ท่านอ่านข้อมูลที่จำเป็นในเว็บไซต์เพื่อประสบการณ์ในการใช้งานสูงสุด
+
 ---
 
-# ![](img/Help.png) Documentation
-สำหรับวิธีการใช้ระบบและอื่นๆ เราได้ทำการเอกสารประกอบ (Documentation) ไว้ที่ [docs.sagelga.com/compro-project](https://app.gitbook.com/@sagelga/s/compro-project/) 
-
-ทางเราแนะนำให้ท่านเข้าไปทำความเข้าใจวิธีการใช้งานก่อนการนำระบบไปใช้งานเพื่อการใช้งานระบบอย่างมีประสิทธิภาพสูงสุด
-
----
-
-# ![](img/Settings.png)  Installation
+## <img src="img/Settings.png" height=16px>  Installation
 สำหรับการใช้งานนั้น ผู้ใช้จะต้องทำการ `git clone` เพื่อทำการนำโปรเจ็คเข้าสู่คอมพิวเตอร์ก่อน หากไม่ทราบวิธีการ clone ก็สามารถเรียนวิธีการ clone repository [ที่นี่](https://help.github.com/articles/cloning-a-repository/)
 
 ระบบของเราจะทำงานได้ ผู้ใช้จะต้องมี GCC เพื่อทำการรันภาษา C (โดยปกติแล้ว ทุกเครื่องจะมี GCC อยู่แล้ว)
@@ -44,7 +43,7 @@
 
 โดยทุกระบบที่ได้เกล่ามานั้น ผู้ใช้งานที่เป็น admin สามารถเข้าไปปรับแก้ได้ทั้งหมด และ**สามารถเปลี่ยน/เพื่ม/ลด ได้ตลอดเวลา**
 
-### ![](img/Fingerprint.png) Log In
+### <img src="img/Fingerprint.png" height=16px> Log In
 ก่อนที่จะใช้งานระบบ POS ลูกค้าจำเป็นที่จะต้อง login เพื่อจะเข้าระบบเสียก่อน โดยการเข้าระบบจากหน้าแรก (หน้าปรับขนาดหน้าจอ)​
 1. ให้กด 'Y' แล้วกด ENTER
 2. พิมพ์ username (หรือใช้ scanner เช่นตัวยิงบาร์โค้ด) เข้าไปที่ระบบ
@@ -66,7 +65,7 @@ password : admin
 
 ---
 
-### ![](img/Dashboard.png) Main menu
+### <img src="img/Dashboard.png" height=16px> Main menu
 สำหรับการใช้งานระบบ POS ก็จะมีระบบย่อยๆ ต่างๆ เพื่อช่วยในการขาย เช่น
 
 ![](img/First%20Page.png)
@@ -79,7 +78,7 @@ password : admin
 
 ---
 
-### ![](img/Help.png) Shortcut Keys
+### <img src="img/Help.png" height=16px> Shortcut Keys
 |Q|V|B|ENTER|1 - 9|
 |-|-|-|-|-|
 |**Quit**<br/>Sign Out และปิดโปรแกรม|**Void**<br/>ยกเลิกการทำการ <br> (เฉพาะในหน้า POS)|**Back** <br/> กลับไปหน้าที่แล้ว|**Continue** / **Skip** <br> ทำงานต่อไป หรือ ให้ใช้ค่าเรื่มต้น <br/>  (แตกต่างกันในแต่ละหน้าจอ)|**Selection** <br/> ตัวเลือกในหน้าจอ
@@ -88,7 +87,7 @@ password : admin
 
 ---
 
-### ![](img/Help.png) POS Sales System
+### <img src="img/Help.png" height=16px> POS Sales System
 ![](img/POS%20Landing%20Page.png)
 
 |Step 1|Step 2|Step 3|Step 4|
@@ -97,7 +96,7 @@ password : admin
 
 ---
 
-### ![](img/Help.png) Inventory Dashboard
+### <img src="img/Help.png" height=16px> Inventory Dashboard
 ![](img/Inventory%20Landing%20Page.png)
 
 |พิมพ์|เพื่อ|วิธีการใช้งาน|
@@ -110,18 +109,18 @@ password : admin
 |6|เพื่มประเภทสืนค้า|เพื่มชื่อประเภทสินค้่าโดยการพิมพ์ชื่อประเภทที่เราต้องการ <br> (หากมีชื่อนั้นอยู่แล้ว จะไม่สามารถตั้งซ้ำได้) <br> และระบบจะสร้าง ไอดี เพื่อนำไปติดกับสินค้าได้|
 |7|เปลี่ยนชื่อของประเภทสืนค้า|เปลี่ยนชื่อประเภทสินค้าโดยการพิมพ์ชื่อประเภทเก่าที่ต้องการเปลี่ยน และพิมพ์ชื่อใหม่เข้าไป ระบบจะเปลี่ยนชื่อในทันที (ไอดีจะคงเหมือนเดิม ดังนั้นระบบจะยังสามารถทำงานต่อได้อย่างปกติ)|
 
-### ![](img/Help.png) Inventory Database Interface
+### <img src="img/Help.png" height=16px> Inventory Database Interface
 ![](img/Inventory%20List.png)
 
-### ![](img/Help.png) Category Database Interface
+### <img src="img/Help.png" height=16px> Category Database Interface
 ![](img/Category%20List.png)
 
-### ![](img/Help.png) Reporting Interface
+### <img src="img/Help.png" height=16px> Reporting Interface
 ![](img/Report%20List.png)
 
 ---
 
-### ![](img/Help.png) Settings Dashboard
+### <img src="img/Help.png" height=16px> Settings Dashboard
 ![](img/Settings%20Landing%20Page.png)
 
 |พิมพ์|เพื่อ|วิธีการใช้งาน|
@@ -132,14 +131,14 @@ password : admin
 |4|เปลี่ยนค่าคะแนนที่จะได้รับจากการใช้จ่าย|โดยที่ การใช้จ่ายทุกๆ x บาท จะได้ 1 คะแนน <br> โดยเจ้าของร้านสามารถแก้ไขค่า x ได้ และจะเรื่มใช้งานด้วยเรทใหม่กับการทำรายการหลังจากการเปลี่ยนเท่านั้น (ไม่แก้ไขย้อนหลัง)|
 |5|เปลี่ยนค่าคะแนนเป็นส่วนสดเงินสด|โดยที่ การใช้ x คะแนน สามารถแลกเป็นส่วนลดได้ 1 บาท <br> โดยเจ้าของร้านสามารถแก้ไขค่า x ได้ และจะเรื่มใช้งานด้วยเรทใหม่กับการทำรายการหลังจากการเปลี่ยนเท่านั้น (ไม่แก้ไขย้อนหลัง)|
 
-### ![](img/Help.png) Price to Point Interface
+### <img src="img/Help.png" height=16px> Price to Point Interface
 ![](img/Point%20to%20Price%20List.png)
 
-### ![](img/Help.png) Terminate Interface
+### <img src="img/Help.png" height=16px> Terminate Interface
 ![](img/Terminate.png)
 ---
 
-### ![](img/Help.png) Forecast Dashboard
+### <img src="img/Help.png" height=16px> Forecast Dashboard
 ![](img/Forecast%20Landing%20Page.png)
 
 |พิมพ์|เพื่อ|
@@ -163,12 +162,12 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 (alpha) ที่เหมาะสม ซึ่งโปรแกรม POS จะทำการเลือกค่า  ที่เหมาะสมจากการคำนวนค่า Sum of squared errors โดยจะเลือกค่า alpha ที่มีค่า Sum of squared errors ที่น้อยที่สุด
 
 
-### ![](img/Help.png) Daily Forecast Interface
+### <img src="img/Help.png" height=16px> Daily Forecast Interface
 ![](img/Forecast%20List.png)
 
 ---
 
-# ![](img/Person.png) Team Members
+## <img src="img/Person.png" height=16px> Team Members
 |  |ชื่อ|นามสกุล|GitHub Username|รหัสนักศึกษา|
 |:-:|--|------|---------------|---------|
 |![https://www.facebook.com/son9912](img/sagelga.png)|Kunanon|Srisuntiroj|[@sagelga](https://github.com/sagelga)|59070022|
@@ -177,7 +176,7 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 |![https://www.facebook.com/7eay.mask](img/59070156.png)|Vasanchai|Prakobkij|[@59070156](https://github.com/@59070156)|59070156|
 |![https://www.facebook.com/momay.weerakorn](img/fablemay.png)|Weerakorn|Pongpum|[@fablemay](https://github.com/@fablemay)|59070163|
 
-# ![](img/Supervisor.png) Assistant Teacher
+## <img src="img/Supervisor.png" height=16px> Assistant Teacher
 |ผศ. ดร. กิติ์สุชาต พสุภา|ผศ. ดร. ปานวิทย์ ธุวะนุติ|
 |:-:|:-:|
 |![](img/Aj.%20Oong.png)|![](img/Aj.%20Panwit.png)|
