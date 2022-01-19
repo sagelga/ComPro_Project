@@ -1,37 +1,36 @@
-![](img/Banner.png)
+<img src="img/Banner.png" style="max-width: 100%;">
 
-# ![](img/Home.png) Introduction
 ระบบจุดขายหน้าร้าน (ระบบ Point of Sale หรือ POS) อย่างเต็มรูปแบบ และเขียนด้วยภาษา C ทั้งระบบ ซึ่งการเขียนในภาษา C นั้นทำให้ผู้ใช้งาน macOS หรือ Linux-based OS เป็นประโยชน์เพื่อให้ผู้ใช้ไม่จำเป็นที่จะต้องซื้อเครื่องคำนวณที่พลังแรงเพื่อมาใช้ระบบจุดขายหน้าร้านอีกต่อไป
 
 สามารถตอบโจทย์การใช้งานหน้าร้านอย่างเต็มรูปแบบ ตัวอย่างเช่นระบบลูกค้าสัมพันธ์เพื่อให้ลูกค้าสามารถใช้คะแนนมาแลกเป็นส่วนลดสินค้า การจัดการสินค้าคงคลัง การกำหนดการเข้าถึงของพนักงานแต่ละคน พร้อมทั้งการจัดทำรายงานสำหรับยอดขายและการคาดเดายอดขายอีกด้วย ทำให้ระบบ POS นี้เหมาะสำหรับการใช้งานกับร้านค้าต่างๆ เช่นร้านสะดวกซื้อ ร้านของชำ ร้านอาหาร ฯลฯ
 
+## <img src="img/Help.png" style="width: 1em;"> Documentation
+เราได้สร้างเอกสารเกี่ยวกับความต้องการของระบบ (System Requirement), เอกสารประกอบการใช้งาน (User Manual) และทฤษฏีการคำนวณยอดขายล่วงหน้าไว้แล้วที่ [https://docs.sagelga.com/compro-project/](https://docs.sagelga.com/compro-project/) โดยเราแนะนำให้ผู้ใช้งานทุกท่านข้อมูลเกี่ยวกับระบบเพื่อประสบการณ์การใช้งานสูงสุด
 
-## <img src="img/Help.png" height=16px> Documentation
-สำหรับวิธีการใช้ระบบ ความต้องการของระบบ และเอกสารประกอบการใช้งาน (Documentation) เราได้สร้างไว้แล้วที่ [https://docs.sagelga.com/compro-project/](https://docs.sagelga.com/compro-project/)
+## <img src="img/Settings.png" style="width: 1em;"> System Requirement
+โดยระบบ POS มีความต้องการของระบบดังนี้
 
-เราแนะนำให้ท่านอ่านข้อมูลที่จำเป็นในเว็บไซต์เพื่อประสบการณ์ในการใช้งานสูงสุด
+1. คอมไพเลอร์ C (GCC)
+2. อุปกรณ์คอมพิวเตอร์หรือเครื่องให้บริการ คีย์บอร์ด และหน้าจอแสดงผล
+3. หน้าจออุปกรณ์คอมพิวเตอร์ที่สามารถแสดงหน้าจอเทอร์มินอลขนาด 140x40 หน่วยตัวอักษร หรือมากกว่า
+4. (แนะนำ) อุปกรณ์สแกนบาร์โค้ด
 
----
+## <img src="img/Settings.png" style="width: 1em;">  Installation
+สำหรับการใช้งานนั้น ผู้ใช้จะต้องทำการ `git clone` เพื่อทำการนำโปรเจ็คเข้าสู่คอมพิวเตอร์ก่อน [[อ่านวิธีการ Clone ได้ที่นี่](https://help.github.com/articles/cloning-a-repository/)]
 
-## <img src="img/Settings.png" height=16px>  Installation
-สำหรับการใช้งานนั้น ผู้ใช้จะต้องทำการ `git clone` เพื่อทำการนำโปรเจ็คเข้าสู่คอมพิวเตอร์ก่อน หากไม่ทราบวิธีการ clone ก็สามารถเรียนวิธีการ clone repository [ที่นี่](https://help.github.com/articles/cloning-a-repository/)
+เมื่อท่านได้ทำการ clone มาแล้วให้ท่านเข้าไปยังโฟลเดอร์ด้วยการใช้ Terminal หรือ Command Prompt และทำการพิมพ์สคริปต์:
 
-ระบบของเราจะทำงานได้ ผู้ใช้จะต้องมี GCC เพื่อทำการรันภาษา C (โดยปกติแล้ว ทุกเครื่องจะมี GCC อยู่แล้ว)
+``` shell
+make && make run
+```
 
-และทำการไปที่โฟล์เดอร์หลักของโปรเจ็ค แล้วพิมพ์ `make && make run` ผ่าน Command Line เพื่อเป็นการ สร้างไฟล์ Executable (.exe) และโปรแกรมจะเปิดโปรแกรมขื้นมาให้ทันทีอัตโนมัติ สามารถใช้ระบบได้เลยทันที
-
-![](img/First%20time%20Loadup.png)
-
-หากท่านทำการ `make && make run` แล้วอย่างน้อย 1 ครั้ง ไฟล์ POS-System.exe จะปรากฎขิ้น<br>
-ผู้ใช้งานสามารถกดไฟล์ POS-System.exe เพื่ใช้งานระบบต่อได้
-
-และผู้ใช้ควรปรับความกว้างหน้า Terminal (Command Prompt) เป็นขนาดอย่างน้อย 140 x 40 pixel หรือมากกว่านี้
+สคริปต์จะทำการสร้าง Executable File (หรือไฟล์ .exe) และผู้ใช้งานสามารถใช้งานระบบได้ในทันที และครั้งต่อไปผู้ใช้งานสามารถกดใช้งานตัวไฟล์ .exe โดยที่ไม่จำเป็นต้องทำการพิมพ์สคริปต์นี้อีกครั้งหนึ่ง ซึ่งเมื่อตัวโปรแกรมนั้นได้ถูกเปิดใช้งานแล้ว หน้าจอจะแสดงข้อความและหน้าจอดังภาพด้านล่าง
 
 ![](img/Startup%20Page.png)
 
----
+เพื่อที่จะใช้งานระบบ ผู้ใช้งานจำเป็นที่จะต้องมีชื่อผู้ใช้งาน (Username) และรหัสผ่าน (Password) เพื่อเข้าสู่ระบบต่อไป
 
-## Features
+## Feature
 สำหรับการใช้งานระบบ POS ก็จะมีระบบย่อยๆ ต่างๆ เพื่อช่วยในการขาย เช่น
 * เช็คสินค้าคงคลัง (Inventory)
 * เช็คถึงยอดขาย (Sales)
@@ -52,33 +51,31 @@
 
 ![](img/Login%20Interface.gif)
 
-ในการใช้ demo นี้ คุณสามารถใช้
+เพื่อการนำเสนอฟีเจอร์การทำงาน เราจึงสร้างบัญชีผู้ใช้งานและรหัสผ่านด้านล่างดังนี้
 
 ```
 username : admin
 password : admin
 ```
 
-เพื่อทำการ login เข้าสู่ระบบ
-
-> ท่านสามารถเข้าไปดูผู้ใช้งานได้ที่ไฟล์ `/Database/personnel.db`
+โดยผู้ใช้งานจะได้รับสิทธิเข้าถึงระบบทั้งหมด [อ่านต่อเกี่ยวกับระดับสิทธิและการเข้าถึงฟีเจอร์ได้ที่นี่](https://docs.sagelga.com/compro-project/feature/access-management/)
 
 ---
 
-### <img src="img/Dashboard.png" height=16px> Main menu
+### <img src="img/Dashboard.png" style="width: 1em;"> Main menu
 สำหรับการใช้งานระบบ POS ก็จะมีระบบย่อยๆ ต่างๆ เพื่อช่วยในการขาย เช่น
-
-![](img/First%20Page.png)
 
 |Inventory|Sales|Forecast|Personnel|Category|Promotion|Settings|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |เช็คสินค้าคงคลัง|เช็คถึงยอดขาย|เช็คถึงยอดขายในอนาคต|เช็คผู้ใช้งานอื่น|เช็คประเภทของสินค้า| เปลี่ยนโปรโมชั่นสำหรับลูกค้า|แก้ไขข้อมูลพื้นฐานของร้านค้า|
 
-โดยทุกระบบที่ได้เกล่ามานั้น ผู้ใช้งานที่เป็น เจ้าของร้าน (ผู้ใช้งานระดับ admin) **สามารถเข้าไปปรับแก้ได้ และ สามารถเปลี่ยน/เพื่ม/ลด ได้ทั้งหมด**
+![](img/First%20Page.png)
+
+โดยทุกฟีเจอร์ที่อยู่ภายในระบบ ผู้ใช้งานที่มีสิทธิเป็น "เจ้าของร้าน" (ผู้ใช้งานระดับ admin) **สามารถเข้าไปปรับแก้ฟีเจอร์ในแต่ละระดับได้ทั้งหมด**
 
 ---
 
-### <img src="img/Help.png" height=16px> Shortcut Keys
+### <img src="img/Help.png" style="width: 1em;"> Shortcut Keys
 |Q|V|B|ENTER|1 - 9|
 |-|-|-|-|-|
 |**Quit**<br/>Sign Out และปิดโปรแกรม|**Void**<br/>ยกเลิกการทำการ <br> (เฉพาะในหน้า POS)|**Back** <br/> กลับไปหน้าที่แล้ว|**Continue** / **Skip** <br> ทำงานต่อไป หรือ ให้ใช้ค่าเรื่มต้น <br/>  (แตกต่างกันในแต่ละหน้าจอ)|**Selection** <br/> ตัวเลือกในหน้าจอ
@@ -87,7 +84,7 @@ password : admin
 
 ---
 
-### <img src="img/Help.png" height=16px> POS Sales System
+### <img src="img/Help.png" style="width: 1em;"> POS Sales System
 ![](img/POS%20Landing%20Page.png)
 
 |Step 1|Step 2|Step 3|Step 4|
@@ -96,7 +93,7 @@ password : admin
 
 ---
 
-### <img src="img/Help.png" height=16px> Inventory Dashboard
+### <img src="img/Help.png" style="width: 1em;"> Inventory Dashboard
 ![](img/Inventory%20Landing%20Page.png)
 
 |พิมพ์|เพื่อ|วิธีการใช้งาน|
@@ -109,18 +106,18 @@ password : admin
 |6|เพื่มประเภทสืนค้า|เพื่มชื่อประเภทสินค้่าโดยการพิมพ์ชื่อประเภทที่เราต้องการ <br> (หากมีชื่อนั้นอยู่แล้ว จะไม่สามารถตั้งซ้ำได้) <br> และระบบจะสร้าง ไอดี เพื่อนำไปติดกับสินค้าได้|
 |7|เปลี่ยนชื่อของประเภทสืนค้า|เปลี่ยนชื่อประเภทสินค้าโดยการพิมพ์ชื่อประเภทเก่าที่ต้องการเปลี่ยน และพิมพ์ชื่อใหม่เข้าไป ระบบจะเปลี่ยนชื่อในทันที (ไอดีจะคงเหมือนเดิม ดังนั้นระบบจะยังสามารถทำงานต่อได้อย่างปกติ)|
 
-### <img src="img/Help.png" height=16px> Inventory Database Interface
+### <img src="img/Help.png" style="width: 1em;"> Inventory Database Interface
 ![](img/Inventory%20List.png)
 
-### <img src="img/Help.png" height=16px> Category Database Interface
+### <img src="img/Help.png" style="width: 1em;"> Category Database Interface
 ![](img/Category%20List.png)
 
-### <img src="img/Help.png" height=16px> Reporting Interface
+### <img src="img/Help.png" style="width: 1em;"> Reporting Interface
 ![](img/Report%20List.png)
 
 ---
 
-### <img src="img/Help.png" height=16px> Settings Dashboard
+### <img src="img/Help.png" style="width: 1em;"> Settings Dashboard
 ![](img/Settings%20Landing%20Page.png)
 
 |พิมพ์|เพื่อ|วิธีการใช้งาน|
@@ -131,14 +128,14 @@ password : admin
 |4|เปลี่ยนค่าคะแนนที่จะได้รับจากการใช้จ่าย|โดยที่ การใช้จ่ายทุกๆ x บาท จะได้ 1 คะแนน <br> โดยเจ้าของร้านสามารถแก้ไขค่า x ได้ และจะเรื่มใช้งานด้วยเรทใหม่กับการทำรายการหลังจากการเปลี่ยนเท่านั้น (ไม่แก้ไขย้อนหลัง)|
 |5|เปลี่ยนค่าคะแนนเป็นส่วนสดเงินสด|โดยที่ การใช้ x คะแนน สามารถแลกเป็นส่วนลดได้ 1 บาท <br> โดยเจ้าของร้านสามารถแก้ไขค่า x ได้ และจะเรื่มใช้งานด้วยเรทใหม่กับการทำรายการหลังจากการเปลี่ยนเท่านั้น (ไม่แก้ไขย้อนหลัง)|
 
-### <img src="img/Help.png" height=16px> Price to Point Interface
+### <img src="img/Help.png" style="width: 1em;"> Price to Point Interface
 ![](img/Point%20to%20Price%20List.png)
 
-### <img src="img/Help.png" height=16px> Terminate Interface
+### <img src="img/Help.png" style="width: 1em;"> Terminate Interface
 ![](img/Terminate.png)
 ---
 
-### <img src="img/Help.png" height=16px> Forecast Dashboard
+### <img src="img/Help.png" style="width: 1em;"> Forecast Dashboard
 ![](img/Forecast%20Landing%20Page.png)
 
 |พิมพ์|เพื่อ|
@@ -162,21 +159,21 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 (alpha) ที่เหมาะสม ซึ่งโปรแกรม POS จะทำการเลือกค่า  ที่เหมาะสมจากการคำนวนค่า Sum of squared errors โดยจะเลือกค่า alpha ที่มีค่า Sum of squared errors ที่น้อยที่สุด
 
 
-### <img src="img/Help.png" height=16px> Daily Forecast Interface
+### <img src="img/Help.png" style="width: 1em;"> Daily Forecast Interface
 ![](img/Forecast%20List.png)
 
 ---
 
-## <img src="img/Person.png" height=16px> Team Members
-|  |ชื่อ|นามสกุล|GitHub Username|รหัสนักศึกษา|
-|:-:|--|------|---------------|---------|
-|![https://www.facebook.com/son9912](img/sagelga.png)|Kunanon|Srisuntiroj|[@sagelga](https://github.com/sagelga)|59070022|
-|![www.facebook.com/hideokyjima](img/skydddoogg.png)|Thanawat|Laodkaew|[@skydddoogg](https://github.com/skydddoogg)|59070071|
-|![https://www.facebook.com/noppanut](img/noppanut15.png)|Noppanut|Ploywong|[@noppanut15](https://github.com/noppanut15)|59070082|
-|![https://www.facebook.com/7eay.mask](img/59070156.png)|Vasanchai|Prakobkij|[@59070156](https://github.com/@59070156)|59070156|
-|![https://www.facebook.com/momay.weerakorn](img/fablemay.png)|Weerakorn|Pongpum|[@fablemay](https://github.com/@fablemay)|59070163|
+## <img src="img/Person.png" style="width: 1em;"> Team Members
+|  |ชื่อ - นามสกุล|GitHub Username|รหัสนักศึกษา|
+|:-:|--------|---------------|---------|
+|<img src="https://avatars.githubusercontent.com/u/13056824" width=100px>|Kunanon Srisuntiroj|[@sagelga](https://github.com/sagelga)|59070022|
+|<img src="img/skydddoogg.png" width=100px>|Thanawat Laodkaew|[@skydddoogg](https://github.com/skydddoogg)|59070071|
+|<img src="https://avatars.githubusercontent.com/u/16563362" width=100px>|Noppanut Ploywong|[@noppanut15](https://github.com/noppanut15)|59070082|
+|<img src="img/59070156.png" width=100px>|Vasanchai Prakobkij|[@59070156](https://github.com/59070156)|59070156|
+|<img src="img/fablemay.png" width=100px>|Weerakorn Pongpum|[@fablemay](https://github.com/fablemay)|59070163|
 
-## <img src="img/Supervisor.png" height=16px> Assistant Teacher
+## <img src="img/Supervisor.png" style="width: 1em;"> Assistant Teacher
 |ผศ. ดร. กิติ์สุชาต พสุภา|ผศ. ดร. ปานวิทย์ ธุวะนุติ|
 |:-:|:-:|
 |![](img/Aj.%20Oong.png)|![](img/Aj.%20Panwit.png)|
@@ -189,4 +186,4 @@ Sum of squared errors (SSE) คือ การหาค่าความคล
 
 ---
 
-[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/powered-by-responsibility.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/built-with-swag.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/powered-by-responsibility.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/built-with-swag.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/winter-is-coming.svg)](https://forthebadge.com)
